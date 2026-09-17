@@ -3,24 +3,17 @@ import {collection, config, fields} from '@keystatic/core';
 const requiredText = (label: string, multiline = false) =>
   fields.text({label, multiline, validation: {isRequired: true}});
 
-const projectImage = (label: string) =>
+const imageField = (label: string) =>
   fields.image({
     label,
     directory: 'public/project-media',
     publicPath: '/project-media/',
-    schema: {
-      altEn: requiredText('Alt text — English'),
-      altAr: requiredText('Alt text — Arabic'),
-    },
   });
 
 export default config({
   storage: {
     kind: 'github',
     repo: 'budctx/ibrahim-portfolio',
-  },
-  ui: {
-    brand: {name: 'Ibrahim Portfolio'},
   },
   collections: {
     projects: collection({
@@ -71,8 +64,20 @@ export default config({
           label: 'Tools',
           validation: {length: {min: 1}},
         }),
-        cover: projectImage('Cover image'),
-        gallery: fields.array(projectImage('Gallery image'), {label: 'Gallery'}),
+        cover: imageField('Cover image'),
+        coverAltEn: requiredText('Cover alt text — English'),
+        coverAltAr: requiredText('Cover alt text — Arabic'),
+        gallery: fields.array(
+          fields.object({
+            image: imageField('Image'),
+            altEn: requiredText('Alt text — English'),
+            altAr: requiredText('Alt text — Arabic'),
+          }),
+          {
+            label: 'Gallery',
+            itemLabel: (props) => props.fields.altEn.value || 'Gallery image',
+          },
+        ),
         problemEn: requiredText('Problem — English', true),
         problemAr: requiredText('Problem — Arabic', true),
         contextEn: requiredText('Context — English', true),
