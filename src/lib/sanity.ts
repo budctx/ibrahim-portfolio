@@ -4,6 +4,12 @@ export const sanityConfig = {
   apiVersion: '2025-02-19',
 } as const;
 
+export type ProjectImage = {
+  url: string;
+  altEn?: string;
+  altAr?: string;
+};
+
 export type ProjectSummary = {
   projectKey: string;
   titleEn: string;
@@ -29,18 +35,58 @@ export type ProjectSummary = {
   projectUrl?: string;
   order?: number;
   featured?: boolean;
+  cover?: ProjectImage;
+  gallery?: ProjectImage[];
 };
 
-export async function getProjects(): Promise<ProjectSummary[]> {
-  const query = '*[_type == "project" && status == "published" && contentOrigin == "real" && rightsCleared == true && ndaCleared == true] | order(order asc){projectKey,titleEn,titleAr,"slug":slug.current,classification,year,typeEn,typeAr,roleEn,roleAr,tools,problemEn,problemAr,contextEn,contextAr,processEn,processAr,decisionsEn,decisionsAr,outcomeEn,outcomeAr,projectUrl,order,featured}';
+const publicProjectFilter = '_type == "project" && status == "published" && contentOrigin == "real" && rightsCleared == true && ndaCleared == true';
+const projectProjection = `{
+  projectKey,
+  titleEn,
+  titleAr,
+  "slug": slug.current,
+  classification,
+  year,
+  typeEn,
+  typeAr,
+  roleEn,
+  roleAr,
+  tools,
+  problemEn,
+  problemAr,
+  contextEn,
+  contextAr,
+  processEn,
+  processAr,
+  decisionsEn,
+  decisionsAr,
+  outcomeEn,
+  outcomeAr,
+  projectUrl,
+  order,
+  featured,
+  "cover": select(defined(cover.asset) => {"url": cover.asset->url, "altEn": cover.altEn, "altAr": cover.altAr}),
+  "gallery": gallery[]{"url": asset->url, altEn, altAr}
+}`;
+
+async function sanityQuery<T>(query: string): Promise<T | null> {
   const endpoint = `https://${sanityConfig.projectId}.api.sanity.io/v${sanityConfig.apiVersion}/data/query/${sanityConfig.dataset}?query=${encodeURIComponent(query)}`;
-  const response = await fetch(endpoint, { next: { revalidate: 60 } });
-  if (!response.ok) return [];
-  const data = (await response.json()) as { result?: ProjectSummary[] };
-  return data.result ?? [];
+  try {
+    const response = await fetch(endpoint, {next: {revalidate: 60}});
+    if (!response.ok) return null;
+    const data = (await response.json()) as {result?: T};
+    return data.result ?? null;
+  } catch {
+    return null;
+  }
 }
 
-export async function getProjectBySlug(slug:string){
+export async function getProjects(): Promise<ProjectSummary[]> {
+  const query = `*[${publicProjectFilter}] | order(order asc, _createdAt asc) ${projectProjection}`;
+  return (await sanityQuery<ProjectSummary[]>(query)) ?? [];
+}
+
+export async function getProjectBySlug(slug: string): Promise<ProjectSummary | null> {
   const projects = await getProjects();
-  return projects.find((project)=>project.slug===slug) ?? null;
+  return projects.find((project) => project.slug === slug) ?? null;
 }
