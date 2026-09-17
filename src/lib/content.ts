@@ -40,11 +40,6 @@ export type ProjectSummary = {
 
 type ProjectEntry = Awaited<ReturnType<typeof reader.collections.projects.read>>;
 
-function mapImage(image: NonNullable<ProjectEntry>['cover']): ProjectImage | undefined {
-  if (!image?.src) return undefined;
-  return {url: image.src, altEn: image.altEn, altAr: image.altAr};
-}
-
 function mapProject(slug: string, entry: NonNullable<ProjectEntry>): ProjectSummary {
   return {
     projectKey: entry.projectKey,
@@ -57,7 +52,7 @@ function mapProject(slug: string, entry: NonNullable<ProjectEntry>): ProjectSumm
     typeAr: entry.typeAr,
     roleEn: entry.roleEn,
     roleAr: entry.roleAr,
-    tools: entry.tools,
+    tools: [...entry.tools],
     problemEn: entry.problemEn,
     problemAr: entry.problemAr,
     contextEn: entry.contextEn,
@@ -69,13 +64,14 @@ function mapProject(slug: string, entry: NonNullable<ProjectEntry>): ProjectSumm
     outcomeEn: entry.outcomeEn,
     outcomeAr: entry.outcomeAr,
     projectUrl: entry.projectUrl || undefined,
-    order: entry.order,
+    order: entry.order ?? undefined,
     featured: entry.featured,
-    cover: mapImage(entry.cover),
-    gallery: entry.gallery.flatMap((image) => {
-      const mapped = mapImage(image);
-      return mapped ? [mapped] : [];
-    }),
+    cover: entry.cover
+      ? {url: entry.cover, altEn: entry.coverAltEn, altAr: entry.coverAltAr}
+      : undefined,
+    gallery: entry.gallery.flatMap((item) =>
+      item.image ? [{url: item.image, altEn: item.altEn, altAr: item.altAr}] : [],
+    ),
   };
 }
 
@@ -104,9 +100,9 @@ function isPublicReady(entry: NonNullable<ProjectEntry>) {
     Boolean(entry.decisionsAr) &&
     Boolean(entry.outcomeEn) &&
     Boolean(entry.outcomeAr) &&
-    Boolean(entry.cover?.src) &&
-    Boolean(entry.cover?.altEn) &&
-    Boolean(entry.cover?.altAr)
+    Boolean(entry.cover) &&
+    Boolean(entry.coverAltEn) &&
+    Boolean(entry.coverAltAr)
   );
 }
 
