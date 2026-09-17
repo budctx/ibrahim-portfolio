@@ -1,0 +1,31 @@
+projectKey: development-signal-lab
+titleEn: Signal Lab — Development Fixture
+titleAr: مختبر الإشارة — نموذج تجريبي
+slug: development-signal-lab
+classification: playground
+status: draft
+order: 999
+featured: false
+year: '2026'
+typeEn: Interaction Experiment
+typeAr: تجربة تفاعلية
+roleEn: Design exploration
+roleAr: استكشاف تصميمي
+tools:
+  - Figma
+  - Prototype
+gallery: []
+problemEn: A controlled development fixture for validating the portfolio CMS workflow before real work is published.
+problemAr: نموذج تطويري مضبوط للتحقق من سير عمل إدارة المحتوى قبل نشر الأعمال الحقيقية.
+contextEn: This entry exists only to test authoring, bilingual fields, classification, and publishing safeguards.
+contextAr: هذا الإدخال موجود فقط لاختبار التأليف والحقول ثنائية اللغة والتصنيف وضوابط النشر.
+processEn: Populate the CMS, verify the draft remains private, review field behavior, then remove the fixture after validation.
+processAr: تعبئة نظام إدارة المحتوى والتحقق من بقاء المسودة غير عامة ومراجعة سلوك الحقول ثم حذف النموذج بعد اكتمال الاختبار.
+decisionsEn: Mark the item as development content, keep it in draft, and leave public-display permissions disabled.
+decisionsAr: تمييز العنصر كمحتوى تطويري وإبقاؤه كمسودة وتعطيل صلاحيات العرض العام.
+outcomeEn: A safe test record that validates the content pipeline without appearing as real portfolio work.
+outcomeAr: سجل اختباري آمن يثبت سلامة مسار المحتوى دون أن يظهر كعمل حقيقي في البورتفوليو.
+projectUrl: ''
+rightsCleared: false
+ndaCleared: false
+contentOrigin: development
