@@ -39,7 +39,38 @@ export type ProjectSummary = {
   gallery?: ProjectImage[];
 };
 
-const publicProjectFilter = '_type == "project" && status == "published" && contentOrigin == "real" && rightsCleared == true && ndaCleared == true';
+const publicProjectFilter = `
+  _type == "project" &&
+  status == "published" &&
+  contentOrigin == "real" &&
+  rightsCleared == true &&
+  ndaCleared == true &&
+  defined(projectKey) &&
+  defined(titleEn) &&
+  defined(titleAr) &&
+  defined(slug.current) &&
+  defined(classification) &&
+  defined(year) &&
+  defined(typeEn) &&
+  defined(typeAr) &&
+  defined(roleEn) &&
+  defined(roleAr) &&
+  count(tools) > 0 &&
+  defined(problemEn) &&
+  defined(problemAr) &&
+  defined(contextEn) &&
+  defined(contextAr) &&
+  defined(processEn) &&
+  defined(processAr) &&
+  defined(decisionsEn) &&
+  defined(decisionsAr) &&
+  defined(outcomeEn) &&
+  defined(outcomeAr) &&
+  defined(cover.asset) &&
+  defined(cover.altEn) &&
+  defined(cover.altAr)
+`;
+
 const projectProjection = `{
   projectKey,
   titleEn,
