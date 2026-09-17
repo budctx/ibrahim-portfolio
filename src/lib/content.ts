@@ -76,6 +76,10 @@ function mapProject(slug: string, entry: NonNullable<ProjectEntry>): ProjectSumm
 }
 
 function isPublicReady(entry: NonNullable<ProjectEntry>) {
+  const galleryReady = entry.gallery.every(
+    (item) => !item.image || (Boolean(item.altEn) && Boolean(item.altAr)),
+  );
+
   return (
     entry.status === 'published' &&
     entry.contentOrigin === 'real' &&
@@ -102,7 +106,8 @@ function isPublicReady(entry: NonNullable<ProjectEntry>) {
     Boolean(entry.outcomeAr) &&
     Boolean(entry.cover) &&
     Boolean(entry.coverAltEn) &&
-    Boolean(entry.coverAltAr)
+    Boolean(entry.coverAltAr) &&
+    galleryReady
   );
 }
 
