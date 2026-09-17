@@ -1,7 +1,8 @@
 import {collection, config, fields} from '@keystatic/core';
 
-const requiredText = (label: string, multiline = false) =>
-  fields.text({label, multiline, validation: {isRequired: true}});
+const text = (label: string, multiline = false) => fields.text({label, multiline});
+const requiredText = (label: string) =>
+  fields.text({label, validation: {isRequired: true}});
 
 const imageField = (label: string) =>
   fields.image({
@@ -55,39 +56,38 @@ export default config({
         }),
         order: fields.integer({label: 'Manual order', defaultValue: 999, validation: {min: 0}}),
         featured: fields.checkbox({label: 'Featured', defaultValue: false}),
-        year: requiredText('Year'),
-        typeEn: requiredText('Type — English'),
-        typeAr: requiredText('Type — Arabic'),
-        roleEn: requiredText('Role — English'),
-        roleAr: requiredText('Role — Arabic'),
+        year: text('Year'),
+        typeEn: text('Type — English'),
+        typeAr: text('Type — Arabic'),
+        roleEn: text('Role — English'),
+        roleAr: text('Role — Arabic'),
         tools: fields.array(fields.text({label: 'Tool', validation: {isRequired: true}}), {
           label: 'Tools',
-          validation: {length: {min: 1}},
         }),
         cover: imageField('Cover image'),
-        coverAltEn: requiredText('Cover alt text — English'),
-        coverAltAr: requiredText('Cover alt text — Arabic'),
+        coverAltEn: text('Cover alt text — English'),
+        coverAltAr: text('Cover alt text — Arabic'),
         gallery: fields.array(
           fields.object({
             image: imageField('Image'),
-            altEn: requiredText('Alt text — English'),
-            altAr: requiredText('Alt text — Arabic'),
+            altEn: text('Alt text — English'),
+            altAr: text('Alt text — Arabic'),
           }),
           {
             label: 'Gallery',
             itemLabel: (props) => props.fields.altEn.value || 'Gallery image',
           },
         ),
-        problemEn: requiredText('Problem — English', true),
-        problemAr: requiredText('Problem — Arabic', true),
-        contextEn: requiredText('Context — English', true),
-        contextAr: requiredText('Context — Arabic', true),
-        processEn: requiredText('Process — English', true),
-        processAr: requiredText('Process — Arabic', true),
-        decisionsEn: requiredText('Key decisions — English', true),
-        decisionsAr: requiredText('Key decisions — Arabic', true),
-        outcomeEn: requiredText('Outcome — English', true),
-        outcomeAr: requiredText('Outcome — Arabic', true),
+        problemEn: text('Problem — English', true),
+        problemAr: text('Problem — Arabic', true),
+        contextEn: text('Context — English', true),
+        contextAr: text('Context — Arabic', true),
+        processEn: text('Process — English', true),
+        processAr: text('Process — Arabic', true),
+        decisionsEn: text('Key decisions — English', true),
+        decisionsAr: text('Key decisions — Arabic', true),
+        outcomeEn: text('Outcome — English', true),
+        outcomeAr: text('Outcome — Arabic', true),
         projectUrl: fields.text({
           label: 'Project URL',
           description: 'Optional public HTTPS URL.',
