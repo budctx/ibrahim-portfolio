@@ -121,3 +121,9 @@ export async function getProjectBySlug(slug: string): Promise<ProjectSummary | n
   const projects = await getProjects();
   return projects.find((project) => project.slug === slug) ?? null;
 }
+
+export async function getDevelopmentProjectBySlug(slug: string): Promise<ProjectSummary | null> {
+  const safeSlug = JSON.stringify(slug);
+  const query = `*[_type == "project" && status == "published" && contentOrigin == "development" && slug.current == ${safeSlug}][0] ${projectProjection}`;
+  return await sanityQuery<ProjectSummary>(query);
+}
