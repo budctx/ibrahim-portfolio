@@ -1,9 +1,55 @@
+import type {Metadata} from 'next';
+import type {ReactNode} from 'react';
 import './globals.css';
 
-export default function RootLayout({children}:{children:any}) {
+const siteUrl = 'https://ibrahim-portfolio-blush.vercel.app';
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Ibrahim — Digital Product & Experience Designer',
+    template: '%s — Ibrahim',
+  },
+  description: 'Digital product and experience designer turning complex systems and workflows into clear digital experiences.',
+  alternates: {
+    canonical: '/',
+    languages: {
+      en: '/',
+      ar: '/ar',
+      'x-default': '/',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: 'Ibrahim — Digital Product & Experience Designer',
+    description: 'Turning complex systems and workflows into clear digital experiences.',
+    siteName: 'Ibrahim Portfolio',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+const themeInit = `
+try {
+  const saved = localStorage.getItem('portfolio-theme');
+  const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : preferred;
+} catch (_) {}
+`;
+
+export default function RootLayout({children}: {children: ReactNode}) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{__html: themeInit}} />
+      </head>
+      <body>
+        <a className="skip" href="#main">Skip to content</a>
+        {children}
+      </body>
     </html>
   );
 }
