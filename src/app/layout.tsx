@@ -1,4 +1,5 @@
 import type {Metadata} from 'next';
+import {headers} from 'next/headers';
 import type {ReactNode} from 'react';
 import './globals.css';
 
@@ -40,14 +41,18 @@ try {
 } catch (_) {}
 `;
 
-export default function RootLayout({children}: {children: ReactNode}) {
+export default async function RootLayout({children}: {children: ReactNode}) {
+  const requestHeaders = await headers();
+  const locale = requestHeaders.get('x-portfolio-locale') === 'ar' ? 'ar' : 'en';
+  const dir = locale === 'ar' ? 'rtl' : 'ltr';
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} dir={dir} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{__html: themeInit}} />
       </head>
       <body>
-        <a className="skip" href="#main">Skip to content</a>
+        <a className="skip" href="#main">{locale === 'ar' ? 'تجاوز إلى المحتوى' : 'Skip to content'}</a>
         {children}
       </body>
     </html>
