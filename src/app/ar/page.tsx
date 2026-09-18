@@ -64,7 +64,13 @@ export default async function ArabicHomePage() {
 
       <section className="section contactSection" id="contact" aria-labelledby="contact-title-ar">
         <div className="eyebrow" id="contact-title-ar">تواصل</div>
-        <p className="contact">لنحوّل التعقيد إلى وضوح.</p>
+        <div>
+          <p className="contact">لنحوّل التعقيد إلى وضوح.</p>
+          <div className="contactActions">
+            <Link href="mailto:ibrahim.alajmi407@gmail.com">البريد الإلكتروني</Link>
+            <Link href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">LinkedIn</Link>
+          </div>
+        </div>
       </section>
 
       <footer className="footer">
