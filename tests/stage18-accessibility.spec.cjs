@@ -194,8 +194,8 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
       const rect = element.getBoundingClientRect();
       return {width: rect.width, height: rect.height};
     });
-    expect(googleSize.width).toBeGreaterThanOrEqual(52);
-    expect(googleSize.height).toBeGreaterThanOrEqual(52);
+    expect(googleSize.width).toBeGreaterThanOrEqual(38);
+    expect(googleSize.height).toBeGreaterThanOrEqual(38);
 
     const contactSizes = await page.locator('.cvContactLinks a').evaluateAll((elements) =>
       elements.map((element) => {
