@@ -43,7 +43,13 @@ export default async function ArabicHomePage() {
         <section className="cvHero" aria-labelledby="cv-home-title-ar">
           <div className="cvHeroCopy">
             <p className="cvOverline">إبراهيم العجمي · مصمم منتجات وتجارب رقمية</p>
-            <h1 id="cv-home-title-ar">أصمم المنتجات الرقمية <em>من فهم النظام إلى وضوح التجربة.</em></h1>
+            <h1 id="cv-home-title-ar">
+              <span className="cvHeroTitleLine">أصمم المنتجات الرقمية</span>
+              <em>
+                <span className="cvHeroTitleLine">من فهم النظام إلى</span>
+                <span className="cvHeroTitleLine">وضوح التجربة.</span>
+              </em>
+            </h1>
             <p className="cvLede">
               قبل أن أحدد كيف يجب أن تبدو الواجهة، أريد أن أفهم ما الذي يحتاج النظام إلى جعله أوضح.
             </p>
