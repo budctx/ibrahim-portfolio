@@ -3639,3 +3639,110 @@ html[data-theme='light'] .cvGoogleBrand {
     height: 52px;
   }
 }
+
+
+/* Optical balance correction — final Arabic/brand/map tuning */
+@media (min-width: 761px) {
+  .cvRtl h1 {
+    max-width: none;
+    font-size: clamp(3.1rem, 4.25vw, 4.9rem);
+    line-height: 1.08;
+  }
+
+  .cvRtl .cvHeroTitleLine {
+    white-space: nowrap;
+  }
+}
+
+.cvMapDetailNumber {
+  top: clamp(26px, 2.4vw, 32px);
+  inset-inline-end: clamp(26px, 2.4vw, 32px);
+  font-size: clamp(2.35rem, 3vw, 3.35rem);
+  opacity: .56;
+}
+
+.cvMapDetailBody {
+  padding-inline-end: clamp(58px, 6vw, 88px);
+}
+
+.cvMapDetailBody > strong {
+  max-width: 16ch;
+}
+
+.cvGoogleBrand {
+  width: 100%;
+  min-height: 58px;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding: 0 0 14px;
+  border: 0;
+  border-bottom: 1px solid var(--cv-hairline);
+  background: transparent;
+  color: var(--fg);
+  box-shadow: none;
+}
+
+.cvGoogleBrand svg {
+  width: 40px;
+  height: 40px;
+  padding: 7px;
+  border: 1px solid color-mix(in srgb, #4285f4 34%, var(--cv-hairline));
+  background: color-mix(in srgb, #4285f4 8%, transparent);
+  color: #4285f4;
+}
+
+.cvGoogleBrand span {
+  color: color-mix(in srgb, var(--fg) 82%, var(--bg)) !important;
+  font-size: .9375rem;
+  font-weight: 650;
+}
+
+html[data-theme='light'] .cvGoogleBrand {
+  box-shadow: none;
+}
+
+.cvLinkedInLink {
+  border-color: var(--cv-hairline);
+  background: transparent;
+  color: var(--fg);
+}
+
+.cvLinkedInLink svg {
+  color: #0a66c2;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cvLinkedInLink:hover {
+    border-color: color-mix(in srgb, #0a66c2 60%, var(--cv-hairline));
+    background: color-mix(in srgb, #0a66c2 8%, var(--bg));
+    color: var(--fg);
+  }
+
+  .cvLinkedInLink:hover svg {
+    color: #0a66c2;
+  }
+}
+
+@media (max-width: 760px) {
+  .cvRtl .cvHeroTitleLine {
+    white-space: normal;
+  }
+
+  .cvMapDetailNumber {
+    font-size: 2.4rem;
+    opacity: .62;
+  }
+
+  .cvMapDetailBody {
+    padding-inline-end: 0;
+  }
+
+  .cvGoogleBrand {
+    min-height: 54px;
+  }
+
+  .cvGoogleBrand svg {
+    width: 38px;
+    height: 38px;
+  }
+}
