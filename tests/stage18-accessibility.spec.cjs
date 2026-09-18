@@ -41,7 +41,7 @@ async function expectCoreContentVisible(page) {
   expect(clipped).toEqual([]);
 }
 
-test.describe('Stage 18 accessibility and responsive evidence', () => {
+test.describe('Interactive CV accessibility and responsive evidence', () => {
   test('320px reflow preserves all key routes without horizontal overflow', async ({page}) => {
     await page.setViewportSize({width: 320, height: 800});
 
@@ -52,9 +52,9 @@ test.describe('Stage 18 accessibility and responsive evidence', () => {
       await expectNoHorizontalOverflow(page);
       await expectCoreContentVisible(page);
 
-      if (route === '/') {
-        await expect(page.locator('.structureFieldMobile')).toBeVisible();
-        await expect(page.locator('.structureFieldDesktop')).toBeHidden();
+      if (route === '/' || route === '/ar') {
+        await expect(page.locator('.cvMapGrid')).toBeVisible();
+        await expect(page.locator('.cvSignal')).toHaveCount(6);
       }
 
       if (route.startsWith('/ar')) {
@@ -71,7 +71,7 @@ test.describe('Stage 18 accessibility and responsive evidence', () => {
     await page.setViewportSize({width: 320, height: 800});
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
-    const undersized = await page.locator('header a, header button').evaluateAll((elements) =>
+    const undersized = await page.locator('header a, header button, .cvSignal').evaluateAll((elements) =>
       elements
         .filter((element) => {
           const style = getComputedStyle(element);
@@ -117,7 +117,7 @@ test.describe('Stage 18 accessibility and responsive evidence', () => {
 
     expect(await page.evaluate(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(true);
 
-    const motion = await page.locator('.contactLink').evaluate((element) => {
+    const motion = await page.locator('.cvButton').first().evaluate((element) => {
       const style = getComputedStyle(element);
       return {
         transitionDuration: style.transitionDuration,
@@ -138,10 +138,21 @@ test.describe('Stage 18 accessibility and responsive evidence', () => {
     expect(maxTransitionMs).toBeLessThanOrEqual(0.1);
     expect(motion.scrollBehavior).toBe('auto');
 
-    await page.locator('a[href="/about"]').click();
-    await expect(page).toHaveURL(/\/about$/);
-    await expect(page.locator('h1')).toBeVisible();
+    await page.locator('header a[href="#about"]').click();
+    await expect(page).toHaveURL(/#about$/);
+    await expect(page.locator('#about-title')).toBeVisible();
 
     await context.close();
+  });
+
+  test('career map is keyboard operable and updates one clear detail region', async ({page}) => {
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+
+    const governance = page.getByRole('button', {name: /Governance & DGA/i});
+    await governance.focus();
+    await expect(governance).toBeFocused();
+    await governance.press('Enter');
+    await expect(governance).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('.cvMapDetail')).toContainText('Governance & DGA');
   });
 });
