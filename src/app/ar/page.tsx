@@ -54,7 +54,7 @@ export default async function ArabicHomePage() {
               قبل أن أحدد كيف يجب أن تبدو الواجهة، أريد أن أفهم ما الذي يحتاج النظام إلى جعله أوضح.
             </p>
             <div className="cvIdentitySignals" aria-label="التركيز المهني">
-              <span>الأنظمة</span><span>التجربة</span><span>التنفيذ</span>
+              <span className="cvBadge">الأنظمة</span><span className="cvBadge">التجربة</span><span className="cvBadge">التنفيذ</span>
             </div>
             <div className="cvHeroActions">
               <Link className="cvButton cvButtonPrimary" href="#journey">
@@ -93,19 +93,19 @@ export default async function ArabicHomePage() {
             <div className="cvJourney cvJourneyRefined">
               <article>
                 <span className="cvStep">افهم</span>
-                <span className="cvJourneyMeta">2019–2024 · نظم المعلومات</span>
+                <span className="cvJourneyMeta cvBadge">2019–2024 · نظم المعلومات</span>
                 <h3>أقرأ النظام</h3>
                 <p>علّمتني نظم المعلومات أن أبحث عن البيانات والاعتماديات والعملية التي تقف خلف الواجهة الظاهرة.</p>
               </article>
               <article>
                 <span className="cvStep">لاحظ</span>
-                <span className="cvJourneyMeta">2025 · عمليات صحية</span>
+                <span className="cvJourneyMeta cvBadge">2025 · عمليات صحية</span>
                 <h3>أرى الاحتكاك</h3>
                 <p>جعل العمل التشغيلي التسليمات والقيود وسير العمل غير الواضح أشياء ملموسة وليست افتراضات نظرية.</p>
               </article>
               <article>
                 <span className="cvStep">شكّل</span>
-                <span className="cvJourneyMeta">2025–الآن · تصميم ويب</span>
+                <span className="cvJourneyMeta cvBadge">2025–الآن · تصميم ويب</span>
                 <h3>أصمم التغيير</h3>
                 <p>أصبح UI/UX الطريقة التي أحوّل بها ما أفهمه عن النظام إلى تجربة أوضح يمكن للناس استخدامها.</p>
               </article>
@@ -125,25 +125,25 @@ export default async function ArabicHomePage() {
             <p className="cvSectionIntro">تحولت كل طبقة إلى عادة قرار أستخدمها عندما أواجه المشكلة التالية.</p>
             <div className="cvCapabilityPairs">
               <div>
-                <span className="cvCapabilitySource">التفكير بالأنظمة</span>
+                <span className="cvCapabilitySource cvBadge cvBadgeAccent">التفكير بالأنظمة</span>
                 <ArrowRightIcon className="cvCapabilityArrow" />
                 <strong>قرارات UX أفضل</strong>
                 <p>أفهم سير العمل والاعتماديات قبل أن أحدد ما الذي يجب أن تفعله الواجهة.</p>
               </div>
               <div>
-                <span className="cvCapabilitySource">الحوكمة</span>
+                <span className="cvCapabilitySource cvBadge cvBadgeAccent">الحوكمة</span>
                 <ArrowRightIcon className="cvCapabilityArrow" />
                 <strong>قيود قابلة للاستخدام</strong>
                 <p>أحوّل المعايير والمتطلبات إلى تجربة تبقى واضحة وإنسانية.</p>
               </div>
               <div>
-                <span className="cvCapabilitySource">تدفقات AI</span>
+                <span className="cvCapabilitySource cvBadge cvBadgeAccent">تدفقات AI</span>
                 <ArrowRightIcon className="cvCapabilityArrow" />
                 <strong>استكشاف أسرع</strong>
                 <p>أستخدم الذكاء الاصطناعي التوليدي لتوسيع الخيارات وتحسينها دون أن أستبدل الحكم التصميمي.</p>
               </div>
               <div>
-                <span className="cvCapabilitySource">تسليم المطورين</span>
+                <span className="cvCapabilitySource cvBadge cvBadgeAccent">تسليم المطورين</span>
                 <ArrowRightIcon className="cvCapabilityArrow" />
                 <strong>تصميم قابل للتنفيذ</strong>
                 <p>أحافظ على اتصال التصميم بالتنفيذ عبر الحالات والسلوك والتعاون الواضح.</p>
@@ -160,7 +160,7 @@ export default async function ArabicHomePage() {
               <div>
                 <div className="cvCredentialBrand cvCredentialBrandNeutral">
                   <GraduationCapIcon />
-                  <span>أكاديمي</span>
+                  <span className="cvBadge cvBadgeIssuer">أكاديمي</span>
                 </div>
                 <strong>بكالوريوس نظم المعلومات الإدارية</strong>
                 <span>جامعة الإمام عبدالرحمن بن فيصل · 2019–2024</span>
@@ -168,7 +168,7 @@ export default async function ArabicHomePage() {
               <div>
                 <div className="cvCredentialBrand cvGoogleBrand">
                   <GoogleBrandIcon />
-                  <span>Google</span>
+                  <span className="cvBadge cvBadgeIssuer">Google</span>
                 </div>
                 <strong>UX Design Professional Certificate</strong>
                 <span>تأهيل مهني في التصميم المتمحور حول المستخدم وتجربة المنتج.</span>
@@ -176,7 +176,7 @@ export default async function ArabicHomePage() {
               <div>
                 <div className="cvCredentialBrand cvGoogleBrand">
                   <GoogleBrandIcon />
-                  <span>Google</span>
+                  <span className="cvBadge cvBadgeIssuer">Google</span>
                 </div>
                 <strong>AI Professional Certificate</strong>
                 <span>أساس تطبيقي لاستخدام الذكاء الاصطناعي داخل سير العمل المهني.</span>
