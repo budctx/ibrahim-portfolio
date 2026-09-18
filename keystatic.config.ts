@@ -15,6 +15,7 @@ export default config({
   storage: {
     kind: 'github',
     repo: 'budctx/ibrahim-portfolio',
+    branchPrefix: 'keystatic-',
   },
   collections: {
     projects: collection({
@@ -22,7 +23,7 @@ export default config({
       path: 'content/projects/*',
       slugField: 'slug',
       format: 'yaml',
-      previewUrl: 'https://ibrahim-portfolio-blush.vercel.app/projects/{slug}',
+      previewUrl: '/preview/start?branch={branch}&to=/projects/{slug}',
       columns: ['titleEn', 'classification', 'status'],
       schema: {
         projectKey: requiredText('Project Key'),

@@ -1,7 +1,9 @@
 import type {Metadata} from 'next';
 import Link from 'next/link';
-import {getProjects} from '@/lib/sanity';
+import {getProjects} from '@/lib/content';
+import {ProjectCard} from '@/components/project-card';
 import {SiteHeader} from '@/components/site-header';
+import {StructureField} from '@/components/structure-field';
 
 export const metadata: Metadata = {
   title: 'إبراهيم — مصمم منتجات وتجارب رقمية',
@@ -29,41 +31,38 @@ export default async function ArabicHomePage() {
     <main id="main" className="shell rtl" dir="rtl" lang="ar">
       <SiteHeader locale="ar" counterpartHref="/" />
 
-      <section className="hero">
-        <div>
+      <section className="hero" aria-labelledby="home-title-ar">
+        <div className="heroCopy">
           <div className="eyebrow">مصمم منتجات وتجارب رقمية</div>
-          <h1>التعقيد، بوضوح.</h1>
+          <h1 id="home-title-ar">التعقيد، بوضوح.</h1>
           <p className="lede">أحوّل الأنظمة وسير العمل المعقدة إلى تجارب رقمية واضحة.</p>
+          <Link className="heroAction" href="#selected-work-title-ar">الأعمال المختارة <span aria-hidden="true">↓</span></Link>
         </div>
-        <div className="structure" aria-hidden="true" />
+        <div className="structureFieldFrame">
+          <StructureField />
+        </div>
       </section>
 
-      <section className="section" aria-labelledby="selected-work-title-ar">
+      <section className="section workSection" aria-labelledby="selected-work-title-ar">
         <div className="sectionHead">
           <h2 id="selected-work-title-ar">أعمال مختارة</h2>
-          <Link className="eyebrow" href="/ar/work">عرض كل الأعمال</Link>
+          <Link className="sectionLink" href="/ar/work">عرض كل الأعمال</Link>
         </div>
         {work.length === 0 ? (
-          <div className="empty">يجري تجهيز الأعمال الحقيقية للنشر.</div>
+          <div className="empty">
+            <span className="emptySignal" aria-hidden="true" />
+            <span>يجري تجهيز الأعمال الحقيقية للنشر.</span>
+          </div>
         ) : (
           <div className="projectGrid">
             {work.map((project) => (
-              <Link className="projectCard" key={project.projectKey} href={`/ar/projects/${project.slug}`}>
-                <div>
-                  <div className="eyebrow">{project.classification}</div>
-                  <h3>{project.titleAr}</h3>
-                </div>
-                <div className="meta">
-                  <span>{project.roleAr ?? ''}</span>
-                  <span>{project.year ?? ''}</span>
-                </div>
-              </Link>
+              <ProjectCard project={project} key={project.projectKey} locale="ar" />
             ))}
           </div>
         )}
       </section>
 
-      <section className="section" id="contact" aria-labelledby="contact-title-ar">
+      <section className="section contactSection" id="contact" aria-labelledby="contact-title-ar">
         <div className="eyebrow" id="contact-title-ar">تواصل</div>
         <p className="contact">لنحوّل التعقيد إلى وضوح.</p>
       </section>

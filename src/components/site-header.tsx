@@ -13,14 +13,15 @@ export function SiteHeader({locale = 'en', counterpartHref}: SiteHeaderProps) {
   return (
     <header className="header">
       <Link className="brand" href={ar ? '/ar' : '/'} aria-label={ar ? 'الصفحة الرئيسية' : 'Home'}>
-        Ibrahim
+        <span className="brandSignal" aria-hidden="true" />
+        <span>Ibrahim</span>
       </Link>
       <nav className="nav" aria-label={ar ? 'التنقل الرئيسي' : 'Primary'}>
         <Link href={`${prefix}/work`}>{ar ? 'الأعمال' : 'Work'}</Link>
         <Link href={`${prefix}/playground`}>{ar ? 'التجارب' : 'Playground'}</Link>
         <Link href={`${prefix}/about`}>{ar ? 'عني' : 'About'}</Link>
         <Link className="contactLink" href={`${prefix || ''}/#contact`}>{ar ? 'تواصل' : 'Contact'}</Link>
-        <Link href={counterpartHref} lang={ar ? 'en' : 'ar'}>{ar ? 'EN' : 'AR'}</Link>
+        <Link className="languageLink" href={counterpartHref} lang={ar ? 'en' : 'ar'}>{ar ? 'EN' : 'AR'}</Link>
         <ThemeToggle locale={locale} />
       </nav>
     </header>

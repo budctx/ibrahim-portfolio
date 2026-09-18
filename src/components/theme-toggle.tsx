@@ -19,6 +19,7 @@ export function ThemeToggle({locale = 'en'}: ThemeToggleProps) {
 
   return (
     <button
+      className="themeToggle"
       type="button"
       aria-pressed={dark}
       aria-label={label}
@@ -30,7 +31,8 @@ export function ThemeToggle({locale = 'en'}: ThemeToggleProps) {
         window.localStorage.setItem('portfolio-theme', theme);
       }}
     >
-      {label}
+      <span className="themeGlyph" aria-hidden="true">{dark ? '○' : '●'}</span>
+      <span>{label}</span>
     </button>
   );
 }

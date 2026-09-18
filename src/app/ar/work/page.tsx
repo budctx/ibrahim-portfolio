@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
-import Link from 'next/link';
 import {SiteHeader} from '@/components/site-header';
-import {getProjects} from '@/lib/sanity';
+import {ProjectCard} from '@/components/project-card';
+import {getProjects} from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'الأعمال',
@@ -32,7 +32,7 @@ export default async function ArabicWorkPage() {
 
       {projects.length === 0 && (
         <section className="section">
-          <div className="empty">يجري تجهيز الأعمال الحقيقية للنشر.</div>
+          <div className="empty"><span className="emptySignal" aria-hidden="true" /><span>يجري تجهيز الأعمال الحقيقية للنشر.</span></div>
         </section>
       )}
     </main>
@@ -42,6 +42,7 @@ export default async function ArabicWorkPage() {
 function ProjectGroup({title, projects}: {title: string; projects: Awaited<ReturnType<typeof getProjects>>}) {
   if (projects.length === 0) return null;
   const id = `group-${title.length}`;
+
   return (
     <section className="section" aria-labelledby={id}>
       <div className="sectionHead">
@@ -49,16 +50,7 @@ function ProjectGroup({title, projects}: {title: string; projects: Awaited<Retur
       </div>
       <div className="projectGrid">
         {projects.map((project) => (
-          <Link className="projectCard" key={project.projectKey} href={`/ar/projects/${project.slug}`}>
-            <div>
-              <div className="eyebrow">{project.typeAr ?? project.classification}</div>
-              <h3>{project.titleAr}</h3>
-            </div>
-            <div className="meta">
-              <span>{project.roleAr ?? ''}</span>
-              <span>{project.year ?? ''}</span>
-            </div>
-          </Link>
+          <ProjectCard project={project} key={project.projectKey} locale="ar" />
         ))}
       </div>
     </section>

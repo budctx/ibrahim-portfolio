@@ -1,7 +1,40 @@
 import {createReader} from '@keystatic/core/reader';
+import {createGitHubReader} from '@keystatic/core/reader/github';
+import {cookies, draftMode} from 'next/headers';
+import {cache} from 'react';
 import keystaticConfig from '../../keystatic.config';
 
-const reader = createReader(process.cwd(), keystaticConfig);
+const localReader = createReader(process.cwd(), keystaticConfig);
+
+const readerForRequest = cache(async () => {
+  try {
+    const draft = await draftMode();
+    if (draft.isEnabled) {
+      const cookieStore = await cookies();
+      const branch = cookieStore.get('ks-branch')?.value;
+
+      if (branch) {
+        return createGitHubReader(keystaticConfig, {
+          repo: 'budctx/ibrahim-portfolio',
+          ref: branch,
+          token: cookieStore.get('keystatic-gh-access-token')?.value,
+        });
+      }
+    }
+  } catch {
+    // Request APIs are unavailable during static generation/build-time discovery.
+  }
+
+  return localReader;
+});
+
+async function isDraftRequest() {
+  try {
+    return (await draftMode()).isEnabled;
+  } catch {
+    return false;
+  }
+}
 
 export type ProjectImage = {
   url: string;
@@ -38,7 +71,7 @@ export type ProjectSummary = {
   gallery?: ProjectImage[];
 };
 
-type ProjectEntry = Awaited<ReturnType<typeof reader.collections.projects.read>>;
+type ProjectEntry = Awaited<ReturnType<typeof localReader.collections.projects.read>>;
 
 function mapProject(slug: string, entry: NonNullable<ProjectEntry>): ProjectSummary {
   return {
@@ -112,7 +145,9 @@ function isPublicReady(entry: NonNullable<ProjectEntry>) {
 }
 
 export async function getProjects(): Promise<ProjectSummary[]> {
+  const reader = await readerForRequest();
   const entries = await reader.collections.projects.all();
+
   return entries
     .filter(({entry}) => isPublicReady(entry))
     .map(({slug, entry}) => mapProject(slug, entry))
@@ -120,12 +155,17 @@ export async function getProjects(): Promise<ProjectSummary[]> {
 }
 
 export async function getProjectBySlug(slug: string): Promise<ProjectSummary | null> {
+  const reader = await readerForRequest();
   const entry = await reader.collections.projects.read(slug);
-  if (!entry || !isPublicReady(entry)) return null;
+
+  if (!entry) return null;
+  if (!(await isDraftRequest()) && !isPublicReady(entry)) return null;
+
   return mapProject(slug, entry);
 }
 
 export async function getPreviewProjectBySlug(slug: string): Promise<ProjectSummary | null> {
+  const reader = await readerForRequest();
   const entry = await reader.collections.projects.read(slug);
   return entry ? mapProject(slug, entry) : null;
 }

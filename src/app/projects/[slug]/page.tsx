@@ -1,9 +1,10 @@
 import type {Metadata} from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import {draftMode} from 'next/headers';
 import {notFound} from 'next/navigation';
 import {SiteHeader} from '@/components/site-header';
-import {getProjectBySlug} from '@/lib/sanity';
+import {getProjectBySlug} from '@/lib/content';
 
 type ProjectPageProps = {
   params: Promise<{slug: string}>;
@@ -13,9 +14,12 @@ export async function generateMetadata({params}: ProjectPageProps): Promise<Meta
   const {slug} = await params;
   const project = await getProjectBySlug(slug);
   if (!project) return {};
+  const preview = (await draftMode()).isEnabled;
+
   return {
     title: project.titleEn,
     description: project.problemEn || project.contextEn || `Project case study: ${project.titleEn}`,
+    robots: preview ? {index: false, follow: false, noarchive: true} : undefined,
     alternates: {
       canonical: `/projects/${project.slug}`,
       languages: {
