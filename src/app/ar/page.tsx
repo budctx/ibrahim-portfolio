@@ -7,10 +7,14 @@ import {HomeHeader} from '@/components/home-header';
 import {
   ArrowDownRightIcon,
   ArrowRightIcon,
+  BadgeCheckIcon,
+  BriefcaseIcon,
   GoogleBrandIcon,
   GraduationCapIcon,
   LinkedInBrandIcon,
   MailIcon,
+  SparklesIcon,
+  WorkflowIcon,
 } from '@/components/icons';
 
 export const metadata: Metadata = {
@@ -68,11 +72,11 @@ export default async function ArabicHomePage() {
               يهمني ما يحدث قبل الشاشة: سير العمل، والقيود، ونقاط التسليم، والأشخاص الذين يتحركون داخل هذه المنظومة.
             </p>
             <div className="cvEvidenceRail" aria-label="أدلة مهنية">
-              <div><span>بدأت من</span><strong>بكالوريوس نظم معلومات</strong></div>
-              <div><span>رأيت عمليًا</span><strong>سير عمل في بيئة صحية</strong></div>
-              <div><span>أصمم اليوم</span><strong>تصميم ويب · جامعة الإمام عبدالرحمن</strong></div>
-              <div><span>أعمل ضمن</span><strong>امتثال لمتطلبات DGA</strong></div>
-              <div><span>وأتوسع عبر</span><strong>Google UX · Google AI</strong></div>
+              <div><div className="cvEvidenceLabel"><GraduationCapIcon /><span>بدأت من</span></div><strong>بكالوريوس نظم معلومات</strong></div>
+              <div><div className="cvEvidenceLabel"><WorkflowIcon /><span>رأيت عمليًا</span></div><strong>سير عمل في بيئة صحية</strong></div>
+              <div><div className="cvEvidenceLabel"><BriefcaseIcon /><span>أصمم اليوم</span></div><strong>تصميم ويب · جامعة الإمام عبدالرحمن</strong></div>
+              <div><div className="cvEvidenceLabel"><BadgeCheckIcon /><span>أعمل ضمن</span></div><strong>امتثال لمتطلبات DGA</strong></div>
+              <div><div className="cvEvidenceLabel"><SparklesIcon /><span>وأتوسع عبر</span></div><strong>Google UX · Google AI</strong></div>
             </div>
           </div>
         </section>
