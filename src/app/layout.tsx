@@ -3,6 +3,7 @@ import {cookies, draftMode, headers} from 'next/headers';
 import type {ReactNode} from 'react';
 import './globals.css';
 import './motion-rework.css';
+import './motion-system.css';
 
 const siteUrl = 'https://ibrahim-portfolio-blush.vercel.app';
 

@@ -1,0 +1,161 @@
+:root {
+  --motion-enter-distance: 18px;
+}
+
+/*
+ * Route/first-paint continuity.
+ * This is intentionally container-level: no per-letter splitting and no
+ * blocking transition. Content is readable immediately if animation fails.
+ */
+body > main {
+  animation: page-settle 420ms var(--motion-snap) both;
+}
+
+.heroCopy > .eyebrow,
+.heroCopy > h1,
+.heroCopy > .lede,
+.heroCopy > .heroSystemLine,
+.heroCopy > .heroAction {
+  animation: hero-compose 420ms var(--motion-snap) both;
+}
+
+.heroCopy > .eyebrow {
+  animation-delay: 40ms;
+}
+
+.heroCopy > h1 {
+  animation-delay: 80ms;
+}
+
+.heroCopy > .lede {
+  animation-delay: 120ms;
+}
+
+.heroCopy > .heroSystemLine {
+  animation-delay: 160ms;
+}
+
+.heroCopy > .heroAction {
+  animation-delay: 200ms;
+}
+
+/*
+ * Theme continuity is deliberately short and selective. Geometry does not
+ * animate when theme changes, so there is no layout movement or flash.
+ */
+body,
+.header,
+.projectCardMedia,
+.projectCardMediaFallback,
+.contactActions a,
+.contactLink,
+.capabilityList li,
+.credentialItem {
+  transition:
+    background-color 180ms var(--motion-ease),
+    color 180ms var(--motion-ease),
+    border-color 180ms var(--motion-ease);
+}
+
+/*
+ * Navigation response stays lightweight. It communicates state without
+ * turning the header into a second signature interaction.
+ */
+.nav a:active,
+.nav button:active {
+  transform: translateY(1px) scale(.985);
+}
+
+/*
+ * A quiet continuity cue between the living field and the Work section.
+ * Logical inset keeps it direction-safe in RTL.
+ */
+.workSection::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  width: clamp(7px, 1vw, 12px);
+  aspect-ratio: 1;
+  border: 1px solid var(--fg);
+  background: var(--bg);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+@keyframes page-settle {
+  from {
+    opacity: .82;
+    transform: translate3d(0, 10px, 0);
+    clip-path: inset(0 0 2.5% 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes hero-compose {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--motion-enter-distance), 0);
+    clip-path: inset(0 0 24% 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.rtl .heroCopy > .eyebrow,
+.rtl .heroCopy > h1,
+.rtl .heroCopy > .lede,
+.rtl .heroCopy > .heroSystemLine,
+.rtl .heroCopy > .heroAction {
+  /*
+   * Same timing/intent, independently authored composition. No horizontal
+   * sweep and no glyph-level Arabic animation.
+   */
+  transform-origin: top right;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --motion-enter-distance: 12px;
+  }
+
+  body > main {
+    animation-duration: 360ms;
+  }
+
+  .heroCopy > .eyebrow,
+  .heroCopy > h1,
+  .heroCopy > .lede,
+  .heroCopy > .heroSystemLine,
+  .heroCopy > .heroAction {
+    animation-duration: 360ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body > main,
+  .heroCopy > .eyebrow,
+  .heroCopy > h1,
+  .heroCopy > .lede,
+  .heroCopy > .heroSystemLine,
+  .heroCopy > .heroAction {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  .nav a:active,
+  .nav button:active,
+  .workSection::after {
+    transform: none;
+  }
+}
