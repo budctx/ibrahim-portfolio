@@ -26,11 +26,13 @@ jobs:
         run: npm audit --audit-level=high
       - name: Typecheck
         run: npm run typecheck
+      - name: Audit portfolio design system
+        run: node scripts/css-audit.mjs
       - name: Build
         run: npm run build
       - name: Install Stage 18 QA browser
         run: |
-          npm install --no-save --package-lock=false @playwright/test@1.63.0
+          npm install --no-save --package-lock=false @playwright/test@1.63.0 @axe-core/playwright@4.10.2
           npx playwright install --with-deps chromium
       - name: Run Stage 18 responsive accessibility QA
         run: |
@@ -44,4 +46,8 @@ jobs:
             sleep 1
           done
           curl -fsS http://127.0.0.1:3000/ > /dev/null
-          npx playwright test tests/stage18-accessibility.spec.cjs --reporter=line --workers=1
+          npx playwright test \
+            tests/stage18-accessibility.spec.cjs \
+            tests/stage18-axe.spec.cjs \
+            tests/stage18-performance.spec.cjs \
+            --reporter=line --workers=1
