@@ -6,11 +6,10 @@ import {HomeHeader} from '@/components/home-header';
 import {
   ArrowDownRightIcon,
   ArrowRightIcon,
-  BadgeCheckIcon,
-  ExternalLinkIcon,
+  GoogleBrandIcon,
   GraduationCapIcon,
+  LinkedInBrandIcon,
   MailIcon,
-  SparklesIcon,
 } from '@/components/icons';
 
 export default async function HomePage() {
@@ -28,7 +27,7 @@ export default async function HomePage() {
             <p className="cvOverline">Ibrahim Al-Ajmi · Digital Product & Experience Designer</p>
             <h1 id="cv-home-title">I design digital products <em>from the system outward.</em></h1>
             <p className="cvLede">
-              My background in information systems and real operations shapes how I design: understand the workflow, work within constraints, then turn complexity into an experience people can use and teams can build.
+              Before I decide what an interface should look like, I want to understand what the system needs to make clearer.
             </p>
             <div className="cvIdentitySignals" aria-label="Professional focus">
               <span>Systems</span><span>Experience</span><span>Delivery</span>
@@ -51,14 +50,14 @@ export default async function HomePage() {
           <div className="cvSectionBody">
             <h2 id="about-title">The screen is the last layer, not the first.</h2>
             <p className="cvBigCopy">
-              I look beyond the interface to the workflow, the people inside it, the constraints around it, and what must happen after the design leaves the screen.
+              I care about what happens before the screen: the workflow, the constraints, the handoffs and the people moving through them.
             </p>
             <div className="cvEvidenceRail" aria-label="Professional evidence">
-              <div><span>Foundation</span><strong>Bachelor&apos;s in MIS</strong></div>
-              <div><span>Operations</span><strong>Healthcare workflows</strong></div>
-              <div><span>Current practice</span><strong>Web design · IAU</strong></div>
-              <div><span>Standards</span><strong>Saudi DGA compliance</strong></div>
-              <div><span>Certificates</span><strong>Google UX · Google AI</strong></div>
+              <div><span>Started with</span><strong>Bachelor&apos;s in MIS</strong></div>
+              <div><span>Saw firsthand</span><strong>Healthcare workflows</strong></div>
+              <div><span>Designing now</span><strong>Web design · IAU</strong></div>
+              <div><span>Working within</span><strong>Saudi DGA compliance</strong></div>
+              <div><span>Expanding with</span><strong>Google UX · Google AI</strong></div>
             </div>
           </div>
         </section>
@@ -90,10 +89,16 @@ export default async function HomePage() {
           </div>
         </section>
 
+        <aside className="cvTurningPoint" aria-label="Turning point">
+          <span>That changed what good design meant to me.</span>
+          <p>Not just a cleaner screen — a clearer system for the person using it.</p>
+        </aside>
+
         <section className="cvSection" id="capabilities" aria-labelledby="capabilities-title">
           <div className="cvSectionLabel"><span>03</span><span>How I work</span></div>
           <div className="cvSectionBody">
-            <h2 id="capabilities-title">What I know matters most when the pieces connect.</h2>
+            <h2 id="capabilities-title">So today, this is how I work.</h2>
+            <p className="cvSectionIntro">Each layer became a decision-making habit I carry into the next problem.</p>
             <div className="cvCapabilityPairs">
               <div>
                 <span className="cvCapabilitySource">Systems thinking</span>
@@ -129,18 +134,27 @@ export default async function HomePage() {
             <h2 id="credentials-title">The formal layer behind the practice.</h2>
             <div className="cvCredentials">
               <div>
-                <GraduationCapIcon className="cvCredentialIcon" />
+                <div className="cvCredentialBrand cvCredentialBrandNeutral">
+                  <GraduationCapIcon />
+                  <span>Academic</span>
+                </div>
                 <strong>Bachelor of Management Information Systems</strong>
                 <span>Imam Abdulrahman Bin Faisal University · 2019–2024</span>
               </div>
               <div>
-                <BadgeCheckIcon className="cvCredentialIcon" />
-                <strong>Google UX Design Professional Certificate</strong>
+                <div className="cvCredentialBrand cvGoogleBrand">
+                  <GoogleBrandIcon />
+                  <span>Google</span>
+                </div>
+                <strong>UX Design Professional Certificate</strong>
                 <span>Formal training in user-centered product and experience design.</span>
               </div>
               <div>
-                <SparklesIcon className="cvCredentialIcon" />
-                <strong>Google AI Professional Certificate</strong>
+                <div className="cvCredentialBrand cvGoogleBrand">
+                  <GoogleBrandIcon />
+                  <span>Google</span>
+                </div>
+                <strong>AI Professional Certificate</strong>
                 <span>Applied foundation for AI-assisted professional workflows.</span>
               </div>
             </div>
@@ -162,22 +176,27 @@ export default async function HomePage() {
           </section>
         )}
 
+        <aside className="cvNow" aria-label="Current focus">
+          <span>Now</span>
+          <p>I&apos;m continuing to work where systems, experience and delivery meet — especially when digital products have real operational constraints.</p>
+        </aside>
+
         <section className="cvContact" id="contact" aria-labelledby="contact-title">
           <div>
             <span className="cvContactIndex">{hasWork ? '06' : '05'}</span>
             <p className="cvOverline">Contact</p>
           </div>
           <div>
-            <h2 id="contact-title">Bring me the workflow, the constraints and the messy middle.</h2>
-            <p className="cvContactNote">I&apos;ll look for the system behind the screen — then make the experience clearer to use and easier to build.</p>
+            <h2 id="contact-title">Have a system that needs to become a better experience?</h2>
+            <p className="cvContactNote">Let&apos;s make it clearer to understand, easier to use and more practical to build.</p>
             <div className="cvContactLinks">
               <Link href="mailto:ibrahim.alajmi407@gmail.com">
                 <MailIcon />
                 Email
               </Link>
-              <Link href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">
+              <Link className="cvLinkedInLink" href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">
+                <LinkedInBrandIcon />
                 LinkedIn
-                <ExternalLinkIcon />
               </Link>
             </div>
           </div>
