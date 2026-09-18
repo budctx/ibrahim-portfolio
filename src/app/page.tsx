@@ -3,7 +3,6 @@ import {getProjects} from '@/lib/content';
 import {ProjectCard} from '@/components/project-card';
 import {CareerMap} from '@/components/career-map';
 import {HomeHeader} from '@/components/home-header';
-import {CopyEmailButton} from '@/components/copy-email-button';
 import {
   ArrowDownRightIcon,
   ArrowRightIcon,
@@ -41,10 +40,7 @@ export default async function HomePage() {
                 See how I got here
                 <ArrowDownRightIcon className="cvDirectionalIcon" />
               </Link>
-              <a className="cvButton" href="mailto:ibrahim.alajmi407@gmail.com">
-                <MailIcon className="cvControlIcon" />
-                Contact me
-              </a>
+              <Link className="cvButton" href="#contact">Contact me</Link>
             </div>
             <span className="cvSystemPhrase" aria-hidden="true">System → Experience</span>
           </div>
@@ -196,12 +192,11 @@ export default async function HomePage() {
             <h2 id="contact-title">Have a system that needs to become a better experience?</h2>
             <p className="cvContactNote">Let&apos;s make it clearer to understand, easier to use and more practical to build.</p>
             <div className="cvContactLinks">
-              <a className="cvContactAction" href="mailto:ibrahim.alajmi407@gmail.com">
+              <Link href="mailto:ibrahim.alajmi407@gmail.com">
                 <MailIcon />
                 Email
-              </a>
-              <CopyEmailButton locale="en" />
-              <Link className="cvContactAction cvLinkedInLink" href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">
+              </Link>
+              <Link className="cvLinkedInLink" href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">
                 <LinkedInBrandIcon />
                 LinkedIn
               </Link>
