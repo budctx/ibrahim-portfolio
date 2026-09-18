@@ -200,17 +200,16 @@ export default async function ArabicHomePage() {
           </section>
         )}
 
-        <section className="cvNow" aria-label="ما أركز عليه الآن">
-          <span>الآن</span>
-          <p>أواصل العمل عند نقطة التقاء الأنظمة والتجربة والتنفيذ، خصوصًا عندما تكون للمنتجات الرقمية قيود تشغيلية حقيقية.</p>
-        </section>
-
         <section className="cvContact" id="contact" aria-labelledby="contact-title-ar">
           <div>
             <span className="cvContactIndex">{hasWork ? '06' : '05'}</span>
             <p className="cvOverline">تواصل</p>
           </div>
           <div>
+            <div className="cvContactContext">
+              <span>الآن</span>
+              <p>أواصل العمل عند نقطة التقاء الأنظمة والتجربة والتنفيذ، خصوصًا عندما تكون للمنتجات الرقمية قيود تشغيلية حقيقية.</p>
+            </div>
             <h2 id="contact-title-ar">لديك نظام يحتاج أن يصبح تجربة أفضل؟</h2>
             <p className="cvContactNote">لنحوّله إلى شيء أوضح للفهم، وأسهل للاستخدام، وأكثر واقعية في التنفيذ.</p>
             <div className="cvContactLinks">
