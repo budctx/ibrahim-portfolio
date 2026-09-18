@@ -179,17 +179,16 @@ export default async function HomePage() {
           </section>
         )}
 
-        <section className="cvNow" aria-label="Current focus">
-          <span>Now</span>
-          <p>I&apos;m continuing to work where systems, experience and delivery meet — especially when digital products have real operational constraints.</p>
-        </section>
-
         <section className="cvContact" id="contact" aria-labelledby="contact-title">
           <div>
             <span className="cvContactIndex">{hasWork ? '06' : '05'}</span>
             <p className="cvOverline">Contact</p>
           </div>
           <div>
+            <div className="cvContactContext">
+              <span>Now</span>
+              <p>I&apos;m continuing to work where systems, experience and delivery meet — especially when digital products have real operational constraints.</p>
+            </div>
             <h2 id="contact-title">Have a system that needs to become a better experience?</h2>
             <p className="cvContactNote">Let&apos;s make it clearer to understand, easier to use and more practical to build.</p>
             <div className="cvContactLinks">
