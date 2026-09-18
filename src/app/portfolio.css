@@ -271,6 +271,7 @@ html[data-theme='dark'] .cvPage {
   background: linear-gradient(180deg, color-mix(in srgb, var(--cv-accent) 4%, transparent), transparent 46%),
     color-mix(in srgb, var(--bg) 96%, var(--fg));
   container-type: inline-size;
+  container-name: career;
 }
 
 .cvOverline {
@@ -792,6 +793,8 @@ html[data-theme='dark'] .cvPage {
 
 .cvSectionBody {
   grid-column: 1;
+  container-type: inline-size;
+  container-name: section;
 }
 
 .cvContact > :last-child {
@@ -839,7 +842,6 @@ html[data-theme='dark'] .cvPage {
   margin-top: clamp(38px, 5vw, 60px);
   border-block: 0;
   gap: 10px;
-  container-type: inline-size;
 }
 
 .cvEvidenceRail > div {
@@ -958,7 +960,6 @@ html[data-theme='dark'] .cvPage {
   gap: 1px;
   border: 1px solid var(--cv-hairline);
   background: var(--cv-hairline);
-  container-type: inline-size;
 }
 
 .cvCapabilityPairs > div {
@@ -1011,7 +1012,6 @@ html[data-theme='dark'] .cvPage {
   margin-top: clamp(40px, 5vw, 62px);
   border-block: 0;
   gap: 14px;
-  container-type: inline-size;
 }
 
 .cvCredentials > div {
@@ -1250,21 +1250,6 @@ html[data-theme='dark'] .cvPage {
   contain-intrinsic-size: 1px 900px;
 }
 
-.cvNow {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--cv-grid-gap);
-  border-top: 1px solid var(--cv-hairline);
-  padding-block: clamp(48px, 6vw, 78px);
-  position: relative;
-  margin-block: 8px;
-  padding: clamp(56px, 6vw, 82px) clamp(24px, 4vw, 52px);
-  border: 1px solid var(--cv-hairline);
-  background: color-mix(in srgb, var(--cv-accent) 6%, transparent);
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 900px;
-}
-
 .cvTurningPoint > span {
   grid-column: 1 / 4;
   color: var(--cv-accent);
@@ -1285,24 +1270,6 @@ html[data-theme='dark'] .cvPage {
   text-wrap: balance;
 }
 
-.cvNow > span {
-  grid-column: 1 / 4;
-  color: var(--cv-accent);
-  font-family: var(--font-plex-mono), ui-monospace, monospace;
-  font-size: var(--cv-type-ui);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-}
-
-.cvNow > p {
-  grid-column: 4 / 11;
-  max-width: 42ch;
-  margin: 0;
-  color: var(--fg);
-  font-size: clamp(1.45rem, 2vw, 2rem);
-  line-height: 1.5;
-}
 
 .cvCredentialBrand {
   min-height: 54px;
@@ -1356,20 +1323,10 @@ html[data-theme='dark'] .cvPage {
   text-transform: none;
 }
 
-.cvRtl .cvNow > span {
-  font-family: var(--font-plex-arabic), "Segoe UI", Tahoma, Arial, sans-serif;
-  letter-spacing: 0;
-  text-transform: none;
-}
-
 .cvRtl .cvTurningPoint > p {
   max-width: 13em;
   line-height: 1.45;
   letter-spacing: 0;
-}
-
-.cvRtl .cvNow > p {
-  line-height: 1.82;
 }
 
 .cvRtl .cvSectionIntro {
@@ -1462,15 +1419,6 @@ html[data-theme='dark'] .cvPage {
   background: linear-gradient(180deg, transparent, var(--cv-accent), transparent);
 }
 
-.cvNow::before {
-  content: "";
-  position: absolute;
-  inset-block: 0;
-  inset-inline-start: 0;
-  width: 4px;
-  background: var(--cv-accent);
-}
-
 .cvContactLinks a:first-child {
   border-color: var(--fg);
   background: var(--fg);
@@ -1547,6 +1495,43 @@ html[data-theme='dark'] .cvPage {
 
 html[data-theme='light'] .cvGoogleBrand {
   box-shadow: none;
+}
+
+
+.cvContactContext {
+  max-width: 56ch;
+  margin-bottom: clamp(34px, 4vw, 52px);
+  padding: 18px 20px;
+  border-inline-start: 3px solid var(--cv-accent);
+  background: color-mix(in srgb, var(--cv-accent) 6%, transparent);
+}
+
+.cvContactContext > span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--cv-accent);
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: var(--cv-type-meta);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.cvContactContext > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--cv-type-body-lg);
+  line-height: 1.62;
+}
+
+.cvRtl .cvContactContext > span {
+  font-family: var(--font-plex-arabic), "Segoe UI", Tahoma, Arial, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvContactContext > p {
+  line-height: 1.78;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -2015,12 +2000,6 @@ html[data-theme='light'] .cvGoogleBrand {
     padding-inline: 20px;
   }
 
-  .cvNow {
-    grid-template-columns: 1fr;
-    gap: 18px;
-    padding-inline: 20px;
-  }
-
   .cvTurningPoint > span {
     grid-column: 1;
   }
@@ -2030,14 +2009,6 @@ html[data-theme='light'] .cvGoogleBrand {
     font-size: clamp(1.9rem, 9vw, 2.8rem);
   }
 
-  .cvNow > span {
-    grid-column: 1;
-  }
-
-  .cvNow > p {
-    grid-column: 1;
-    font-size: 1.3rem;
-  }
 
   .cvRtl h1 {
     max-width: none;
@@ -2208,20 +2179,16 @@ html[data-theme='light'] .cvGoogleBrand {
   }
 }
 
-@container (max-width: 720px) {
+@container career (max-width: 720px) {
   .cvMapGrid {
     grid-template-columns: 1fr;
     gap: 24px;
   }
+}
 
-  .cvEvidenceRail {
-    grid-template-columns: 1fr;
-  }
-
-  .cvCredentials {
-    grid-template-columns: 1fr;
-  }
-
+@container section (max-width: 720px) {
+  .cvEvidenceRail,
+  .cvCredentials,
   .cvCapabilityPairs {
     grid-template-columns: 1fr;
   }
