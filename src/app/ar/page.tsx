@@ -4,6 +4,15 @@ import {getProjects} from '@/lib/content';
 import {ProjectCard} from '@/components/project-card';
 import {CareerMap} from '@/components/career-map';
 import {HomeHeader} from '@/components/home-header';
+import {
+  ArrowDownRightIcon,
+  ArrowRightIcon,
+  BadgeCheckIcon,
+  ExternalLinkIcon,
+  GraduationCapIcon,
+  MailIcon,
+  SparklesIcon,
+} from '@/components/icons';
 
 export const metadata: Metadata = {
   title: 'إبراهيم — مصمم منتجات وتجارب رقمية',
@@ -37,12 +46,16 @@ export default async function ArabicHomePage() {
               خلفيتي في نظم المعلومات والعمل التشغيلي جعلتني أبدأ من سير العمل والقيود قبل الواجهة، ثم أحوّل التعقيد إلى تجربة يمكن للناس استخدامها ويمكن للفريق تنفيذها.
             </p>
             <div className="cvIdentitySignals" aria-label="التركيز المهني">
-              <span>نظم المعلومات</span><span>التشغيل</span><span>UX</span><span>DGA</span><span>تنفيذ مدعوم بالذكاء الاصطناعي</span>
+              <span>الأنظمة</span><span>التجربة</span><span>التنفيذ</span>
             </div>
             <div className="cvHeroActions">
-              <Link className="cvButton cvButtonPrimary" href="#journey">كيف وصلت إلى هنا <span aria-hidden="true">↙</span></Link>
+              <Link className="cvButton cvButtonPrimary" href="#journey">
+                كيف وصلت إلى هنا
+                <ArrowDownRightIcon className="cvDirectionalIcon" />
+              </Link>
               <Link className="cvButton" href="#capabilities">كيف أعمل</Link>
             </div>
+            <span className="cvSystemPhrase" aria-hidden="true">من النظام إلى التجربة</span>
           </div>
 
           <CareerMap locale="ar" />
@@ -53,7 +66,7 @@ export default async function ArabicHomePage() {
           <div className="cvSectionBody">
             <h2 id="about-title-ar">الواجهة هي آخر طبقة، وليست أولها.</h2>
             <p className="cvBigCopy">
-              وصلت إلى التصميم عبر الأنظمة والعمل التشغيلي. لذلك أنظر طبيعيًا إلى ما وراء الشاشة: سير العمل، والأشخاص داخله، والقيود المحيطة به، وما الذي سيحدث بعد أن يغادر التصميم ملفاته.
+              أنظر إلى ما وراء الشاشة: سير العمل، والأشخاص داخله، والقيود المحيطة به، وما الذي يجب أن يحدث بعد أن يغادر التصميم ملفاته.
             </p>
             <div className="cvEvidenceRail" aria-label="أدلة مهنية">
               <div><span>الأساس</span><strong>بكالوريوس نظم معلومات</strong></div>
@@ -72,16 +85,19 @@ export default async function ArabicHomePage() {
             <div className="cvJourney cvJourneyRefined">
               <article>
                 <span className="cvStep">افهم</span>
+                <span className="cvJourneyMeta">2019–2024 · نظم المعلومات</span>
                 <h3>أقرأ النظام</h3>
                 <p>علّمتني نظم المعلومات أن أبحث عن البيانات والاعتماديات والعملية التي تقف خلف الواجهة الظاهرة.</p>
               </article>
               <article>
                 <span className="cvStep">لاحظ</span>
+                <span className="cvJourneyMeta">2025 · عمليات صحية</span>
                 <h3>أرى الاحتكاك</h3>
                 <p>جعل العمل التشغيلي التسليمات والقيود وسير العمل غير الواضح أشياء ملموسة وليست افتراضات نظرية.</p>
               </article>
               <article>
                 <span className="cvStep">شكّل</span>
+                <span className="cvJourneyMeta">2025–الآن · تصميم ويب</span>
                 <h3>أصمم التغيير</h3>
                 <p>أصبح UI/UX الطريقة التي أحوّل بها ما أفهمه عن النظام إلى تجربة أوضح يمكن للناس استخدامها.</p>
               </article>
@@ -90,27 +106,31 @@ export default async function ArabicHomePage() {
         </section>
 
         <section className="cvSection" id="capabilities" aria-labelledby="capabilities-title-ar">
-          <div className="cvSectionLabel"><span>03</span><span>المهارات</span></div>
+          <div className="cvSectionLabel"><span>03</span><span>كيف أعمل</span></div>
           <div className="cvSectionBody">
             <h2 id="capabilities-title-ar">تظهر قيمة مهاراتي عندما تعمل معًا.</h2>
             <div className="cvCapabilityPairs">
               <div>
-                <span>التفكير بالأنظمة</span>
+                <span className="cvCapabilitySource">التفكير بالأنظمة</span>
+                <ArrowRightIcon className="cvCapabilityArrow" />
                 <strong>قرارات UX أفضل</strong>
                 <p>أفهم سير العمل والاعتماديات قبل أن أحدد ما الذي يجب أن تفعله الواجهة.</p>
               </div>
               <div>
-                <span>الحوكمة</span>
+                <span className="cvCapabilitySource">الحوكمة</span>
+                <ArrowRightIcon className="cvCapabilityArrow" />
                 <strong>قيود قابلة للاستخدام</strong>
                 <p>أحوّل المعايير والمتطلبات إلى تجربة تبقى واضحة وإنسانية.</p>
               </div>
               <div>
-                <span>تدفقات AI</span>
+                <span className="cvCapabilitySource">تدفقات AI</span>
+                <ArrowRightIcon className="cvCapabilityArrow" />
                 <strong>استكشاف أسرع</strong>
                 <p>أستخدم الذكاء الاصطناعي التوليدي لتوسيع الخيارات وتحسينها دون أن أستبدل الحكم التصميمي.</p>
               </div>
               <div>
-                <span>تسليم المطورين</span>
+                <span className="cvCapabilitySource">تسليم المطورين</span>
+                <ArrowRightIcon className="cvCapabilityArrow" />
                 <strong>تصميم قابل للتنفيذ</strong>
                 <p>أحافظ على اتصال التصميم بالتنفيذ عبر الحالات والسلوك والتعاون الواضح.</p>
               </div>
@@ -123,10 +143,21 @@ export default async function ArabicHomePage() {
           <div className="cvSectionBody">
             <h2 id="credentials-title-ar">الجانب الرسمي الذي يدعم الممارسة.</h2>
             <div className="cvCredentials">
-              <div><strong>بكالوريوس نظم المعلومات الإدارية</strong><span>جامعة الإمام عبدالرحمن بن فيصل · 2019–2024</span></div>
-              <div><strong>مصمم ويب</strong><span>جامعة الإمام عبدالرحمن بن فيصل · أغسطس 2025–الآن</span></div>
-              <div><strong>Google UX Design Professional Certificate</strong><span>تأهيل مهني في التصميم المتمحور حول المستخدم وتجربة المنتج.</span></div>
-              <div><strong>Google AI Professional Certificate</strong><span>أساس تطبيقي لاستخدام الذكاء الاصطناعي داخل سير العمل المهني.</span></div>
+              <div>
+                <GraduationCapIcon className="cvCredentialIcon" />
+                <strong>بكالوريوس نظم المعلومات الإدارية</strong>
+                <span>جامعة الإمام عبدالرحمن بن فيصل · 2019–2024</span>
+              </div>
+              <div>
+                <BadgeCheckIcon className="cvCredentialIcon" />
+                <strong>Google UX Design Professional Certificate</strong>
+                <span>تأهيل مهني في التصميم المتمحور حول المستخدم وتجربة المنتج.</span>
+              </div>
+              <div>
+                <SparklesIcon className="cvCredentialIcon" />
+                <strong>Google AI Professional Certificate</strong>
+                <span>أساس تطبيقي لاستخدام الذكاء الاصطناعي داخل سير العمل المهني.</span>
+              </div>
             </div>
           </div>
         </section>
@@ -152,18 +183,24 @@ export default async function ArabicHomePage() {
             <p className="cvOverline">تواصل</p>
           </div>
           <div>
-            <h2 id="contact-title-ar">أعطني سير العمل والقيود والمنطقة الفوضوية بينهما.</h2>
-            <p className="cvContactNote">سأبحث عن النظام خلف الشاشة، ثم أجعل التجربة أوضح للاستخدام وأسهل للتنفيذ.</p>
+            <h2 id="contact-title-ar">إذا كان سير العمل معقدًا والقيود كثيرة، فهذه نقطة بداية جيدة.</h2>
+            <p className="cvContactNote">أفهم النظام أولًا، ثم أصمم تجربة أوضح للمستخدم وأسهل للتنفيذ.</p>
             <div className="cvContactLinks">
-              <Link href="mailto:ibrahim.alajmi407@gmail.com">البريد الإلكتروني ↗</Link>
-              <Link href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">LinkedIn ↗</Link>
+              <Link href="mailto:ibrahim.alajmi407@gmail.com">
+                <MailIcon />
+                البريد الإلكتروني
+              </Link>
+              <Link href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">
+                LinkedIn
+                <ExternalLinkIcon />
+              </Link>
             </div>
           </div>
         </section>
 
         <footer className="cvFooter">
           <span>© Ibrahim</span>
-          <span>الأنظمة ← التجربة · عربي / English</span>
+          <span>من الأنظمة إلى التجربة · عربي / English</span>
         </footer>
       </div>
     </main>
