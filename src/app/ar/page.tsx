@@ -7,7 +7,7 @@ import {HomeHeader} from '@/components/home-header';
 
 export const metadata: Metadata = {
   title: 'إبراهيم — مصمم منتجات وتجارب رقمية',
-  description: 'أحوّل الأنظمة وسير العمل المعقدة إلى تجارب رقمية واضحة.',
+  description: 'أصمم المنتجات الرقمية من فهم النظام إلى وضوح التجربة.',
   alternates: {
     canonical: '/ar',
     languages: {en: '/', ar: '/ar', 'x-default': '/'},
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     url: '/ar',
     title: 'إبراهيم — مصمم منتجات وتجارب رقمية',
-    description: 'أحوّل الأنظمة وسير العمل المعقدة إلى تجارب رقمية واضحة.',
+    description: 'أصمم المنتجات الرقمية من فهم النظام إلى وضوح التجربة.',
   },
 };
 
@@ -31,14 +31,14 @@ export default async function ArabicHomePage() {
 
         <section className="cvHero" aria-labelledby="cv-home-title-ar">
           <div className="cvHeroCopy">
-            <p className="cvOverline">أنظمة · أشخاص · تصميم · أثر حقيقي</p>
-            <h1 id="cv-home-title-ar">أحوّل التعقيد إلى <em>تجارب رقمية واضحة.</em></h1>
+            <p className="cvOverline">نظم معلومات · تشغيل · تصميم تجربة · حوكمة · تنفيذ مدعوم بالذكاء الاصطناعي</p>
+            <h1 id="cv-home-title-ar">أصمم المنتجات الرقمية <em>من فهم النظام إلى وضوح التجربة.</em></h1>
             <p className="cvLede">
-              أصمم المنتجات الرقمية بعقلية تفهم النظام أولًا — أربط الأشخاص والعمليات والتقنية لصناعة تجارب بسيطة، متوافقة وإنسانية.
+              خلفيتي في نظم المعلومات والعمل التشغيلي جعلتني أبدأ من سير العمل والقيود قبل الواجهة، ثم أحوّل التعقيد إلى تجربة يمكن للناس استخدامها ويمكن للفريق تنفيذها.
             </p>
             <div className="cvHeroActions">
-              <Link className="cvButton cvButtonPrimary" href="#journey">استكشف رحلتي <span aria-hidden="true">↙</span></Link>
-              <Link className="cvButton" href="#capabilities">استعرض مهاراتي</Link>
+              <Link className="cvButton cvButtonPrimary" href="#journey">كيف وصلت إلى هنا <span aria-hidden="true">↙</span></Link>
+              <Link className="cvButton" href="#capabilities">كيف أعمل</Link>
             </div>
           </div>
 
@@ -48,32 +48,39 @@ export default async function ArabicHomePage() {
         <section className="cvSection" id="about" aria-labelledby="about-title-ar">
           <div className="cvSectionLabel"><span>01</span><span>عني</span></div>
           <div className="cvSectionBody">
-            <h2 id="about-title-ar">أصمم الواجهة، لكنني أبدأ دائمًا من النظام الذي خلفها.</h2>
+            <h2 id="about-title-ar">الواجهة هي آخر طبقة، وليست أولها.</h2>
             <p className="cvBigCopy">
-              تجمع رحلتي بين نظم المعلومات والخبرة التشغيلية وتصميم المنتجات الرقمية. هذا المزيج صنع أسلوبي العملي: أفهم سير العمل، أحدد موضع التعقيد، ثم أصمم ما يجعله أوضح.
+              وصلت إلى التصميم عبر الأنظمة والعمل التشغيلي. لذلك أنظر طبيعيًا إلى ما وراء الشاشة: سير العمل، والأشخاص داخله، والقيود المحيطة به، وما الذي سيحدث بعد أن يغادر التصميم ملفاته.
             </p>
+            <div className="cvEvidenceRail" aria-label="أدلة مهنية">
+              <div><span>الأساس</span><strong>نظم المعلومات</strong></div>
+              <div><span>السياق التشغيلي</span><strong>بيئة صحية</strong></div>
+              <div><span>الممارسة التصميمية</span><strong>UI/UX + منتجات رقمية</strong></div>
+              <div><span>القيود</span><strong>الحوكمة + DGA</strong></div>
+              <div><span>التنفيذ</span><strong>تسليم المطور + GenAI</strong></div>
+            </div>
           </div>
         </section>
 
         <section className="cvSection" id="journey" aria-labelledby="journey-title-ar">
           <div className="cvSectionLabel"><span>02</span><span>الرحلة</span></div>
           <div className="cvSectionBody">
-            <h2 id="journey-title-ar">مسيرة شكّلها فهم طريقة عمل الأنظمة في الواقع.</h2>
-            <div className="cvJourney">
+            <h2 id="journey-title-ar">ليست قائمة وظائف. بل سلسلة أشياء تعلمت أن ألاحظها.</h2>
+            <div className="cvJourney cvJourneyRefined">
               <article>
-                <span className="cvStep">01</span>
-                <h3>أساس نظم المعلومات</h3>
-                <p>فهم الأنظمة والبيانات والعمليات أصبح القاعدة التقنية والتحليلية خلف قراراتي التصميمية.</p>
+                <span className="cvStep">افهم</span>
+                <h3>أقرأ النظام</h3>
+                <p>علّمتني نظم المعلومات أن أبحث عن البيانات والاعتماديات والعملية التي تقف خلف الواجهة الظاهرة.</p>
               </article>
               <article>
-                <span className="cvStep">02</span>
-                <h3>الواقع التشغيلي</h3>
-                <p>العمل في بيئة تشغيلية صحية أضاف فهمًا واقعيًا لسير العمل والقيود والتسليمات وأثر العمليات غير الواضحة.</p>
+                <span className="cvStep">لاحظ</span>
+                <h3>أرى الاحتكاك</h3>
+                <p>جعل العمل التشغيلي التسليمات والقيود وسير العمل غير الواضح أشياء ملموسة وليست افتراضات نظرية.</p>
               </article>
               <article>
-                <span className="cvStep">03</span>
-                <h3>تصميم المنتجات الرقمية</h3>
-                <p>جمع UI/UX هذه الأسس وحول المتطلبات المعقدة إلى واجهات متجاوبة وتجارب رقمية قابلة للاستخدام.</p>
+                <span className="cvStep">شكّل</span>
+                <h3>أصمم التغيير</h3>
+                <p>أصبح UI/UX الطريقة التي أحوّل بها ما أفهمه عن النظام إلى تجربة أوضح يمكن للناس استخدامها.</p>
               </article>
             </div>
           </div>
@@ -82,12 +89,28 @@ export default async function ArabicHomePage() {
         <section className="cvSection" id="capabilities" aria-labelledby="capabilities-title-ar">
           <div className="cvSectionLabel"><span>03</span><span>المهارات</span></div>
           <div className="cvSectionBody">
-            <h2 id="capabilities-title-ar">التصميم والأنظمة والتنفيذ — كمنظومة واحدة.</h2>
-            <div className="cvCapabilityRows">
-              <div><span>التصميم</span><p>UI/UX · تصميم التفاعل · واجهات متجاوبة · هندسة المعلومات</p></div>
-              <div><span>الأنظمة</span><p>سير العمل · المتطلبات · نظم المعلومات · الحوكمة الرقمية · متطلبات DGA</p></div>
-              <div><span>التنفيذ</span><p>تسليم المطورين · التعاون بين الفرق · التكرار · ربط التصميم بالبناء</p></div>
-              <div><span>الذكاء الاصطناعي</span><p>تدفقات عمل توليدية · هندسة البرومت · الاستكشاف السريع · التحسين المساعد</p></div>
+            <h2 id="capabilities-title-ar">تظهر قيمة مهاراتي عندما تعمل معًا.</h2>
+            <div className="cvCapabilityPairs">
+              <div>
+                <span>التفكير بالأنظمة</span>
+                <strong>قرارات UX أفضل</strong>
+                <p>أفهم سير العمل والاعتماديات قبل أن أحدد ما الذي يجب أن تفعله الواجهة.</p>
+              </div>
+              <div>
+                <span>الحوكمة</span>
+                <strong>قيود قابلة للاستخدام</strong>
+                <p>أحوّل المعايير والمتطلبات إلى تجربة تبقى واضحة وإنسانية.</p>
+              </div>
+              <div>
+                <span>تدفقات AI</span>
+                <strong>استكشاف أسرع</strong>
+                <p>أستخدم الذكاء الاصطناعي التوليدي لتوسيع الخيارات وتحسينها دون أن أستبدل الحكم التصميمي.</p>
+              </div>
+              <div>
+                <span>تسليم المطورين</span>
+                <strong>تصميم قابل للتنفيذ</strong>
+                <p>أحافظ على اتصال التصميم بالتنفيذ عبر الحالات والسلوك والتعاون الواضح.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -126,7 +149,7 @@ export default async function ArabicHomePage() {
             <p className="cvOverline">تواصل</p>
           </div>
           <div>
-            <h2 id="contact-title-ar">لنحوّل الأشياء المعقدة إلى شيء أوضح.</h2>
+            <h2 id="contact-title-ar">إذا كان النظام معقدًا، فعادةً هذا هو المكان الذي أحب أن أبدأ منه.</h2>
             <div className="cvContactLinks">
               <Link href="mailto:ibrahim.alajmi407@gmail.com">البريد الإلكتروني ↗</Link>
               <Link href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">LinkedIn ↗</Link>
