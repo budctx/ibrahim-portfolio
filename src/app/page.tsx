@@ -6,10 +6,14 @@ import {HomeHeader} from '@/components/home-header';
 import {
   ArrowDownRightIcon,
   ArrowRightIcon,
+  BadgeCheckIcon,
+  BriefcaseIcon,
   GoogleBrandIcon,
   GraduationCapIcon,
   LinkedInBrandIcon,
   MailIcon,
+  SparklesIcon,
+  WorkflowIcon,
 } from '@/components/icons';
 
 export default async function HomePage() {
@@ -53,11 +57,11 @@ export default async function HomePage() {
               I care about what happens before the screen: the workflow, the constraints, the handoffs and the people moving through them.
             </p>
             <div className="cvEvidenceRail" aria-label="Professional evidence">
-              <div><span>Started with</span><strong>Bachelor&apos;s in MIS</strong></div>
-              <div><span>Saw firsthand</span><strong>Healthcare workflows</strong></div>
-              <div><span>Designing now</span><strong>Web design · IAU</strong></div>
-              <div><span>Working within</span><strong>Saudi DGA compliance</strong></div>
-              <div><span>Expanding with</span><strong>Google UX · Google AI</strong></div>
+              <div><div className="cvEvidenceLabel"><GraduationCapIcon /><span>Started with</span></div><strong>Bachelor&apos;s in MIS</strong></div>
+              <div><div className="cvEvidenceLabel"><WorkflowIcon /><span>Saw firsthand</span></div><strong>Healthcare workflows</strong></div>
+              <div><div className="cvEvidenceLabel"><BriefcaseIcon /><span>Designing now</span></div><strong>Web design · IAU</strong></div>
+              <div><div className="cvEvidenceLabel"><BadgeCheckIcon /><span>Working within</span></div><strong>Saudi DGA compliance</strong></div>
+              <div><div className="cvEvidenceLabel"><SparklesIcon /><span>Expanding with</span></div><strong>Google UX · Google AI</strong></div>
             </div>
           </div>
         </section>
