@@ -454,9 +454,66 @@ html[data-theme='dark'] .cvPage {
   gap: 8px;
 }
 
-.cvIdentitySignals span + span::before {
-  content: "/";
+
+.cvBadge {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 26px;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 9px;
+  border: 1px solid color-mix(in srgb, var(--fg) 18%, transparent);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--bg) 94%, var(--fg));
+  color: color-mix(in srgb, var(--fg) 76%, var(--bg));
+  font-size: var(--cv-type-meta);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: .01em;
+  white-space: nowrap;
+}
+
+.cvBadgeAccent {
+  border-color: color-mix(in srgb, var(--cv-accent) 52%, var(--cv-hairline));
+  background: color-mix(in srgb, var(--cv-accent) 10%, transparent);
   color: var(--cv-accent);
+}
+
+.cvBadgeIssuer {
+  min-height: 24px;
+  padding-inline: 8px;
+  background: transparent;
+}
+
+.cvIdentitySignals .cvBadge {
+  gap: 0;
+}
+
+.cvJourneyMeta.cvBadge {
+  display: inline-flex;
+  margin-top: 12px;
+  color: color-mix(in srgb, var(--cv-accent) 86%, var(--fg));
+  white-space: normal;
+}
+
+.cvCapabilitySource.cvBadge {
+  align-self: start;
+  font-size: var(--cv-type-meta);
+  line-height: 1.15;
+}
+
+.cvCredentialBrand .cvBadge {
+  width: fit-content;
+  min-height: 24px;
+  padding: 3px 8px;
+  font-size: var(--cv-type-meta);
+  line-height: 1.15;
+}
+
+.cvRtl .cvBadge {
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .cvHeroActions {
