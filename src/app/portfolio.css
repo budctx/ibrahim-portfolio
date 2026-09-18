@@ -1081,6 +1081,7 @@ html[data-theme='dark'] .cvPage {
   letter-spacing: 0;
   inline-size: fit-content;
   max-inline-size: 7.35em;
+  margin-inline-end: auto;
   line-height: 1.1;
   font-weight: 600;
   font-size: clamp(3.1rem, 4.55vw, 5.15rem);
@@ -1124,6 +1125,7 @@ html[data-theme='dark'] .cvPage {
 
 .cvRtl .cvLede {
   max-inline-size: 34ch;
+  margin-inline-end: auto;
   line-height: 1.75;
 }
 
