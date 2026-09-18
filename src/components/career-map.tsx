@@ -190,20 +190,10 @@ export function CareerMap({locale = 'en'}: {locale?: Locale}) {
           })}
         </div>
 
-        <div className="cvMapDetail" aria-live="polite">
+        <div className="cvMapDetail" aria-live="polite" aria-label={active.label}>
           <div className="cvMapDetailNumber" aria-hidden="true">{String(activeIndex + 1).padStart(2, '0')}</div>
           <div key={active.id} className="cvMapDetailBody cvMapDetailBodyMotion">
-            <span className="cvMapKicker">{data.detailLabel}</span>
-            <span className="cvMapActiveLabel">
-              <span className="cvMapActiveGlyph" aria-hidden="true">
-                {active.id === 'mis' ? <GraduationCapIcon /> :
-                 active.id === 'operations' ? <WorkflowIcon /> :
-                 active.id === 'experience' ? <SparklesIcon /> :
-                 active.id === 'governance' ? <BadgeCheckIcon /> :
-                 <BriefcaseIcon />}
-              </span>
-              {active.label}
-            </span>
+            <span className="cvMapKicker">{active.label}</span>
             <strong>{active.short}</strong>
             <p>{active.detail}</p>
             <div className="cvMapEvidence">
