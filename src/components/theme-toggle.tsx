@@ -1,6 +1,7 @@
 'use client';
 
 import {useEffect, useState} from 'react';
+import {MoonIcon, SunIcon} from '@/components/icons';
 
 type ThemeToggleProps = {
   locale?: 'en' | 'ar';
@@ -14,8 +15,8 @@ export function ThemeToggle({locale = 'en'}: ThemeToggleProps) {
   }, []);
 
   const label = locale === 'ar'
-    ? (dark ? 'الوضع الفاتح' : 'الوضع الداكن')
-    : (dark ? 'Light' : 'Dark');
+    ? (dark ? 'استخدام الوضع الفاتح' : 'استخدام الوضع الداكن')
+    : (dark ? 'Use light mode' : 'Use dark mode');
 
   return (
     <button
@@ -23,6 +24,7 @@ export function ThemeToggle({locale = 'en'}: ThemeToggleProps) {
       type="button"
       aria-pressed={dark}
       aria-label={label}
+      title={label}
       onClick={() => {
         const next = !dark;
         setDark(next);
@@ -31,8 +33,7 @@ export function ThemeToggle({locale = 'en'}: ThemeToggleProps) {
         window.localStorage.setItem('portfolio-theme', theme);
       }}
     >
-      <span className="themeGlyph" aria-hidden="true">{dark ? '○' : '●'}</span>
-      <span>{label}</span>
+      {dark ? <SunIcon className="cvControlIcon" /> : <MoonIcon className="cvControlIcon" />}
     </button>
   );
 }

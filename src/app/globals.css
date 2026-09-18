@@ -41,7 +41,7 @@ body {
   overflow-x: clip;
   background: var(--bg);
   color: var(--fg);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
 }
@@ -173,7 +173,7 @@ svg {
 }
 
 .themeGlyph {
-  font-size: .72rem;
+  font-size: .8125rem;
   line-height: 1;
 }
 
@@ -204,7 +204,8 @@ h1,
 h2,
 h3,
 p {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 h1 {
@@ -221,7 +222,7 @@ h2 {
   margin: 0;
   font-size: clamp(2.3rem, 5vw, 5rem);
   font-weight: 590;
-  line-height: .94;
+  line-height: .96;
   letter-spacing: -.055em;
   text-wrap: balance;
 }
@@ -392,7 +393,7 @@ h3 {
   justify-content: space-between;
   gap: 16px;
   color: var(--muted);
-  font-size: .9rem;
+  font-size: 1rem;
 }
 
 .meta span,
@@ -558,7 +559,7 @@ h3 {
 
 .rtl {
   direction: rtl;
-  font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-plex-arabic), "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 .rtl h1,
@@ -587,7 +588,7 @@ h3 {
   background: var(--fg);
   color: var(--bg);
   box-shadow: 0 12px 42px color-mix(in srgb, var(--fg) 18%, transparent);
-  font-size: .88rem;
+  font-size: 1rem;
 }
 
 .previewBar button {

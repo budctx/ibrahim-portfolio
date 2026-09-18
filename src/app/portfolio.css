@@ -1,0 +1,2273 @@
+/* Portfolio design system — consolidated from the interactive CV production pass.
+   Keep portfolio-only rules here. Global route styles stay in globals.css. */
+
+.cvPage {
+  --cv-accent: #895f3d;
+  --cv-accent-soft: color-mix(in srgb, var(--cv-accent) 14%, transparent);
+  --cv-hairline: color-mix(in srgb, var(--fg) 15%, transparent);
+  --cv-ink-soft: color-mix(in srgb, var(--fg) 72%, var(--bg));
+  --cv-grid-gap: clamp(18px, 2.2vw, 34px);
+  --cv-section-space: clamp(72px, 8vw, 122px);
+  --cv-brand-accent: var(--cv-accent);
+  --cv-focus: #2357d9;
+  --cv-type-meta: .8125rem;
+  --cv-type-label: .875rem;
+  --cv-type-ui: .9375rem;
+  --cv-type-body: 1rem;
+  --cv-type-body-lg: 1.0625rem;
+  --cv-type-body-xl: 1.125rem;
+  background: radial-gradient(circle at 78% 12%, color-mix(in srgb, var(--cv-accent) 7%, transparent), transparent 31rem),
+    var(--bg);
+  color: var(--fg);
+}
+
+html[data-theme='dark'] .cvPage {
+  --cv-accent: #c69a6e;
+  --cv-hairline: color-mix(in srgb, var(--fg) 16%, transparent);
+}
+
+.cvPage * {
+  min-width: 0;
+}
+
+.cvPage *::before {
+  min-width: 0;
+}
+
+.cvPage *::after {
+  min-width: 0;
+}
+
+.cvMapEvidence b {
+  overflow-wrap: anywhere;
+  font-size: var(--cv-type-label);
+  font-weight: 600;
+}
+
+.cvCredentials strong {
+  overflow-wrap: anywhere;
+  max-width: 24ch;
+  font-size: clamp(1.25rem, 1.65vw, 1.55rem);
+  line-height: 1.28;
+  margin-top: 22px;
+}
+
+.cvEvidenceRail strong {
+  overflow-wrap: anywhere;
+  max-width: 20ch;
+  font-size: var(--cv-type-body-lg);
+  font-weight: 600;
+  line-height: 1.35;
+  margin-top: auto;
+}
+
+.cvContactLinks a {
+  overflow-wrap: anywhere;
+  min-height: 64px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 17px 26px;
+  border: 1px solid var(--cv-hairline);
+  border-radius: 2px;
+  font-weight: 700;
+  font-size: var(--cv-type-body-lg);
+  flex: 1 1 0;
+  justify-content: center;
+  min-width: 190px;
+  border-width: 1px;
+}
+
+.cvFrame {
+  width: min(1600px, calc(100% - clamp(28px, 5vw, 88px)));
+  margin-inline: auto;
+}
+
+.cvHeader {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  min-height: 86px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(18px, 3vw, 46px);
+  border-bottom: 1px solid color-mix(in srgb, var(--cv-accent) 24%, var(--cv-hairline));
+  background: color-mix(in srgb, var(--bg) 91%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.cvBrand {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.cvBrandMark {
+  display: inline-grid;
+  grid-auto-flow: column;
+  align-items: baseline;
+  gap: 2px;
+  min-width: 48px;
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: var(--cv-type-body-xl);
+  font-weight: 700;
+  letter-spacing: -.08em;
+}
+
+.cvBrandMark b {
+  font-weight: 700;
+}
+
+.cvBrandMark i {
+  color: var(--cv-accent);
+  font-style: normal;
+  font-weight: 500;
+  transition: color 180ms cubic-bezier(.2,.8,.2,1);
+}
+
+.cvBrandName {
+  color: color-mix(in srgb, var(--fg) 90%, var(--bg));
+  font-size: var(--cv-type-ui);
+  font-weight: 600;
+  letter-spacing: .025em;
+  text-transform: uppercase;
+}
+
+.cvNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.35vw, 22px);
+  flex-wrap: wrap;
+}
+
+.cvNav a {
+  position: relative;
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 2px;
+  color: color-mix(in srgb, var(--fg) 72%, var(--bg));
+  font-size: var(--cv-type-ui);
+  white-space: nowrap;
+  transition: color 180ms cubic-bezier(.2,.8,.2,1);
+}
+
+.cvNav a::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 5px;
+  height: 1px;
+  background: var(--fg);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1);
+}
+
+.cvNav a[aria-current='location'] {
+  color: var(--fg);
+}
+
+.cvNav a[aria-current='location']::after {
+  background: var(--cv-accent);
+  transform: scaleX(1);
+}
+
+.cvTools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.cvLang {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cv-hairline);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--fg);
+  gap: 7px;
+  padding-inline: 10px;
+  font-size: var(--cv-type-meta);
+  font-weight: 700;
+}
+
+.cvTools .themeToggle {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cv-hairline);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--fg);
+  width: 44px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.cvControlIcon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.cvDirectionalIcon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.cvCapabilityArrow {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  color: var(--muted);
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1),
+    color 180ms cubic-bezier(.2,.8,.2,1);
+  justify-self: end;
+}
+
+.cvCredentialIcon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  color: var(--cv-accent);
+  margin-bottom: auto;
+}
+
+.cvContactLinks svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.cvHero {
+  min-height: max(680px, calc(100svh - 86px));
+  height: max(680px, calc(100svh - 86px));
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--cv-grid-gap);
+  row-gap: clamp(40px, 4vw, 64px);
+  align-items: center;
+  padding-block: clamp(24px, 3.5svh, 38px);
+}
+
+.cvHeroCopy {
+  grid-column: 1 / 6;
+  inline-size: 100%;
+  max-inline-size: 760px;
+  align-self: center;
+  justify-self: start;
+}
+
+.cvMap {
+  grid-column: 7 / -1;
+  width: 100%;
+  max-width: none;
+  justify-self: end;
+  padding: clamp(22px, 2.2vw, 34px);
+  border: 1px solid var(--cv-hairline);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--cv-accent) 4%, transparent), transparent 46%),
+    color-mix(in srgb, var(--bg) 96%, var(--fg));
+  container-type: inline-size;
+  container-name: career;
+}
+
+.cvOverline {
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  margin: 0 0 24px;
+  color: var(--cv-ink-soft);
+  font-size: var(--cv-type-meta);
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.cvSectionLabel {
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  grid-column: 1;
+  display: inline-flex;
+  flex-direction: row;
+  gap: 10px;
+  color: color-mix(in srgb, var(--muted) 82%, var(--fg));
+  font-size: var(--cv-type-label);
+  padding-top: .25rem;
+  align-self: start;
+  position: static;
+  top: 104px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 22px;
+  padding: 0;
+  align-items: center;
+}
+
+.cvMapIntro > span {
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--cv-accent);
+  font-size: var(--cv-type-label);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.cvMapKicker {
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  display: block;
+  color: var(--cv-accent);
+  font-size: var(--cv-type-meta);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.cvEvidenceRail span {
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--muted);
+  font-size: var(--cv-type-meta);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.cvCapabilitySource {
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--cv-accent);
+  font-size: var(--cv-type-ui);
+  font-weight: 700;
+  align-self: center;
+}
+
+.cvStep {
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  display: block;
+  color: var(--cv-accent);
+  font-size: var(--cv-type-label);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.cvJourneyMeta {
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  display: block;
+  margin-top: 10px;
+  color: var(--cv-accent);
+  font-size: var(--cv-type-label);
+  font-weight: 600;
+}
+
+.cvContactIndex {
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--cv-accent);
+  font-size: var(--cv-type-meta);
+  font-variant-numeric: tabular-nums;
+  display: block;
+  margin-bottom: 12px;
+  margin: 0;
+}
+
+.cvFooter {
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0;
+  padding-block: 28px 24px;
+  border-top: 1px solid color-mix(in srgb, var(--cv-accent) 22%, var(--cv-hairline));
+  color: color-mix(in srgb, var(--fg) 62%, var(--bg));
+  font-size: var(--cv-type-ui);
+}
+
+.cvSystemPhrase {
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  display: block;
+  width: fit-content;
+  margin-top: clamp(36px, 5vw, 58px);
+  color: color-mix(in srgb, var(--muted) 72%, transparent);
+  font-size: var(--cv-type-meta);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.cvPage h1 {
+  max-width: 10.25ch;
+  margin: 0;
+  font-size: clamp(3.35rem, 5.45vw, 6.2rem);
+  font-weight: 500;
+  line-height: .98;
+  letter-spacing: -.065em;
+  text-wrap: balance;
+}
+
+.cvPage:not(.cvRtl) h1 em {
+  color: var(--cv-accent);
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.045em;
+}
+
+.cvRtl h1 em {
+  color: var(--cv-accent);
+  font-style: normal;
+  font-weight: 500;
+  display: block;
+  margin-top: .04em;
+}
+
+.cvLede {
+  max-width: 43ch;
+  margin: 30px 0 0;
+  color: var(--muted);
+  font-size: clamp(1.08rem, 1.3vw, 1.24rem);
+  line-height: 1.62;
+  margin-top: 26px;
+}
+
+.cvIdentitySignals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 14px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--cv-hairline);
+  color: var(--muted);
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: var(--cv-type-meta);
+}
+
+.cvIdentitySignals span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.cvBadge {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 26px;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 9px;
+  border: 1px solid color-mix(in srgb, var(--fg) 18%, transparent);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--bg) 94%, var(--fg));
+  color: color-mix(in srgb, var(--fg) 76%, var(--bg));
+  font-size: var(--cv-type-meta);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: .01em;
+  white-space: nowrap;
+}
+
+.cvBadgeAccent {
+  border-color: color-mix(in srgb, var(--cv-accent) 52%, var(--cv-hairline));
+  background: color-mix(in srgb, var(--cv-accent) 10%, transparent);
+  color: color-mix(in srgb, var(--cv-accent) 82%, var(--fg));
+}
+
+.cvBadgeIssuer {
+  min-height: 24px;
+  padding-inline: 8px;
+  background: transparent;
+}
+
+.cvIdentitySignals .cvBadge {
+  gap: 0;
+}
+
+.cvJourneyMeta.cvBadge {
+  display: inline-flex;
+  margin-top: 12px;
+  color: color-mix(in srgb, var(--cv-accent) 86%, var(--fg));
+  white-space: normal;
+}
+
+.cvCapabilitySource.cvBadge {
+  align-self: start;
+  font-size: var(--cv-type-meta);
+  line-height: 1.15;
+}
+
+.cvCredentialBrand .cvBadge {
+  width: fit-content;
+  min-height: 24px;
+  padding: 3px 8px;
+  font-size: var(--cv-type-meta);
+  line-height: 1.15;
+}
+
+.cvRtl .cvBadge {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvHeroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.cvButton {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 11px 18px;
+  border: 1px solid var(--cv-hairline);
+  border-radius: 2px;
+  font-size: var(--cv-type-ui);
+  font-weight: 600;
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1),
+    background-color 180ms cubic-bezier(.2,.8,.2,1),
+    color 180ms cubic-bezier(.2,.8,.2,1);
+}
+
+.cvButtonPrimary {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--fg);
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.cvButtonPrimary::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: var(--cv-accent);
+}
+
+.cvMapIntro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid color-mix(in srgb, var(--cv-accent) 50%, var(--cv-hairline));
+}
+
+.cvMapIntro > strong {
+  max-width: 15ch;
+  font-size: clamp(1.35rem, 1.75vw, 1.72rem);
+  font-weight: 600;
+  line-height: 1.15;
+  text-align: end;
+}
+
+.cvMapGrid {
+  display: grid;
+  grid-template-columns: minmax(280px, .95fr) minmax(0, 1.25fr);
+  gap: clamp(30px, 3.5vw, 56px);
+  padding-top: 28px;
+}
+
+.cvMapTrack {
+  --map-axis: 45px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--cv-hairline);
+}
+
+.cvMapTrack::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  inset-inline-start: var(--map-axis);
+  width: 1px;
+  pointer-events: none;
+  bottom: 0;
+  background: var(--cv-hairline);
+}
+
+.cvMapTrack::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  inset-inline-start: var(--map-axis);
+  width: 1px;
+  pointer-events: none;
+  height: 10%;
+  background: var(--cv-accent);
+  transition: height 260ms cubic-bezier(.2,.8,.2,1);
+}
+
+.cvMapTrackActive1::after {
+  height: 10%;
+}
+
+.cvMapTrackActive2::after {
+  height: 30%;
+}
+
+.cvMapTrackActive3::after {
+  height: 50%;
+}
+
+.cvMapTrackActive4::after {
+  height: 70%;
+}
+
+.cvMapTrackActive5::after {
+  height: 90%;
+}
+
+.cvSignal {
+  position: relative;
+  width: 100%;
+  min-height: 102px;
+  display: grid;
+  grid-template-columns: 28px 12px 40px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 14px 0;
+  border: 0;
+  border-bottom: 1px solid var(--cv-hairline);
+  border-radius: 0;
+  background: transparent;
+  color: var(--fg);
+  text-align: start;
+  cursor: pointer;
+}
+
+.cvSignalIndex {
+  color: var(--muted);
+  font-size: var(--cv-type-meta);
+  font-variant-numeric: tabular-nums;
+}
+
+.cvSignalLine {
+  position: relative;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--muted);
+  border-radius: 50%;
+  background: var(--bg);
+  transition: background-color 180ms cubic-bezier(.2,.8,.2,1),
+    border-color 180ms cubic-bezier(.2,.8,.2,1),
+    transform 180ms cubic-bezier(.2,.8,.2,1);
+}
+
+.cvSignal[aria-pressed='true'] .cvSignalLine {
+  border-color: var(--cv-accent);
+  background: var(--cv-accent);
+  transform: scale(1.14);
+}
+
+.cvSignalCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cvSignalCopy strong {
+  font-size: var(--cv-type-body);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.cvSignalCopy > span {
+  color: var(--muted);
+  font-size: var(--cv-type-label);
+  line-height: 1.4;
+  max-width: 28ch;
+}
+
+.cvSignal[aria-pressed='true'] .cvSignalCopy strong {
+  color: var(--cv-accent);
+}
+
+.cvMapDetail {
+  min-height: 360px;
+  margin: 0;
+  padding: clamp(28px, 2.8vw, 36px);
+  border: 1px solid color-mix(in srgb, var(--fg) 11%, transparent);
+  background: color-mix(in srgb, var(--cv-accent) 3%, transparent);
+  position: relative;
+}
+
+.cvMapDetailNumber {
+  color: var(--cv-accent);
+  font-size: clamp(2.15rem, 2.65vw, 2.9rem);
+  font-weight: 500;
+  line-height: .82;
+  letter-spacing: -.05em;
+  font-variant-numeric: tabular-nums;
+  position: absolute;
+  top: clamp(24px, 2.2vw, 30px);
+  inset-inline-end: clamp(24px, 2.2vw, 30px);
+  opacity: .42;
+}
+
+.cvMapDetailBody {
+  min-width: 0;
+  width: 100%;
+  padding-inline-end: clamp(52px, 5vw, 76px);
+}
+
+.cvMapDetailBodyMotion {
+  animation: cvDetailIn 220ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+
+.cvMapDetailBody > strong {
+  display: block;
+  max-width: 16ch;
+  margin-top: 20px;
+  font-size: clamp(1.75rem, 2.25vw, 2.45rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+
+.cvMapDetailBody > p {
+  max-width: 42ch;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: var(--cv-type-body-lg);
+  line-height: 1.68;
+  margin-top: 22px;
+}
+
+.cvMapEvidence {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 34px;
+  padding-top: 14px;
+  border-top: 1px solid var(--cv-hairline);
+  max-width: 42ch;
+}
+
+.cvMapEvidence::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  inset-inline-start: 0;
+  width: 72px;
+  height: 1px;
+  background: var(--cv-accent);
+}
+
+.cvMapEvidence span {
+  color: var(--muted);
+  font-size: var(--cv-type-meta);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.cvMapHint {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: var(--cv-type-label);
+  line-height: 1.5;
+  margin-top: 18px;
+}
+
+.cvSection {
+  position: relative;
+  scroll-margin-top: 96px;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: clamp(22px, 3vw, 46px);
+  padding-block: var(--cv-section-space);
+  border-top: 1px solid var(--cv-hairline);
+  row-gap: 0;
+}
+
+.cvContact {
+  position: relative;
+  scroll-margin-top: 96px;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: clamp(22px, 3vw, 46px);
+  padding-block: clamp(72px, 7vw, 104px);
+  border-top: 1px solid var(--cv-hairline);
+  align-items: end;
+  row-gap: 0;
+}
+
+.cvSection::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  inset-inline-start: 0;
+  width: clamp(52px, 8vw, 116px);
+  height: 1px;
+  background: var(--cv-accent);
+}
+
+.cvContact::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  inset-inline-start: 0;
+  width: clamp(52px, 8vw, 116px);
+  height: 1px;
+  background: var(--cv-accent);
+}
+
+.cvContact > :first-child {
+  grid-column: 1;
+  padding-top: .25rem;
+  align-self: start;
+  position: static;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 22px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cvSectionBody {
+  grid-column: 1;
+  container-type: inline-size;
+  container-name: section;
+}
+
+.cvContact > :last-child {
+  grid-column: 1;
+}
+
+.cvSectionLabel span:first-child {
+  color: var(--cv-accent);
+  font-size: var(--cv-type-meta);
+  font-variant-numeric: tabular-nums;
+}
+
+.cvSectionBody > h2 {
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(2.35rem, 4vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -.055em;
+  text-wrap: balance;
+}
+
+.cvContact h2 {
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(2.6rem, 4.4vw, 4.8rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -.055em;
+  text-wrap: balance;
+}
+
+.cvBigCopy {
+  max-width: 40ch;
+  margin: clamp(34px, 5vw, 66px) 0 0;
+  color: var(--muted);
+  font-size: clamp(1.18rem, 1.65vw, 1.55rem);
+  line-height: 1.52;
+  margin-top: clamp(28px, 3.5vw, 44px);
+}
+
+.cvEvidenceRail {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  margin-top: clamp(38px, 5vw, 60px);
+  border-block: 0;
+  gap: 10px;
+}
+
+.cvEvidenceRail > div {
+  position: relative;
+  min-height: 148px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 18px;
+  padding: 20px 14px 22px;
+  border: 0;
+  border-top: 1px solid var(--cv-hairline);
+  background: transparent;
+}
+
+.cvEvidenceRail > div:nth-child(1) {
+  grid-column: span 2;
+}
+
+.cvEvidenceRail > div:nth-child(2) {
+  grid-column: span 2;
+}
+
+.cvEvidenceRail > div:nth-child(3) {
+  grid-column: span 4;
+  padding-inline: 18px;
+  border-top-color: var(--cv-accent);
+  background: color-mix(in srgb, var(--cv-accent) 5%, transparent);
+}
+
+.cvEvidenceRail > div:nth-child(4) {
+  grid-column: span 2;
+}
+
+.cvEvidenceRail > div:nth-child(5) {
+  grid-column: span 2;
+}
+
+.cvEvidenceRail > div::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  inset-inline-start: 0;
+  width: 18px;
+  height: 1px;
+  background: var(--cv-accent);
+  display: none;
+}
+
+.cvJourney {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(38px, 5vw, 60px);
+  border-block: 0;
+  gap: 12px;
+}
+
+.cvJourney article {
+  position: relative;
+  min-height: 270px;
+  padding: 24px;
+  border-inline-end: 1px solid var(--cv-hairline);
+  border: 1px solid var(--cv-hairline);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--cv-accent) 7%, transparent), transparent 64%),
+    color-mix(in srgb, var(--fg) 4%, var(--bg));
+  border-color: color-mix(in srgb, var(--fg) 24%, transparent);
+}
+
+.cvJourney article + article {
+  padding-inline-start: 24px;
+  min-height: 270px;
+  padding: 24px;
+  border: 1px solid var(--cv-hairline);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--cv-accent) 7%, transparent), transparent 64%),
+    color-mix(in srgb, var(--fg) 4%, var(--bg));
+  border-color: color-mix(in srgb, var(--fg) 24%, transparent);
+}
+
+.cvJourney article:last-child {
+  border-inline-end: 0;
+}
+
+.cvJourney article::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  inset-inline-start: 0;
+  width: 58px;
+  height: 2px;
+  background: var(--cv-accent);
+}
+
+.cvJourney h3 {
+  max-width: 12ch;
+  margin: 48px 0 14px;
+  font-size: clamp(1.75rem, 2.2vw, 2.3rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -.04em;
+  margin-top: 44px;
+  color: var(--fg);
+}
+
+.cvJourney p {
+  max-width: 34ch;
+  margin: 0;
+  color: color-mix(in srgb, var(--fg) 90%, var(--bg));
+  font-size: var(--cv-type-body-lg);
+  line-height: 1.72;
+}
+
+.cvCapabilityPairs {
+  margin-top: clamp(38px, 5vw, 58px);
+  border-top: 1px solid var(--cv-hairline);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid var(--cv-hairline);
+  background: var(--cv-hairline);
+}
+
+.cvCapabilityPairs > div {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 34px;
+  gap: 20px 16px;
+  align-items: center;
+  padding-block: 22px;
+  border-bottom: 1px solid var(--cv-hairline);
+  min-height: 250px;
+  grid-template-rows: auto auto 1fr;
+  align-content: start;
+  padding: clamp(24px, 2.7vw, 38px);
+  border: 0;
+  background: var(--bg);
+}
+
+.cvCapabilityPairs > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  inset-inline-start: 0;
+  width: 3px;
+  background: transparent;
+  transition: background-color 180ms cubic-bezier(.2,.8,.2,1);
+}
+
+.cvCapabilityPairs strong {
+  font-size: clamp(1.45rem, 2vw, 1.95rem);
+  font-weight: 600;
+  line-height: 1.15;
+  grid-column: 1 / -1;
+}
+
+.cvCapabilityPairs p {
+  max-width: 42ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--cv-type-body);
+  line-height: 1.65;
+  grid-column: 1 / -1;
+  align-self: end;
+}
+
+.cvCredentials {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(40px, 5vw, 62px);
+  border-block: 0;
+  gap: 14px;
+}
+
+.cvCredentials > div {
+  min-height: 264px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px;
+  border-inline-end: 1px solid var(--cv-hairline);
+  border: 1px solid var(--cv-hairline);
+  background: color-mix(in srgb, var(--bg) 97%, var(--fg));
+  position: relative;
+  overflow: hidden;
+}
+
+.cvCredentials > div + div {
+  padding-inline-start: 26px;
+  min-height: 264px;
+  padding: 26px;
+  border: 1px solid var(--cv-hairline);
+  background: color-mix(in srgb, var(--bg) 97%, var(--fg));
+}
+
+.cvCredentials > div:last-child {
+  border-inline-end: 0;
+}
+
+.cvCredentials span {
+  max-width: 40ch;
+  color: var(--muted);
+  font-size: var(--cv-type-body);
+  line-height: 1.62;
+}
+
+.cvSectionHead {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 48px;
+}
+
+.cvSectionHead > a {
+  text-decoration: underline;
+  text-underline-offset: .24em;
+}
+
+.cvContactNote {
+  max-width: 39ch;
+  margin: 26px 0 0;
+  color: var(--muted);
+  font-size: var(--cv-type-body-lg);
+  line-height: 1.65;
+  margin-top: 24px;
+}
+
+.cvContactLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+  width: min(100%, 560px);
+}
+
+.cvFooter span:last-child {
+  color: color-mix(in srgb, var(--cv-accent) 82%, var(--fg));
+}
+
+.cvRtl {
+  --cv-copy-axis-inset: clamp(10px, .8vw, 14px);
+  font-family: var(--font-plex-arabic), "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+.cvRtl h1 {
+  letter-spacing: 0;
+  inline-size: fit-content;
+  max-inline-size: 7.35em;
+  margin-inline-end: auto;
+  line-height: 1.16;
+  font-weight: 600;
+  font-size: clamp(3.1rem, 4.55vw, 5.15rem);
+}
+
+.cvRtl .cvHeroCopy {
+  max-inline-size: 720px;
+  padding-inline-start: var(--cv-copy-axis-inset);
+  padding-inline-end: clamp(18px, 1.4vw, 28px);
+}
+
+.cvRtl .cvHeroActions {
+  justify-content: flex-start;
+}
+
+.cvRtl h2 {
+  letter-spacing: 0;
+}
+
+.cvRtl h3 {
+  letter-spacing: 0;
+}
+
+.cvRtl .cvMapDetailBody > strong {
+  letter-spacing: 0;
+  max-width: 11em;
+  line-height: 1.35;
+}
+
+.cvRtl .cvSectionBody > h2 {
+  max-width: none;
+  max-inline-size: 14em;
+  margin-inline-start: var(--cv-copy-axis-inset);
+  font-size: clamp(2.2rem, 3.25vw, 3.5rem);
+  line-height: 1.3;
+  font-weight: 600;
+  text-wrap: pretty;
+}
+
+.cvRtl .cvContact h2 {
+  max-width: none;
+  max-inline-size: 13em;
+  margin-inline-start: var(--cv-copy-axis-inset);
+  font-size: clamp(2.3rem, 3.5vw, 3.75rem);
+  line-height: 1.3;
+  font-weight: 600;
+  text-wrap: pretty;
+}
+
+.cvRtl .cvLede {
+  max-inline-size: 34ch;
+  margin-inline-end: auto;
+  line-height: 1.75;
+}
+
+.cvRtl .cvBigCopy {
+  margin-inline-start: var(--cv-copy-axis-inset);
+  line-height: 1.75;
+}
+
+.cvRtl .cvMapDetailBody > p {
+  line-height: 1.82;
+}
+
+.cvRtl .cvCapabilityPairs p {
+  line-height: 1.82;
+}
+
+.cvRtl .cvJourney p {
+  line-height: 1.72;
+  color: color-mix(in srgb, var(--fg) 90%, var(--bg));
+  font-size: var(--cv-type-body-lg);
+}
+
+.cvRtl .cvCredentials span {
+  line-height: 1.82;
+}
+
+.cvRtl .cvContactNote {
+  margin-inline-start: var(--cv-copy-axis-inset);
+  line-height: 1.72;
+}
+
+.cvRtl .cvOverline {
+  font-family: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvSectionLabel {
+  font-family: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-inline-start: var(--cv-copy-axis-inset);
+}
+
+.cvRtl .cvContact > :first-child,
+.cvRtl .cvContactContext,
+.cvRtl .cvContactLinks {
+  margin-inline-start: var(--cv-copy-axis-inset);
+}
+
+.cvRtl .cvMapIntro > span {
+  font-family: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvMapKicker {
+  font-family: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvEvidenceRail span {
+  font-family: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvCapabilitySource {
+  font-family: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvStep {
+  font-family: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvJourneyMeta {
+  font-family: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvContactIndex {
+  font-family: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvFooter {
+  font-family: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvSystemPhrase {
+  font-family: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvMapIntro > strong {
+  text-align: start;
+}
+
+.cvRtl .cvDirectionalIcon {
+  transform: scaleX(-1);
+}
+
+.cvRtl .cvCapabilityArrow {
+  transform: scaleX(-1);
+}
+
+.cvSectionIntro {
+  max-width: 46ch;
+  margin: 26px 0 0;
+  color: var(--muted);
+  font-size: var(--cv-type-body-lg);
+  line-height: 1.65;
+}
+
+.cvTurningPoint {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--cv-grid-gap);
+  border-top: 1px solid var(--cv-hairline);
+  padding-block: clamp(64px, 8vw, 108px);
+  position: relative;
+  overflow: hidden;
+  padding: clamp(74px, 8vw, 112px) clamp(24px, 4vw, 56px);
+  border-block: 1px solid color-mix(in srgb, var(--cv-accent) 55%, var(--cv-hairline));
+  background: linear-gradient(120deg, var(--cv-accent-soft), transparent 62%),
+    color-mix(in srgb, var(--bg) 96%, var(--fg));
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
+
+.cvTurningPoint > span {
+  grid-column: 1 / 4;
+  color: var(--cv-accent);
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: var(--cv-type-label);
+  font-weight: 600;
+  align-self: start;
+}
+
+.cvTurningPoint > p {
+  grid-column: 4 / -2;
+  max-width: 17ch;
+  margin: 0;
+  font-size: clamp(2.2rem, 3.8vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+
+
+.cvCredentialBrand {
+  min-height: 54px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: var(--cv-type-ui);
+  font-weight: 600;
+  width: 100%;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cv-hairline);
+}
+
+.cvCredentialBrand svg {
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border: 1px solid var(--cv-hairline);
+  background: var(--cv-accent-soft);
+}
+
+.cvCredentialBrand span {
+  color: var(--muted);
+  font-size: var(--cv-type-body);
+  font-weight: 600;
+}
+
+.cvGoogleBrand svg {
+  color: #4285f4;
+  padding: 7px;
+  background: color-mix(in srgb, #4285f4 8%, transparent);
+  width: 40px;
+  height: 40px;
+  border: 1px solid color-mix(in srgb, #4285f4 34%, var(--cv-hairline));
+}
+
+.cvCredentialBrandNeutral svg {
+  color: var(--cv-accent);
+}
+
+.cvLinkedInLink svg {
+  width: 23px;
+  height: 23px;
+  color: #0a66c2;
+}
+
+.cvRtl .cvTurningPoint > span {
+  font-family: var(--font-plex-arabic), "Segoe UI", Tahoma, Arial, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvTurningPoint > p {
+  max-width: 13em;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+.cvRtl .cvSectionIntro {
+  margin-inline-start: var(--cv-copy-axis-inset);
+  line-height: 1.78;
+}
+
+.cvEvidenceLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--muted);
+}
+
+.cvEvidenceLabel svg {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  color: var(--cv-accent);
+  padding: 4px;
+  border: 0;
+  background: transparent;
+}
+
+.cvEvidenceLabel span {
+  color: inherit;
+}
+
+.cvGoogleMark {
+  color: #4285f4 !important;
+}
+
+.cvSignalIcon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cv-hairline);
+  background: color-mix(in srgb, var(--bg) 92%, var(--fg));
+  color: var(--muted);
+  transition: color 180ms cubic-bezier(.2,.8,.2,1),
+    border-color 180ms cubic-bezier(.2,.8,.2,1),
+    background-color 180ms cubic-bezier(.2,.8,.2,1),
+    transform 180ms cubic-bezier(.2,.8,.2,1);
+}
+
+.cvSignalIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.cvSignal[aria-pressed='true'] .cvSignalIcon {
+  border-color: var(--cv-accent);
+  background: var(--cv-accent-soft);
+  color: var(--cv-accent);
+  transform: translateY(-1px);
+}
+
+
+
+.cvEvidenceRail > div:nth-child(n) {
+  min-height: 154px;
+  justify-content: flex-start;
+  gap: 26px;
+  padding: 18px;
+  border: 1px solid var(--cv-hairline);
+  background: color-mix(in srgb, var(--bg) 96%, var(--fg));
+}
+
+.cvTurningPoint::after {
+  content: "";
+  position: absolute;
+  inset-block: 18%;
+  inset-inline-end: 3%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--cv-accent), transparent);
+}
+
+.cvContactLinks a:first-child {
+  border-color: var(--fg);
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.cvContactLinks a:first-child svg {
+  color: currentColor;
+  width: 23px;
+  height: 23px;
+}
+
+.cvSectionLabel::after {
+  content: "";
+  width: 42px;
+  height: 1px;
+  margin-top: 10px;
+  background: var(--cv-accent);
+  display: block;
+  margin: 0;
+}
+
+.cvCredentials > div::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cv-accent), transparent 72%);
+  opacity: .72;
+}
+
+.cvLinkedInLink {
+  border-color: var(--cv-hairline);
+  background: transparent;
+  color: var(--fg);
+}
+
+.cvRtl .cvHeroTitleLine {
+  display: block;
+}
+
+.cvRtl .cvHeroTitleLine + .cvHeroTitleLine {
+  margin-top: .02em;
+}
+
+.cvRtl .cvCredentialBrand {
+  align-items: center;
+}
+
+.cvContact > :first-child .cvOverline {
+  margin: 0;
+}
+
+.cvGoogleBrand {
+  width: 100%;
+  min-height: 58px;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding: 0 0 14px;
+  border: 0;
+  background: transparent;
+  justify-content: flex-start;
+  color: var(--fg);
+  box-shadow: none;
+  border-bottom: 1px solid var(--cv-hairline);
+}
+
+.cvGoogleBrand span {
+  color: color-mix(in srgb, var(--fg) 82%, var(--bg)) !important;
+  font-size: var(--cv-type-ui);
+  font-weight: 600;
+}
+
+html[data-theme='light'] .cvGoogleBrand {
+  box-shadow: none;
+}
+
+
+.cvContactContext {
+  max-width: 54ch;
+  margin-bottom: clamp(28px, 3.2vw, 42px);
+  padding-block: 2px;
+  padding-inline-start: 18px;
+  border-inline-start: 2px solid var(--cv-accent);
+  background: transparent;
+}
+
+.cvContactContext > span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--cv-accent);
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: var(--cv-type-meta);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.cvContactContext > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--cv-type-body-lg);
+  line-height: 1.62;
+}
+
+.cvRtl .cvContactContext > span {
+  font-family: var(--font-plex-arabic), "Segoe UI", Tahoma, Arial, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvContactContext > p {
+  line-height: 1.78;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cvNav a:hover {
+    color: var(--fg);
+  }
+
+  .cvNav a:hover::after {
+    transform: scaleX(1);
+  }
+
+  .cvButton:hover {
+    transform: translateY(-2px);
+  }
+
+  .cvButton:not(.cvButtonPrimary):hover {
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  .cvContactLinks a:hover {
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  .cvBrand:hover .cvBrandMark i {
+    color: var(--fg);
+  }
+
+  .cvSignal:hover .cvSignalCopy strong {
+    color: var(--cv-accent);
+  }
+
+  .cvCapabilityPairs > div:hover::before {
+    background: var(--cv-accent);
+  }
+
+  .cvCapabilityPairs > div:hover .cvCapabilityArrow {
+    color: var(--cv-accent);
+    transform: translateX(4px);
+  }
+
+  .cvRtl .cvCapabilityPairs > div:hover .cvCapabilityArrow {
+    transform: scaleX(-1) translateX(4px);
+  }
+
+  .cvLinkedInLink:hover svg {
+    color: #0a66c2;
+  }
+
+  .cvCapabilityPairs > div {
+    transition: background-color 180ms cubic-bezier(.2,.8,.2,1),
+      transform 180ms cubic-bezier(.2,.8,.2,1);
+  }
+
+  .cvCapabilityPairs > div:hover {
+    z-index: 1;
+    background: color-mix(in srgb, var(--cv-accent) 5%, var(--bg));
+    transform: translateY(-2px);
+  }
+
+  .cvJourney article {
+    transition: border-color 180ms cubic-bezier(.2,.8,.2,1),
+      transform 180ms cubic-bezier(.2,.8,.2,1);
+  }
+
+  .cvJourney article:hover {
+    border-color: color-mix(in srgb, var(--cv-accent) 55%, var(--cv-hairline));
+    transform: translateY(-2px);
+  }
+
+  .cvContactLinks a:first-child:hover {
+    background: var(--cv-accent);
+    border-color: var(--cv-accent);
+    color: var(--bg);
+  }
+
+  .cvLinkedInLink:hover {
+    border-color: color-mix(in srgb, #0a66c2 60%, var(--cv-hairline));
+    background: color-mix(in srgb, #0a66c2 8%, var(--bg));
+    color: var(--fg);
+  }
+}
+
+@media (max-width: 1320px) {
+  .cvHeader {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px 20px;
+    padding-block: 14px 12px;
+  }
+
+  .cvTools {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .cvNav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+    border-top: 1px solid var(--cv-hairline);
+    padding-top: 6px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .cvHero {
+    min-height: auto;
+    height: auto;
+    grid-template-columns: 1fr;
+    gap: 68px;
+    padding-block: 84px 100px;
+  }
+
+  .cvHeroCopy {
+    grid-column: 1;
+    max-width: 900px;
+    justify-self: stretch;
+  }
+
+  .cvMap {
+    grid-column: 1;
+    max-width: 900px;
+    justify-self: stretch;
+    width: min(100%, 820px);
+  }
+
+  .cvSectionLabel {
+    grid-column: 1;
+    position: static;
+  }
+
+  .cvContact > :first-child {
+    grid-column: 1;
+  }
+
+  .cvSectionBody {
+    grid-column: 2;
+  }
+
+  .cvContact > :last-child {
+    grid-column: 2;
+  }
+
+  .cvEvidenceRail {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .cvEvidenceRail > div:nth-child(1) {
+    grid-column: span 2;
+  }
+
+  .cvEvidenceRail > div:nth-child(2) {
+    grid-column: span 2;
+  }
+
+  .cvEvidenceRail > div:nth-child(4) {
+    grid-column: span 2;
+  }
+
+  .cvEvidenceRail > div:nth-child(3) {
+    grid-column: span 3;
+    border-inline-end: 0;
+  }
+
+  .cvEvidenceRail > div:nth-child(5) {
+    grid-column: span 3;
+  }
+
+  .cvEvidenceRail > div:nth-child(n+4) {
+    border-top: 1px solid var(--cv-hairline);
+  }
+
+  .cvMapGrid {
+    grid-template-columns: minmax(260px, .85fr) minmax(0, 1.15fr);
+  }
+
+  .cvSection {
+    grid-template-columns: minmax(70px, 90px) minmax(0, 1fr);
+    column-gap: 24px;
+  }
+
+  .cvContact {
+    grid-template-columns: minmax(70px, 90px) minmax(0, 1fr);
+    column-gap: 24px;
+  }
+}
+
+@media (max-width: 760px) {
+  .cvFrame {
+    width: min(100% - 28px, 1600px);
+  }
+
+  .cvHeader {
+    position: relative;
+    background: transparent;
+    backdrop-filter: none;
+  }
+
+  .cvBrandName {
+    display: none;
+  }
+
+  .cvNav {
+    gap: 2px 14px;
+  }
+
+  .cvNav a {
+    font-size: var(--cv-type-meta);
+  }
+
+  .cvHero {
+    gap: 48px;
+    padding-block: 56px 72px;
+  }
+
+  .cvPage h1 {
+    font-size: clamp(3rem, 13vw, 4.4rem);
+    max-width: none;
+  }
+
+  .cvLede {
+    font-size: var(--cv-type-body);
+  }
+
+  .cvIdentitySignals {
+    gap: 7px 10px;
+  }
+
+  .cvHeroActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cvButton {
+    width: 100%;
+  }
+
+  .cvSystemPhrase {
+    margin-top: 40px;
+  }
+
+  .cvMapIntro {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cvMapIntro > strong {
+    max-width: 22ch;
+    text-align: start;
+  }
+
+  .cvMapGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .cvMapTrack {
+    order: 1;
+    flex-direction: row;
+    gap: 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+    border-block: 1px solid var(--cv-hairline);
+    border-top: 1px solid var(--cv-hairline);
+    scrollbar-width: thin;
+  }
+
+  .cvMapTrack::before {
+    display: none;
+  }
+
+  .cvMapTrack::after {
+    display: none;
+  }
+
+  .cvSignal {
+    min-width: min(80vw, 260px);
+    min-height: 126px;
+    grid-template-columns: 28px 12px 38px minmax(0, 1fr);
+    padding: 16px;
+    border-bottom: 0;
+    border-inline-end: 1px solid var(--cv-hairline);
+    scroll-snap-align: start;
+  }
+
+  .cvMapDetail {
+    order: 2;
+    min-height: 0;
+    grid-template-columns: 54px minmax(0, 1fr);
+    padding-top: 22px;
+    padding: 22px;
+  }
+
+  .cvSection {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-block: 82px;
+  }
+
+  .cvContact {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-block: 82px;
+  }
+
+  .cvSectionLabel {
+    grid-column: 1;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--cv-hairline);
+    margin-bottom: 18px;
+  }
+
+  .cvSectionBody {
+    grid-column: 1;
+  }
+
+  .cvContact > :first-child {
+    grid-column: 1;
+    margin-bottom: 18px;
+  }
+
+  .cvContact > :last-child {
+    grid-column: 1;
+  }
+
+  .cvSectionBody > h2 {
+    font-size: clamp(2.35rem, 10.5vw, 3.8rem);
+  }
+
+  .cvContact h2 {
+    font-size: clamp(2.35rem, 10.5vw, 3.8rem);
+  }
+
+  .cvBigCopy {
+    font-size: clamp(1.16rem, 5vw, 1.55rem);
+  }
+
+  .cvEvidenceRail {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .cvEvidenceRail > div {
+    grid-column: 1;
+    min-height: 118px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+    border-inline-end: 0;
+    border-top: 0;
+    border-bottom: 1px solid var(--cv-hairline);
+    gap: 18px;
+    border: 1px solid var(--cv-hairline);
+  }
+
+  .cvEvidenceRail > div:nth-child(n) {
+    grid-column: 1;
+    min-height: 118px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+    border-inline-end: 0;
+    border-top: 0;
+    border-bottom: 1px solid var(--cv-hairline);
+    gap: 18px;
+    border: 1px solid var(--cv-hairline);
+  }
+
+  .cvEvidenceRail > div:last-child {
+    border-bottom: 0;
+  }
+
+  .cvJourney {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .cvJourney article {
+    min-height: 0;
+    padding: 22px;
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--cv-hairline);
+    border: 1px solid var(--cv-hairline);
+  }
+
+  .cvJourney article + article {
+    min-height: 0;
+    padding: 22px;
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--cv-hairline);
+    border: 1px solid var(--cv-hairline);
+  }
+
+  .cvJourney article:last-child {
+    border-bottom: 0;
+  }
+
+  .cvJourney h3 {
+    margin-top: 34px;
+  }
+
+  .cvCapabilityPairs > div {
+    grid-template-columns: minmax(0, 1fr) 24px;
+    gap: 8px 12px;
+    align-items: center;
+    min-height: 220px;
+  }
+
+  .cvCapabilitySource {
+    grid-column: 1;
+  }
+
+  .cvCapabilityArrow {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .cvCapabilityPairs strong {
+    grid-column: 1 / -1;
+  }
+
+  .cvCapabilityPairs p {
+    grid-column: 1 / -1;
+  }
+
+  .cvCredentials {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .cvCredentials > div {
+    min-height: 0;
+    padding: 22px 0 26px;
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--cv-hairline);
+  }
+
+  .cvCredentials > div + div {
+    min-height: 0;
+    padding: 22px 0 26px;
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--cv-hairline);
+  }
+
+  .cvCredentials > div:last-child {
+    border-bottom: 0;
+  }
+
+  .cvCredentialIcon {
+    margin-bottom: 18px;
+  }
+
+  .cvFooter {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cvTurningPoint {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-inline: 20px;
+  }
+
+  .cvTurningPoint > span {
+    grid-column: 1;
+  }
+
+  .cvTurningPoint > p {
+    grid-column: 1;
+    font-size: clamp(1.9rem, 9vw, 2.8rem);
+  }
+
+
+  .cvRtl h1 {
+    max-width: none;
+    max-inline-size: none;
+    font-size: clamp(3rem, 13vw, 4.4rem);
+  }
+
+  .cvMap {
+    padding: 18px;
+  }
+
+  .cvEvidenceRail strong {
+    margin-top: 0;
+  }
+
+  .cvCapabilityPairs {
+    grid-template-columns: 1fr;
+  }
+
+  .cvContactLinks {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cvContactLinks a {
+    width: 100%;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .cvSectionLabel::after {
+    display: none;
+  }
+
+  .cvMapDetailNumber {
+    position: static;
+    margin-bottom: 16px;
+    font-size: 2.4rem;
+    opacity: .62;
+  }
+
+  .cvMapDetailBody {
+    padding-inline-end: 0;
+  }
+
+  .cvGoogleBrand {
+    min-height: 54px;
+  }
+
+  .cvGoogleBrand svg {
+    width: 38px;
+    height: 38px;
+  }
+
+  .cvRtl .cvHeroTitleLine {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 520px) {
+  .cvNav a[href="#about"] {
+    display: none;
+  }
+
+  .cvNav a[href="#credentials"] {
+    display: none;
+  }
+
+  .cvLang span {
+    display: none;
+  }
+
+  .cvLang {
+    width: 44px;
+    padding: 0;
+  }
+
+  .cvMapDetail {
+    grid-template-columns: 1fr;
+  }
+
+  .cvMapDetailNumber {
+    font-size: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cvButton {
+    transition: none !important;
+  }
+
+  .cvNav a::after {
+    transition: none !important;
+  }
+
+  .cvSignalLine {
+    transition: none !important;
+  }
+
+  .cvMapTrack::after {
+    transition: none !important;
+  }
+
+  .cvCapabilityArrow {
+    transition: none !important;
+  }
+
+  .cvCapabilityPairs > div::before {
+    transition: none !important;
+  }
+
+  .cvBrandMark i {
+    transition: none !important;
+  }
+
+  .cvMapDetailBodyMotion {
+    animation: none !important;
+  }
+
+  .cvSignalIcon {
+    transition: none !important;
+  }
+
+  .cvJourney article {
+    transition: none !important;
+  }
+
+  .cvCapabilityPairs > div {
+    transition: none !important;
+  }
+
+  .cvSectionLabel {
+    position: static;
+  }
+}
+
+@media (min-width: 1181px) and (max-width: 1320px) {
+  .cvMapGrid {
+    grid-template-columns: minmax(230px, .9fr) minmax(0, 1.1fr);
+  }
+
+  .cvSignal {
+    grid-template-columns: 26px 12px 36px minmax(0, 1fr);
+  }
+
+  .cvSignalIcon {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (min-width: 761px) {
+  .cvRtl h1 {
+    max-width: none;
+    max-inline-size: 7.35em;
+    font-size: clamp(3.05rem, 4.05vw, 4.7rem);
+    line-height: 1.16;
+  }
+
+  .cvRtl .cvHeroTitleLine {
+    white-space: nowrap;
+  }
+}
+
+@container career (max-width: 600px) {
+  .cvMapGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@container section (max-width: 720px) {
+  .cvEvidenceRail,
+  .cvCredentials,
+  .cvCapabilityPairs {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes cvDetailIn {
+from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

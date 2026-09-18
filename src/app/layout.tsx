@@ -1,7 +1,30 @@
 import type {Metadata} from 'next';
 import {cookies, draftMode, headers} from 'next/headers';
 import type {ReactNode} from 'react';
+import {IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Arabic} from 'next/font/google';
 import './globals.css';
+import './portfolio.css';
+
+const plexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-plex-sans',
+});
+
+const plexArabic = IBM_Plex_Sans_Arabic({
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-plex-arabic',
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  display: 'swap',
+  variable: '--font-plex-mono',
+});
 
 const siteUrl = 'https://ibrahim-portfolio-blush.vercel.app';
 
@@ -11,7 +34,7 @@ export const metadata: Metadata = {
     default: 'Ibrahim — Digital Product & Experience Designer',
     template: '%s — Ibrahim',
   },
-  description: 'Digital product and experience designer turning complex systems and workflows into clear digital experiences.',
+  description: 'Digital product and experience designer with a background in information systems and operations, designing usable digital products from the system outward.',
   alternates: {
     canonical: '/',
     languages: {
@@ -24,7 +47,7 @@ export const metadata: Metadata = {
     type: 'website',
     url: '/',
     title: 'Ibrahim — Digital Product & Experience Designer',
-    description: 'Turning complex systems and workflows into clear digital experiences.',
+    description: 'Systems, operations and experience design combined into clear, usable digital products.',
     siteName: 'Ibrahim Portfolio',
   },
   robots: {
@@ -49,7 +72,12 @@ export default async function RootLayout({children}: {children: ReactNode}) {
   const branch = draft.isEnabled ? (await cookies()).get('ks-branch')?.value : undefined;
 
   return (
-    <html lang={locale} dir={dir} suppressHydrationWarning>
+    <html
+      lang={locale}
+      dir={dir}
+      className={`${plexSans.variable} ${plexArabic.variable} ${plexMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{__html: themeInit}} />
       </head>
