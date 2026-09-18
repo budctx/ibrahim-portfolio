@@ -12,11 +12,19 @@ export default async function HomePage() {
     <main id="main" className="shell">
       <SiteHeader locale="en" counterpartHref="/ar" />
 
-      <section className="hero" aria-labelledby="home-title">
+      <section className="hero heroExperience" aria-labelledby="home-title">
         <div className="heroCopy">
           <div className="eyebrow">Digital Product & Experience Designer</div>
-          <h1 id="home-title">Complexity, resolved.</h1>
+          <h1 id="home-title">
+            <span>Complexity,</span>
+            <span className="heroResolveWord">resolved.</span>
+          </h1>
           <p className="lede">I turn complex systems and workflows into clear digital experiences.</p>
+          <div className="heroSystemLine" aria-hidden="true">
+            <span>Signal</span>
+            <span>Structure</span>
+            <span>Work</span>
+          </div>
           <Link className="heroAction" href="#selected-work-title">Selected work <span aria-hidden="true">↓</span></Link>
         </div>
         <div className="structureFieldFrame">
