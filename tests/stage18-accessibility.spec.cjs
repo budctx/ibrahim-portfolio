@@ -165,11 +165,13 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     await expect(page.locator('.cvGoogleBrand svg').first()).toBeVisible();
     await expect(page.locator('.cvGoogleMark')).toBeVisible();
     await expect(page.locator('.cvLinkedInLink svg')).toBeVisible();
+    await expect(page.locator('.cvBadge')).toHaveCount(13);
 
     await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
     await expect(page.locator('.cvGoogleBrand')).toHaveCount(2);
     await expect(page.locator('.cvGoogleMark')).toBeVisible();
     await expect(page.locator('.cvLinkedInLink svg')).toBeVisible();
+    await expect(page.locator('.cvBadge')).toHaveCount(13);
   });
 
 
