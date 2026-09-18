@@ -181,12 +181,6 @@ export function StructureField() {
           <circle cx="328" cy="370" r="4" />
         </g>
       </svg>
-
-      <div className="signalFieldReadout" aria-hidden="true">
-        <span>signal</span>
-        <span>resolve</span>
-        <span>structure</span>
-      </div>
     </div>
   );
 }
