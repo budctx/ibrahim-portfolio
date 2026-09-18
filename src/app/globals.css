@@ -845,3 +845,114 @@ h3 {
     transition-duration: .01ms !important;
   }
 }
+
+
+.aboutSplit {
+  display: grid;
+  grid-template-columns: minmax(180px, .34fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+
+.aboutSplit h2 {
+  margin-top: 10px;
+  max-width: 8ch;
+  font-size: clamp(2rem, 4vw, 4.2rem);
+}
+
+.aboutStack {
+  display: grid;
+  gap: 0;
+}
+
+.credentialItem {
+  padding-block: 22px 28px;
+  border-top: 1px solid var(--line);
+}
+
+.credentialItem:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.credentialTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: baseline;
+}
+
+.credentialTop strong {
+  max-width: 34ch;
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  font-weight: 620;
+}
+
+.credentialTop span,
+.credentialItem p {
+  color: var(--muted);
+}
+
+.credentialItem p {
+  max-width: 58ch;
+  margin: 14px 0 0;
+  font-size: 1rem;
+}
+
+.capabilityList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.capabilityList li {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.contactActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.contactActions a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  font-weight: 620;
+}
+
+.contactActions a:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.contactSection .contactActions {
+  align-self: end;
+}
+
+@media (max-width: 760px) {
+  .aboutSplit {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .aboutSplit h2 {
+    max-width: 12ch;
+  }
+
+  .credentialTop {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
