@@ -2462,3 +2462,8 @@ html[data-theme='dark'] .cvPage {
 .cvEvidenceLabel span {
   color: inherit;
 }
+
+
+.cvGoogleMark {
+  color: #4285f4 !important;
+}
