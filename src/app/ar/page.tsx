@@ -31,11 +31,14 @@ export default async function ArabicHomePage() {
 
         <section className="cvHero" aria-labelledby="cv-home-title-ar">
           <div className="cvHeroCopy">
-            <p className="cvOverline">نظم معلومات · تشغيل · تصميم تجربة · حوكمة · تنفيذ مدعوم بالذكاء الاصطناعي</p>
+            <p className="cvOverline">إبراهيم العجمي · مصمم منتجات وتجارب رقمية</p>
             <h1 id="cv-home-title-ar">أصمم المنتجات الرقمية <em>من فهم النظام إلى وضوح التجربة.</em></h1>
             <p className="cvLede">
               خلفيتي في نظم المعلومات والعمل التشغيلي جعلتني أبدأ من سير العمل والقيود قبل الواجهة، ثم أحوّل التعقيد إلى تجربة يمكن للناس استخدامها ويمكن للفريق تنفيذها.
             </p>
+            <div className="cvIdentitySignals" aria-label="التركيز المهني">
+              <span>نظم المعلومات</span><span>التشغيل</span><span>UX</span><span>DGA</span><span>تنفيذ مدعوم بالذكاء الاصطناعي</span>
+            </div>
             <div className="cvHeroActions">
               <Link className="cvButton cvButtonPrimary" href="#journey">كيف وصلت إلى هنا <span aria-hidden="true">↙</span></Link>
               <Link className="cvButton" href="#capabilities">كيف أعمل</Link>
@@ -53,11 +56,11 @@ export default async function ArabicHomePage() {
               وصلت إلى التصميم عبر الأنظمة والعمل التشغيلي. لذلك أنظر طبيعيًا إلى ما وراء الشاشة: سير العمل، والأشخاص داخله، والقيود المحيطة به، وما الذي سيحدث بعد أن يغادر التصميم ملفاته.
             </p>
             <div className="cvEvidenceRail" aria-label="أدلة مهنية">
-              <div><span>الأساس</span><strong>نظم المعلومات</strong></div>
-              <div><span>السياق التشغيلي</span><strong>بيئة صحية</strong></div>
-              <div><span>الممارسة التصميمية</span><strong>UI/UX + منتجات رقمية</strong></div>
-              <div><span>القيود</span><strong>الحوكمة + DGA</strong></div>
-              <div><span>التنفيذ</span><strong>تسليم المطور + GenAI</strong></div>
+              <div><span>الأساس</span><strong>بكالوريوس نظم معلومات</strong></div>
+              <div><span>التشغيل</span><strong>سير عمل في بيئة صحية</strong></div>
+              <div><span>الممارسة الحالية</span><strong>تصميم ويب · جامعة الإمام عبدالرحمن</strong></div>
+              <div><span>المعايير</span><strong>امتثال لمتطلبات DGA</strong></div>
+              <div><span>الشهادات</span><strong>Google UX · Google AI</strong></div>
             </div>
           </div>
         </section>
@@ -120,10 +123,10 @@ export default async function ArabicHomePage() {
           <div className="cvSectionBody">
             <h2 id="credentials-title-ar">الجانب الرسمي الذي يدعم الممارسة.</h2>
             <div className="cvCredentials">
-              <div><strong>نظم المعلومات الإدارية</strong><span>أساس أكاديمي في الأنظمة والبيانات وعمليات الأعمال.</span></div>
-              <div><strong>UI/UX والمنتجات الرقمية</strong><span>تصميم واجهات قابلة للاستخدام وتجارب رقمية متجاوبة.</span></div>
-              <div><strong>المعايير الحكومية الرقمية</strong><span>العمل مع متطلبات الحوكمة وتوجهات DGA.</span></div>
-              <div><strong>تدفقات العمل المدعومة بالذكاء الاصطناعي</strong><span>استخدام الذكاء الاصطناعي التوليدي لتسريع الاستكشاف والإنتاج بمسؤولية.</span></div>
+              <div><strong>بكالوريوس نظم المعلومات الإدارية</strong><span>جامعة الإمام عبدالرحمن بن فيصل · 2019–2024</span></div>
+              <div><strong>مصمم ويب</strong><span>جامعة الإمام عبدالرحمن بن فيصل · أغسطس 2025–الآن</span></div>
+              <div><strong>Google UX Design Professional Certificate</strong><span>تأهيل مهني في التصميم المتمحور حول المستخدم وتجربة المنتج.</span></div>
+              <div><strong>Google AI Professional Certificate</strong><span>أساس تطبيقي لاستخدام الذكاء الاصطناعي داخل سير العمل المهني.</span></div>
             </div>
           </div>
         </section>
@@ -149,7 +152,8 @@ export default async function ArabicHomePage() {
             <p className="cvOverline">تواصل</p>
           </div>
           <div>
-            <h2 id="contact-title-ar">إذا كان النظام معقدًا، فعادةً هذا هو المكان الذي أحب أن أبدأ منه.</h2>
+            <h2 id="contact-title-ar">أعطني سير العمل والقيود والمنطقة الفوضوية بينهما.</h2>
+            <p className="cvContactNote">سأبحث عن النظام خلف الشاشة، ثم أجعل التجربة أوضح للاستخدام وأسهل للتنفيذ.</p>
             <div className="cvContactLinks">
               <Link href="mailto:ibrahim.alajmi407@gmail.com">البريد الإلكتروني ↗</Link>
               <Link href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">LinkedIn ↗</Link>
@@ -159,7 +163,7 @@ export default async function ArabicHomePage() {
 
         <footer className="cvFooter">
           <span>© Ibrahim</span>
-          <span>عربي / English · فاتح / داكن</span>
+          <span>الأنظمة ← التجربة · عربي / English</span>
         </footer>
       </div>
     </main>
