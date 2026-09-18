@@ -41,7 +41,7 @@ body {
   overflow-x: clip;
   background: var(--bg);
   color: var(--fg);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
 }
@@ -173,7 +173,7 @@ svg {
 }
 
 .themeGlyph {
-  font-size: .72rem;
+  font-size: .8125rem;
   line-height: 1;
 }
 
@@ -204,7 +204,8 @@ h1,
 h2,
 h3,
 p {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 h1 {
@@ -221,7 +222,7 @@ h2 {
   margin: 0;
   font-size: clamp(2.3rem, 5vw, 5rem);
   font-weight: 590;
-  line-height: .94;
+  line-height: .96;
   letter-spacing: -.055em;
   text-wrap: balance;
 }
@@ -392,7 +393,7 @@ h3 {
   justify-content: space-between;
   gap: 16px;
   color: var(--muted);
-  font-size: .9rem;
+  font-size: 1rem;
 }
 
 .meta span,
@@ -558,7 +559,7 @@ h3 {
 
 .rtl {
   direction: rtl;
-  font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-plex-arabic), "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 .rtl h1,
@@ -587,7 +588,7 @@ h3 {
   background: var(--fg);
   color: var(--bg);
   box-shadow: 0 12px 42px color-mix(in srgb, var(--fg) 18%, transparent);
-  font-size: .88rem;
+  font-size: 1rem;
 }
 
 .previewBar button {
@@ -984,14 +985,10 @@ html[data-theme='dark'] .cvPage {
   min-width: 0;
 }
 
-.cvPage h1,
-.cvPage h2,
-.cvPage h3,
-.cvPage p,
-.cvPage strong,
-.cvPage span,
-.cvPage a,
-.cvPage button {
+.cvMapEvidence b,
+.cvCredentials strong,
+.cvEvidenceRail strong,
+.cvContactLinks a {
   overflow-wrap: anywhere;
 }
 
@@ -1028,7 +1025,7 @@ html[data-theme='dark'] .cvPage {
   align-items: baseline;
   gap: 2px;
   min-width: 44px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 1rem;
   font-weight: 760;
   letter-spacing: -.08em;
@@ -1110,7 +1107,7 @@ html[data-theme='dark'] .cvPage {
 .cvLang {
   gap: 7px;
   padding-inline: 10px;
-  font-size: .76rem;
+  font-size: .875rem;
   font-weight: 680;
 }
 
@@ -1162,13 +1159,13 @@ html[data-theme='dark'] .cvPage {
 .cvContactIndex,
 .cvFooter,
 .cvSystemPhrase {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 .cvOverline {
   margin: 0 0 24px;
   color: var(--cv-ink-soft);
-  font-size: .68rem;
+  font-size: .8125rem;
   font-weight: 680;
   letter-spacing: .09em;
   text-transform: uppercase;
@@ -1177,7 +1174,7 @@ html[data-theme='dark'] .cvPage {
 .cvPage h1 {
   max-width: 11ch;
   margin: 0;
-  font-size: clamp(3.65rem, 6.5vw, 7.7rem);
+  font-size: clamp(3.5rem, 6.1vw, 7rem);
   font-weight: 540;
   line-height: .94;
   letter-spacing: -.065em;
@@ -1202,7 +1199,7 @@ html[data-theme='dark'] .cvPage {
   max-width: 48ch;
   margin: 30px 0 0;
   color: var(--muted);
-  font-size: clamp(1.04rem, 1.45vw, 1.27rem);
+  font-size: clamp(1.08rem, 1.45vw, 1.3rem);
   line-height: 1.62;
 }
 
@@ -1214,8 +1211,8 @@ html[data-theme='dark'] .cvPage {
   padding-top: 16px;
   border-top: 1px solid var(--cv-hairline);
   color: var(--muted);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: .67rem;
+  font-family: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .8125rem;
 }
 
 .cvIdentitySignals span {
@@ -1274,7 +1271,7 @@ html[data-theme='dark'] .cvPage {
   width: fit-content;
   margin-top: clamp(46px, 7vw, 88px);
   color: color-mix(in srgb, var(--muted) 72%, transparent);
-  font-size: .62rem;
+  font-size: .8125rem;
   letter-spacing: .16em;
   text-transform: uppercase;
 }
@@ -1397,14 +1394,14 @@ html[data-theme='dark'] .cvPage {
 }
 
 .cvSignalCopy strong {
-  font-size: .91rem;
+  font-size: 1rem;
   font-weight: 650;
   line-height: 1.2;
 }
 
 .cvSignalCopy > span {
   color: var(--muted);
-  font-size: .74rem;
+  font-size: .875rem;
   line-height: 1.4;
 }
 
@@ -1453,7 +1450,7 @@ html[data-theme='dark'] .cvPage {
 .cvMapKicker {
   display: block;
   color: var(--cv-accent);
-  font-size: .65rem;
+  font-size: .8125rem;
   font-weight: 680;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -1471,7 +1468,7 @@ html[data-theme='dark'] .cvPage {
   display: block;
   max-width: 19ch;
   margin-top: 8px;
-  font-size: clamp(1.42rem, 2.5vw, 2.45rem);
+  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
   font-weight: 540;
   line-height: 1.06;
   letter-spacing: -.035em;
@@ -1561,7 +1558,7 @@ html[data-theme='dark'] .cvPage {
   flex-direction: column;
   gap: 8px;
   color: var(--muted);
-  font-size: .8rem;
+  font-size: .875rem;
 }
 
 .cvSectionLabel span:first-child,
@@ -1575,7 +1572,7 @@ html[data-theme='dark'] .cvPage {
 .cvContact h2 {
   max-width: 14ch;
   margin: 0;
-  font-size: clamp(2.5rem, 5vw, 5.9rem);
+  font-size: clamp(2.5rem, 4.4vw, 4.6rem);
   font-weight: 520;
   line-height: .98;
   letter-spacing: -.055em;
@@ -1586,7 +1583,7 @@ html[data-theme='dark'] .cvPage {
   max-width: 45ch;
   margin: clamp(34px, 5vw, 66px) 0 0;
   color: var(--muted);
-  font-size: clamp(1.18rem, 2.1vw, 1.9rem);
+  font-size: clamp(1.2rem, 1.9vw, 1.75rem);
   line-height: 1.52;
 }
 
@@ -1626,7 +1623,7 @@ html[data-theme='dark'] .cvPage {
 
 .cvEvidenceRail span {
   color: var(--muted);
-  font-size: .66rem;
+  font-size: .8125rem;
   text-transform: uppercase;
   letter-spacing: .06em;
 }
@@ -1689,7 +1686,7 @@ html[data-theme='dark'] .cvPage {
 .cvJourney h3 {
   max-width: 12ch;
   margin: 48px 0 14px;
-  font-size: clamp(1.42rem, 2.2vw, 2.25rem);
+  font-size: clamp(1.5rem, 2vw, 2.1rem);
   font-weight: 560;
   line-height: 1.08;
   letter-spacing: -.04em;
@@ -1699,7 +1696,7 @@ html[data-theme='dark'] .cvPage {
   max-width: 30ch;
   margin: 0;
   color: var(--muted);
-  font-size: .92rem;
+  font-size: 1rem;
   line-height: 1.58;
 }
 
@@ -1787,15 +1784,15 @@ html[data-theme='dark'] .cvPage {
 
 .cvCredentials strong {
   max-width: 28ch;
-  font-size: clamp(1.06rem, 1.45vw, 1.32rem);
+  font-size: clamp(1.1rem, 1.4vw, 1.32rem);
   line-height: 1.28;
 }
 
 .cvCredentials span {
   max-width: 40ch;
   color: var(--muted);
-  font-size: .9rem;
-  line-height: 1.58;
+  font-size: 1rem;
+  line-height: 1.62;
 }
 
 .cvSectionHead {
@@ -1858,7 +1855,7 @@ html[data-theme='dark'] .cvPage {
   padding-block: 30px 40px;
   border-top: 1px solid var(--cv-hairline);
   color: var(--muted);
-  font-size: .8rem;
+  font-size: .875rem;
 }
 
 .cvFooter span:last-child {
@@ -1866,7 +1863,7 @@ html[data-theme='dark'] .cvPage {
 }
 
 .cvRtl {
-  font-family: system-ui, "Segoe UI", Tahoma, Arial, sans-serif;
+  font-family: var(--font-plex-arabic), "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 .cvRtl h1,
@@ -1877,13 +1874,15 @@ html[data-theme='dark'] .cvPage {
 }
 
 .cvRtl h1 {
-  line-height: 1.06;
+  max-width: 9em;
+  line-height: 1.08;
   font-weight: 560;
 }
 
 .cvRtl .cvSectionBody > h2,
 .cvRtl .cvContact h2 {
-  line-height: 1.12;
+  max-width: 10em;
+  line-height: 1.14;
   font-weight: 560;
 }
 
@@ -2069,7 +2068,7 @@ html[data-theme='dark'] .cvPage {
   }
 
   .cvPage h1 {
-    font-size: clamp(3.15rem, 15vw, 5.7rem);
+    font-size: clamp(3rem, 14vw, 4.7rem);
   }
 
   .cvLede {
@@ -2167,7 +2166,7 @@ html[data-theme='dark'] .cvPage {
 
   .cvSectionBody > h2,
   .cvContact h2 {
-    font-size: clamp(2.5rem, 12vw, 4.6rem);
+    font-size: clamp(2.35rem, 10.5vw, 3.8rem);
   }
 
   .cvBigCopy {
@@ -2297,5 +2296,150 @@ html[data-theme='dark'] .cvPage {
 
   .cvMapDetailBodyMotion {
     animation: none !important;
+  }
+}
+
+
+/* Narrative + typography refinement */
+.cvSectionIntro {
+  max-width: 46ch;
+  margin: 26px 0 0;
+  color: var(--muted);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.cvTurningPoint,
+.cvNow {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--cv-grid-gap);
+  border-top: 1px solid var(--cv-hairline);
+}
+
+.cvTurningPoint {
+  padding-block: clamp(64px, 8vw, 108px);
+}
+
+.cvTurningPoint > span {
+  grid-column: 1 / 4;
+  color: var(--cv-accent);
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: .8125rem;
+  font-weight: 600;
+}
+
+.cvTurningPoint > p {
+  grid-column: 4 / 11;
+  max-width: 22ch;
+  margin: 0;
+  font-size: clamp(1.75rem, 3vw, 3rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+
+.cvNow {
+  padding-block: clamp(48px, 6vw, 78px);
+}
+
+.cvNow > span {
+  grid-column: 1 / 4;
+  color: var(--cv-accent);
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: .8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.cvNow > p {
+  grid-column: 4 / 11;
+  max-width: 52ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+  line-height: 1.55;
+}
+
+.cvCredentialBrand {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: auto;
+  font-size: .875rem;
+  font-weight: 600;
+}
+
+.cvCredentialBrand svg {
+  width: 28px;
+  height: 28px;
+}
+
+.cvCredentialBrand span {
+  color: var(--muted);
+  font-size: .875rem;
+}
+
+.cvGoogleBrand svg {
+  color: #4285f4;
+}
+
+.cvCredentialBrandNeutral svg {
+  color: var(--cv-accent);
+}
+
+.cvLinkedInLink svg {
+  width: 20px;
+  height: 20px;
+  color: #0a66c2;
+}
+
+.cvRtl .cvTurningPoint > span,
+.cvRtl .cvNow > span {
+  font-family: var(--font-plex-arabic), "Segoe UI", Tahoma, Arial, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cvRtl .cvTurningPoint > p {
+  max-width: 13em;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+.cvRtl .cvNow > p,
+.cvRtl .cvSectionIntro {
+  line-height: 1.78;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cvLinkedInLink:hover svg {
+    color: currentColor;
+  }
+}
+
+@media (max-width: 760px) {
+  .cvTurningPoint,
+  .cvNow {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .cvTurningPoint > span,
+  .cvTurningPoint > p,
+  .cvNow > span,
+  .cvNow > p {
+    grid-column: 1;
+  }
+
+  .cvTurningPoint > p {
+    font-size: clamp(1.55rem, 7vw, 2.25rem);
+  }
+
+  .cvNow > p {
+    font-size: 1.15rem;
   }
 }
