@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import {useEffect, useMemo, useState} from 'react';
-import {LanguagesIcon, MailIcon} from '@/components/icons';
+import {LanguagesIcon} from '@/components/icons';
 import {ThemeToggle} from '@/components/theme-toggle';
 
 type HomeHeaderProps = {
@@ -25,7 +25,6 @@ export function HomeHeader({locale = 'en', counterpartHref, hasWork = false}: Ho
         work: 'الأعمال',
         contact: 'تواصل',
         language: 'Switch to English',
-        email: 'راسلني بالبريد',
       }
     : {
         home: 'Home',
@@ -36,7 +35,6 @@ export function HomeHeader({locale = 'en', counterpartHref, hasWork = false}: Ho
         work: 'Work',
         contact: 'Contact',
         language: 'التبديل إلى العربية',
-        email: 'Email me',
       };
 
   const navItems = useMemo(
@@ -97,14 +95,6 @@ export function HomeHeader({locale = 'en', counterpartHref, hasWork = false}: Ho
       </nav>
 
       <div className="cvTools">
-        <a
-          className="cvHeaderContact"
-          href="mailto:ibrahim.alajmi407@gmail.com"
-          aria-label={labels.email}
-          data-tooltip={labels.email}
-        >
-          <MailIcon className="cvControlIcon" />
-        </a>
         <Link className="cvLang" href={counterpartHref} lang={ar ? 'en' : 'ar'} aria-label={labels.language}>
           <LanguagesIcon className="cvControlIcon" />
           <span>{ar ? 'EN' : 'AR'}</span>
