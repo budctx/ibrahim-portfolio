@@ -16,8 +16,8 @@ export function HomeHeader({locale = 'en', counterpartHref, hasWork = false}: Ho
   return (
     <header className="cvHeader">
       <Link className="cvBrand" href={ar ? '/ar' : '/'} aria-label={labels.home}>
-        <span aria-hidden="true">I.</span>
-        <span className="cvBrandName">Ibrahim</span>
+        <span className="cvBrandMark" aria-hidden="true"><b>I</b><i>/</i><b>A</b></span>
+        <span className="cvBrandName">Ibrahim Al-Ajmi</span>
       </Link>
 
       <nav className="cvNav" aria-label={ar ? 'التنقل الرئيسي' : 'Primary'}>
