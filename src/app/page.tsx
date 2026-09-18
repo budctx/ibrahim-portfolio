@@ -60,7 +60,7 @@ export default async function HomePage() {
               <div><div className="cvEvidenceLabel"><WorkflowIcon /><span>Saw firsthand</span></div><strong>Healthcare workflows</strong></div>
               <div><div className="cvEvidenceLabel"><BriefcaseIcon /><span>Designing now</span></div><strong>Web design · IAU</strong></div>
               <div><div className="cvEvidenceLabel"><BadgeCheckIcon /><span>Working within</span></div><strong>Saudi DGA compliance</strong></div>
-              <div><div className="cvEvidenceLabel"><GoogleBrandIcon /><span>Expanding with</span></div><strong>Google UX · Google AI</strong></div>
+              <div><div className="cvEvidenceLabel"><GoogleBrandIcon className="cvGoogleMark" /><span>Expanding with</span></div><strong>Google UX · Google AI</strong></div>
             </div>
           </div>
         </section>
