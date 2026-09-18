@@ -272,6 +272,39 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(medium.map.top).toBeGreaterThanOrEqual(medium.copy.bottom + 48);
   });
 
+  test('desktop hero fits the first viewport without clipping core content', async ({page}) => {
+    await page.setViewportSize({width: 1752, height: 864});
+    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+
+    const metrics = await page.evaluate(() => {
+      const hero = document.querySelector('.cvHero')?.getBoundingClientRect();
+      const map = document.querySelector('.cvMap')?.getBoundingClientRect();
+      const copy = document.querySelector('.cvHeroCopy')?.getBoundingClientRect();
+      const next = document.querySelector('#about')?.getBoundingClientRect();
+      const mapGrid = document.querySelector('.cvMapGrid');
+      const mapGridStyle = mapGrid ? getComputedStyle(mapGrid) : null;
+      return {
+        viewportHeight: window.innerHeight,
+        hero: hero && {top: hero.top, bottom: hero.bottom, height: hero.height},
+        map: map && {top: map.top, bottom: map.bottom, height: map.height},
+        copy: copy && {top: copy.top, bottom: copy.bottom, height: copy.height},
+        next: next && {top: next.top},
+        mapColumns: mapGridStyle?.gridTemplateColumns || '',
+      };
+    });
+
+    expect(metrics.hero).not.toBeNull();
+    expect(metrics.map).not.toBeNull();
+    expect(metrics.copy).not.toBeNull();
+    expect(metrics.next).not.toBeNull();
+
+    expect(metrics.hero.bottom).toBeLessThanOrEqual(metrics.viewportHeight + 1);
+    expect(metrics.map.bottom).toBeLessThanOrEqual(metrics.hero.bottom + 1);
+    expect(metrics.copy.bottom).toBeLessThanOrEqual(metrics.hero.bottom + 1);
+    expect(metrics.next.top).toBeGreaterThanOrEqual(metrics.viewportHeight - 1);
+    expect(metrics.mapColumns.split(' ').filter(Boolean).length).toBeGreaterThanOrEqual(2);
+  });
+
   test('Arabic narrative headings share one axis without compressed line stacking', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
     await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
