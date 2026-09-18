@@ -1,12 +1,13 @@
 import type {SVGProps} from 'react';
 
 /**
- * Small vendored subset of the Lucide icon library.
- * Source: https://github.com/lucide-icons/lucide
- * License: ISC
+ * Small vendored icon subset.
+ * Interface icons: Lucide — https://github.com/lucide-icons/lucide — ISC.
+ * Google brand mark: Simple Icons — https://github.com/simple-icons/simple-icons — CC0-1.0.
+ * LinkedIn brand mark: Font Awesome Free — https://github.com/FortAwesome/Font-Awesome — CC BY 4.0.
  *
- * Keeping only the icons used by the portfolio avoids a runtime CDN,
- * an extra client bundle dependency, and unnecessary icon payload.
+ * Brand names and marks remain trademarks of their respective owners.
+ * Keeping only what the portfolio uses avoids a runtime CDN and extra bundle weight.
  */
 
 export type PortfolioIconProps = SVGProps<SVGSVGElement>;
@@ -154,6 +155,39 @@ export function ExternalLinkIcon(props: PortfolioIconProps) {
       <path d="M15 3h6v6" />
       <path d="M10 14 21 3" />
       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    </svg>
+  );
+}
+
+
+export function GoogleBrandIcon(props: PortfolioIconProps) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      focusable="false"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
+    </svg>
+  );
+}
+
+export function LinkedInBrandIcon(props: PortfolioIconProps) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 448 512"
+      fill="currentColor"
+      focusable="false"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M100.3 448l-92.9 0 0-299.1 92.9 0 0 299.1zM53.8 108.1C24.1 108.1 0 83.5 0 53.8 0 39.5 5.7 25.9 15.8 15.8s23.8-15.8 38-15.8 27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3zM447.9 448l-92.7 0 0-145.6c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7l0 148.1-92.8 0 0-299.1 89.1 0 0 40.8 1.3 0c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3l0 164.3-.1 0z" />
     </svg>
   );
 }
