@@ -3,6 +3,7 @@ import {cookies, draftMode, headers} from 'next/headers';
 import type {ReactNode} from 'react';
 import {IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Arabic} from 'next/font/google';
 import './globals.css';
+import './portfolio.css';
 
 const plexSans = IBM_Plex_Sans({
   subsets: ['latin'],
