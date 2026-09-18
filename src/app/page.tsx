@@ -16,11 +16,14 @@ export default async function HomePage() {
 
         <section className="cvHero" aria-labelledby="cv-home-title">
           <div className="cvHeroCopy">
-            <p className="cvOverline">MIS · Operations · Experience design · Governance · AI-assisted delivery</p>
+            <p className="cvOverline">Ibrahim Al-Ajmi · Digital Product & Experience Designer</p>
             <h1 id="cv-home-title">I design digital products <em>from the system outward.</em></h1>
             <p className="cvLede">
               My background in information systems and real operations shapes how I design: understand the workflow, work within constraints, then turn complexity into an experience people can actually use and teams can actually build.
             </p>
+            <div className="cvIdentitySignals" aria-label="Professional focus">
+              <span>MIS</span><span>Operations</span><span>UX</span><span>DGA</span><span>AI-assisted delivery</span>
+            </div>
             <div className="cvHeroActions">
               <Link className="cvButton cvButtonPrimary" href="#journey">See how I got here <span aria-hidden="true">↘</span></Link>
               <Link className="cvButton" href="#capabilities">How I work</Link>
@@ -38,11 +41,11 @@ export default async function HomePage() {
               I came into design through systems and operations. That means I naturally look beyond the interface: at the workflow, the people inside it, the constraints around it, and what has to happen after the design leaves the screen.
             </p>
             <div className="cvEvidenceRail" aria-label="Professional evidence">
-              <div><span>Foundation</span><strong>MIS</strong></div>
-              <div><span>Operational context</span><strong>Healthcare</strong></div>
-              <div><span>Design practice</span><strong>UI/UX + digital products</strong></div>
-              <div><span>Constraints</span><strong>Governance + DGA</strong></div>
-              <div><span>Delivery</span><strong>Developer handoff + GenAI</strong></div>
+              <div><span>Foundation</span><strong>Bachelor&apos;s in MIS</strong></div>
+              <div><span>Operations</span><strong>Healthcare workflows</strong></div>
+              <div><span>Current practice</span><strong>Web design · IAU</strong></div>
+              <div><span>Standards</span><strong>Saudi DGA compliance</strong></div>
+              <div><span>Certificates</span><strong>Google UX · Google AI</strong></div>
             </div>
           </div>
         </section>
@@ -105,10 +108,10 @@ export default async function HomePage() {
           <div className="cvSectionBody">
             <h2 id="credentials-title">The formal layer behind the practice.</h2>
             <div className="cvCredentials">
-              <div><strong>Management Information Systems</strong><span>Academic foundation in systems, data and business processes.</span></div>
-              <div><strong>UI/UX & digital product practice</strong><span>Designing usable interfaces and responsive digital experiences.</span></div>
-              <div><strong>Government digital standards</strong><span>Working with governance and DGA-oriented requirements.</span></div>
-              <div><strong>AI-assisted workflows</strong><span>Using generative AI to accelerate exploration and production responsibly.</span></div>
+              <div><strong>Bachelor of Management Information Systems</strong><span>Imam Abdulrahman Bin Faisal University · 2019–2024</span></div>
+              <div><strong>Web Designer</strong><span>Imam Abdulrahman Bin Faisal University · Aug 2025–Present</span></div>
+              <div><strong>Google UX Design Professional Certificate</strong><span>Formal training in user-centered product and experience design.</span></div>
+              <div><strong>Google AI Professional Certificate</strong><span>Applied foundation for AI-assisted professional workflows.</span></div>
             </div>
           </div>
         </section>
@@ -134,7 +137,8 @@ export default async function HomePage() {
             <p className="cvOverline">Contact</p>
           </div>
           <div>
-            <h2 id="contact-title">If the system is messy, that is usually where I want to start.</h2>
+            <h2 id="contact-title">Bring me the workflow, the constraints and the messy middle.</h2>
+            <p className="cvContactNote">I&apos;ll look for the system behind the screen — then make the experience clearer to use and easier to build.</p>
             <div className="cvContactLinks">
               <Link href="mailto:ibrahim.alajmi407@gmail.com">Email ↗</Link>
               <Link href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">LinkedIn ↗</Link>
@@ -144,7 +148,7 @@ export default async function HomePage() {
 
         <footer className="cvFooter">
           <span>© Ibrahim</span>
-          <span>EN / AR · Light / Dark</span>
+          <span>Systems → Experience · EN / AR</span>
         </footer>
       </div>
     </main>
