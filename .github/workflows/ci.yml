@@ -24,9 +24,9 @@ jobs:
         run: npm run typecheck
       - name: Build
         run: npm run build
-      - name: Lockfile evidence
-        run: |
-          echo "LOCKFILE_BEGIN"
-          base64 -w 0 package-lock.json
-          echo
-          echo "LOCKFILE_END"
+      - name: Upload lockfile
+        uses: actions/upload-artifact@v4
+        with:
+          name: package-lock
+          path: package-lock.json
+          retention-days: 1
