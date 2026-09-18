@@ -1,6 +1,6 @@
 'use client';
 
-import {useState} from 'react';
+import {useRef, useState, type KeyboardEvent} from 'react';
 
 type Locale = 'en' | 'ar';
 
@@ -112,26 +112,56 @@ const copy: Record<Locale, {
 
 export function CareerMap({locale = 'en'}: {locale?: Locale}) {
   const data = copy[locale];
+  const rtl = locale === 'ar';
   const [activeId, setActiveId] = useState<string>('experience');
+  const buttonRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const activeIndex = Math.max(0, data.nodes.findIndex((node) => node.id === activeId));
   const active = data.nodes[activeIndex] ?? data.nodes[0];
 
+  const activate = (index: number) => {
+    const normalized = (index + data.nodes.length) % data.nodes.length;
+    setActiveId(data.nodes[normalized].id);
+    buttonRefs.current[normalized]?.focus();
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    let nextIndex: number | null = null;
+
+    if (event.key === 'ArrowDown') nextIndex = index + 1;
+    if (event.key === 'ArrowUp') nextIndex = index - 1;
+    if (event.key === 'ArrowRight') nextIndex = rtl ? index - 1 : index + 1;
+    if (event.key === 'ArrowLeft') nextIndex = rtl ? index + 1 : index - 1;
+    if (event.key === 'Home') nextIndex = 0;
+    if (event.key === 'End') nextIndex = data.nodes.length - 1;
+
+    if (nextIndex !== null) {
+      event.preventDefault();
+      activate(nextIndex);
+    }
+  };
+
   return (
-    <div className="cvMap" aria-label={locale === 'ar' ? 'خريطة تكويني المهني' : 'Professional formation map'}>
+    <div className="cvMap" aria-label={rtl ? 'خريطة تكويني المهني' : 'Professional formation map'}>
       <div className="cvMapIntro">
         <span>{data.kicker}</span>
         <strong>{data.title}</strong>
       </div>
 
       <div className="cvMapGrid">
-        <div className="cvMapTrack" role="list" aria-label={locale === 'ar' ? 'طبقات التكوين المهني' : 'Professional formation layers'}>
+        <div
+          className={"cvMapTrack cvMapTrackActive" + (activeIndex + 1)}
+          role="group"
+          aria-label={rtl ? 'طبقات التكوين المهني' : 'Professional formation layers'}
+        >
           {data.nodes.map((node, index) => (
             <button
               key={node.id}
+              ref={(element) => { buttonRefs.current[index] = element; }}
               type="button"
               className="cvSignal"
               aria-pressed={node.id === activeId}
               onClick={() => setActiveId(node.id)}
+              onKeyDown={(event) => handleKeyDown(event, index)}
             >
               <span className="cvSignalIndex">{String(index + 1).padStart(2, '0')}</span>
               <span className="cvSignalLine" aria-hidden="true" />
@@ -145,8 +175,9 @@ export function CareerMap({locale = 'en'}: {locale?: Locale}) {
 
         <div className="cvMapDetail" aria-live="polite">
           <div className="cvMapDetailNumber" aria-hidden="true">{String(activeIndex + 1).padStart(2, '0')}</div>
-          <div className="cvMapDetailBody">
+          <div key={active.id} className="cvMapDetailBody cvMapDetailBodyMotion">
             <span className="cvMapKicker">{data.detailLabel}</span>
+            <span className="cvMapActiveLabel">{active.label}</span>
             <strong>{active.short}</strong>
             <p>{active.detail}</p>
             <div className="cvMapEvidence">
