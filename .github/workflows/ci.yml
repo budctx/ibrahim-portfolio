@@ -19,8 +19,14 @@ jobs:
       - name: Install
         run: npm install
       - name: Audit dependencies
-        run: npm audit --json || true
+        run: npm audit --audit-level=high
       - name: Typecheck
         run: npm run typecheck
       - name: Build
         run: npm run build
+      - name: Lockfile evidence
+        run: |
+          echo "LOCKFILE_BEGIN"
+          base64 -w 0 package-lock.json
+          echo
+          echo "LOCKFILE_END"
