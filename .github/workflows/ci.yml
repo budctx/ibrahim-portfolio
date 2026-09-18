@@ -18,6 +18,8 @@ jobs:
           node-version: 22
       - name: Install
         run: npm install
+      - name: Audit dependencies
+        run: npm audit --json || true
       - name: Typecheck
         run: npm run typecheck
       - name: Build
