@@ -272,6 +272,49 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(medium.map.top).toBeGreaterThanOrEqual(medium.copy.bottom + 48);
   });
 
+  test('Arabic narrative headings share one axis without compressed line stacking', async ({page}) => {
+    await page.setViewportSize({width: 1440, height: 1000});
+    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+
+    const metrics = await page.evaluate(() => {
+      const selectors = [
+        '#cv-home-title-ar',
+        '#about-title-ar',
+        '#journey-title-ar',
+        '#capabilities-title-ar',
+        '#credentials-title-ar',
+        '#contact-title-ar',
+      ];
+
+      return selectors.map((selector) => {
+        const element = document.querySelector(selector);
+        const rect = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        const fontSize = parseFloat(style.fontSize);
+        const lineHeight = parseFloat(style.lineHeight);
+        return {
+          selector,
+          right: rect.right,
+          height: rect.height,
+          fontSize,
+          lineHeight,
+          lines: Math.round(rect.height / lineHeight),
+        };
+      });
+    });
+
+    const axis = metrics.map((item) => item.right);
+    expect(Math.max(...axis) - Math.min(...axis)).toBeLessThanOrEqual(18);
+
+    const hero = metrics.find((item) => item.selector === '#cv-home-title-ar');
+    expect(hero.lines).toBe(3);
+    expect(hero.lineHeight / hero.fontSize).toBeGreaterThanOrEqual(1.14);
+
+    const sectionHeadings = metrics.filter((item) => item.selector !== '#cv-home-title-ar');
+    expect(sectionHeadings.every((item) => item.lineHeight / item.fontSize >= 1.24)).toBe(true);
+    expect(sectionHeadings.every((item) => item.lines <= 2)).toBe(true);
+  });
+
   test('header tracks the current narrative section', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
