@@ -1,5 +1,5 @@
 import type {MetadataRoute} from 'next';
-import {getProjects} from '@/lib/sanity';
+import {getProjects} from '@/lib/content';
 
 const siteUrl = 'https://ibrahim-portfolio-blush.vercel.app';
 

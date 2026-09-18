@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import {headers} from 'next/headers';
+import {cookies, draftMode, headers} from 'next/headers';
 import type {ReactNode} from 'react';
 import './globals.css';
 
@@ -45,6 +45,8 @@ export default async function RootLayout({children}: {children: ReactNode}) {
   const requestHeaders = await headers();
   const locale = requestHeaders.get('x-portfolio-locale') === 'ar' ? 'ar' : 'en';
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
+  const draft = await draftMode();
+  const branch = draft.isEnabled ? (await cookies()).get('ks-branch')?.value : undefined;
 
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
@@ -54,6 +56,14 @@ export default async function RootLayout({children}: {children: ReactNode}) {
       <body>
         <a className="skip" href="#main">{locale === 'ar' ? 'تجاوز إلى المحتوى' : 'Skip to content'}</a>
         {children}
+        {draft.isEnabled && (
+          <aside className="previewBar" aria-label="Draft preview">
+            <span>Draft preview{branch ? ` · ${branch}` : ''}</span>
+            <form method="POST" action="/preview/end">
+              <button type="submit">End preview</button>
+            </form>
+          </aside>
+        )}
       </body>
     </html>
   );
