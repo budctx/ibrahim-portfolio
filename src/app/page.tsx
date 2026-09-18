@@ -16,14 +16,14 @@ export default async function HomePage() {
 
         <section className="cvHero" aria-labelledby="cv-home-title">
           <div className="cvHeroCopy">
-            <p className="cvOverline">Systems · People · Design · Real impact</p>
-            <h1 id="cv-home-title">Turning complexity into <em>clear digital experiences.</em></h1>
+            <p className="cvOverline">MIS · Operations · Experience design · Governance · AI-assisted delivery</p>
+            <h1 id="cv-home-title">I design digital products <em>from the system outward.</em></h1>
             <p className="cvLede">
-              I design digital products with a systems mindset — connecting people, processes and technology to create simple, compliant and human experiences.
+              My background in information systems and real operations shapes how I design: understand the workflow, work within constraints, then turn complexity into an experience people can actually use and teams can actually build.
             </p>
             <div className="cvHeroActions">
-              <Link className="cvButton cvButtonPrimary" href="#journey">Explore my journey <span aria-hidden="true">↘</span></Link>
-              <Link className="cvButton" href="#capabilities">See my capabilities</Link>
+              <Link className="cvButton cvButtonPrimary" href="#journey">See how I got here <span aria-hidden="true">↘</span></Link>
+              <Link className="cvButton" href="#capabilities">How I work</Link>
             </div>
           </div>
 
@@ -33,32 +33,39 @@ export default async function HomePage() {
         <section className="cvSection" id="about" aria-labelledby="about-title">
           <div className="cvSectionLabel"><span>01</span><span>About</span></div>
           <div className="cvSectionBody">
-            <h2 id="about-title">I design the interface, but I start with the system behind it.</h2>
+            <h2 id="about-title">The screen is the last layer, not the first.</h2>
             <p className="cvBigCopy">
-              My path combines information systems, operational experience and digital product design. That mix shaped a practical way of working: understand the workflow, identify the friction, then design what makes it clearer.
+              I came into design through systems and operations. That means I naturally look beyond the interface: at the workflow, the people inside it, the constraints around it, and what has to happen after the design leaves the screen.
             </p>
+            <div className="cvEvidenceRail" aria-label="Professional evidence">
+              <div><span>Foundation</span><strong>MIS</strong></div>
+              <div><span>Operational context</span><strong>Healthcare</strong></div>
+              <div><span>Design practice</span><strong>UI/UX + digital products</strong></div>
+              <div><span>Constraints</span><strong>Governance + DGA</strong></div>
+              <div><span>Delivery</span><strong>Developer handoff + GenAI</strong></div>
+            </div>
           </div>
         </section>
 
         <section className="cvSection" id="journey" aria-labelledby="journey-title">
           <div className="cvSectionLabel"><span>02</span><span>Journey</span></div>
           <div className="cvSectionBody">
-            <h2 id="journey-title">A career shaped by how systems actually work.</h2>
-            <div className="cvJourney">
+            <h2 id="journey-title">Not a timeline. A chain of things I learned to notice.</h2>
+            <div className="cvJourney cvJourneyRefined">
               <article>
-                <span className="cvStep">01</span>
-                <h3>MIS foundation</h3>
-                <p>Systems, data and process thinking became the technical and analytical base behind my design decisions.</p>
+                <span className="cvStep">Understand</span>
+                <h3>Read the system</h3>
+                <p>MIS taught me to look for the data, dependencies and process underneath the visible interface.</p>
               </article>
               <article>
-                <span className="cvStep">02</span>
-                <h3>Operational reality</h3>
-                <p>Healthcare operations added a real-world view of workflows, constraints, handoffs and the cost of unclear processes.</p>
+                <span className="cvStep">Observe</span>
+                <h3>See the friction</h3>
+                <p>Operational work made handoffs, constraints and unclear workflows tangible rather than theoretical.</p>
               </article>
               <article>
-                <span className="cvStep">03</span>
-                <h3>Digital product design</h3>
-                <p>UI/UX brought those foundations together — turning complex requirements into responsive, usable digital experiences.</p>
+                <span className="cvStep">Shape</span>
+                <h3>Design the change</h3>
+                <p>UI/UX became the way I turn what I understand about the system into a clearer experience people can use.</p>
               </article>
             </div>
           </div>
@@ -67,12 +74,28 @@ export default async function HomePage() {
         <section className="cvSection" id="capabilities" aria-labelledby="capabilities-title">
           <div className="cvSectionLabel"><span>03</span><span>Capabilities</span></div>
           <div className="cvSectionBody">
-            <h2 id="capabilities-title">Design, systems and delivery — connected.</h2>
-            <div className="cvCapabilityRows">
-              <div><span>Design</span><p>UI/UX · Interaction design · Responsive interfaces · Information architecture</p></div>
-              <div><span>Systems</span><p>Workflow thinking · Requirements · MIS · Digital governance · DGA awareness</p></div>
-              <div><span>Delivery</span><p>Developer handoff · Cross-functional collaboration · Iteration · Design-to-build alignment</p></div>
-              <div><span>AI</span><p>Generative AI workflows · Prompting · Rapid exploration · Assisted refinement</p></div>
+            <h2 id="capabilities-title">What I know matters most when the pieces connect.</h2>
+            <div className="cvCapabilityPairs">
+              <div>
+                <span>Systems thinking</span>
+                <strong>Better UX decisions</strong>
+                <p>Understand workflows and dependencies before deciding what the interface should do.</p>
+              </div>
+              <div>
+                <span>Governance</span>
+                <strong>Usable constraints</strong>
+                <p>Translate standards and requirements into an experience that still feels clear and human.</p>
+              </div>
+              <div>
+                <span>AI workflows</span>
+                <strong>Faster exploration</strong>
+                <p>Use generative AI to expand and refine options without outsourcing design judgment.</p>
+              </div>
+              <div>
+                <span>Developer handoff</span>
+                <strong>Executable design</strong>
+                <p>Keep the design connected to implementation through clear states, behavior and collaboration.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -111,7 +134,7 @@ export default async function HomePage() {
             <p className="cvOverline">Contact</p>
           </div>
           <div>
-            <h2 id="contact-title">Let&apos;s make complex things clearer.</h2>
+            <h2 id="contact-title">If the system is messy, that is usually where I want to start.</h2>
             <div className="cvContactLinks">
               <Link href="mailto:ibrahim.alajmi407@gmail.com">Email ↗</Link>
               <Link href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">LinkedIn ↗</Link>
