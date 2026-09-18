@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 
+const BASE = 'http://127.0.0.1:3000';
 const routes = ['/', '/work', '/playground', '/about', '/ar', '/ar/work', '/ar/playground', '/ar/about'];
 
 async function expectNoHorizontalOverflow(page) {
@@ -45,7 +46,7 @@ test.describe('Stage 18 accessibility and responsive evidence', () => {
     await page.setViewportSize({width: 320, height: 800});
 
     for (const route of routes) {
-      await page.goto(route, {waitUntil: 'networkidle'});
+      await page.goto(`${BASE}${route}`, {waitUntil: 'networkidle'});
 
       expect(await page.evaluate(() => window.innerWidth)).toBe(320);
       await expectNoHorizontalOverflow(page);
@@ -68,7 +69,7 @@ test.describe('Stage 18 accessibility and responsive evidence', () => {
 
   test('interactive controls retain the 44px authored target guardrail at 320px', async ({page}) => {
     await page.setViewportSize({width: 320, height: 800});
-    await page.goto('/', {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
     const undersized = await page.locator('header a, header button').evaluateAll((elements) =>
       elements
@@ -94,7 +95,7 @@ test.describe('Stage 18 accessibility and responsive evidence', () => {
     await page.setViewportSize({width: 1280, height: 900});
 
     for (const route of routes) {
-      await page.goto(route, {waitUntil: 'networkidle'});
+      await page.goto(`${BASE}${route}`, {waitUntil: 'networkidle'});
       await page.addStyleTag({content: 'html { font-size: 200% !important; }'});
 
       const rootFontSize = await page.evaluate(() => getComputedStyle(document.documentElement).fontSize);
@@ -112,7 +113,7 @@ test.describe('Stage 18 accessibility and responsive evidence', () => {
     });
     const page = await context.newPage();
 
-    await page.goto('/', {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
     expect(await page.evaluate(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(true);
 
