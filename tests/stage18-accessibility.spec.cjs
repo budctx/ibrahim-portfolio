@@ -67,6 +67,27 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     }
   });
 
+  test('contact is reachable in one click from header, hero and final contact actions', async ({page}) => {
+    await page.setViewportSize({width: 1440, height: 1000});
+    await page.context().grantPermissions(['clipboard-read', 'clipboard-write'], {origin: BASE});
+
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await expect(page.locator('header a[href^="mailto:"]')).toBeVisible();
+    await expect(page.locator('.cvHeroActions a[href^="mailto:"]')).toBeVisible();
+    await expect(page.locator('.cvContactLinks a[href^="mailto:"]')).toBeVisible();
+    await expect(page.locator('.cvContactLinks .cvLinkedInLink')).toBeVisible();
+
+    const copyEmail = page.getByRole('button', {name: 'Copy email address'});
+    await expect(copyEmail).toBeVisible();
+    await copyEmail.click();
+    await expect(copyEmail).toContainText('Copied');
+
+    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+    await expect(page.locator('header a[href^="mailto:"]')).toBeVisible();
+    await expect(page.locator('.cvHeroActions a[href^="mailto:"]')).toBeVisible();
+    await expect(page.getByRole('button', {name: 'نسخ البريد الإلكتروني'})).toBeVisible();
+  });
+
   test('interactive controls retain the 44px authored target guardrail at 320px', async ({page}) => {
     await page.setViewportSize({width: 320, height: 800});
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
