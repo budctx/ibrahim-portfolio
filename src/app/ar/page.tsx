@@ -7,11 +7,10 @@ import {HomeHeader} from '@/components/home-header';
 import {
   ArrowDownRightIcon,
   ArrowRightIcon,
-  BadgeCheckIcon,
-  ExternalLinkIcon,
+  GoogleBrandIcon,
   GraduationCapIcon,
+  LinkedInBrandIcon,
   MailIcon,
-  SparklesIcon,
 } from '@/components/icons';
 
 export const metadata: Metadata = {
@@ -43,7 +42,7 @@ export default async function ArabicHomePage() {
             <p className="cvOverline">إبراهيم العجمي · مصمم منتجات وتجارب رقمية</p>
             <h1 id="cv-home-title-ar">أصمم المنتجات الرقمية <em>من فهم النظام إلى وضوح التجربة.</em></h1>
             <p className="cvLede">
-              خلفيتي في نظم المعلومات والعمل التشغيلي جعلتني أبدأ من سير العمل والقيود قبل الواجهة، ثم أحوّل التعقيد إلى تجربة يمكن للناس استخدامها ويمكن للفريق تنفيذها.
+              قبل أن أحدد كيف يجب أن تبدو الواجهة، أريد أن أفهم ما الذي يحتاج النظام إلى جعله أوضح.
             </p>
             <div className="cvIdentitySignals" aria-label="التركيز المهني">
               <span>الأنظمة</span><span>التجربة</span><span>التنفيذ</span>
@@ -66,14 +65,14 @@ export default async function ArabicHomePage() {
           <div className="cvSectionBody">
             <h2 id="about-title-ar">الواجهة هي آخر طبقة، وليست أولها.</h2>
             <p className="cvBigCopy">
-              أنظر إلى ما وراء الشاشة: سير العمل، والأشخاص داخله، والقيود المحيطة به، وما الذي يجب أن يحدث بعد أن يغادر التصميم ملفاته.
+              يهمني ما يحدث قبل الشاشة: سير العمل، والقيود، ونقاط التسليم، والأشخاص الذين يتحركون داخل هذه المنظومة.
             </p>
             <div className="cvEvidenceRail" aria-label="أدلة مهنية">
-              <div><span>الأساس</span><strong>بكالوريوس نظم معلومات</strong></div>
-              <div><span>التشغيل</span><strong>سير عمل في بيئة صحية</strong></div>
-              <div><span>الممارسة الحالية</span><strong>تصميم ويب · جامعة الإمام عبدالرحمن</strong></div>
-              <div><span>المعايير</span><strong>امتثال لمتطلبات DGA</strong></div>
-              <div><span>الشهادات</span><strong>Google UX · Google AI</strong></div>
+              <div><span>بدأت من</span><strong>بكالوريوس نظم معلومات</strong></div>
+              <div><span>رأيت عمليًا</span><strong>سير عمل في بيئة صحية</strong></div>
+              <div><span>أصمم اليوم</span><strong>تصميم ويب · جامعة الإمام عبدالرحمن</strong></div>
+              <div><span>أعمل ضمن</span><strong>امتثال لمتطلبات DGA</strong></div>
+              <div><span>وأتوسع عبر</span><strong>Google UX · Google AI</strong></div>
             </div>
           </div>
         </section>
@@ -105,10 +104,16 @@ export default async function ArabicHomePage() {
           </div>
         </section>
 
+        <aside className="cvTurningPoint" aria-label="نقطة التحول">
+          <span>وهنا تغيّر معنى التصميم الجيد بالنسبة لي.</span>
+          <p>لم يعد مجرد واجهة أوضح، بل نظامًا يصبح أسهل على الشخص الذي يستخدمه.</p>
+        </aside>
+
         <section className="cvSection" id="capabilities" aria-labelledby="capabilities-title-ar">
           <div className="cvSectionLabel"><span>03</span><span>كيف أعمل</span></div>
           <div className="cvSectionBody">
-            <h2 id="capabilities-title-ar">تظهر قيمة مهاراتي عندما تعمل معًا.</h2>
+            <h2 id="capabilities-title-ar">لهذا، هكذا أعمل اليوم.</h2>
+            <p className="cvSectionIntro">تحولت كل طبقة إلى عادة قرار أستخدمها عندما أواجه المشكلة التالية.</p>
             <div className="cvCapabilityPairs">
               <div>
                 <span className="cvCapabilitySource">التفكير بالأنظمة</span>
@@ -144,18 +149,27 @@ export default async function ArabicHomePage() {
             <h2 id="credentials-title-ar">الجانب الرسمي الذي يدعم الممارسة.</h2>
             <div className="cvCredentials">
               <div>
-                <GraduationCapIcon className="cvCredentialIcon" />
+                <div className="cvCredentialBrand cvCredentialBrandNeutral">
+                  <GraduationCapIcon />
+                  <span>أكاديمي</span>
+                </div>
                 <strong>بكالوريوس نظم المعلومات الإدارية</strong>
                 <span>جامعة الإمام عبدالرحمن بن فيصل · 2019–2024</span>
               </div>
               <div>
-                <BadgeCheckIcon className="cvCredentialIcon" />
-                <strong>Google UX Design Professional Certificate</strong>
+                <div className="cvCredentialBrand cvGoogleBrand">
+                  <GoogleBrandIcon />
+                  <span>Google</span>
+                </div>
+                <strong>UX Design Professional Certificate</strong>
                 <span>تأهيل مهني في التصميم المتمحور حول المستخدم وتجربة المنتج.</span>
               </div>
               <div>
-                <SparklesIcon className="cvCredentialIcon" />
-                <strong>Google AI Professional Certificate</strong>
+                <div className="cvCredentialBrand cvGoogleBrand">
+                  <GoogleBrandIcon />
+                  <span>Google</span>
+                </div>
+                <strong>AI Professional Certificate</strong>
                 <span>أساس تطبيقي لاستخدام الذكاء الاصطناعي داخل سير العمل المهني.</span>
               </div>
             </div>
@@ -177,22 +191,27 @@ export default async function ArabicHomePage() {
           </section>
         )}
 
+        <aside className="cvNow" aria-label="ما أركز عليه الآن">
+          <span>الآن</span>
+          <p>أواصل العمل عند نقطة التقاء الأنظمة والتجربة والتنفيذ، خصوصًا عندما تكون للمنتجات الرقمية قيود تشغيلية حقيقية.</p>
+        </aside>
+
         <section className="cvContact" id="contact" aria-labelledby="contact-title-ar">
           <div>
             <span className="cvContactIndex">{hasWork ? '06' : '05'}</span>
             <p className="cvOverline">تواصل</p>
           </div>
           <div>
-            <h2 id="contact-title-ar">إذا كان سير العمل معقدًا والقيود كثيرة، فهذه نقطة بداية جيدة.</h2>
-            <p className="cvContactNote">أفهم النظام أولًا، ثم أصمم تجربة أوضح للمستخدم وأسهل للتنفيذ.</p>
+            <h2 id="contact-title-ar">لديك نظام يحتاج أن يصبح تجربة أفضل؟</h2>
+            <p className="cvContactNote">لنحوّله إلى شيء أوضح للفهم، وأسهل للاستخدام، وأكثر واقعية في التنفيذ.</p>
             <div className="cvContactLinks">
               <Link href="mailto:ibrahim.alajmi407@gmail.com">
                 <MailIcon />
                 البريد الإلكتروني
               </Link>
-              <Link href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">
+              <Link className="cvLinkedInLink" href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">
+                <LinkedInBrandIcon />
                 LinkedIn
-                <ExternalLinkIcon />
               </Link>
             </div>
           </div>
