@@ -257,20 +257,22 @@ html[data-theme='dark'] .cvPage {
   min-height: min(920px, calc(100svh - 78px));
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: var(--cv-grid-gap);
+  column-gap: var(--cv-grid-gap);
+  row-gap: clamp(56px, 6vw, 88px);
   align-items: center;
   padding-block: clamp(68px, 7vw, 112px);
-  column-gap: clamp(30px, 4vw, 64px);
 }
 
 .cvHeroCopy {
   grid-column: 1 / 6;
-  max-width: 760px;
+  inline-size: 100%;
+  max-inline-size: 760px;
   align-self: center;
+  justify-self: start;
 }
 
 .cvMap {
-  grid-column: 6 / -1;
+  grid-column: 7 / -1;
   width: 100%;
   max-width: none;
   justify-self: end;
@@ -1077,10 +1079,21 @@ html[data-theme='dark'] .cvPage {
 
 .cvRtl h1 {
   letter-spacing: 0;
-  max-width: 7.9em;
-  line-height: 1.09;
+  inline-size: fit-content;
+  max-inline-size: 7.35em;
+  line-height: 1.1;
   font-weight: 600;
-  font-size: clamp(3.25rem, 5.1vw, 5.8rem);
+  font-size: clamp(3.1rem, 4.55vw, 5.15rem);
+}
+
+.cvRtl .cvHeroCopy {
+  max-inline-size: 720px;
+  padding-inline-start: clamp(10px, .8vw, 14px);
+  padding-inline-end: clamp(18px, 1.4vw, 28px);
+}
+
+.cvRtl .cvHeroActions {
+  justify-content: flex-start;
 }
 
 .cvRtl h2 {
@@ -1110,6 +1123,7 @@ html[data-theme='dark'] .cvPage {
 }
 
 .cvRtl .cvLede {
+  max-inline-size: 34ch;
   line-height: 1.75;
 }
 
@@ -1615,7 +1629,7 @@ html[data-theme='light'] .cvGoogleBrand {
   }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
   .cvHero {
     min-height: auto;
     grid-template-columns: 1fr;
@@ -1990,6 +2004,7 @@ html[data-theme='light'] .cvGoogleBrand {
 
   .cvRtl h1 {
     max-width: none;
+    max-inline-size: none;
     font-size: clamp(3rem, 13vw, 4.4rem);
   }
 
@@ -2122,15 +2137,7 @@ html[data-theme='light'] .cvGoogleBrand {
   }
 }
 
-@media (max-width: 1180px) {
-  .cvHeroCopy {
-    grid-column: 1 / 7;
-  }
-
-  .cvMap {
-    grid-column: 7 / -1;
-  }
-
+@media (min-width: 1181px) and (max-width: 1320px) {
   .cvMapGrid {
     grid-template-columns: minmax(230px, .9fr) minmax(0, 1.1fr);
   }
@@ -2148,8 +2155,9 @@ html[data-theme='light'] .cvGoogleBrand {
 @media (min-width: 761px) {
   .cvRtl h1 {
     max-width: none;
-    font-size: clamp(3.1rem, 4.25vw, 4.9rem);
-    line-height: 1.08;
+    max-inline-size: 7.35em;
+    font-size: clamp(3.05rem, 4.05vw, 4.7rem);
+    line-height: 1.1;
   }
 
   .cvRtl .cvHeroTitleLine {
