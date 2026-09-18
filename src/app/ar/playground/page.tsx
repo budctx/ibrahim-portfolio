@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
-import Link from 'next/link';
 import {SiteHeader} from '@/components/site-header';
-import {getProjects} from '@/lib/sanity';
+import {ProjectCard} from '@/components/project-card';
+import {getProjects} from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'التجارب',
@@ -26,17 +26,11 @@ export default async function ArabicPlaygroundPage() {
       </section>
       <section className="section">
         {projects.length === 0 ? (
-          <div className="empty">لا توجد تجارب منشورة للعامة حتى الآن.</div>
+          <div className="empty"><span className="emptySignal" aria-hidden="true" /><span>لا توجد تجارب منشورة للعامة حتى الآن.</span></div>
         ) : (
           <div className="projectGrid">
             {projects.map((project) => (
-              <Link className="projectCard" key={project.projectKey} href={`/ar/projects/${project.slug}`}>
-                <div>
-                  <div className="eyebrow">{project.typeAr ?? 'تجربة'}</div>
-                  <h3>{project.titleAr}</h3>
-                </div>
-                <div className="meta"><span>{project.roleAr ?? ''}</span><span>{project.year ?? ''}</span></div>
-              </Link>
+              <ProjectCard project={project} key={project.projectKey} locale="ar" />
             ))}
           </div>
         )}

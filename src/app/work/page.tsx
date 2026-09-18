@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
-import Link from 'next/link';
 import {SiteHeader} from '@/components/site-header';
-import {getProjects} from '@/lib/sanity';
+import {ProjectCard} from '@/components/project-card';
+import {getProjects} from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Work',
@@ -32,7 +32,7 @@ export default async function WorkPage() {
 
       {projects.length === 0 && (
         <section className="section">
-          <div className="empty">Real work is being prepared for publication.</div>
+          <div className="empty"><span className="emptySignal" aria-hidden="true" /><span>Real work is being prepared for publication.</span></div>
         </section>
       )}
     </main>
@@ -41,23 +41,16 @@ export default async function WorkPage() {
 
 function ProjectGroup({title, projects}: {title: string; projects: Awaited<ReturnType<typeof getProjects>>}) {
   if (projects.length === 0) return null;
+  const id = title.replace(/\s+/g, '-').toLowerCase();
+
   return (
-    <section className="section" aria-labelledby={title.replace(/\s+/g, '-').toLowerCase()}>
+    <section className="section" aria-labelledby={id}>
       <div className="sectionHead">
-        <h2 id={title.replace(/\s+/g, '-').toLowerCase()}>{title}</h2>
+        <h2 id={id}>{title}</h2>
       </div>
       <div className="projectGrid">
         {projects.map((project) => (
-          <Link className="projectCard" key={project.projectKey} href={`/projects/${project.slug}`}>
-            <div>
-              <div className="eyebrow">{project.typeEn ?? project.classification}</div>
-              <h3>{project.titleEn}</h3>
-            </div>
-            <div className="meta">
-              <span>{project.roleEn ?? ''}</span>
-              <span>{project.year ?? ''}</span>
-            </div>
-          </Link>
+          <ProjectCard project={project} key={project.projectKey} locale="en" />
         ))}
       </div>
     </section>

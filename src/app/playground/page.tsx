@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
-import Link from 'next/link';
 import {SiteHeader} from '@/components/site-header';
-import {getProjects} from '@/lib/sanity';
+import {ProjectCard} from '@/components/project-card';
+import {getProjects} from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Playground',
@@ -26,17 +26,11 @@ export default async function PlaygroundPage() {
       </section>
       <section className="section">
         {projects.length === 0 ? (
-          <div className="empty">No public experiments yet.</div>
+          <div className="empty"><span className="emptySignal" aria-hidden="true" /><span>No public experiments yet.</span></div>
         ) : (
           <div className="projectGrid">
             {projects.map((project) => (
-              <Link className="projectCard" key={project.projectKey} href={`/projects/${project.slug}`}>
-                <div>
-                  <div className="eyebrow">{project.typeEn ?? 'Experiment'}</div>
-                  <h3>{project.titleEn}</h3>
-                </div>
-                <div className="meta"><span>{project.roleEn ?? ''}</span><span>{project.year ?? ''}</span></div>
-              </Link>
+              <ProjectCard project={project} key={project.projectKey} locale="en" />
             ))}
           </div>
         )}

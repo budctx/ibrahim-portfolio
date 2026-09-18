@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import {getProjects} from '@/lib/sanity';
+import {getProjects} from '@/lib/content';
+import {ProjectCard} from '@/components/project-card';
 import {SiteHeader} from '@/components/site-header';
+import {StructureField} from '@/components/structure-field';
 
 export default async function HomePage() {
   const projects = await getProjects();
@@ -10,41 +12,38 @@ export default async function HomePage() {
     <main id="main" className="shell">
       <SiteHeader locale="en" counterpartHref="/ar" />
 
-      <section className="hero">
-        <div>
+      <section className="hero" aria-labelledby="home-title">
+        <div className="heroCopy">
           <div className="eyebrow">Digital Product & Experience Designer</div>
-          <h1>Complexity, resolved.</h1>
+          <h1 id="home-title">Complexity, resolved.</h1>
           <p className="lede">I turn complex systems and workflows into clear digital experiences.</p>
+          <Link className="heroAction" href="#selected-work-title">Selected work <span aria-hidden="true">↓</span></Link>
         </div>
-        <div className="structure" aria-hidden="true" />
+        <div className="structureFieldFrame">
+          <StructureField />
+        </div>
       </section>
 
-      <section className="section" aria-labelledby="selected-work-title">
+      <section className="section workSection" aria-labelledby="selected-work-title">
         <div className="sectionHead">
           <h2 id="selected-work-title">Selected work</h2>
-          <Link className="eyebrow" href="/work">View all work</Link>
+          <Link className="sectionLink" href="/work">View all work</Link>
         </div>
         {work.length === 0 ? (
-          <div className="empty">Real work is being prepared for publication.</div>
+          <div className="empty">
+            <span className="emptySignal" aria-hidden="true" />
+            <span>Real work is being prepared for publication.</span>
+          </div>
         ) : (
           <div className="projectGrid">
             {work.map((project) => (
-              <Link className="projectCard" key={project.projectKey} href={`/projects/${project.slug}`}>
-                <div>
-                  <div className="eyebrow">{project.classification}</div>
-                  <h3>{project.titleEn}</h3>
-                </div>
-                <div className="meta">
-                  <span>{project.roleEn ?? ''}</span>
-                  <span>{project.year ?? ''}</span>
-                </div>
-              </Link>
+              <ProjectCard project={project} key={project.projectKey} locale="en" />
             ))}
           </div>
         )}
       </section>
 
-      <section className="section" id="contact" aria-labelledby="contact-title">
+      <section className="section contactSection" id="contact" aria-labelledby="contact-title">
         <div className="eyebrow" id="contact-title">Contact</div>
         <p className="contact">Let&apos;s make complex things clear.</p>
       </section>
