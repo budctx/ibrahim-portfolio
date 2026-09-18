@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     default: 'Ibrahim — Digital Product & Experience Designer',
     template: '%s — Ibrahim',
   },
-  description: 'Digital product and experience designer turning complex systems and workflows into clear digital experiences.',
+  description: 'Digital product and experience designer with a background in information systems and operations, designing usable digital products from the system outward.',
   alternates: {
     canonical: '/',
     languages: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: 'website',
     url: '/',
     title: 'Ibrahim — Digital Product & Experience Designer',
-    description: 'Turning complex systems and workflows into clear digital experiences.',
+    description: 'Systems, operations and experience design combined into clear, usable digital products.',
     siteName: 'Ibrahim Portfolio',
   },
   robots: {
