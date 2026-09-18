@@ -1044,7 +1044,7 @@ html[data-theme='dark'] .cvPage {
 
 .cvBrandName {
   color: var(--muted);
-  font-size: .78rem;
+  font-size: .8125rem;
   font-weight: 650;
   letter-spacing: .03em;
   text-transform: uppercase;
@@ -1287,7 +1287,7 @@ html[data-theme='dark'] .cvPage {
 
 .cvMapIntro > span {
   color: var(--cv-accent);
-  font-size: .68rem;
+  font-size: .8125rem;
   font-weight: 680;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -1363,7 +1363,7 @@ html[data-theme='dark'] .cvPage {
 
 .cvSignalIndex {
   color: var(--muted);
-  font-size: .68rem;
+  font-size: .8125rem;
   font-variant-numeric: tabular-nums;
 }
 
@@ -1460,7 +1460,7 @@ html[data-theme='dark'] .cvPage {
   display: block;
   margin-top: 9px;
   color: var(--muted);
-  font-size: .74rem;
+  font-size: .875rem;
   font-weight: 650;
 }
 
@@ -1478,7 +1478,7 @@ html[data-theme='dark'] .cvPage {
   max-width: 44ch;
   margin: 18px 0 0;
   color: var(--muted);
-  font-size: .91rem;
+  font-size: 1rem;
   line-height: 1.62;
 }
 
@@ -1504,20 +1504,20 @@ html[data-theme='dark'] .cvPage {
 
 .cvMapEvidence span {
   color: var(--muted);
-  font-size: .68rem;
+  font-size: .8125rem;
   text-transform: uppercase;
   letter-spacing: .08em;
 }
 
 .cvMapEvidence b {
-  font-size: .76rem;
+  font-size: .875rem;
   font-weight: 650;
 }
 
 .cvMapHint {
   margin: 16px 0 0;
   color: var(--muted);
-  font-size: .72rem;
+  font-size: .8125rem;
   line-height: 1.5;
 }
 
@@ -1564,7 +1564,7 @@ html[data-theme='dark'] .cvPage {
 .cvSectionLabel span:first-child,
 .cvContactIndex {
   color: var(--cv-accent);
-  font-size: .68rem;
+  font-size: .8125rem;
   font-variant-numeric: tabular-nums;
 }
 
@@ -1630,7 +1630,7 @@ html[data-theme='dark'] .cvPage {
 
 .cvEvidenceRail strong {
   max-width: 18ch;
-  font-size: .9rem;
+  font-size: 1rem;
   font-weight: 650;
   line-height: 1.3;
 }
@@ -1670,7 +1670,7 @@ html[data-theme='dark'] .cvPage {
 .cvStep {
   display: block;
   color: var(--cv-accent);
-  font-size: .68rem;
+  font-size: .8125rem;
   font-weight: 680;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -1680,7 +1680,7 @@ html[data-theme='dark'] .cvPage {
   display: block;
   margin-top: 12px;
   color: var(--muted);
-  font-size: .66rem;
+  font-size: .8125rem;
 }
 
 .cvJourney h3 {
@@ -1728,7 +1728,7 @@ html[data-theme='dark'] .cvPage {
 
 .cvCapabilitySource {
   color: var(--cv-accent);
-  font-size: .74rem;
+  font-size: .875rem;
   font-weight: 670;
 }
 
@@ -1749,7 +1749,7 @@ html[data-theme='dark'] .cvPage {
   max-width: 48ch;
   margin: 0;
   color: var(--muted);
-  font-size: .88rem;
+  font-size: 1rem;
   line-height: 1.55;
 }
 
