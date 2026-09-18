@@ -104,10 +104,10 @@ export default async function ArabicHomePage() {
           </div>
         </section>
 
-        <aside className="cvTurningPoint" aria-label="نقطة التحول">
+        <section className="cvTurningPoint" aria-label="نقطة التحول">
           <span>وهنا تغيّر معنى التصميم الجيد بالنسبة لي.</span>
           <p>لم يعد مجرد واجهة أوضح، بل نظامًا يصبح أسهل على الشخص الذي يستخدمه.</p>
-        </aside>
+        </section>
 
         <section className="cvSection" id="capabilities" aria-labelledby="capabilities-title-ar">
           <div className="cvSectionLabel"><span>03</span><span>كيف أعمل</span></div>
@@ -191,10 +191,10 @@ export default async function ArabicHomePage() {
           </section>
         )}
 
-        <aside className="cvNow" aria-label="ما أركز عليه الآن">
+        <section className="cvNow" aria-label="ما أركز عليه الآن">
           <span>الآن</span>
           <p>أواصل العمل عند نقطة التقاء الأنظمة والتجربة والتنفيذ، خصوصًا عندما تكون للمنتجات الرقمية قيود تشغيلية حقيقية.</p>
-        </aside>
+        </section>
 
         <section className="cvContact" id="contact" aria-labelledby="contact-title-ar">
           <div>
