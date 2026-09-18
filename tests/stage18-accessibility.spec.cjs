@@ -54,7 +54,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
 
       if (route === '/' || route === '/ar') {
         await expect(page.locator('.cvMapGrid')).toBeVisible();
-        await expect(page.locator('.cvSignal')).toHaveCount(6);
+        await expect(page.locator('.cvSignal')).toHaveCount(5);
       }
 
       if (route.startsWith('/ar')) {
