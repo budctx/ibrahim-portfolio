@@ -207,6 +207,37 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(contactSizes.every((size) => size.height >= 60)).toBe(true);
   });
 
+
+
+  test('header tracks the current narrative section', async ({page}) => {
+    await page.setViewportSize({width: 1440, height: 1000});
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+
+    await page.locator('#journey').scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.getElementById('journey')?.scrollIntoView({block: 'center'}));
+    await page.waitForTimeout(350);
+
+    await expect(page.locator('header a[href="#journey"]')).toHaveAttribute('aria-current', 'location');
+  });
+
+  test('footer closes the document without a trailing layout gap', async ({page}) => {
+    await page.setViewportSize({width: 1440, height: 1000});
+
+    for (const route of ['/', '/ar']) {
+      await page.goto(`${BASE}${route}`, {waitUntil: 'networkidle'});
+      const footer = page.locator('.cvFooter');
+      await footer.scrollIntoViewIfNeeded();
+
+      const trailingGap = await footer.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        const footerBottom = rect.bottom + window.scrollY;
+        return document.documentElement.scrollHeight - footerBottom;
+      });
+
+      expect(trailingGap).toBeLessThanOrEqual(8);
+    }
+  });
+
   test('career map is keyboard operable and updates one clear detail region', async ({page}) => {
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
