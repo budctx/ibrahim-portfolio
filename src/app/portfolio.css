@@ -1162,6 +1162,7 @@ html[data-theme='dark'] .cvPage {
 }
 
 .cvRtl .cvContactNote {
+  margin-inline-start: var(--cv-copy-axis-inset);
   line-height: 1.72;
 }
 
@@ -1180,7 +1181,6 @@ html[data-theme='dark'] .cvPage {
 
 .cvRtl .cvContact > :first-child,
 .cvRtl .cvContactContext,
-.cvRtl .cvContactNote,
 .cvRtl .cvContactLinks {
   margin-inline-start: var(--cv-copy-axis-inset);
 }
