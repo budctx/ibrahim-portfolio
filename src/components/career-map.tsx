@@ -1,6 +1,13 @@
 'use client';
 
 import {useRef, useState, type KeyboardEvent} from 'react';
+import {
+  BadgeCheckIcon,
+  BriefcaseIcon,
+  GraduationCapIcon,
+  SparklesIcon,
+  WorkflowIcon,
+} from '@/components/icons';
 
 type Locale = 'en' | 'ar';
 
@@ -153,7 +160,15 @@ export function CareerMap({locale = 'en'}: {locale?: Locale}) {
           role="group"
           aria-label={rtl ? 'طبقات التكوين المهني' : 'Professional formation layers'}
         >
-          {data.nodes.map((node, index) => (
+          {data.nodes.map((node, index) => {
+            const NodeIcon =
+              node.id === 'mis' ? GraduationCapIcon :
+              node.id === 'operations' ? WorkflowIcon :
+              node.id === 'experience' ? SparklesIcon :
+              node.id === 'governance' ? BadgeCheckIcon :
+              BriefcaseIcon;
+
+            return (
             <button
               key={node.id}
               ref={(element) => { buttonRefs.current[index] = element; }}
@@ -165,19 +180,30 @@ export function CareerMap({locale = 'en'}: {locale?: Locale}) {
             >
               <span className="cvSignalIndex">{String(index + 1).padStart(2, '0')}</span>
               <span className="cvSignalLine" aria-hidden="true" />
+              <span className="cvSignalIcon" aria-hidden="true"><NodeIcon /></span>
               <span className="cvSignalCopy">
                 <strong>{node.label}</strong>
                 <span>{node.short}</span>
               </span>
             </button>
-          ))}
+            );
+          })}
         </div>
 
         <div className="cvMapDetail" aria-live="polite">
           <div className="cvMapDetailNumber" aria-hidden="true">{String(activeIndex + 1).padStart(2, '0')}</div>
           <div key={active.id} className="cvMapDetailBody cvMapDetailBodyMotion">
             <span className="cvMapKicker">{data.detailLabel}</span>
-            <span className="cvMapActiveLabel">{active.label}</span>
+            <span className="cvMapActiveLabel">
+              <span className="cvMapActiveGlyph" aria-hidden="true">
+                {active.id === 'mis' ? <GraduationCapIcon /> :
+                 active.id === 'operations' ? <WorkflowIcon /> :
+                 active.id === 'experience' ? <SparklesIcon /> :
+                 active.id === 'governance' ? <BadgeCheckIcon /> :
+                 <BriefcaseIcon />}
+              </span>
+              {active.label}
+            </span>
             <strong>{active.short}</strong>
             <p>{active.detail}</p>
             <div className="cvMapEvidence">
