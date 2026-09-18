@@ -2443,3 +2443,22 @@ html[data-theme='dark'] .cvPage {
     font-size: 1.15rem;
   }
 }
+
+
+.cvEvidenceLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+}
+
+.cvEvidenceLabel svg {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  color: var(--cv-accent);
+}
+
+.cvEvidenceLabel span {
+  color: inherit;
+}
