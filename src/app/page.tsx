@@ -33,7 +33,7 @@ export default async function HomePage() {
               Before I decide what an interface should look like, I want to understand what the system needs to make clearer.
             </p>
             <div className="cvIdentitySignals" aria-label="Professional focus">
-              <span>Systems</span><span>Experience</span><span>Delivery</span>
+              <span className="cvBadge">Systems</span><span className="cvBadge">Experience</span><span className="cvBadge">Delivery</span>
             </div>
             <div className="cvHeroActions">
               <Link className="cvButton cvButtonPrimary" href="#journey">
@@ -72,19 +72,19 @@ export default async function HomePage() {
             <div className="cvJourney cvJourneyRefined">
               <article>
                 <span className="cvStep">Understand</span>
-                <span className="cvJourneyMeta">2019–2024 · MIS</span>
+                <span className="cvJourneyMeta cvBadge">2019–2024 · MIS</span>
                 <h3>Read the system</h3>
                 <p>MIS taught me to look for data, dependencies and process underneath the visible interface.</p>
               </article>
               <article>
                 <span className="cvStep">Observe</span>
-                <span className="cvJourneyMeta">2025 · Healthcare operations</span>
+                <span className="cvJourneyMeta cvBadge">2025 · Healthcare operations</span>
                 <h3>See the friction</h3>
                 <p>Operational work made handoffs, constraints and unclear workflows tangible rather than theoretical.</p>
               </article>
               <article>
                 <span className="cvStep">Shape</span>
-                <span className="cvJourneyMeta">2025–Now · Web design</span>
+                <span className="cvJourneyMeta cvBadge">2025–Now · Web design</span>
                 <h3>Design the change</h3>
                 <p>UI/UX became the way I turn what I understand about the system into a clearer experience people can use.</p>
               </article>
@@ -104,25 +104,25 @@ export default async function HomePage() {
             <p className="cvSectionIntro">Each layer became a decision-making habit I carry into the next problem.</p>
             <div className="cvCapabilityPairs">
               <div>
-                <span className="cvCapabilitySource">Systems thinking</span>
+                <span className="cvCapabilitySource cvBadge cvBadgeAccent">Systems thinking</span>
                 <ArrowRightIcon className="cvCapabilityArrow" />
                 <strong>Better UX decisions</strong>
                 <p>Understand workflows and dependencies before deciding what the interface should do.</p>
               </div>
               <div>
-                <span className="cvCapabilitySource">Governance</span>
+                <span className="cvCapabilitySource cvBadge cvBadgeAccent">Governance</span>
                 <ArrowRightIcon className="cvCapabilityArrow" />
                 <strong>Usable constraints</strong>
                 <p>Translate standards and requirements into an experience that still feels clear and human.</p>
               </div>
               <div>
-                <span className="cvCapabilitySource">AI workflows</span>
+                <span className="cvCapabilitySource cvBadge cvBadgeAccent">AI workflows</span>
                 <ArrowRightIcon className="cvCapabilityArrow" />
                 <strong>Faster exploration</strong>
                 <p>Use generative AI to expand and refine options without outsourcing design judgment.</p>
               </div>
               <div>
-                <span className="cvCapabilitySource">Developer handoff</span>
+                <span className="cvCapabilitySource cvBadge cvBadgeAccent">Developer handoff</span>
                 <ArrowRightIcon className="cvCapabilityArrow" />
                 <strong>Executable design</strong>
                 <p>Keep the design connected to implementation through clear states, behavior and collaboration.</p>
@@ -139,7 +139,7 @@ export default async function HomePage() {
               <div>
                 <div className="cvCredentialBrand cvCredentialBrandNeutral">
                   <GraduationCapIcon />
-                  <span>Academic</span>
+                  <span className="cvBadge cvBadgeIssuer">Academic</span>
                 </div>
                 <strong>Bachelor of Management Information Systems</strong>
                 <span>Imam Abdulrahman Bin Faisal University · 2019–2024</span>
@@ -147,7 +147,7 @@ export default async function HomePage() {
               <div>
                 <div className="cvCredentialBrand cvGoogleBrand">
                   <GoogleBrandIcon />
-                  <span>Google</span>
+                  <span className="cvBadge cvBadgeIssuer">Google</span>
                 </div>
                 <strong>UX Design Professional Certificate</strong>
                 <span>Formal training in user-centered product and experience design.</span>
@@ -155,7 +155,7 @@ export default async function HomePage() {
               <div>
                 <div className="cvCredentialBrand cvGoogleBrand">
                   <GoogleBrandIcon />
-                  <span>Google</span>
+                  <span className="cvBadge cvBadgeIssuer">Google</span>
                 </div>
                 <strong>AI Professional Certificate</strong>
                 <span>Applied foundation for AI-assisted professional workflows.</span>
