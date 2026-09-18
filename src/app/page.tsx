@@ -89,10 +89,10 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <aside className="cvTurningPoint" aria-label="Turning point">
+        <section className="cvTurningPoint" aria-label="Turning point">
           <span>That changed what good design meant to me.</span>
           <p>Not just a cleaner screen — a clearer system for the person using it.</p>
-        </aside>
+        </section>
 
         <section className="cvSection" id="capabilities" aria-labelledby="capabilities-title">
           <div className="cvSectionLabel"><span>03</span><span>How I work</span></div>
@@ -176,10 +176,10 @@ export default async function HomePage() {
           </section>
         )}
 
-        <aside className="cvNow" aria-label="Current focus">
+        <section className="cvNow" aria-label="Current focus">
           <span>Now</span>
           <p>I&apos;m continuing to work where systems, experience and delivery meet — especially when digital products have real operational constraints.</p>
-        </aside>
+        </section>
 
         <section className="cvContact" id="contact" aria-labelledby="contact-title">
           <div>
