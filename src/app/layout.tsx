@@ -1,7 +1,29 @@
 import type {Metadata} from 'next';
 import {cookies, draftMode, headers} from 'next/headers';
 import type {ReactNode} from 'react';
+import {IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Arabic} from 'next/font/google';
 import './globals.css';
+
+const plexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-plex-sans',
+});
+
+const plexArabic = IBM_Plex_Sans_Arabic({
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-plex-arabic',
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  display: 'swap',
+  variable: '--font-plex-mono',
+});
 
 const siteUrl = 'https://ibrahim-portfolio-blush.vercel.app';
 
@@ -49,7 +71,12 @@ export default async function RootLayout({children}: {children: ReactNode}) {
   const branch = draft.isEnabled ? (await cookies()).get('ks-branch')?.value : undefined;
 
   return (
-    <html lang={locale} dir={dir} suppressHydrationWarning>
+    <html
+      lang={locale}
+      dir={dir}
+      className={`${plexSans.variable} ${plexArabic.variable} ${plexMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{__html: themeInit}} />
       </head>
