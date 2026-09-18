@@ -1074,6 +1074,7 @@ html[data-theme='dark'] .cvPage {
 }
 
 .cvRtl {
+  --cv-copy-axis-inset: clamp(10px, .8vw, 14px);
   font-family: var(--font-plex-arabic), "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
@@ -1082,14 +1083,14 @@ html[data-theme='dark'] .cvPage {
   inline-size: fit-content;
   max-inline-size: 7.35em;
   margin-inline-end: auto;
-  line-height: 1.1;
+  line-height: 1.16;
   font-weight: 600;
   font-size: clamp(3.1rem, 4.55vw, 5.15rem);
 }
 
 .cvRtl .cvHeroCopy {
   max-inline-size: 720px;
-  padding-inline-start: clamp(10px, .8vw, 14px);
+  padding-inline-start: var(--cv-copy-axis-inset);
   padding-inline-end: clamp(18px, 1.4vw, 28px);
 }
 
@@ -1112,15 +1113,23 @@ html[data-theme='dark'] .cvPage {
 }
 
 .cvRtl .cvSectionBody > h2 {
-  max-width: 8.8em;
-  line-height: 1.16;
+  max-width: none;
+  max-inline-size: 11.75em;
+  margin-inline-start: var(--cv-copy-axis-inset);
+  font-size: clamp(2.25rem, 3.5vw, 3.65rem);
+  line-height: 1.28;
   font-weight: 600;
+  text-wrap: pretty;
 }
 
 .cvRtl .cvContact h2 {
-  max-width: 8.8em;
-  line-height: 1.16;
+  max-width: none;
+  max-inline-size: 11.75em;
+  margin-inline-start: var(--cv-copy-axis-inset);
+  font-size: clamp(2.35rem, 3.75vw, 4rem);
+  line-height: 1.28;
   font-weight: 600;
+  text-wrap: pretty;
 }
 
 .cvRtl .cvLede {
@@ -1130,6 +1139,7 @@ html[data-theme='dark'] .cvPage {
 }
 
 .cvRtl .cvBigCopy {
+  margin-inline-start: var(--cv-copy-axis-inset);
   line-height: 1.75;
 }
 
@@ -1165,6 +1175,14 @@ html[data-theme='dark'] .cvPage {
   font-family: inherit;
   letter-spacing: 0;
   text-transform: none;
+  margin-inline-start: var(--cv-copy-axis-inset);
+}
+
+.cvRtl .cvContact > :first-child,
+.cvRtl .cvContactContext,
+.cvRtl .cvContactNote,
+.cvRtl .cvContactLinks {
+  margin-inline-start: var(--cv-copy-axis-inset);
 }
 
 .cvRtl .cvMapIntro > span {
@@ -1337,6 +1355,7 @@ html[data-theme='dark'] .cvPage {
 }
 
 .cvRtl .cvSectionIntro {
+  margin-inline-start: var(--cv-copy-axis-inset);
   line-height: 1.78;
 }
 
@@ -1455,7 +1474,7 @@ html[data-theme='dark'] .cvPage {
 }
 
 .cvRtl .cvHeroTitleLine + .cvHeroTitleLine {
-  margin-top: -.02em;
+  margin-top: .02em;
 }
 
 .cvRtl .cvCredentialBrand {
@@ -2159,7 +2178,7 @@ html[data-theme='light'] .cvGoogleBrand {
     max-width: none;
     max-inline-size: 7.35em;
     font-size: clamp(3.05rem, 4.05vw, 4.7rem);
-    line-height: 1.1;
+    line-height: 1.16;
   }
 
   .cvRtl .cvHeroTitleLine {
