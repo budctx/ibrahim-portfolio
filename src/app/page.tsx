@@ -45,7 +45,13 @@ export default async function HomePage() {
 
       <section className="section contactSection" id="contact" aria-labelledby="contact-title">
         <div className="eyebrow" id="contact-title">Contact</div>
-        <p className="contact">Let&apos;s make complex things clear.</p>
+        <div>
+          <p className="contact">Let&apos;s make complex things clear.</p>
+          <div className="contactActions">
+            <Link href="mailto:ibrahim.alajmi407@gmail.com">Email</Link>
+            <Link href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">LinkedIn</Link>
+          </div>
+        </div>
       </section>
 
       <footer className="footer">
