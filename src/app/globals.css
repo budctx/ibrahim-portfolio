@@ -2274,3 +2274,397 @@ h3 {
 .cvRtl .cvOverline {
   line-height: 1.8;
 }
+
+
+/* Visual identity pass — authored editorial/system language */
+.cvPage {
+  --cv-accent: #956b46;
+  --cv-accent-2: #5f5146;
+  --cv-ink-soft: color-mix(in srgb, var(--fg) 72%, var(--bg));
+  --cv-grid: color-mix(in srgb, var(--fg) 7%, transparent);
+  background:
+    linear-gradient(90deg, transparent calc(50% - .5px), var(--cv-grid) 50%, transparent calc(50% + .5px)),
+    radial-gradient(circle at 78% 13%, color-mix(in srgb, var(--cv-accent) 7%, transparent), transparent 31rem),
+    var(--bg);
+  background-size: 100% 100%, auto, auto;
+}
+
+html[data-theme='dark'] .cvPage {
+  --cv-accent: #c69a6e;
+  --cv-accent-2: #a7907a;
+  --cv-grid: color-mix(in srgb, var(--fg) 5%, transparent);
+}
+
+.cvHeader {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  min-height: 78px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.cvBrand {
+  gap: 12px;
+}
+
+.cvBrandMark {
+  display: inline-grid;
+  grid-auto-flow: column;
+  align-items: baseline;
+  gap: 2px;
+  min-width: 44px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 760;
+  letter-spacing: -.08em;
+}
+
+.cvBrandMark b {
+  font-weight: 760;
+}
+
+.cvBrandMark i {
+  color: var(--cv-accent);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.cvBrandName {
+  font-size: .78rem;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+
+.cvOverline,
+.cvSectionLabel,
+.cvMapIntro > span,
+.cvMapKicker,
+.cvEvidenceRail span,
+.cvCapabilityPairs span,
+.cvStep,
+.cvContactIndex,
+.cvFooter {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.cvOverline {
+  color: var(--cv-ink-soft);
+  font-size: .68rem;
+  letter-spacing: .09em;
+}
+
+.cvPage:not(.cvRtl) h1 em {
+  color: var(--cv-accent);
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 420;
+  letter-spacing: -.045em;
+}
+
+.cvRtl h1 em {
+  color: var(--cv-accent);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.cvIdentitySignals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 14px;
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--cv-hairline);
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .67rem;
+}
+
+.cvIdentitySignals span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cvIdentitySignals span + span::before {
+  content: "/";
+  color: var(--cv-accent);
+}
+
+.cvHero {
+  min-height: min(920px, calc(100svh - 78px));
+}
+
+.cvHeroCopy::after {
+  content: "SYSTEM → EXPERIENCE";
+  display: block;
+  width: fit-content;
+  margin-top: clamp(46px, 7vw, 88px);
+  color: color-mix(in srgb, var(--muted) 64%, transparent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .62rem;
+  letter-spacing: .18em;
+}
+
+.cvRtl .cvHeroCopy::after {
+  content: "SYSTEM ← EXPERIENCE";
+  letter-spacing: .08em;
+}
+
+.cvButton,
+.cvTools .themeToggle,
+.cvContactLinks a {
+  border-radius: 2px;
+}
+
+.cvButtonPrimary {
+  position: relative;
+  overflow: hidden;
+}
+
+.cvButtonPrimary::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: var(--cv-accent);
+}
+
+.cvMapIntro {
+  border-bottom-color: color-mix(in srgb, var(--cv-accent) 50%, var(--cv-hairline));
+}
+
+.cvMapTrack {
+  position: relative;
+}
+
+.cvMapTrack::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  inset-inline-start: 38px;
+  width: 1px;
+  background: var(--cv-hairline);
+  pointer-events: none;
+}
+
+.cvSignal {
+  position: relative;
+}
+
+.cvSignalLine {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+}
+
+.cvSignal[aria-pressed='true'] .cvSignalCopy strong {
+  color: var(--cv-accent);
+}
+
+.cvMapDetail {
+  min-height: 360px;
+}
+
+.cvMapDetailNumber {
+  color: color-mix(in srgb, var(--cv-accent) 78%, var(--fg));
+}
+
+.cvMapEvidence {
+  position: relative;
+}
+
+.cvMapEvidence::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  inset-inline-start: 0;
+  width: 72px;
+  height: 1px;
+  background: var(--cv-accent);
+}
+
+.cvSection {
+  position: relative;
+}
+
+.cvSection::before,
+.cvContact::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  inset-inline-start: 0;
+  width: clamp(52px, 8vw, 116px);
+  height: 1px;
+  background: var(--cv-accent);
+}
+
+.cvSectionLabel span:first-child,
+.cvContactIndex {
+  font-size: .68rem;
+}
+
+.cvSectionBody > h2,
+.cvContact h2 {
+  max-width: 14ch;
+}
+
+.cvEvidenceRail {
+  border-top-color: color-mix(in srgb, var(--cv-accent) 42%, var(--cv-hairline));
+}
+
+.cvEvidenceRail > div {
+  position: relative;
+}
+
+.cvEvidenceRail > div::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  inset-inline-start: 0;
+  width: 18px;
+  height: 1px;
+  background: var(--cv-accent);
+}
+
+.cvJourneyRefined article {
+  position: relative;
+}
+
+.cvJourneyRefined article::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  inset-inline-start: 0;
+  width: 42px;
+  height: 1px;
+  background: var(--cv-accent);
+}
+
+.cvCapabilityPairs > div {
+  position: relative;
+  transition: padding-inline-start 180ms cubic-bezier(.2,.8,.2,1);
+}
+
+.cvCapabilityPairs > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  inset-inline-start: 0;
+  width: 1px;
+  background: transparent;
+  transition: background-color 180ms cubic-bezier(.2,.8,.2,1);
+}
+
+.cvCapabilityPairs span::after {
+  content: " →";
+  color: var(--muted);
+}
+
+.cvRtl .cvCapabilityPairs span::after {
+  content: " ←";
+}
+
+.cvCredentials > div {
+  position: relative;
+}
+
+.cvCredentials > div::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  inset-inline-start: 0;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--cv-accent);
+}
+
+.cvCredentials > div > strong,
+.cvCredentials > div > span {
+  padding-inline-start: 22px;
+}
+
+.cvContact {
+  align-items: end;
+}
+
+.cvContactNote {
+  max-width: 42ch;
+  margin: 26px 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.65;
+}
+
+.cvFooter span:last-child {
+  color: var(--cv-accent-2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cvCapabilityPairs > div:hover {
+    padding-inline-start: 14px;
+  }
+
+  .cvCapabilityPairs > div:hover::before {
+    background: var(--cv-accent);
+  }
+
+  .cvBrand:hover .cvBrandMark i {
+    color: var(--fg);
+  }
+}
+
+@media (max-width: 960px) {
+  .cvPage {
+    background:
+      radial-gradient(circle at 78% 10%, color-mix(in srgb, var(--cv-accent) 6%, transparent), transparent 26rem),
+      var(--bg);
+  }
+
+  .cvHeader {
+    position: relative;
+    background: transparent;
+    backdrop-filter: none;
+  }
+
+  .cvHeroCopy::after {
+    margin-top: 42px;
+  }
+
+  .cvMapDetail {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .cvBrandName {
+    display: none;
+  }
+
+  .cvIdentitySignals {
+    gap: 7px 10px;
+  }
+
+  .cvIdentitySignals span + span::before {
+    margin-inline-end: 2px;
+  }
+
+  .cvSection::before,
+  .cvContact::before {
+    width: 44px;
+  }
+
+  .cvCredentials > div > strong,
+  .cvCredentials > div > span {
+    padding-inline-start: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cvCapabilityPairs > div,
+  .cvCapabilityPairs > div::before {
+    transition: none !important;
+  }
+}
