@@ -3175,3 +3175,255 @@ html[data-theme='dark'] .cvPage {
     transition: none !important;
   }
 }
+
+
+/* Final micro-composition polish */
+.cvSection,
+.cvContact {
+  grid-template-columns: minmax(78px, 104px) minmax(0, 1fr);
+  column-gap: clamp(22px, 3vw, 46px);
+}
+
+.cvSectionLabel,
+.cvContact > :first-child {
+  grid-column: 1;
+  align-self: start;
+  padding-top: .25rem;
+}
+
+.cvSectionBody,
+.cvContact > :last-child {
+  grid-column: 2;
+}
+
+.cvSectionLabel {
+  position: sticky;
+  top: 104px;
+  width: 100%;
+}
+
+.cvSectionLabel::after {
+  content: "";
+  width: 34px;
+  height: 1px;
+  margin-top: 10px;
+  background: color-mix(in srgb, var(--cv-accent) 70%, transparent);
+}
+
+.cvMapDetail {
+  position: relative;
+  display: block;
+  min-height: 404px;
+  padding: clamp(28px, 3vw, 38px);
+}
+
+.cvMapDetailNumber {
+  position: absolute;
+  top: clamp(24px, 2.6vw, 34px);
+  inset-inline-end: clamp(24px, 2.6vw, 34px);
+  font-size: clamp(3.2rem, 4.4vw, 5.1rem);
+  line-height: .8;
+  opacity: .92;
+}
+
+.cvMapDetailBody {
+  width: 100%;
+  padding-inline-end: clamp(72px, 8vw, 118px);
+}
+
+.cvMapActiveLabel {
+  margin-top: 18px;
+}
+
+.cvMapDetailBody > strong {
+  max-width: 14ch;
+  margin-top: 20px;
+}
+
+.cvMapDetailBody > p {
+  max-width: 42ch;
+  margin-top: 22px;
+}
+
+.cvMapEvidence {
+  max-width: 42ch;
+  margin-top: 34px;
+}
+
+.cvJourney article {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--cv-accent) 3.5%, transparent), transparent 58%),
+    color-mix(in srgb, var(--bg) 97%, var(--fg));
+}
+
+.cvJourney h3 {
+  color: var(--fg);
+  font-weight: 620;
+}
+
+.cvJourney p {
+  color: color-mix(in srgb, var(--fg) 76%, var(--bg));
+}
+
+.cvJourneyMeta {
+  color: color-mix(in srgb, var(--muted) 88%, var(--fg));
+}
+
+.cvCredentials > div {
+  position: relative;
+  overflow: hidden;
+}
+
+.cvCredentials > div::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cv-accent), transparent 72%);
+  opacity: .72;
+}
+
+.cvCredentialBrand {
+  width: 100%;
+  min-height: 54px;
+  margin-bottom: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cv-hairline);
+}
+
+.cvCredentialBrand svg {
+  width: 44px;
+  height: 44px;
+}
+
+.cvCredentialBrand span {
+  font-size: 1rem;
+}
+
+.cvGoogleBrand svg {
+  width: 46px;
+  height: 46px;
+}
+
+.cvCredentials strong {
+  margin-top: 22px;
+}
+
+.cvContactLinks {
+  width: min(100%, 470px);
+}
+
+.cvContactLinks a {
+  min-height: 60px;
+  flex: 1 1 0;
+  justify-content: center;
+  padding: 15px 22px;
+  font-size: 1.02rem;
+}
+
+.cvLinkedInLink {
+  border-color: color-mix(in srgb, #0a66c2 54%, var(--cv-hairline));
+}
+
+.cvContactLinks a:first-child svg,
+.cvLinkedInLink svg {
+  width: 23px;
+  height: 23px;
+}
+
+.cvRtl .cvHeroTitleLine {
+  display: block;
+}
+
+.cvRtl h1 em {
+  display: block;
+  margin-top: .04em;
+}
+
+.cvRtl .cvHeroTitleLine + .cvHeroTitleLine {
+  margin-top: -.02em;
+}
+
+.cvRtl .cvJourney p {
+  color: color-mix(in srgb, var(--fg) 80%, var(--bg));
+}
+
+.cvRtl .cvCredentialBrand {
+  align-items: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cvLinkedInLink:hover {
+    border-color: #0a66c2;
+    background: color-mix(in srgb, #0a66c2 10%, var(--bg));
+  }
+
+  .cvLinkedInLink:hover svg {
+    color: #0a66c2;
+  }
+}
+
+@media (max-width: 1080px) {
+  .cvSection,
+  .cvContact {
+    grid-template-columns: minmax(70px, 90px) minmax(0, 1fr);
+    column-gap: 24px;
+  }
+
+  .cvSectionLabel,
+  .cvContact > :first-child {
+    grid-column: 1;
+  }
+
+  .cvSectionBody,
+  .cvContact > :last-child {
+    grid-column: 2;
+  }
+
+  .cvSectionLabel {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .cvSection,
+  .cvContact {
+    grid-template-columns: 1fr;
+  }
+
+  .cvSectionLabel,
+  .cvSectionBody,
+  .cvContact > :first-child,
+  .cvContact > :last-child {
+    grid-column: 1;
+  }
+
+  .cvSectionLabel::after {
+    display: none;
+  }
+
+  .cvMapDetail {
+    min-height: 0;
+    padding: 22px;
+  }
+
+  .cvMapDetailNumber {
+    position: static;
+    margin-bottom: 16px;
+  }
+
+  .cvMapDetailBody {
+    padding-inline-end: 0;
+  }
+
+  .cvContactLinks {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cvSectionLabel {
+    position: static;
+  }
+}
