@@ -172,6 +172,39 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     await expect(page.locator('.cvLinkedInLink svg')).toBeVisible();
   });
 
+
+
+  test('desktop visual polish keeps labels adjacent and brand CTAs prominent', async ({page}) => {
+    await page.setViewportSize({width: 1440, height: 1000});
+    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+
+    const aboutLabel = page.locator('#about .cvSectionLabel');
+    const aboutTitle = page.locator('#about-title-ar');
+    const labelBox = await aboutLabel.boundingBox();
+    const titleBox = await aboutTitle.boundingBox();
+
+    expect(labelBox).not.toBeNull();
+    expect(titleBox).not.toBeNull();
+    expect(Math.abs(labelBox.x - titleBox.x)).toBeLessThanOrEqual(24);
+    expect(labelBox.y + labelBox.height).toBeLessThanOrEqual(titleBox.y + 4);
+
+    const googleSize = await page.locator('.cvGoogleBrand svg').first().evaluate((element) => {
+      const rect = element.getBoundingClientRect();
+      return {width: rect.width, height: rect.height};
+    });
+    expect(googleSize.width).toBeGreaterThanOrEqual(52);
+    expect(googleSize.height).toBeGreaterThanOrEqual(52);
+
+    const contactSizes = await page.locator('.cvContactLinks a').evaluateAll((elements) =>
+      elements.map((element) => {
+        const rect = element.getBoundingClientRect();
+        return {width: rect.width, height: rect.height};
+      }),
+    );
+    expect(contactSizes.length).toBeGreaterThanOrEqual(2);
+    expect(contactSizes.every((size) => size.height >= 60)).toBe(true);
+  });
+
   test('career map is keyboard operable and updates one clear detail region', async ({page}) => {
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
