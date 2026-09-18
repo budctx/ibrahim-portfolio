@@ -2240,3 +2240,37 @@ h3 {
     font-size: 2.5rem;
   }
 }
+
+
+/* Arabic is authored, not mechanically mirrored */
+.cvRtl {
+  font-family: system-ui, "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+.cvRtl .cvPage h1,
+.cvRtl h1 {
+  line-height: 1.06;
+  font-weight: 560;
+}
+
+.cvRtl .cvSectionBody > h2,
+.cvRtl .cvContact h2 {
+  line-height: 1.12;
+  font-weight: 560;
+}
+
+.cvRtl .cvLede,
+.cvRtl .cvBigCopy {
+  line-height: 1.75;
+}
+
+.cvRtl .cvMapDetailBody > p,
+.cvRtl .cvCapabilityPairs p,
+.cvRtl .cvJourney p,
+.cvRtl .cvCredentials span {
+  line-height: 1.72;
+}
+
+.cvRtl .cvOverline {
+  line-height: 1.8;
+}
