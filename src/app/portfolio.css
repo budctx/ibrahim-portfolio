@@ -254,13 +254,14 @@ html[data-theme='dark'] .cvPage {
 }
 
 .cvHero {
-  min-height: min(920px, calc(100svh - 78px));
+  min-height: max(680px, calc(100svh - 86px));
+  height: max(680px, calc(100svh - 86px));
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--cv-grid-gap);
-  row-gap: clamp(56px, 6vw, 88px);
+  row-gap: clamp(40px, 4vw, 64px);
   align-items: center;
-  padding-block: clamp(68px, 7vw, 112px);
+  padding-block: clamp(24px, 3.5svh, 38px);
 }
 
 .cvHeroCopy {
@@ -1653,6 +1654,7 @@ html[data-theme='light'] .cvGoogleBrand {
 @media (max-width: 1180px) {
   .cvHero {
     min-height: auto;
+    height: auto;
     grid-template-columns: 1fr;
     gap: 68px;
     padding-block: 84px 100px;
@@ -2186,7 +2188,7 @@ html[data-theme='light'] .cvGoogleBrand {
   }
 }
 
-@container career (max-width: 720px) {
+@container career (max-width: 600px) {
   .cvMapGrid {
     grid-template-columns: 1fr;
     gap: 24px;
