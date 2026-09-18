@@ -477,7 +477,7 @@ html[data-theme='dark'] .cvPage {
 .cvBadgeAccent {
   border-color: color-mix(in srgb, var(--cv-accent) 52%, var(--cv-hairline));
   background: color-mix(in srgb, var(--cv-accent) 10%, transparent);
-  color: var(--cv-accent);
+  color: color-mix(in srgb, var(--cv-accent) 82%, var(--fg));
 }
 
 .cvBadgeIssuer {
