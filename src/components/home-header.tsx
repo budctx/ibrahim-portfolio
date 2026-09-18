@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import {useEffect, useMemo, useState} from 'react';
 import {LanguagesIcon} from '@/components/icons';
 import {ThemeToggle} from '@/components/theme-toggle';
 
@@ -10,6 +13,8 @@ type HomeHeaderProps = {
 
 export function HomeHeader({locale = 'en', counterpartHref, hasWork = false}: HomeHeaderProps) {
   const ar = locale === 'ar';
+  const [activeSection, setActiveSection] = useState('');
+
   const labels = ar
     ? {
         home: 'الرئيسية',
@@ -32,6 +37,43 @@ export function HomeHeader({locale = 'en', counterpartHref, hasWork = false}: Ho
         language: 'التبديل إلى العربية',
       };
 
+  const navItems = useMemo(
+    () => [
+      {id: 'about', label: labels.about},
+      {id: 'journey', label: labels.journey},
+      {id: 'capabilities', label: labels.capabilities},
+      {id: 'credentials', label: labels.credentials},
+      ...(hasWork ? [{id: 'work', label: labels.work}] : []),
+      {id: 'contact', label: labels.contact},
+    ],
+    [hasWork, labels.about, labels.capabilities, labels.contact, labels.credentials, labels.journey, labels.work],
+  );
+
+  useEffect(() => {
+    const sections = navItems
+      .map((item) => document.getElementById(item.id))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible[0]?.target.id) setActiveSection(visible[0].target.id);
+      },
+      {
+        rootMargin: '-28% 0px -58% 0px',
+        threshold: [0, 0.15, 0.4, 0.7],
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [navItems]);
+
   return (
     <header className="cvHeader">
       <Link className="cvBrand" href={ar ? '/ar' : '/'} aria-label={labels.home}>
@@ -40,12 +82,16 @@ export function HomeHeader({locale = 'en', counterpartHref, hasWork = false}: Ho
       </Link>
 
       <nav className="cvNav" aria-label={ar ? 'التنقل الرئيسي' : 'Primary'}>
-        <Link href="#about">{labels.about}</Link>
-        <Link href="#journey">{labels.journey}</Link>
-        <Link href="#capabilities">{labels.capabilities}</Link>
-        <Link href="#credentials">{labels.credentials}</Link>
-        {hasWork && <Link href="#work">{labels.work}</Link>}
-        <Link href="#contact">{labels.contact}</Link>
+        {navItems.map((item) => (
+          <Link
+            key={item.id}
+            href={'#' + item.id}
+            aria-current={activeSection === item.id ? 'location' : undefined}
+            onClick={() => setActiveSection(item.id)}
+          >
+            {item.label}
+          </Link>
+        ))}
       </nav>
 
       <div className="cvTools">
