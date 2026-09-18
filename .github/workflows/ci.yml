@@ -28,3 +28,20 @@ jobs:
         run: npm run typecheck
       - name: Build
         run: npm run build
+      - name: Install Stage 18 QA browser
+        run: |
+          npm install --no-save --package-lock=false @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Run Stage 18 responsive accessibility QA
+        run: |
+          npm run start > /tmp/portfolio-next.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:3000/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:3000/ > /dev/null
+          npx playwright test tests/stage18-accessibility.spec.cjs --reporter=line --workers=1
