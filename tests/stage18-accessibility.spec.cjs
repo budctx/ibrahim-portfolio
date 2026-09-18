@@ -145,6 +145,31 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     await context.close();
   });
 
+  test('typography variables and visible brand marks render in both locales', async ({page}) => {
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+
+    const fontVars = await page.evaluate(() => {
+      const style = getComputedStyle(document.documentElement);
+      return {
+        sans: style.getPropertyValue('--font-plex-sans').trim(),
+        arabic: style.getPropertyValue('--font-plex-arabic').trim(),
+        mono: style.getPropertyValue('--font-plex-mono').trim(),
+      };
+    });
+
+    expect(fontVars.sans).not.toBe('');
+    expect(fontVars.arabic).not.toBe('');
+    expect(fontVars.mono).not.toBe('');
+
+    await expect(page.locator('.cvGoogleBrand')).toHaveCount(2);
+    await expect(page.locator('.cvGoogleBrand svg').first()).toBeVisible();
+    await expect(page.locator('.cvLinkedInLink svg')).toBeVisible();
+
+    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+    await expect(page.locator('.cvGoogleBrand')).toHaveCount(2);
+    await expect(page.locator('.cvLinkedInLink svg')).toBeVisible();
+  });
+
   test('career map is keyboard operable and updates one clear detail region', async ({page}) => {
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
