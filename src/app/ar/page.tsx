@@ -75,7 +75,7 @@ export default async function ArabicHomePage() {
               <div><div className="cvEvidenceLabel"><WorkflowIcon /><span>رأيت عمليًا</span></div><strong>سير عمل في بيئة صحية</strong></div>
               <div><div className="cvEvidenceLabel"><BriefcaseIcon /><span>أصمم اليوم</span></div><strong>تصميم ويب · جامعة الإمام عبدالرحمن</strong></div>
               <div><div className="cvEvidenceLabel"><BadgeCheckIcon /><span>أعمل ضمن</span></div><strong>امتثال لمتطلبات DGA</strong></div>
-              <div><div className="cvEvidenceLabel"><GoogleBrandIcon /><span>وأتوسع عبر</span></div><strong>Google UX · Google AI</strong></div>
+              <div><div className="cvEvidenceLabel"><GoogleBrandIcon className="cvGoogleMark" /><span>وأتوسع عبر</span></div><strong>Google UX · Google AI</strong></div>
             </div>
           </div>
         </section>
