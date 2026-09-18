@@ -3427,3 +3427,172 @@ html[data-theme='dark'] .cvPage {
     position: static;
   }
 }
+
+
+/* Verified micro-polish corrections after live visual inspection */
+.cvSection,
+.cvContact {
+  grid-template-columns: 1fr;
+  row-gap: 0;
+}
+
+.cvSectionLabel,
+.cvContact > :first-child {
+  grid-column: 1;
+  position: static;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 22px;
+  padding: 0;
+}
+
+.cvSectionLabel {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  color: color-mix(in srgb, var(--muted) 82%, var(--fg));
+}
+
+.cvSectionLabel::after {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 1px;
+  margin: 0;
+  background: var(--cv-accent);
+}
+
+.cvSectionBody,
+.cvContact > :last-child {
+  grid-column: 1;
+}
+
+.cvContact > :first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cvContactIndex {
+  margin: 0;
+}
+
+.cvContact > :first-child .cvOverline {
+  margin: 0;
+}
+
+.cvJourney article,
+.cvJourney article + article {
+  border-color: color-mix(in srgb, var(--fg) 24%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--cv-accent) 7%, transparent), transparent 64%),
+    color-mix(in srgb, var(--fg) 4%, var(--bg));
+}
+
+.cvJourneyMeta {
+  color: var(--cv-accent);
+  font-weight: 600;
+}
+
+.cvJourney h3 {
+  color: var(--fg);
+  font-weight: 650;
+}
+
+.cvJourney p,
+.cvRtl .cvJourney p {
+  color: color-mix(in srgb, var(--fg) 90%, var(--bg));
+  font-size: 1.0625rem;
+  line-height: 1.72;
+}
+
+.cvGoogleBrand {
+  width: fit-content;
+  min-height: 72px;
+  gap: 14px;
+  margin-bottom: 12px;
+  padding: 10px 16px;
+  border: 1px solid color-mix(in srgb, #4285f4 42%, var(--cv-hairline));
+  background: color-mix(in srgb, #4285f4 12%, var(--bg));
+}
+
+.cvGoogleBrand svg {
+  width: 54px;
+  height: 54px;
+  padding: 10px;
+  border: 1px solid color-mix(in srgb, #4285f4 44%, var(--cv-hairline));
+  background: color-mix(in srgb, #4285f4 10%, var(--bg));
+}
+
+.cvGoogleBrand span {
+  color: color-mix(in srgb, var(--fg) 88%, var(--bg));
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.cvContactLinks {
+  width: min(100%, 560px);
+  gap: 14px;
+}
+
+.cvContactLinks a {
+  min-height: 64px;
+  min-width: 190px;
+  padding: 17px 26px;
+  border-width: 1px;
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.cvContactLinks a:first-child {
+  border-color: var(--fg);
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.cvLinkedInLink {
+  border-color: #0a66c2;
+  background: #0a66c2;
+  color: #fff;
+}
+
+.cvLinkedInLink svg {
+  color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cvLinkedInLink:hover {
+    border-color: #0a66c2;
+    background: color-mix(in srgb, #0a66c2 88%, #000);
+    color: #fff;
+  }
+
+  .cvLinkedInLink:hover svg {
+    color: #fff;
+  }
+}
+
+@media (max-width: 760px) {
+  .cvSectionLabel,
+  .cvContact > :first-child {
+    margin-bottom: 18px;
+  }
+
+  .cvSectionLabel {
+    justify-content: flex-start;
+  }
+
+  .cvContactLinks a {
+    min-width: 0;
+  }
+
+  .cvGoogleBrand {
+    min-height: 64px;
+  }
+
+  .cvGoogleBrand svg {
+    width: 48px;
+    height: 48px;
+  }
+}
