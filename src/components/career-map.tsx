@@ -9,33 +9,103 @@ type Node = {
   label: string;
   short: string;
   detail: string;
+  evidence: string;
 };
 
-const copy: Record<Locale, {center: string; centerDetail: string; nodes: Node[]; hint: string}> = {
+const copy: Record<Locale, {
+  kicker: string;
+  title: string;
+  hint: string;
+  detailLabel: string;
+  evidenceLabel: string;
+  nodes: Node[];
+}> = {
   en: {
-    center: 'Systems thinking',
-    centerDetail: 'The foundation behind how I understand, design and deliver digital experiences.',
-    hint: 'Choose a signal to see how it shaped my work.',
+    kicker: 'How I was shaped',
+    title: 'Five layers. One way of working.',
+    hint: 'Choose a layer to see what it added to how I design today.',
+    detailLabel: 'What it added',
+    evidenceLabel: 'Evidence',
     nodes: [
-      {id: 'mis', label: 'MIS foundation', short: 'Systems & data', detail: 'A foundation in information systems shaped how I read workflows, dependencies and data before designing the interface.'},
-      {id: 'operations', label: 'Operational experience', short: 'Real workflows', detail: 'Working around real operational processes taught me that good interfaces only work when they respect the system behind them.'},
-      {id: 'experience', label: 'Experience design', short: 'Clear interfaces', detail: 'UI/UX became the layer where systems thinking turns into understandable flows, responsive interfaces and usable digital products.'},
-      {id: 'governance', label: 'Governance & DGA', short: 'Real constraints', detail: 'Designing within standards and governance constraints strengthened my ability to balance clarity, compliance and implementation.'},
-      {id: 'ai', label: 'AI workflows', short: 'Faster delivery', detail: 'Generative AI is part of my workflow for exploration, refinement and faster delivery — not a substitute for design judgment.'},
-      {id: 'delivery', label: 'Delivery & collaboration', short: 'From design to build', detail: 'Developer handoff and cross-functional collaboration keep design decisions connected to what is actually shipped.'},
+      {
+        id: 'mis',
+        label: 'MIS foundation',
+        short: 'Read the system before the screen.',
+        detail: 'Information systems trained me to look at data, dependencies and workflows before jumping into interface decisions.',
+        evidence: 'Management Information Systems',
+      },
+      {
+        id: 'operations',
+        label: 'Operational experience',
+        short: 'See where friction actually happens.',
+        detail: 'Working around real healthcare operations exposed the gaps between a process on paper and what people actually have to do.',
+        evidence: 'Healthcare operations',
+      },
+      {
+        id: 'experience',
+        label: 'Experience design',
+        short: 'Turn requirements into usable flows.',
+        detail: 'UI/UX became the layer where systems thinking turns into understandable journeys, responsive interfaces and digital products.',
+        evidence: 'UI/UX · Digital product design',
+      },
+      {
+        id: 'governance',
+        label: 'Governance & DGA',
+        short: 'Design inside real constraints.',
+        detail: 'Governance and digital standards taught me to treat compliance as part of the design problem rather than something added at the end.',
+        evidence: 'Digital governance · DGA-oriented work',
+      },
+      {
+        id: 'delivery',
+        label: 'AI-assisted delivery',
+        short: 'Move from idea to build with less friction.',
+        detail: 'Generative AI supports exploration and refinement, while developer handoff keeps the final design connected to what can actually be built.',
+        evidence: 'Generative AI workflows · Developer handoff',
+      },
     ],
   },
   ar: {
-    center: 'التفكير بالأنظمة',
-    centerDetail: 'الأساس الذي أبني عليه فهمي وتصميمي وتنفيذي للتجارب الرقمية.',
-    hint: 'اختر عنصرًا لترى كيف ساهم في تكوين أسلوبي.',
+    kicker: 'كيف تكوّن أسلوبي',
+    title: 'خمس طبقات. طريقة عمل واحدة.',
+    hint: 'اختر طبقة لترى ماذا أضافت لطريقة تصميمي اليوم.',
+    detailLabel: 'ماذا أضافت',
+    evidenceLabel: 'الدليل',
     nodes: [
-      {id: 'mis', label: 'أساس نظم المعلومات', short: 'الأنظمة والبيانات', detail: 'منحتني نظم المعلومات أساسًا لفهم سير العمل والاعتماديات والبيانات قبل التفكير في شكل الواجهة.'},
-      {id: 'operations', label: 'خبرة تشغيلية', short: 'سير عمل حقيقي', detail: 'العمل مع عمليات فعلية علّمني أن الواجهة الجيدة لا تنجح إن تجاهلت النظام الذي تعمل بداخله.'},
-      {id: 'experience', label: 'تصميم التجربة', short: 'واجهات أوضح', detail: 'أصبح UI/UX الطبقة التي أحوّل فيها فهم الأنظمة إلى تدفقات مفهومة وواجهات متجاوبة ومنتجات قابلة للاستخدام.'},
-      {id: 'governance', label: 'الحوكمة وDGA', short: 'قيود واقعية', detail: 'العمل ضمن المعايير والحوكمة عزز قدرتي على الموازنة بين الوضوح والامتثال وقابلية التنفيذ.'},
-      {id: 'ai', label: 'تدفقات عمل بالذكاء الاصطناعي', short: 'تنفيذ أسرع', detail: 'أستخدم الذكاء الاصطناعي التوليدي للاستكشاف والتحسين وتسريع التنفيذ، دون أن يحل محل الحكم التصميمي.'},
-      {id: 'delivery', label: 'التسليم والتعاون', short: 'من التصميم للتنفيذ', detail: 'التسليم للمطورين والتعاون مع الفرق يحافظان على اتصال القرار التصميمي بما يتم بناؤه فعليًا.'},
+      {
+        id: 'mis',
+        label: 'أساس نظم المعلومات',
+        short: 'أفهم النظام قبل الواجهة.',
+        detail: 'علّمتني نظم المعلومات أن أقرأ البيانات والاعتماديات وسير العمل قبل القفز إلى قرارات الواجهة.',
+        evidence: 'نظم المعلومات الإدارية',
+      },
+      {
+        id: 'operations',
+        label: 'الخبرة التشغيلية',
+        short: 'أرى أين يحدث الاحتكاك فعلًا.',
+        detail: 'العمل مع عمليات صحية حقيقية أظهر لي الفرق بين العملية كما تُكتب وبين ما يضطر الأشخاص إلى فعله على أرض الواقع.',
+        evidence: 'عمليات في بيئة صحية',
+      },
+      {
+        id: 'experience',
+        label: 'تصميم التجربة',
+        short: 'أحوّل المتطلبات إلى تدفقات قابلة للاستخدام.',
+        detail: 'أصبح UI/UX الطبقة التي يتحول فيها فهم الأنظمة إلى رحلات واضحة وواجهات متجاوبة ومنتجات رقمية قابلة للاستخدام.',
+        evidence: 'UI/UX · تصميم المنتجات الرقمية',
+      },
+      {
+        id: 'governance',
+        label: 'الحوكمة وDGA',
+        short: 'أصمم داخل القيود الواقعية.',
+        detail: 'علّمتني الحوكمة والمعايير الرقمية أن أتعامل مع الامتثال كجزء من مسألة التصميم، لا كإضافة تأتي في النهاية.',
+        evidence: 'الحوكمة الرقمية · متطلبات DGA',
+      },
+      {
+        id: 'delivery',
+        label: 'تنفيذ مدعوم بالذكاء الاصطناعي',
+        short: 'أقلل الاحتكاك بين الفكرة والتنفيذ.',
+        detail: 'يساعدني الذكاء الاصطناعي التوليدي في الاستكشاف والتحسين، بينما يحافظ تسليم المطورين على ارتباط التصميم بما يمكن بناؤه فعليًا.',
+        evidence: 'تدفقات AI · تسليم المطورين',
+      },
     ],
   },
 };
@@ -43,38 +113,50 @@ const copy: Record<Locale, {center: string; centerDetail: string; nodes: Node[];
 export function CareerMap({locale = 'en'}: {locale?: Locale}) {
   const data = copy[locale];
   const [activeId, setActiveId] = useState<string>('experience');
-  const active = data.nodes.find((node) => node.id === activeId) ?? data.nodes[0];
+  const activeIndex = Math.max(0, data.nodes.findIndex((node) => node.id === activeId));
+  const active = data.nodes[activeIndex] ?? data.nodes[0];
 
   return (
     <div className="cvMap" aria-label={locale === 'ar' ? 'خريطة تكويني المهني' : 'Professional formation map'}>
+      <div className="cvMapIntro">
+        <span>{data.kicker}</span>
+        <strong>{data.title}</strong>
+      </div>
+
       <div className="cvMapGrid">
-        {data.nodes.map((node, index) => (
-          <button
-            key={node.id}
-            type="button"
-            className={"cvSignal cvSignal" + (index + 1)}
-            aria-pressed={node.id === activeId}
-            onClick={() => setActiveId(node.id)}
-          >
-            <span className="cvSignalIndex">{String(index + 1).padStart(2, '0')}</span>
-            <strong>{node.label}</strong>
-            <span>{node.short}</span>
-          </button>
-        ))}
-        <div className="cvCore" aria-hidden="true">
-          <span className="cvCoreDot" />
-          <strong>{data.center}</strong>
-          <span>{data.centerDetail}</span>
+        <div className="cvMapTrack" role="list" aria-label={locale === 'ar' ? 'طبقات التكوين المهني' : 'Professional formation layers'}>
+          {data.nodes.map((node, index) => (
+            <button
+              key={node.id}
+              type="button"
+              className="cvSignal"
+              aria-pressed={node.id === activeId}
+              onClick={() => setActiveId(node.id)}
+            >
+              <span className="cvSignalIndex">{String(index + 1).padStart(2, '0')}</span>
+              <span className="cvSignalLine" aria-hidden="true" />
+              <span className="cvSignalCopy">
+                <strong>{node.label}</strong>
+                <span>{node.short}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <div className="cvMapDetail" aria-live="polite">
+          <div className="cvMapDetailNumber" aria-hidden="true">{String(activeIndex + 1).padStart(2, '0')}</div>
+          <div className="cvMapDetailBody">
+            <span className="cvMapKicker">{data.detailLabel}</span>
+            <strong>{active.short}</strong>
+            <p>{active.detail}</p>
+            <div className="cvMapEvidence">
+              <span>{data.evidenceLabel}</span>
+              <b>{active.evidence}</b>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="cvMapDetail" aria-live="polite">
-        <div>
-          <span className="cvMapKicker">{locale === 'ar' ? 'العلاقة' : 'Connection'}</span>
-          <strong>{active.label}</strong>
-        </div>
-        <p>{active.detail}</p>
-      </div>
       <p className="cvMapHint">{data.hint}</p>
     </div>
   );
