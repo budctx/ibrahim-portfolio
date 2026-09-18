@@ -185,7 +185,9 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
 
     expect(labelBox).not.toBeNull();
     expect(titleBox).not.toBeNull();
-    expect(Math.abs(labelBox.x - titleBox.x)).toBeLessThanOrEqual(24);
+    const labelInlineStart = labelBox.x + labelBox.width;
+    const titleInlineStart = titleBox.x + titleBox.width;
+    expect(Math.abs(labelInlineStart - titleInlineStart)).toBeLessThanOrEqual(24);
     expect(labelBox.y + labelBox.height).toBeLessThanOrEqual(titleBox.y + 4);
 
     const googleSize = await page.locator('.cvGoogleBrand svg').first().evaluate((element) => {
