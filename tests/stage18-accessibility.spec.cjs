@@ -209,6 +209,69 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
 
 
 
+  test('Arabic hero keeps a real safe zone and stacks before medium-width compression', async ({page}) => {
+    await page.setViewportSize({width: 1440, height: 1000});
+    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+
+    const desktop = await page.evaluate(() => {
+      const rect = (selector) => document.querySelector(selector)?.getBoundingClientRect();
+      const hero = rect('.cvHero');
+      const copy = rect('.cvHeroCopy');
+      const map = rect('.cvMap');
+      const title = rect('#cv-home-title-ar');
+      const lede = rect('.cvLede');
+      const primary = rect('.cvHeroActions .cvButtonPrimary');
+      const lineTops = [...document.querySelectorAll('.cvHeroTitleLine')]
+        .map((element) => Math.round(element.getBoundingClientRect().top));
+
+      return {
+        viewportWidth: window.innerWidth,
+        hero: hero && {left: hero.left, right: hero.right, width: hero.width},
+        copy: copy && {left: copy.left, right: copy.right, width: copy.width},
+        map: map && {left: map.left, right: map.right, width: map.width},
+        title: title && {left: title.left, right: title.right, width: title.width},
+        lede: lede && {left: lede.left, right: lede.right, width: lede.width},
+        primary: primary && {left: primary.left, right: primary.right, width: primary.width},
+        lineTops,
+      };
+    });
+
+    expect(desktop.hero).not.toBeNull();
+    expect(desktop.copy).not.toBeNull();
+    expect(desktop.map).not.toBeNull();
+    expect(desktop.title).not.toBeNull();
+    expect(desktop.lede).not.toBeNull();
+    expect(desktop.primary).not.toBeNull();
+
+    expect(desktop.map.right).toBeLessThan(desktop.copy.left);
+    expect(desktop.copy.left - desktop.map.right).toBeGreaterThanOrEqual(56);
+
+    expect(desktop.title.left).toBeGreaterThanOrEqual(desktop.copy.left - 1);
+    expect(desktop.title.right).toBeLessThanOrEqual(desktop.copy.right + 1);
+    expect(desktop.viewportWidth - desktop.title.right).toBeGreaterThanOrEqual(36);
+
+    expect(desktop.lede.width).toBeLessThan(desktop.title.width);
+    expect(Math.abs(desktop.primary.right - desktop.title.right)).toBeLessThanOrEqual(24);
+
+    expect(new Set(desktop.lineTops).size).toBe(3);
+
+    await page.setViewportSize({width: 1100, height: 1000});
+    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+
+    const medium = await page.evaluate(() => {
+      const copy = document.querySelector('.cvHeroCopy')?.getBoundingClientRect();
+      const map = document.querySelector('.cvMap')?.getBoundingClientRect();
+      return {
+        copy: copy && {top: copy.top, bottom: copy.bottom, left: copy.left, right: copy.right},
+        map: map && {top: map.top, bottom: map.bottom, left: map.left, right: map.right},
+      };
+    });
+
+    expect(medium.copy).not.toBeNull();
+    expect(medium.map).not.toBeNull();
+    expect(medium.map.top).toBeGreaterThanOrEqual(medium.copy.bottom + 48);
+  });
+
   test('header tracks the current narrative section', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
