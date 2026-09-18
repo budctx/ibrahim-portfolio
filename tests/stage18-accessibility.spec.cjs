@@ -1,0 +1,146 @@
+const {test, expect} = require('@playwright/test');
+
+const routes = ['/', '/work', '/playground', '/about', '/ar', '/ar/work', '/ar/playground', '/ar/about'];
+
+async function expectNoHorizontalOverflow(page) {
+  const metrics = await page.evaluate(() => ({
+    innerWidth: window.innerWidth,
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+
+  expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth + 1);
+  return metrics;
+}
+
+async function expectCoreContentVisible(page) {
+  await expect(page.locator('main')).toBeVisible();
+  await expect(page.locator('h1').first()).toBeVisible();
+
+  const clipped = await page.locator('header a, header button').evaluateAll((elements) => {
+    const width = window.innerWidth;
+    return elements
+      .filter((element) => {
+        const style = getComputedStyle(element);
+        return style.display !== 'none' && style.visibility !== 'hidden';
+      })
+      .map((element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          text: (element.textContent || '').trim(),
+          left: rect.left,
+          right: rect.right,
+          width: rect.width,
+          height: rect.height,
+        };
+      })
+      .filter((item) => item.left < -1 || item.right > width + 1);
+  });
+
+  expect(clipped).toEqual([]);
+}
+
+test.describe('Stage 18 accessibility and responsive evidence', () => {
+  test('320px reflow preserves all key routes without horizontal overflow', async ({page}) => {
+    await page.setViewportSize({width: 320, height: 800});
+
+    for (const route of routes) {
+      await page.goto(route, {waitUntil: 'networkidle'});
+
+      expect(await page.evaluate(() => window.innerWidth)).toBe(320);
+      await expectNoHorizontalOverflow(page);
+      await expectCoreContentVisible(page);
+
+      if (route === '/') {
+        await expect(page.locator('.structureFieldMobile')).toBeVisible();
+        await expect(page.locator('.structureFieldDesktop')).toBeHidden();
+      }
+
+      if (route.startsWith('/ar')) {
+        await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
+        await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+      } else {
+        await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+        await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
+      }
+    }
+  });
+
+  test('interactive controls retain the 44px authored target guardrail at 320px', async ({page}) => {
+    await page.setViewportSize({width: 320, height: 800});
+    await page.goto('/', {waitUntil: 'networkidle'});
+
+    const undersized = await page.locator('header a, header button').evaluateAll((elements) =>
+      elements
+        .filter((element) => {
+          const style = getComputedStyle(element);
+          return style.display !== 'none' && style.visibility !== 'hidden';
+        })
+        .map((element) => {
+          const rect = element.getBoundingClientRect();
+          return {
+            text: (element.textContent || '').trim(),
+            width: rect.width,
+            height: rect.height,
+          };
+        })
+        .filter((item) => item.width < 44 || item.height < 44),
+    );
+
+    expect(undersized).toEqual([]);
+  });
+
+  test('200% text resize keeps content usable without horizontal overflow', async ({page}) => {
+    await page.setViewportSize({width: 1280, height: 900});
+
+    for (const route of routes) {
+      await page.goto(route, {waitUntil: 'networkidle'});
+      await page.addStyleTag({content: 'html { font-size: 200% !important; }'});
+
+      const rootFontSize = await page.evaluate(() => getComputedStyle(document.documentElement).fontSize);
+      expect(parseFloat(rootFontSize)).toBeGreaterThanOrEqual(31);
+
+      await expectNoHorizontalOverflow(page);
+      await expectCoreContentVisible(page);
+    }
+  });
+
+  test('Reduced Motion collapses authored transitions and preserves navigation', async ({browser}) => {
+    const context = await browser.newContext({
+      reducedMotion: 'reduce',
+      viewport: {width: 1280, height: 900},
+    });
+    const page = await context.newPage();
+
+    await page.goto('/', {waitUntil: 'networkidle'});
+
+    expect(await page.evaluate(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(true);
+
+    const motion = await page.locator('.contactLink').evaluate((element) => {
+      const style = getComputedStyle(element);
+      return {
+        transitionDuration: style.transitionDuration,
+        animationDuration: style.animationDuration,
+        scrollBehavior: getComputedStyle(document.documentElement).scrollBehavior,
+      };
+    });
+
+    const maxTransitionMs = Math.max(
+      ...motion.transitionDuration.split(',').map((value) => {
+        const trimmed = value.trim();
+        if (trimmed.endsWith('ms')) return parseFloat(trimmed);
+        if (trimmed.endsWith('s')) return parseFloat(trimmed) * 1000;
+        return Number.POSITIVE_INFINITY;
+      }),
+    );
+
+    expect(maxTransitionMs).toBeLessThanOrEqual(0.1);
+    expect(motion.scrollBehavior).toBe('auto');
+
+    await page.locator('a[href="/about"]').click();
+    await expect(page).toHaveURL(/\/about$/);
+    await expect(page.locator('h1')).toBeVisible();
+
+    await context.close();
+  });
+});
