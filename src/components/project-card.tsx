@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
-import type {MouseEvent} from 'react';
+import type {MouseEvent, PointerEvent} from 'react';
 import type {ProjectSummary} from '@/lib/content';
 
 type ProjectCardProps = {
@@ -27,13 +27,28 @@ function isPlainActivation(event: MouseEvent<HTMLAnchorElement>) {
 export function ProjectCard({project, locale = 'en'}: ProjectCardProps) {
   const router = useRouter();
   const ar = locale === 'ar';
-  const href = ar ? `/ar/projects/${project.slug}` : `/projects/${project.slug}`;
+  const href = ar ? '/ar/projects/' + project.slug : '/projects/' + project.slug;
   const title = ar ? project.titleAr : project.titleEn;
   const role = ar ? project.roleAr : project.roleEn;
   const type = ar
     ? project.typeAr || ({flagship: 'مشروع رئيسي', selected: 'عمل مختار', playground: 'تجربة'} as const)[project.classification]
     : project.typeEn || project.classification;
   const alt = ar ? project.cover?.altAr : project.cover?.altEn;
+
+  const handlePointerMove = (event: PointerEvent<HTMLAnchorElement>) => {
+    if (event.pointerType === 'touch') return;
+    const card = event.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / Math.max(rect.width, 1) - 0.5) * 12;
+    const y = ((event.clientY - rect.top) / Math.max(rect.height, 1) - 0.5) * 8;
+    card.style.setProperty('--preview-x', x.toFixed(2) + 'px');
+    card.style.setProperty('--preview-y', y.toFixed(2) + 'px');
+  };
+
+  const handlePointerLeave = (event: PointerEvent<HTMLAnchorElement>) => {
+    event.currentTarget.style.setProperty('--preview-x', '0px');
+    event.currentTarget.style.setProperty('--preview-y', '0px');
+  };
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (!isPlainActivation(event)) return;
@@ -60,13 +75,15 @@ export function ProjectCard({project, locale = 'en'}: ProjectCardProps) {
       const signalCenterY = rect.top + rect.height / 2;
       const translateY = Math.max(-24, Math.min(24, (cardCenterY - signalCenterY) * 0.06));
       const duration = 280 + index * 40;
+      const scale = index === 0 ? 0.992 : 1;
+      const opacity = index === 1 ? 0.72 : 0.9;
 
       const animation = signal.animate(
         [
           {transform: 'translate3d(0, 0, 0)', opacity: 1},
           {
-            transform: `translate3d(0, ${translateY}px, 0) scale(${index === 0 ? 0.992 : 1})`,
-            opacity: index === 1 ? 0.72 : 0.9,
+            transform: 'translate3d(0, ' + translateY + 'px, 0) scale(' + scale + ')',
+            opacity,
           },
         ],
         {
@@ -86,21 +103,32 @@ export function ProjectCard({project, locale = 'en'}: ProjectCardProps) {
   };
 
   return (
-    <Link className="projectCard" href={href} onClick={handleClick} data-project-key={project.projectKey}>
+    <Link
+      className="projectCard"
+      href={href}
+      onClick={handleClick}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      data-project-key={project.projectKey}
+    >
       <div className="projectCardMedia" data-signal="media">
         {project.cover?.url ? (
           <Image
             src={project.cover.url}
             alt={alt || ''}
             fill
-            sizes="(max-width: 760px) 100vw, (max-width: 1200px) 50vw, 42vw"
+            sizes="(max-width: 760px) 100vw, (max-width: 1200px) 70vw, 64vw"
           />
         ) : (
           <div className="projectCardMediaFallback" aria-hidden="true" />
         )}
+        <span className="projectCardMediaGrid" aria-hidden="true" />
       </div>
       <div className="projectCardBody">
-        <div className="eyebrow projectCardType" data-signal="classification">{type}</div>
+        <div className="projectCardTopline">
+          <div className="eyebrow projectCardType" data-signal="classification">{type}</div>
+          <span className="projectCardAction" aria-hidden="true">↗</span>
+        </div>
         <h3 data-signal="title">{title}</h3>
         <div className="meta" data-signal="meta">
           <span>{role ?? ''}</span>

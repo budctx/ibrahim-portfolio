@@ -31,11 +31,19 @@ export default async function ArabicHomePage() {
     <main id="main" className="shell rtl" dir="rtl" lang="ar">
       <SiteHeader locale="ar" counterpartHref="/" />
 
-      <section className="hero" aria-labelledby="home-title-ar">
+      <section className="hero heroExperience" aria-labelledby="home-title-ar">
         <div className="heroCopy">
           <div className="eyebrow">مصمم منتجات وتجارب رقمية</div>
-          <h1 id="home-title-ar">التعقيد، بوضوح.</h1>
+          <h1 id="home-title-ar">
+            <span>التعقيد،</span>
+            <span className="heroResolveWord">بوضوح.</span>
+          </h1>
           <p className="lede">أحوّل الأنظمة وسير العمل المعقدة إلى تجارب رقمية واضحة.</p>
+          <div className="heroSystemLine" aria-hidden="true">
+            <span>إشارة</span>
+            <span>بنية</span>
+            <span>عمل</span>
+          </div>
           <Link className="heroAction" href="#selected-work-title-ar">الأعمال المختارة <span aria-hidden="true">↓</span></Link>
         </div>
         <div className="structureFieldFrame">

@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {cookies, draftMode, headers} from 'next/headers';
 import type {ReactNode} from 'react';
 import './globals.css';
+import './motion-rework.css';
 
 const siteUrl = 'https://ibrahim-portfolio-blush.vercel.app';
 
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   },
 };
 
-const themeInit = `
+const themeInit = String.raw`
 try {
   const saved = localStorage.getItem('portfolio-theme');
   const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -58,7 +59,7 @@ export default async function RootLayout({children}: {children: ReactNode}) {
         {children}
         {draft.isEnabled && (
           <aside className="previewBar" aria-label="Draft preview">
-            <span>Draft preview{branch ? ` · ${branch}` : ''}</span>
+            <span>Draft preview{branch ? ' · ' + branch : ''}</span>
             <form method="POST" action="/preview/end">
               <button type="submit">End preview</button>
             </form>
