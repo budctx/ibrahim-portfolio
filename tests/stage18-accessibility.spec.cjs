@@ -77,14 +77,16 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
 
   test('contact exposes WhatsApp phone and Saudi Arabia in both locales', async ({page}) => {
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
-    await expect(page.locator('.cvContactDetails a[href="https://wa.me/966597866665"]')).toBeVisible();
-    await expect(page.locator('.cvContactDetails a[href="tel:+966597866665"]')).toBeVisible();
-    await expect(page.locator('.cvContactDetails')).toContainText('Saudi Arabia');
+    await expect(page.locator('.cvContactGrid a[href="https://wa.me/966597866665"]')).toBeVisible();
+    await expect(page.locator('.cvContactGrid a[href="tel:+966597866665"]')).toBeVisible();
+    await expect(page.locator('.cvContactGrid')).toContainText('Saudi Arabia');
+    await expect(page.locator('.cvContactGrid .cvContactCard')).toHaveCount(5);
 
     await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
-    await expect(page.locator('.cvContactDetails a[href="https://wa.me/966597866665"]')).toBeVisible();
-    await expect(page.locator('.cvContactDetails a[href="tel:+966597866665"]')).toBeVisible();
-    await expect(page.locator('.cvContactDetails')).toContainText('السعودية');
+    await expect(page.locator('.cvContactGrid a[href="https://wa.me/966597866665"]')).toBeVisible();
+    await expect(page.locator('.cvContactGrid a[href="tel:+966597866665"]')).toBeVisible();
+    await expect(page.locator('.cvContactGrid')).toContainText('السعودية');
+    await expect(page.locator('.cvContactGrid .cvContactCard')).toHaveCount(5);
   });
 
   test('interactive controls retain the 44px authored target guardrail at 320px', async ({page}) => {
@@ -219,7 +221,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(googleSize.width).toBeGreaterThanOrEqual(38);
     expect(googleSize.height).toBeGreaterThanOrEqual(38);
 
-    const contactSizes = await page.locator('.cvContactLinks a').evaluateAll((elements) =>
+    const contactSizes = await page.locator('.cvContactGrid .cvContactCard').evaluateAll((elements) =>
       elements.map((element) => {
         const rect = element.getBoundingClientRect();
         return {width: rect.width, height: rect.height};
