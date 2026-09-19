@@ -224,11 +224,20 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     const contactSizes = await page.locator('.cvContactGrid .cvContactCard').evaluateAll((elements) =>
       elements.map((element) => {
         const rect = element.getBoundingClientRect();
-        return {width: rect.width, height: rect.height};
+        const style = getComputedStyle(element);
+        return {
+          width: rect.width,
+          height: rect.height,
+          backgroundColor: style.backgroundColor,
+          borderColor: style.borderColor,
+        };
       }),
     );
-    expect(contactSizes.length).toBeGreaterThanOrEqual(2);
-    expect(contactSizes.every((size) => size.height >= 60)).toBe(true);
+    expect(contactSizes).toHaveLength(5);
+    expect(Math.max(...contactSizes.map((size) => size.width)) - Math.min(...contactSizes.map((size) => size.width))).toBeLessThanOrEqual(1);
+    expect(Math.max(...contactSizes.map((size) => size.height)) - Math.min(...contactSizes.map((size) => size.height))).toBeLessThanOrEqual(1);
+    expect(new Set(contactSizes.map((size) => size.backgroundColor)).size).toBe(1);
+    expect(new Set(contactSizes.map((size) => size.borderColor)).size).toBe(1);
   });
 
 
