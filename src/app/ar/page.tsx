@@ -6,6 +6,7 @@ import {ProjectCard} from '@/components/project-card';
 import {CareerMap} from '@/components/career-map';
 import {HomeHeader} from '@/components/home-header';
 import {HeroKeywordLoop} from '@/components/hero-keyword-loop';
+import {FloatingContactButton} from '@/components/floating-contact-button';
 import {ContactCard} from '@/components/contact-card';
 import {
   ArrowDownRightIcon,
@@ -46,6 +47,7 @@ export default async function ArabicHomePage() {
     <main id="main" className="cvPage cvRtl" dir="rtl" lang="ar">
       <div className="cvFrame">
         <HomeHeader locale="ar" counterpartHref="/" hasWork={hasWork} />
+        <FloatingContactButton locale="ar" />
 
         <section className="cvHero" aria-labelledby="cv-home-title-ar">
           <div className="cvHeroCopy">
@@ -63,7 +65,6 @@ export default async function ArabicHomePage() {
                 ابدأ بطريقة التفكير
                 <ArrowDownRightIcon className="cvDirectionalIcon" />
               </Link>
-              <Link className="cvButton" href="#contact">تواصل معي</Link>
             </div>
           </div>
 
