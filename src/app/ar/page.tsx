@@ -223,7 +223,6 @@ export default async function ArabicHomePage() {
                 value="ibrahim.alajmi407@gmail.com"
                 href="mailto:ibrahim.alajmi407@gmail.com"
                 valueDir="ltr"
-                primary
               />
               <ContactCard
                 icon={<LinkedInBrandIcon />}
