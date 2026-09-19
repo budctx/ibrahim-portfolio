@@ -5,7 +5,7 @@ import {getProjects} from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'التجارب',
-  description: 'تجارب واستكشافات في المنتجات والتفاعل والأنظمة الرقمية.',
+  description: 'تجارب واستكشافات في تصميم المنتجات الرقمية وUI/UX وتصميم التفاعل والويب المتجاوب وأنظمة التصميم والذكاء الاصطناعي التوليدي.',
   alternates: {
     canonical: '/ar/playground',
     languages: {en: '/playground', ar: '/ar/playground', 'x-default': '/playground'},
@@ -21,17 +21,24 @@ export default async function ArabicPlaygroundPage() {
       <SiteHeader locale="ar" counterpartHref="/playground" />
       <section className="pageIntro">
         <div className="eyebrow">التجارب</div>
-        <h1>تجارب لها هدف.</h1>
-        <p className="lede">استكشافات تختبر التفاعل والأنظمة والأفكار البصرية دون تقديمها كأعمال عملاء.</p>
+        <h1>اختبر الفكرة قبل أن تسميها حلًا.</h1>
+        <p className="lede">استكشافات في Interaction Design وUI/UX والويب المتجاوب وDesign Systems وسير العمل الرقمي وGenerative AI — منفصلة بوضوح عن أعمال العملاء أو الإنتاج.</p>
+        <a className="sectionLink" href="#experiments-ar">شاهد التجارب</a>
       </section>
-      <section className="section">
+      <section className="section" id="experiments-ar">
         {projects.length === 0 ? (
-          <div className="empty"><span className="emptySignal" aria-hidden="true" /><span>لا توجد تجارب منشورة للعامة حتى الآن.</span></div>
+          <div>
+            <div className="empty"><span className="emptySignal" aria-hidden="true" /><span>لا توجد تجارب منشورة للعامة حتى الآن. ستظهر هنا تجارب التفاعل والواجهات والذكاء الاصطناعي عندما تكون جديرة بالعرض.</span></div>
+            <a className="sectionLink" href="/ar#contact">عندك فكرة تستحق الاختبار؟ ابدأ محادثة.</a>
+          </div>
         ) : (
-          <div className="projectGrid">
-            {projects.map((project) => (
-              <ProjectCard project={project} key={project.projectKey} locale="ar" />
-            ))}
+          <div>
+            <div className="projectGrid">
+              {projects.map((project) => (
+                <ProjectCard project={project} key={project.projectKey} locale="ar" />
+              ))}
+            </div>
+            <a className="sectionLink" href="/ar#contact">عندك فكرة تستحق الاختبار؟ ابدأ محادثة.</a>
           </div>
         )}
       </section>
