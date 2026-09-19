@@ -17,7 +17,7 @@ export default async function ArabicWorkPage() {
   const projects = (await getProjects()).filter((project) => project.classification !== 'playground');
   const flagship = projects.filter((project) => project.classification === 'flagship');
   const selected = projects.filter((project) => project.classification === 'selected');
-  const firstHref = flagship.length ? '#group-12' : selected.length ? '#group-11' : '/ar#contact';
+  const firstHref = flagship.length ? '#flagship-projects' : selected.length ? '#selected-work' : '/ar#contact';
 
   return (
     <main id="main" className="shell rtl" dir="rtl" lang="ar">
@@ -30,12 +30,14 @@ export default async function ArabicWorkPage() {
       </section>
 
       <ProjectGroup
+        id="flagship-projects"
         title="مشاريع رئيسية"
         projects={flagship}
-        nextHref={selected.length ? '#group-11' : '/ar#contact'}
+        nextHref={selected.length ? '#selected-work' : '/ar#contact'}
         nextLabel={selected.length ? 'أكمل إلى الأعمال المختارة' : 'عندك تحدٍ مشابه؟ خلّنا نتكلم.'}
       />
       <ProjectGroup
+        id="selected-work"
         title="أعمال مختارة"
         projects={selected}
         nextHref="/ar#contact"
@@ -53,18 +55,19 @@ export default async function ArabicWorkPage() {
 }
 
 function ProjectGroup({
+  id,
   title,
   projects,
   nextHref,
   nextLabel,
 }: {
+  id: string;
   title: string;
   projects: Awaited<ReturnType<typeof getProjects>>;
   nextHref: string;
   nextLabel: string;
 }) {
   if (projects.length === 0) return null;
-  const id = `group-${title.length}`;
 
   return (
     <section className="section" aria-labelledby={id}>
