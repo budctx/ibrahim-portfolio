@@ -4,6 +4,7 @@ import {ProjectCard} from '@/components/project-card';
 import {CareerMap} from '@/components/career-map';
 import {HomeHeader} from '@/components/home-header';
 import {HeroKeywordLoop} from '@/components/hero-keyword-loop';
+import {FloatingContactButton} from '@/components/floating-contact-button';
 import {ContactCard} from '@/components/contact-card';
 import {
   ArrowDownRightIcon,
@@ -29,6 +30,7 @@ export default async function HomePage() {
     <main id="main" className="cvPage">
       <div className="cvFrame">
         <HomeHeader locale="en" counterpartHref="/ar" hasWork={hasWork} />
+        <FloatingContactButton locale="en" />
 
         <section className="cvHero" aria-labelledby="cv-home-title">
           <div className="cvHeroCopy">
@@ -46,7 +48,6 @@ export default async function HomePage() {
                 Start with how I think
                 <ArrowDownRightIcon className="cvDirectionalIcon" />
               </Link>
-              <Link className="cvButton" href="#contact">Contact me</Link>
             </div>
           </div>
 
