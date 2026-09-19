@@ -493,6 +493,30 @@ html[data-theme='dark'] .cvPage {
   text-transform: none;
 }
 
+.cvHeroKeywordLoop {
+  min-height: 52px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-block: 12px;
+  border-block: 1px solid var(--cv-hairline);
+}
+
+.cvHeroKeywordLoop > span {
+  color: var(--muted);
+  font-size: var(--cv-type-meta);
+  font-weight: 600;
+}
+
+.cvHeroKeywordLoop > strong {
+  color: var(--cv-accent);
+  font-size: var(--cv-type-ui);
+  font-weight: 700;
+  animation: cvKeywordIn 420ms cubic-bezier(.2,.8,.2,1) both;
+}
+
 .cvHeroActions {
   display: flex;
   flex-wrap: wrap;
@@ -1346,6 +1370,53 @@ html[data-theme='dark'] .cvPage {
   line-height: 1.65;
 }
 
+.cvSectionNext {
+  width: min(100%, 760px);
+  min-height: 64px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  margin-top: clamp(34px, 4vw, 52px);
+  padding-block: 16px;
+  border-block: 1px solid var(--cv-hairline);
+  color: var(--fg);
+}
+
+.cvSectionNext > span {
+  color: var(--cv-accent);
+  font-size: var(--cv-type-meta);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.cvSectionNext > strong {
+  font-size: var(--cv-type-body);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.cvSectionNext svg,
+.cvTurningPointCta svg {
+  width: 18px;
+  height: 18px;
+}
+
+.cvTurningPointCta {
+  grid-column: 4 / -2;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  font-size: var(--cv-type-ui);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: .24em;
+}
+
+
 .cvTurningPoint {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -1441,9 +1512,18 @@ html[data-theme='dark'] .cvPage {
   letter-spacing: 0;
 }
 
-.cvRtl .cvSectionIntro {
+.cvRtl .cvSectionIntro,
+.cvRtl .cvSectionNext {
   margin-inline-start: var(--cv-copy-axis-inset);
+}
+
+.cvRtl .cvSectionIntro {
   line-height: 1.78;
+}
+
+.cvRtl .cvSectionNext > span {
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .cvEvidenceLabel {
@@ -1660,6 +1740,12 @@ html[data-theme='light'] .cvGoogleBrand {
     background: color-mix(in srgb, var(--cv-accent) 7%, var(--bg));
     transform: translateY(-1px);
   }
+
+  .cvSectionNext:hover {
+    background: color-mix(in srgb, var(--cv-accent) 6%, var(--bg));
+    border-color: color-mix(in srgb, var(--cv-accent) 48%, var(--cv-hairline));
+  }
+
 
   .cvCapabilityPairs > div {
     transition: background-color 180ms cubic-bezier(.2,.8,.2,1),
@@ -2083,6 +2169,20 @@ html[data-theme='light'] .cvGoogleBrand {
     font-size: clamp(1.9rem, 9vw, 2.8rem);
   }
 
+  .cvTurningPointCta {
+    grid-column: 1;
+    margin-top: 8px;
+  }
+
+  .cvSectionNext {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .cvSectionNext svg {
+    display: none;
+  }
+
+
 
   .cvRtl h1 {
     max-width: none;
@@ -2204,6 +2304,11 @@ html[data-theme='light'] .cvGoogleBrand {
     transition: none !important;
   }
 
+  .cvHeroKeywordLoop > strong {
+    animation: none !important;
+  }
+
+
   .cvJourney article {
     transition: none !important;
   }
@@ -2257,6 +2362,17 @@ html[data-theme='light'] .cvGoogleBrand {
   .cvCredentials,
   .cvCapabilityPairs {
     grid-template-columns: 1fr;
+  }
+}
+
+@keyframes cvKeywordIn {
+from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
