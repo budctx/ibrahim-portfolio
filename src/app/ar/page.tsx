@@ -13,6 +13,9 @@ import {
   GraduationCapIcon,
   LinkedInBrandIcon,
   MailIcon,
+  MapPinIcon,
+  MessageCircleIcon,
+  PhoneIcon,
   WorkflowIcon,
 } from '@/components/icons';
 
@@ -221,6 +224,20 @@ export default async function ArabicHomePage() {
                 <LinkedInBrandIcon />
                 LinkedIn
               </Link>
+            </div>
+            <div className="cvContactDetails" aria-label="معلومات التواصل">
+              <a href="https://wa.me/966597866665" target="_blank" rel="noreferrer">
+                <MessageCircleIcon />
+                <span><b>WhatsApp</b><small>+966 59 786 6665</small></span>
+              </a>
+              <a href="tel:+966597866665">
+                <PhoneIcon />
+                <span><b>رقم التواصل</b><small dir="ltr">+966 59 786 6665</small></span>
+              </a>
+              <div>
+                <MapPinIcon />
+                <span><b>الموقع</b><small>السعودية</small></span>
+              </div>
             </div>
           </div>
         </section>
