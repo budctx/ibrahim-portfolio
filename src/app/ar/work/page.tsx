@@ -2,10 +2,12 @@ import type {Metadata} from 'next';
 import {SiteHeader} from '@/components/site-header';
 import {ProjectCard} from '@/components/project-card';
 import {getProjects} from '@/lib/content';
+import {ARABIC_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 
 export const metadata: Metadata = {
   title: 'الأعمال',
   description: 'أعمال مختارة في تصميم المنتجات الرقمية وUI/UX وتصميم الويب وUX Strategy والواجهات المتجاوبة وسير العمل الرقمي والتسليم القابل للتنفيذ.',
+  keywords: [...ARABIC_PORTFOLIO_KEYWORDS],
   alternates: {
     canonical: '/ar/work',
     languages: {en: '/work', ar: '/ar/work', 'x-default': '/work'},
