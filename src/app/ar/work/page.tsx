@@ -5,7 +5,7 @@ import {getProjects} from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'الأعمال',
-  description: 'أعمال مختارة في تصميم المنتجات والتجارب الرقمية.',
+  description: 'أعمال مختارة في تصميم المنتجات الرقمية وUI/UX وتصميم الويب وUX Strategy والواجهات المتجاوبة وسير العمل الرقمي والتسليم القابل للتنفيذ.',
   alternates: {
     canonical: '/ar/work',
     languages: {en: '/work', ar: '/ar/work', 'x-default': '/work'},
@@ -17,29 +17,52 @@ export default async function ArabicWorkPage() {
   const projects = (await getProjects()).filter((project) => project.classification !== 'playground');
   const flagship = projects.filter((project) => project.classification === 'flagship');
   const selected = projects.filter((project) => project.classification === 'selected');
+  const firstHref = flagship.length ? '#group-12' : selected.length ? '#group-11' : '/ar#contact';
 
   return (
     <main id="main" className="shell rtl" dir="rtl" lang="ar">
       <SiteHeader locale="ar" counterpartHref="/work" />
       <section className="pageIntro">
         <div className="eyebrow">الأعمال</div>
-        <h1>الدليل قبل الادعاء.</h1>
-        <p className="lede">أعمال مختارة تركّز على جعل المنتجات والأنظمة المعقدة أكثر وضوحًا.</p>
+        <h1>شاهد كيف تصمد القرارات داخل العمل.</h1>
+        <p className="lede">دراسات حالة في تصميم المنتجات الرقمية وUI/UX وتصميم الويب وسير العمل والواجهات المتجاوبة وUX Strategy والتسليم القابل للتنفيذ.</p>
+        <a className="sectionLink" href={firstHref}>{projects.length ? 'ابدأ بالأعمال' : 'لا توجد دراسات حالة عامة بعد — تواصل معي'}</a>
       </section>
 
-      <ProjectGroup title="مشاريع رئيسية" projects={flagship} />
-      <ProjectGroup title="أعمال مختارة" projects={selected} />
+      <ProjectGroup
+        title="مشاريع رئيسية"
+        projects={flagship}
+        nextHref={selected.length ? '#group-11' : '/ar#contact'}
+        nextLabel={selected.length ? 'أكمل إلى الأعمال المختارة' : 'عندك تحدٍ مشابه؟ خلّنا نتكلم.'}
+      />
+      <ProjectGroup
+        title="أعمال مختارة"
+        projects={selected}
+        nextHref="/ar#contact"
+        nextLabel="عندك تحدٍ مشابه؟ خلّنا نتكلم."
+      />
 
       {projects.length === 0 && (
         <section className="section">
-          <div className="empty"><span className="emptySignal" aria-hidden="true" /><span>يجري تجهيز الأعمال الحقيقية للنشر.</span></div>
+          <div className="empty"><span className="emptySignal" aria-hidden="true" /><span>يجري تجهيز دراسات الحالة الحقيقية للنشر. لن يظهر أي عمل إلا عندما يكون حقيقيًا ومعتمدًا للعرض.</span></div>
+          <a className="sectionLink" href="/ar#contact">ناقش احتياجًا في تصميم المنتجات أو UI/UX أو الويب</a>
         </section>
       )}
     </main>
   );
 }
 
-function ProjectGroup({title, projects}: {title: string; projects: Awaited<ReturnType<typeof getProjects>>}) {
+function ProjectGroup({
+  title,
+  projects,
+  nextHref,
+  nextLabel,
+}: {
+  title: string;
+  projects: Awaited<ReturnType<typeof getProjects>>;
+  nextHref: string;
+  nextLabel: string;
+}) {
   if (projects.length === 0) return null;
   const id = `group-${title.length}`;
 
@@ -53,6 +76,7 @@ function ProjectGroup({title, projects}: {title: string; projects: Awaited<Retur
           <ProjectCard project={project} key={project.projectKey} locale="ar" />
         ))}
       </div>
+      <a className="sectionLink" href={nextHref}>{nextLabel}</a>
     </section>
   );
 }
