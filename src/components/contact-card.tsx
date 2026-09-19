@@ -6,7 +6,6 @@ type ContactCardProps = {
   value?: string;
   href?: string;
   external?: boolean;
-  primary?: boolean;
   valueDir?: 'ltr' | 'rtl';
   className?: string;
 };
@@ -17,13 +16,10 @@ export function ContactCard({
   value,
   href,
   external = false,
-  primary = false,
   valueDir,
   className = '',
 }: ContactCardProps) {
-  const classes = ['cvContactCard', primary ? 'cvContactCardPrimary' : '', className]
-    .filter(Boolean)
-    .join(' ');
+  const classes = ['cvContactCard', className].filter(Boolean).join(' ');
 
   const content = (
     <>
