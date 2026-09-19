@@ -230,12 +230,6 @@ html[data-theme='dark'] .cvPage {
   margin-bottom: auto;
 }
 
-.cvContactLinks svg {
-  width: 18px;
-  height: 18px;
-  flex: 0 0 auto;
-}
-
 .cvHero {
   min-height: max(680px, calc(100svh - 86px));
   height: max(680px, calc(100svh - 86px));
@@ -1104,7 +1098,8 @@ html[data-theme='dark'] .cvPage {
 
 .cvContactGrid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: minmax(96px, auto);
   gap: 14px;
   margin-top: 30px;
   width: min(100%, 760px);
@@ -1112,7 +1107,8 @@ html[data-theme='dark'] .cvPage {
 
 .cvContactCard {
   min-width: 0;
-  min-height: 84px;
+  min-height: 96px;
+  height: 100%;
   display: grid;
   grid-template-columns: 28px minmax(0, 1fr);
   align-items: center;
@@ -1122,14 +1118,9 @@ html[data-theme='dark'] .cvPage {
   border-radius: 2px;
   background: transparent;
   color: var(--fg);
-}
-
-.cvContactGrid > .cvContactCard:nth-child(-n+2) {
-  grid-column: span 3;
-}
-
-.cvContactGrid > .cvContactCard:nth-child(n+3) {
-  grid-column: span 2;
+  transition: border-color 180ms cubic-bezier(.2,.8,.2,1),
+    background-color 180ms cubic-bezier(.2,.8,.2,1),
+    transform 180ms cubic-bezier(.2,.8,.2,1);
 }
 
 .cvContactCardIcon {
@@ -1163,17 +1154,6 @@ html[data-theme='dark'] .cvPage {
   font-weight: 500;
   line-height: 1.35;
   overflow-wrap: anywhere;
-}
-
-.cvContactCardPrimary {
-  border-color: var(--fg);
-  background: var(--fg);
-  color: var(--bg);
-}
-
-.cvContactCardPrimary .cvContactCardIcon,
-.cvContactCardPrimary .cvContactCardCopy small {
-  color: currentColor;
 }
 
 .cvFooter span:last-child {
@@ -1288,7 +1268,7 @@ html[data-theme='dark'] .cvPage {
 
 .cvRtl .cvContact > :first-child,
 .cvRtl .cvContactContext,
-.cvRtl .cvContactLinks {
+.cvRtl .cvContactGrid {
   margin-inline-start: var(--cv-copy-axis-inset);
 }
 
@@ -1444,9 +1424,9 @@ html[data-theme='dark'] .cvPage {
 }
 
 .cvLinkedInLink svg {
-  width: 23px;
-  height: 23px;
-  color: #0a66c2;
+  width: 22px;
+  height: 22px;
+  color: var(--cv-accent);
 }
 
 .cvRtl .cvTurningPoint > span {
@@ -1556,12 +1536,6 @@ html[data-theme='dark'] .cvPage {
   height: 2px;
   background: linear-gradient(90deg, var(--cv-accent), transparent 72%);
   opacity: .72;
-}
-
-.cvLinkedInLink {
-  border-color: var(--cv-hairline);
-  background: transparent;
-  color: var(--fg);
 }
 
 .cvRtl .cvHeroTitleLine {
@@ -1687,10 +1661,6 @@ html[data-theme='light'] .cvGoogleBrand {
     transform: translateY(-1px);
   }
 
-  .cvLinkedInLink:hover svg {
-    color: #0a66c2;
-  }
-
   .cvCapabilityPairs > div {
     transition: background-color 180ms cubic-bezier(.2,.8,.2,1),
       transform 180ms cubic-bezier(.2,.8,.2,1);
@@ -1712,17 +1682,6 @@ html[data-theme='light'] .cvGoogleBrand {
     transform: translateY(-2px);
   }
 
-  .cvContactCardPrimary[href]:hover {
-    background: var(--cv-accent);
-    border-color: var(--cv-accent);
-    color: var(--bg);
-  }
-
-  .cvLinkedInLink:hover {
-    border-color: color-mix(in srgb, #0a66c2 60%, var(--cv-hairline));
-    background: color-mix(in srgb, #0a66c2 8%, var(--bg));
-    color: var(--fg);
-  }
 }
 
 @media (max-width: 1320px) {
@@ -1826,6 +1785,11 @@ html[data-theme='light'] .cvGoogleBrand {
   .cvContact {
     grid-template-columns: minmax(70px, 90px) minmax(0, 1fr);
     column-gap: 24px;
+  }
+
+  .cvContactGrid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -2143,8 +2107,7 @@ html[data-theme='light'] .cvGoogleBrand {
     grid-template-columns: 1fr;
   }
 
-  .cvContactGrid > .cvContactCard:nth-child(n) {
-    grid-column: 1;
+  .cvContactCard {
     width: 100%;
   }
 
