@@ -5,6 +5,7 @@ import {draftMode} from 'next/headers';
 import {notFound} from 'next/navigation';
 import {SiteHeader} from '@/components/site-header';
 import {getProjectBySlug} from '@/lib/content';
+import {ARABIC_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 
 type ProjectPageProps = {
   params: Promise<{slug: string}>;
@@ -19,6 +20,7 @@ export async function generateMetadata({params}: ProjectPageProps): Promise<Meta
   return {
     title: project.titleAr,
     description: project.problemAr || project.contextAr || `دراسة مشروع: ${project.titleAr}`,
+    keywords: [...ARABIC_PORTFOLIO_KEYWORDS],
     robots: preview ? {index: false, follow: false, noarchive: true} : undefined,
     alternates: {
       canonical: `/ar/projects/${project.slug}`,
