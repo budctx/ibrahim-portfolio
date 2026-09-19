@@ -75,6 +75,22 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     await expect(page.locator('.cvHeroActions a[href="#contact"]')).toHaveText('تواصل معي');
   });
 
+  test('homepage narrative uses next-step CTAs and an animated keyword focus', async ({page}) => {
+    await page.setViewportSize({width: 1440, height: 1000});
+
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await expect(page.locator('.cvHeroKeywordLoop')).toBeVisible();
+    await expect(page.locator('#about .cvSectionNext')).toHaveAttribute('href', '#journey');
+    await expect(page.locator('#journey .cvSectionNext')).toHaveAttribute('href', '#capabilities');
+    await expect(page.locator('#capabilities .cvSectionNext')).toHaveAttribute('href', '#credentials');
+
+    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+    await expect(page.locator('.cvHeroKeywordLoop')).toBeVisible();
+    await expect(page.locator('#about .cvSectionNext')).toHaveAttribute('href', '#journey');
+    await expect(page.locator('#journey .cvSectionNext')).toHaveAttribute('href', '#capabilities');
+    await expect(page.locator('#capabilities .cvSectionNext')).toHaveAttribute('href', '#credentials');
+  });
+
   test('contact exposes WhatsApp phone and Saudi Arabia in both locales', async ({page}) => {
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
     await expect(page.locator('.cvContactGrid a[href="https://wa.me/966597866665"]')).toBeVisible();
@@ -286,7 +302,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(desktop.lede.width).toBeLessThan(desktop.title.width);
     expect(Math.abs(desktop.primary.right - desktop.title.right)).toBeLessThanOrEqual(24);
 
-    expect(new Set(desktop.lineTops).size).toBe(3);
+    expect(new Set(desktop.lineTops).size).toBe(2);
 
     await page.setViewportSize({width: 1100, height: 1000});
     await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
@@ -373,7 +389,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(Math.max(...axis) - Math.min(...axis)).toBeLessThanOrEqual(18);
 
     const hero = metrics.find((item) => item.selector === '#cv-home-title-ar');
-    expect(hero.lines).toBe(3);
+    expect(hero.lines).toBeLessThanOrEqual(2);
     expect(hero.lineHeight / hero.fontSize).toBeGreaterThanOrEqual(1.14);
 
     const sectionHeadings = metrics.filter((item) => item.selector !== '#cv-home-title-ar');
