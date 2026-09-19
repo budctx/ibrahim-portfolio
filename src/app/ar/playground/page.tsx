@@ -2,10 +2,12 @@ import type {Metadata} from 'next';
 import {SiteHeader} from '@/components/site-header';
 import {ProjectCard} from '@/components/project-card';
 import {getProjects} from '@/lib/content';
+import {ARABIC_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 
 export const metadata: Metadata = {
   title: 'التجارب',
   description: 'تجارب واستكشافات في تصميم المنتجات الرقمية وUI/UX وتصميم التفاعل والويب المتجاوب وأنظمة التصميم والذكاء الاصطناعي التوليدي.',
+  keywords: [...ARABIC_PORTFOLIO_KEYWORDS],
   alternates: {
     canonical: '/ar/playground',
     languages: {en: '/playground', ar: '/ar/playground', 'x-default': '/playground'},
