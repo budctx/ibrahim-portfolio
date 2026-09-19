@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {cookies, draftMode, headers} from 'next/headers';
 import type {ReactNode} from 'react';
 import {IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Arabic} from 'next/font/google';
+import {ENGLISH_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 import './globals.css';
 import './portfolio.css';
 
@@ -35,43 +36,7 @@ export const metadata: Metadata = {
     template: '%s — Ibrahim',
   },
   description: 'Digital product designer in Saudi Arabia working across UI/UX, web design, UX strategy, information architecture, responsive interfaces, digital workflows, generative AI, and developer handoff.',
-  keywords: [
-    'Digital Product Designer',
-    'Product Designer Saudi Arabia',
-    'UX Designer Saudi Arabia',
-    'UI UX Designer',
-    'UX Designer',
-    'UI Designer',
-    'Digital Product Design',
-    'Product UX',
-    'User Experience Design',
-    'User Interface Design',
-    'Web Designer',
-    'Web Design',
-    'Responsive Web Design',
-    'UX Strategy',
-    'Systems Thinking',
-    'Information Architecture',
-    'User Research',
-    'Wireframing',
-    'Prototyping',
-    'Usability Testing',
-    'Interaction Design',
-    'Design Systems',
-    'Accessibility',
-    'WCAG',
-    'Digital Governance',
-    'Digital Government Authority',
-    'DGA',
-    'DGA compliance',
-    'Developer Handoff',
-    'Generative AI',
-    'AI-assisted design',
-    'AI workflows',
-    'Enterprise UX',
-    'Workflow Design',
-    'Saudi Arabia',
-  ],
+  keywords: [...ENGLISH_PORTFOLIO_KEYWORDS],
   alternates: {
     canonical: '/',
     languages: {
