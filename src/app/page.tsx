@@ -3,6 +3,7 @@ import {getProjects} from '@/lib/content';
 import {ProjectCard} from '@/components/project-card';
 import {CareerMap} from '@/components/career-map';
 import {HomeHeader} from '@/components/home-header';
+import {HeroKeywordLoop} from '@/components/hero-keyword-loop';
 import {ContactCard} from '@/components/contact-card';
 import {
   ArrowDownRightIcon,
@@ -31,22 +32,22 @@ export default async function HomePage() {
 
         <section className="cvHero" aria-labelledby="cv-home-title">
           <div className="cvHeroCopy">
-            <p className="cvOverline">Ibrahim Al-Ajmi · Digital Product & Experience Designer</p>
-            <h1 id="cv-home-title">I design digital products <em>from the system outward.</em></h1>
+            <p className="cvOverline">Ibrahim Al-Ajmi · Digital Product Designer · Saudi Arabia</p>
+            <h1 id="cv-home-title">
+              <span className="cvHeroTitleLine">I design digital products</span>
+              <em><span className="cvHeroTitleLine">that are easier to use.</span></em>
+            </h1>
             <p className="cvLede">
-              Before I decide what an interface should look like, I want to understand what the system needs to make clearer.
+              UI/UX, web design, and systems thinking for real workflows — from problem framing to a usable, implementation-ready interface.
             </p>
-            <div className="cvIdentitySignals" aria-label="Professional focus">
-              <span className="cvBadge">Systems</span><span className="cvBadge">Experience</span><span className="cvBadge">Delivery</span>
-            </div>
+            <HeroKeywordLoop locale="en" />
             <div className="cvHeroActions">
-              <Link className="cvButton cvButtonPrimary" href="#journey">
-                See how I got here
+              <Link className="cvButton cvButtonPrimary" href="#about">
+                Start with how I think
                 <ArrowDownRightIcon className="cvDirectionalIcon" />
               </Link>
               <Link className="cvButton" href="#contact">Contact me</Link>
             </div>
-            <span className="cvSystemPhrase" aria-hidden="true">System → Experience</span>
           </div>
 
           <CareerMap locale="en" />
@@ -55,9 +56,9 @@ export default async function HomePage() {
         <section className="cvSection" id="about" aria-labelledby="about-title">
           <div className="cvSectionLabel"><span>01</span><span>About</span></div>
           <div className="cvSectionBody">
-            <h2 id="about-title">The screen is the last layer, not the first.</h2>
+            <h2 id="about-title">Before the interface, I map the system.</h2>
             <p className="cvBigCopy">
-              I care about what happens before the screen: the workflow, the constraints, the handoffs and the people moving through them.
+              Workflows, users, data, handoffs, constraints, and implementation come first. UI/UX gets clearer when the system behind it is clear.
             </p>
             <div className="cvEvidenceRail" aria-label="Professional evidence">
               <div><div className="cvEvidenceLabel"><GraduationCapIcon /><span>Started with</span></div><strong>Bachelor&apos;s in MIS</strong></div>
@@ -66,79 +67,96 @@ export default async function HomePage() {
               <div><div className="cvEvidenceLabel"><BadgeCheckIcon /><span>Working within</span></div><strong>Saudi DGA compliance</strong></div>
               <div><div className="cvEvidenceLabel"><GoogleBrandIcon className="cvGoogleMark" /><span>Expanding with</span></div><strong>Google UX · Google AI</strong></div>
             </div>
+            <Link className="cvSectionNext" href="#journey">
+              <span>Next</span>
+              <strong>See what shaped this approach</strong>
+              <ArrowDownRightIcon className="cvDirectionalIcon" />
+            </Link>
           </div>
         </section>
 
         <section className="cvSection" id="journey" aria-labelledby="journey-title">
           <div className="cvSectionLabel"><span>02</span><span>Journey</span></div>
           <div className="cvSectionBody">
-            <h2 id="journey-title">Not a timeline. A chain of things I learned to notice.</h2>
+            <h2 id="journey-title">Systems → operations → UI/UX.</h2>
+            <p className="cvSectionIntro">Each step changed what I notice in a digital product — and what I solve first.</p>
             <div className="cvJourney cvJourneyRefined">
               <article>
                 <span className="cvStep">Understand</span>
                 <span className="cvJourneyMeta cvBadge">2019–2024 · MIS</span>
-                <h3>Read the system</h3>
-                <p>MIS taught me to look for data, dependencies and process underneath the visible interface.</p>
+                <h3>Map the logic</h3>
+                <p>Management Information Systems trained me to read data, dependencies, workflows, and information architecture before the screen.</p>
               </article>
               <article>
                 <span className="cvStep">Observe</span>
                 <span className="cvJourneyMeta cvBadge">2025 · Healthcare operations</span>
-                <h3>See the friction</h3>
-                <p>Operational work made handoffs, constraints and unclear workflows tangible rather than theoretical.</p>
+                <h3>Find the friction</h3>
+                <p>Healthcare operations made wait time, handoffs, validation, and enterprise workflow problems concrete instead of theoretical.</p>
               </article>
               <article>
                 <span className="cvStep">Shape</span>
                 <span className="cvJourneyMeta cvBadge">2025–Now · Web design</span>
-                <h3>Design the change</h3>
-                <p>UI/UX became the way I turn what I understand about the system into a clearer experience people can use.</p>
+                <h3>Shape the flow</h3>
+                <p>UI/UX, responsive web design, wireframes, prototypes, and usability became the tools for turning friction into a clearer user journey.</p>
               </article>
             </div>
+            <Link className="cvSectionNext" href="#capabilities">
+              <span>Next</span>
+              <strong>See how that becomes design decisions</strong>
+              <ArrowDownRightIcon className="cvDirectionalIcon" />
+            </Link>
           </div>
         </section>
 
         <section className="cvTurningPoint" aria-label="Turning point">
-          <span>That changed what good design meant to me.</span>
-          <p>Not just a cleaner screen — a clearer system for the person using it.</p>
+          <span>The shift</span>
+          <p>Design the workflow and the interface together.</p>
+          <Link className="cvTurningPointCta" href="#capabilities">See how I work now <ArrowDownRightIcon /></Link>
         </section>
 
         <section className="cvSection" id="capabilities" aria-labelledby="capabilities-title">
           <div className="cvSectionLabel"><span>03</span><span>How I work</span></div>
           <div className="cvSectionBody">
-            <h2 id="capabilities-title">So today, this is how I work.</h2>
-            <p className="cvSectionIntro">Each layer became a decision-making habit I carry into the next problem.</p>
+            <h2 id="capabilities-title">I turn complexity into decisions a team can build.</h2>
+            <p className="cvSectionIntro">UX strategy, interface design, governance, AI-assisted workflows, and developer handoff stay connected from the start.</p>
             <div className="cvCapabilityPairs">
               <div>
-                <span className="cvCapabilitySource cvBadge cvBadgeAccent">Systems thinking</span>
+                <span className="cvCapabilitySource cvBadge cvBadgeAccent">UX strategy · Systems thinking</span>
                 <ArrowRightIcon className="cvCapabilityArrow" />
-                <strong>Better UX decisions</strong>
-                <p>Understand workflows and dependencies before deciding what the interface should do.</p>
+                <strong>Structure before screens</strong>
+                <p>Map user flows, dependencies, information architecture, and product logic before deciding what the interface should do.</p>
               </div>
               <div>
-                <span className="cvCapabilitySource cvBadge cvBadgeAccent">Governance</span>
+                <span className="cvCapabilitySource cvBadge cvBadgeAccent">UI/UX · Responsive design</span>
                 <ArrowRightIcon className="cvCapabilityArrow" />
-                <strong>Usable constraints</strong>
-                <p>Translate standards and requirements into an experience that still feels clear and human.</p>
+                <strong>Usable across devices</strong>
+                <p>Turn flows into responsive interfaces, interaction states, wireframes, prototypes, and accessible patterns.</p>
               </div>
               <div>
-                <span className="cvCapabilitySource cvBadge cvBadgeAccent">AI workflows</span>
+                <span className="cvCapabilitySource cvBadge cvBadgeAccent">Governance · DGA</span>
                 <ArrowRightIcon className="cvCapabilityArrow" />
-                <strong>Faster exploration</strong>
-                <p>Use generative AI to expand and refine options without outsourcing design judgment.</p>
+                <strong>Clear within constraints</strong>
+                <p>Design with digital standards, accessibility, consistency, and Saudi DGA requirements as part of the product — not a final check.</p>
               </div>
               <div>
-                <span className="cvCapabilitySource cvBadge cvBadgeAccent">Developer handoff</span>
+                <span className="cvCapabilitySource cvBadge cvBadgeAccent">Generative AI · Developer handoff</span>
                 <ArrowRightIcon className="cvCapabilityArrow" />
-                <strong>Executable design</strong>
-                <p>Keep the design connected to implementation through clear states, behavior and collaboration.</p>
+                <strong>Closer to implementation</strong>
+                <p>Use AI-assisted exploration, clear states, specifications, and handoff to reduce the gap between design and build.</p>
               </div>
             </div>
+            <Link className="cvSectionNext" href="#credentials">
+              <span>Next</span>
+              <strong>Check the foundation behind the practice</strong>
+              <ArrowDownRightIcon className="cvDirectionalIcon" />
+            </Link>
           </div>
         </section>
 
         <section className="cvSection" id="credentials" aria-labelledby="credentials-title">
           <div className="cvSectionLabel"><span>04</span><span>Credentials</span></div>
           <div className="cvSectionBody">
-            <h2 id="credentials-title">The formal layer behind the practice.</h2>
+            <h2 id="credentials-title">Systems, UX, and AI training behind the work.</h2>
             <div className="cvCredentials">
               <div>
                 <div className="cvCredentialBrand cvCredentialBrandNeutral">
@@ -154,7 +172,7 @@ export default async function HomePage() {
                   <span className="cvBadge cvBadgeIssuer">Google</span>
                 </div>
                 <strong>UX Design Professional Certificate</strong>
-                <span>Formal training in user-centered product and experience design.</span>
+                <span>User research, interaction design, wireframing, prototyping, usability testing, and user-centered product design.</span>
               </div>
               <div>
                 <div className="cvCredentialBrand cvGoogleBrand">
@@ -162,9 +180,14 @@ export default async function HomePage() {
                   <span className="cvBadge cvBadgeIssuer">Google</span>
                 </div>
                 <strong>AI Professional Certificate</strong>
-                <span>Applied foundation for AI-assisted professional workflows.</span>
+                <span>Applied foundation for generative AI, AI-assisted workflows, productivity, and professional delivery.</span>
               </div>
             </div>
+            <Link className="cvSectionNext" href={hasWork ? '#work' : '#contact'}>
+              <span>Next</span>
+              <strong>{hasWork ? 'See the work behind the claims' : 'Turn the context into a conversation'}</strong>
+              <ArrowDownRightIcon className="cvDirectionalIcon" />
+            </Link>
           </div>
         </section>
 
@@ -173,12 +196,17 @@ export default async function HomePage() {
             <div className="cvSectionLabel"><span>05</span><span>Work</span></div>
             <div className="cvSectionBody">
               <div className="cvSectionHead">
-                <h2 id="work-title">Selected work</h2>
+                <h2 id="work-title">See the decisions in real work.</h2>
                 <Link href="/work">View all work</Link>
               </div>
               <div className="projectGrid">
                 {work.map((project) => <ProjectCard project={project} key={project.projectKey} locale="en" />)}
               </div>
+              <Link className="cvSectionNext" href="#contact">
+                <span>Next</span>
+                <strong>Have a similar challenge? Let’s talk.</strong>
+                <ArrowDownRightIcon className="cvDirectionalIcon" />
+              </Link>
             </div>
           </section>
         )}
@@ -190,11 +218,11 @@ export default async function HomePage() {
           </div>
           <div>
             <div className="cvContactContext">
-              <span>Now</span>
-              <p>I&apos;m continuing to work where systems, experience and delivery meet — especially when digital products have real operational constraints.</p>
+              <span>Available</span>
+              <p>Digital product design, UI/UX, web design, UX strategy, and experience design opportunities in Saudi Arabia and remote collaboration.</p>
             </div>
-            <h2 id="contact-title">Have a system that needs to become a better experience?</h2>
-            <p className="cvContactNote">Let&apos;s make it clearer to understand, easier to use and more practical to build.</p>
+            <h2 id="contact-title">Have a product, workflow, or interface that needs clarity?</h2>
+            <p className="cvContactNote">Send the context. I can help frame the problem, improve the UX, and move the design closer to implementation.</p>
             <div className="cvContactGrid" aria-label="Contact details">
               <ContactCard
                 icon={<MailIcon />}
@@ -234,7 +262,7 @@ export default async function HomePage() {
 
         <footer className="cvFooter">
           <span>© Ibrahim</span>
-          <span>Systems → Experience · EN / AR</span>
+          <span>Digital Product Design · UI/UX · Web Design · Saudi Arabia</span>
         </footer>
       </div>
     </main>
