@@ -67,12 +67,20 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     }
   });
 
-  test('secondary hero CTA routes to the contact section in both locales', async ({page}) => {
+  test('floating contact CTA replaces the hero contact action in both locales', async ({page}) => {
+    await page.setViewportSize({width: 1440, height: 1000});
+
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
-    await expect(page.locator('.cvHeroActions a[href="#contact"]')).toHaveText('Contact me');
+    await expect(page.locator('.cvHeroActions a')).toHaveCount(1);
+    await expect(page.locator('.cvHeroActions a[href="#contact"]')).toHaveCount(0);
+    await expect(page.locator('.cvFloatingContact[href="#contact"]')).toBeVisible();
+    await expect(page.locator('.cvFloatingContact')).toHaveAttribute('aria-label', 'Contact me');
 
     await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
-    await expect(page.locator('.cvHeroActions a[href="#contact"]')).toHaveText('تواصل معي');
+    await expect(page.locator('.cvHeroActions a')).toHaveCount(1);
+    await expect(page.locator('.cvHeroActions a[href="#contact"]')).toHaveCount(0);
+    await expect(page.locator('.cvFloatingContact[href="#contact"]')).toBeVisible();
+    await expect(page.locator('.cvFloatingContact')).toHaveAttribute('aria-label', 'تواصل معي');
   });
 
   test('homepage narrative uses next-step CTAs and an animated keyword focus', async ({page}) => {
