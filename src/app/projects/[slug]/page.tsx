@@ -43,12 +43,12 @@ export default async function ProjectPage({params}: ProjectPageProps) {
   if (!project) notFound();
 
   const sections = [
-    ['Problem', project.problemEn],
-    ['Context', project.contextEn],
-    ['Process', project.processEn],
-    ['Key decisions', project.decisionsEn],
-    ['Outcome', project.outcomeEn],
-  ].filter(([, value]) => Boolean(value)) as [string, string][];
+    {id: 'problem', title: 'Problem', body: project.problemEn},
+    {id: 'context', title: 'Context', body: project.contextEn},
+    {id: 'process', title: 'Process', body: project.processEn},
+    {id: 'decisions', title: 'Key decisions', body: project.decisionsEn},
+    {id: 'outcome', title: 'Outcome', body: project.outcomeEn},
+  ].filter((section): section is {id: string; title: string; body: string} => Boolean(section.body));
 
   return (
     <main id="main" className="shell">
@@ -79,12 +79,25 @@ export default async function ProjectPage({params}: ProjectPageProps) {
         )}
       </section>
 
-      {sections.map(([title, body]) => (
-        <section className="section caseSection" key={title}>
-          <div className="eyebrow">{title}</div>
-          <p>{body}</p>
-        </section>
-      ))}
+      {sections.map((section, index) => {
+        const next = sections[index + 1];
+
+        return (
+          <section className="section caseSection" id={section.id} key={section.id}>
+            <div className="eyebrow">{section.title}</div>
+            <div>
+              <p>{section.body}</p>
+              {next ? (
+                <Link className="sectionLink" href={'#' + next.id}>Next: {next.title}</Link>
+              ) : project.projectUrl ? (
+                <Link className="sectionLink" href={project.projectUrl} target="_blank" rel="noreferrer">See the live project</Link>
+              ) : (
+                <Link className="sectionLink" href="/work">Continue to more work</Link>
+              )}
+            </div>
+          </section>
+        );
+      })}
 
       {project.gallery?.length ? (
         <section className="section gallery" aria-label="Project gallery">
@@ -93,12 +106,6 @@ export default async function ProjectPage({params}: ProjectPageProps) {
               <Image src={image.url} alt={image.altEn || ''} fill sizes="(max-width: 760px) 100vw, 50vw" />
             </figure>
           ))}
-        </section>
-      ) : null}
-
-      {project.projectUrl ? (
-        <section className="section">
-          <Link className="projectLink" href={project.projectUrl} target="_blank" rel="noreferrer">Visit project</Link>
         </section>
       ) : null}
 
