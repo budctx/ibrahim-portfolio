@@ -203,13 +203,13 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     await expect(page.locator('.cvGoogleBrand svg').first()).toBeVisible();
     await expect(page.locator('.cvGoogleMark')).toBeVisible();
     await expect(page.locator('.cvLinkedInLink svg')).toBeVisible();
-    await expect(page.locator('.cvBadge')).toHaveCount(13);
+    await expect(page.locator('.cvBadge')).toHaveCount(10);
 
     await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
     await expect(page.locator('.cvGoogleBrand')).toHaveCount(2);
     await expect(page.locator('.cvGoogleMark')).toBeVisible();
     await expect(page.locator('.cvLinkedInLink svg')).toBeVisible();
-    await expect(page.locator('.cvBadge')).toHaveCount(13);
+    await expect(page.locator('.cvBadge')).toHaveCount(10);
   });
 
 
@@ -429,11 +429,11 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
   test('career map is keyboard operable and updates one clear detail region', async ({page}) => {
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
-    const governance = page.getByRole('button', {name: /Governance & DGA/i});
+    const governance = page.getByRole('button', {name: /Digital governance & DGA/i});
     await governance.focus();
     await expect(governance).toBeFocused();
     await governance.press('Enter');
     await expect(governance).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.locator('.cvMapDetail')).toContainText('Governance & DGA');
+    await expect(page.locator('.cvMapDetail')).toContainText('Digital governance & DGA');
   });
 });
