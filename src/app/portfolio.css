@@ -1127,6 +1127,57 @@ html[data-theme='dark'] .cvPage {
   width: min(100%, 560px);
 }
 
+.cvContactDetails {
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 18px;
+  border-block: 1px solid var(--cv-hairline);
+}
+
+.cvContactDetails > a,
+.cvContactDetails > div {
+  min-width: 176px;
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 13px 18px;
+  border-inline-end: 1px solid var(--cv-hairline);
+  color: var(--fg);
+}
+
+.cvContactDetails > :last-child {
+  border-inline-end: 0;
+}
+
+.cvContactDetails svg {
+  width: 21px;
+  height: 21px;
+  color: var(--cv-accent);
+}
+
+.cvContactDetails span {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.cvContactDetails b {
+  font-size: var(--cv-type-ui);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.cvContactDetails small {
+  color: var(--muted);
+  font-size: var(--cv-type-meta);
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
 .cvFooter span:last-child {
   color: color-mix(in srgb, var(--cv-accent) 82%, var(--fg));
 }
@@ -1649,6 +1700,10 @@ html[data-theme='light'] .cvGoogleBrand {
     transform: scaleX(-1) translateX(4px);
   }
 
+  .cvContactDetails > a:hover {
+    background: color-mix(in srgb, var(--cv-accent) 7%, var(--bg));
+  }
+
   .cvLinkedInLink:hover svg {
     color: #0a66c2;
   }
@@ -2110,6 +2165,26 @@ html[data-theme='light'] .cvGoogleBrand {
     justify-content: center;
     min-width: 0;
   }
+
+  .cvContactDetails {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .cvContactDetails > a,
+  .cvContactDetails > div {
+    width: 100%;
+    min-width: 0;
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--cv-hairline);
+  }
+
+  .cvContactDetails > :last-child {
+    border-bottom: 0;
+  }
+
+
 
   .cvSectionLabel::after {
     display: none;
