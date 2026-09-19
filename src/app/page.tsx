@@ -201,7 +201,6 @@ export default async function HomePage() {
                 label="Email"
                 value="ibrahim.alajmi407@gmail.com"
                 href="mailto:ibrahim.alajmi407@gmail.com"
-                primary
               />
               <ContactCard
                 icon={<LinkedInBrandIcon />}
