@@ -43,12 +43,12 @@ export default async function ArabicProjectPage({params}: ProjectPageProps) {
   if (!project) notFound();
 
   const sections = [
-    ['المشكلة', project.problemAr],
-    ['السياق', project.contextAr],
-    ['العملية', project.processAr],
-    ['القرارات الرئيسية', project.decisionsAr],
-    ['النتيجة', project.outcomeAr],
-  ].filter(([, value]) => Boolean(value)) as [string, string][];
+    {id: 'problem', title: 'المشكلة', body: project.problemAr},
+    {id: 'context', title: 'السياق', body: project.contextAr},
+    {id: 'process', title: 'العملية', body: project.processAr},
+    {id: 'decisions', title: 'القرارات الرئيسية', body: project.decisionsAr},
+    {id: 'outcome', title: 'النتيجة', body: project.outcomeAr},
+  ].filter((section): section is {id: string; title: string; body: string} => Boolean(section.body));
 
   return (
     <main id="main" className="shell rtl" dir="rtl" lang="ar">
@@ -79,12 +79,25 @@ export default async function ArabicProjectPage({params}: ProjectPageProps) {
         )}
       </section>
 
-      {sections.map(([title, body]) => (
-        <section className="section caseSection" key={title}>
-          <div className="eyebrow">{title}</div>
-          <p>{body}</p>
-        </section>
-      ))}
+      {sections.map((section, index) => {
+        const next = sections[index + 1];
+
+        return (
+          <section className="section caseSection" id={section.id} key={section.id}>
+            <div className="eyebrow">{section.title}</div>
+            <div>
+              <p>{section.body}</p>
+              {next ? (
+                <Link className="sectionLink" href={'#' + next.id}>التالي: {next.title}</Link>
+              ) : project.projectUrl ? (
+                <Link className="sectionLink" href={project.projectUrl} target="_blank" rel="noreferrer">شاهد المشروع المباشر</Link>
+              ) : (
+                <Link className="sectionLink" href="/ar/work">أكمل إلى المزيد من الأعمال</Link>
+              )}
+            </div>
+          </section>
+        );
+      })}
 
       {project.gallery?.length ? (
         <section className="section gallery" aria-label="معرض المشروع">
@@ -93,12 +106,6 @@ export default async function ArabicProjectPage({params}: ProjectPageProps) {
               <Image src={image.url} alt={image.altAr || ''} fill sizes="(max-width: 760px) 100vw, 50vw" />
             </figure>
           ))}
-        </section>
-      ) : null}
-
-      {project.projectUrl ? (
-        <section className="section">
-          <Link className="projectLink" href={project.projectUrl} target="_blank" rel="noreferrer">زيارة المشروع</Link>
         </section>
       ) : null}
 
