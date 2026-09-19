@@ -30,12 +30,14 @@ export default async function WorkPage() {
       </section>
 
       <ProjectGroup
+        id="flagship-projects"
         title="Flagship projects"
         projects={flagship}
         nextHref={selected.length ? '#selected-work' : '/#contact'}
         nextLabel={selected.length ? 'Continue to selected work' : 'Have a similar challenge? Let’s talk.'}
       />
       <ProjectGroup
+        id="selected-work"
         title="Selected work"
         projects={selected}
         nextHref="/#contact"
@@ -53,18 +55,19 @@ export default async function WorkPage() {
 }
 
 function ProjectGroup({
+  id,
   title,
   projects,
   nextHref,
   nextLabel,
 }: {
+  id: string;
   title: string;
   projects: Awaited<ReturnType<typeof getProjects>>;
   nextHref: string;
   nextLabel: string;
 }) {
   if (projects.length === 0) return null;
-  const id = title.replace(/\s+/g, '-').toLowerCase();
 
   return (
     <section className="section" aria-labelledby={id}>
