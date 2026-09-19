@@ -1,10 +1,12 @@
 import type {Metadata} from 'next';
 import Link from 'next/link';
 import {SiteHeader} from '@/components/site-header';
+import {ARABIC_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 
 export const metadata: Metadata = {
   title: 'عني',
   description: 'عن إبراهيم العجمي، مصمم منتجات رقمية في السعودية يعمل عبر UI/UX وUX Strategy وتصميم الويب وهندسة المعلومات وسير العمل الرقمي ومتطلبات DGA والذكاء الاصطناعي التوليدي.',
+  keywords: [...ARABIC_PORTFOLIO_KEYWORDS],
   alternates: {
     canonical: '/ar/about',
     languages: {en: '/about', ar: '/ar/about', 'x-default': '/about'},
