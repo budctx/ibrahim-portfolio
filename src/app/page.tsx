@@ -3,6 +3,7 @@ import {getProjects} from '@/lib/content';
 import {ProjectCard} from '@/components/project-card';
 import {CareerMap} from '@/components/career-map';
 import {HomeHeader} from '@/components/home-header';
+import {ContactCard} from '@/components/contact-card';
 import {
   ArrowDownRightIcon,
   ArrowRightIcon,
@@ -194,29 +195,40 @@ export default async function HomePage() {
             </div>
             <h2 id="contact-title">Have a system that needs to become a better experience?</h2>
             <p className="cvContactNote">Let&apos;s make it clearer to understand, easier to use and more practical to build.</p>
-            <div className="cvContactLinks">
-              <Link href="mailto:ibrahim.alajmi407@gmail.com">
-                <MailIcon />
-                Email
-              </Link>
-              <Link className="cvLinkedInLink" href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">
-                <LinkedInBrandIcon />
-                LinkedIn
-              </Link>
-            </div>
-            <div className="cvContactDetails" aria-label="Contact details">
-              <a href="https://wa.me/966597866665" target="_blank" rel="noreferrer">
-                <MessageCircleIcon />
-                <span><b>WhatsApp</b><small>+966 59 786 6665</small></span>
-              </a>
-              <a href="tel:+966597866665">
-                <PhoneIcon />
-                <span><b>Phone</b><small>+966 59 786 6665</small></span>
-              </a>
-              <div>
-                <MapPinIcon />
-                <span><b>Location</b><small>Saudi Arabia</small></span>
-              </div>
+            <div className="cvContactGrid" aria-label="Contact details">
+              <ContactCard
+                icon={<MailIcon />}
+                label="Email"
+                value="ibrahim.alajmi407@gmail.com"
+                href="mailto:ibrahim.alajmi407@gmail.com"
+                primary
+              />
+              <ContactCard
+                icon={<LinkedInBrandIcon />}
+                label="LinkedIn"
+                value="ibrahim-al-ajmi-97ba02335"
+                href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335"
+                external
+                className="cvLinkedInLink"
+              />
+              <ContactCard
+                icon={<MessageCircleIcon />}
+                label="WhatsApp"
+                value="+966 59 786 6665"
+                href="https://wa.me/966597866665"
+                external
+              />
+              <ContactCard
+                icon={<PhoneIcon />}
+                label="Phone"
+                value="+966 59 786 6665"
+                href="tel:+966597866665"
+              />
+              <ContactCard
+                icon={<MapPinIcon />}
+                label="Location"
+                value="Saudi Arabia"
+              />
             </div>
           </div>
         </section>
