@@ -75,6 +75,18 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     await expect(page.locator('.cvHeroActions a[href="#contact"]')).toHaveText('تواصل معي');
   });
 
+  test('contact exposes WhatsApp phone and Saudi Arabia in both locales', async ({page}) => {
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await expect(page.locator('.cvContactDetails a[href="https://wa.me/966597866665"]')).toBeVisible();
+    await expect(page.locator('.cvContactDetails a[href="tel:+966597866665"]')).toBeVisible();
+    await expect(page.locator('.cvContactDetails')).toContainText('Saudi Arabia');
+
+    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+    await expect(page.locator('.cvContactDetails a[href="https://wa.me/966597866665"]')).toBeVisible();
+    await expect(page.locator('.cvContactDetails a[href="tel:+966597866665"]')).toBeVisible();
+    await expect(page.locator('.cvContactDetails')).toContainText('السعودية');
+  });
+
   test('interactive controls retain the 44px authored target guardrail at 320px', async ({page}) => {
     await page.setViewportSize({width: 320, height: 800});
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
