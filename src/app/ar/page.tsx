@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import Link from 'next/link';
 import {getProjects} from '@/lib/content';
+import {ARABIC_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 import {ProjectCard} from '@/components/project-card';
 import {CareerMap} from '@/components/career-map';
 import {HomeHeader} from '@/components/home-header';
@@ -28,41 +29,7 @@ export const metadata: Metadata = {
     canonical: '/ar',
     languages: {en: '/', ar: '/ar', 'x-default': '/'},
   },
-  keywords: [
-    'مصمم منتجات رقمية',
-    'مصمم تجربة مستخدم',
-    'مصمم واجهات',
-    'UI/UX',
-    'UX Design',
-    'UI Design',
-    'تصميم المنتجات الرقمية',
-    'تجربة المستخدم UX',
-    'واجهة المستخدم UI',
-    'تصميم مواقع',
-    'تصميم ويب',
-    'Responsive Web Design',
-    'UX Strategy',
-    'هندسة المعلومات',
-    'Information Architecture',
-    'أبحاث المستخدم',
-    'User Research',
-    'Wireframing',
-    'Prototyping',
-    'Usability Testing',
-    'Design Systems',
-    'Accessibility',
-    'WCAG',
-    'هيئة الحكومة الرقمية',
-    'DGA',
-    'الحوكمة الرقمية',
-    'Developer Handoff',
-    'Generative AI',
-    'AI-assisted design',
-    'سير العمل الرقمي',
-    'تصميم التفاعل',
-    'Product Design Saudi Arabia',
-    'UX Designer Saudi Arabia',
-  ],
+  keywords: [...ARABIC_PORTFOLIO_KEYWORDS],
   openGraph: {
     url: '/ar',
     title: 'إبراهيم — مصمم منتجات وتجارب رقمية',
