@@ -1423,26 +1423,6 @@ html[data-theme='dark'] .cvPage {
   line-height: 1.65;
 }
 
-.cvSectionNext {
-  width: min(100%, 760px);
-  min-height: 64px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 14px;
-  margin-top: clamp(34px, 4vw, 52px);
-  padding-block: 16px;
-  border-block: 1px solid var(--cv-hairline);
-  color: var(--fg);
-}
-
-.cvSectionNext > strong {
-  font-size: var(--cv-type-body);
-  font-weight: 600;
-  line-height: 1.35;
-}
-
-.cvSectionNext svg,
 .cvTurningPointCta svg {
   width: 18px;
   height: 18px;
@@ -1557,12 +1537,8 @@ html[data-theme='dark'] .cvPage {
   letter-spacing: 0;
 }
 
-.cvRtl .cvSectionIntro,
-.cvRtl .cvSectionNext {
-  margin-inline-start: var(--cv-copy-axis-inset);
-}
-
 .cvRtl .cvSectionIntro {
+  margin-inline-start: var(--cv-copy-axis-inset);
   line-height: 1.78;
 }
 
@@ -1786,11 +1762,6 @@ html[data-theme='light'] .cvGoogleBrand {
     border-color: color-mix(in srgb, var(--cv-accent) 60%, var(--cv-hairline));
     background: color-mix(in srgb, var(--cv-accent) 7%, var(--bg));
     transform: translateY(-1px);
-  }
-
-  .cvSectionNext:hover {
-    background: color-mix(in srgb, var(--cv-accent) 6%, var(--bg));
-    border-color: color-mix(in srgb, var(--cv-accent) 48%, var(--cv-hairline));
   }
 
 
@@ -2228,14 +2199,6 @@ html[data-theme='light'] .cvGoogleBrand {
   .cvTurningPointCta {
     grid-column: 1;
     margin-top: 8px;
-  }
-
-  .cvSectionNext {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .cvSectionNext svg {
-    display: none;
   }
 
 
