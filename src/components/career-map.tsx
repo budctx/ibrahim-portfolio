@@ -182,7 +182,10 @@ export function CareerMap({locale = 'en'}: {locale?: Locale}) {
       onPointerLeave={() => setIsPaused(false)}
       onFocusCapture={() => setIsPaused(true)}
       onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsPaused(false);
+        const nextTarget = event.relatedTarget;
+        if (!(nextTarget instanceof Element) || !event.currentTarget.contains(nextTarget)) {
+          setIsPaused(false);
+        }
       }}
     >
       <div className="cvMapIntro">
