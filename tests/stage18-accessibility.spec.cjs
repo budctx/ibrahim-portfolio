@@ -67,20 +67,91 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     }
   });
 
-  test('floating contact CTA replaces the hero contact action in both locales', async ({page}) => {
+  test('floating contact CTA works repeatedly and stays outside the hero in both locales', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
+    await page.emulateMedia({reducedMotion: 'reduce'});
 
+    for (const route of ['/', '/ar']) {
+      await page.goto(`${BASE}${route}`, {waitUntil: 'networkidle'});
+      await expect(page.locator('.cvHeroActions a')).toHaveCount(1);
+      await expect(page.locator('.cvHeroActions a[href="#contact"]')).toHaveCount(0);
+
+      const floating = page.locator('.cvFloatingContact[href="#contact"]');
+      await expect(floating).toBeVisible();
+
+      await floating.click();
+      await expect(page).toHaveURL(/#contact$/);
+      expect(await page.locator('#contact').evaluate((element) => element.getBoundingClientRect().top)).toBeLessThan(160);
+
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(8);
+
+      await floating.click();
+      expect(await page.locator('#contact').evaluate((element) => element.getBoundingClientRect().top)).toBeLessThan(160);
+    }
+  });
+
+  test('career map starts at the top, advances after eight seconds, and keeps a stable detail frame', async ({page}) => {
+    await page.setViewportSize({width: 1440, height: 1000});
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
-    await expect(page.locator('.cvHeroActions a')).toHaveCount(1);
-    await expect(page.locator('.cvHeroActions a[href="#contact"]')).toHaveCount(0);
-    await expect(page.locator('.cvFloatingContact[href="#contact"]')).toBeVisible();
-    await expect(page.locator('.cvFloatingContact')).toHaveAttribute('aria-label', 'Contact me');
 
-    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
-    await expect(page.locator('.cvHeroActions a')).toHaveCount(1);
-    await expect(page.locator('.cvHeroActions a[href="#contact"]')).toHaveCount(0);
-    await expect(page.locator('.cvFloatingContact[href="#contact"]')).toBeVisible();
-    await expect(page.locator('.cvFloatingContact')).toHaveAttribute('aria-label', 'تواصل معي');
+    await expect(page.locator('.cvSignal').first()).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('.cvMapDetail')).toContainText('Management Information Systems');
+
+    const before = await page.locator('.cvMapDetail').boundingBox();
+    await page.waitForTimeout(8300);
+    const after = await page.locator('.cvMapDetail').boundingBox();
+
+    await expect(page.locator('.cvSignal').nth(1)).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('.cvMapDetail')).toContainText('Healthcare operations');
+    expect(before).not.toBeNull();
+    expect(after).not.toBeNull();
+    expect(Math.abs(before.height - after.height)).toBeLessThanOrEqual(1);
+  });
+
+  test('English grid safe spaces hold on desktop and mobile while scroll motion enters and exits', async ({page}) => {
+    await page.setViewportSize({width: 1440, height: 1000});
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+
+    const desktop = await page.evaluate(() => {
+      const frame = document.querySelector('.cvFrame').getBoundingClientRect();
+      const copy = document.querySelector('.cvHeroCopy').getBoundingClientRect();
+      const map = document.querySelector('.cvMap').getBoundingClientRect();
+      return {
+        frame: {left: frame.left, right: frame.right},
+        copy: {left: copy.left, right: copy.right},
+        map: {left: map.left, right: map.right},
+        width: window.innerWidth,
+      };
+    });
+
+    expect(desktop.frame.left).toBeGreaterThanOrEqual(48);
+    expect(desktop.width - desktop.frame.right).toBeGreaterThanOrEqual(48);
+    expect(desktop.map.left - desktop.copy.right).toBeGreaterThanOrEqual(40);
+
+    await expect(page.locator('html')).toHaveAttribute('data-cv-motion', 'ready');
+    await page.locator('#about').scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.getElementById('about')?.scrollIntoView({block: 'center'}));
+    await expect.poll(() => page.locator('#about').getAttribute('data-motion-state')).toBe('in');
+
+    await page.locator('#credentials').scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.getElementById('credentials')?.scrollIntoView({block: 'center'}));
+    await expect.poll(() => page.locator('#about').getAttribute('data-motion-state')).toBe('after');
+
+    await page.setViewportSize({width: 390, height: 844});
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await expectNoHorizontalOverflow(page);
+
+    const mobile = await page.evaluate(() => {
+      const frame = document.querySelector('.cvFrame').getBoundingClientRect();
+      return {
+        left: frame.left,
+        right: window.innerWidth - frame.right,
+      };
+    });
+
+    expect(mobile.left).toBeGreaterThanOrEqual(19);
+    expect(mobile.right).toBeGreaterThanOrEqual(19);
   });
 
   test('homepage narrative uses next-step CTAs and an animated keyword focus', async ({page}) => {
