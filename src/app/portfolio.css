@@ -1427,21 +1427,13 @@ html[data-theme='dark'] .cvPage {
   width: min(100%, 760px);
   min-height: 64px;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 14px;
   margin-top: clamp(34px, 4vw, 52px);
   padding-block: 16px;
   border-block: 1px solid var(--cv-hairline);
   color: var(--fg);
-}
-
-.cvSectionNext > span {
-  color: var(--cv-accent);
-  font-size: var(--cv-type-meta);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .08em;
 }
 
 .cvSectionNext > strong {
@@ -1572,11 +1564,6 @@ html[data-theme='dark'] .cvPage {
 
 .cvRtl .cvSectionIntro {
   line-height: 1.78;
-}
-
-.cvRtl .cvSectionNext > span {
-  letter-spacing: 0;
-  text-transform: none;
 }
 
 .cvEvidenceLabel {
@@ -2244,7 +2231,7 @@ html[data-theme='light'] .cvGoogleBrand {
   }
 
   .cvSectionNext {
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .cvSectionNext svg {
