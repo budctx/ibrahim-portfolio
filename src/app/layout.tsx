@@ -5,6 +5,7 @@ import {IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Arabic} from 'next/font/goog
 import {ENGLISH_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 import './globals.css';
 import './portfolio.css';
+import './portfolio-polish.css';
 
 const plexSans = IBM_Plex_Sans({
   subsets: ['latin'],
