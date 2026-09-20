@@ -70,10 +70,6 @@ export default async function HomePage() {
               <div><div className="cvEvidenceLabel"><BadgeCheckIcon /><span>Working within</span></div><strong>Saudi DGA compliance</strong></div>
               <div><div className="cvEvidenceLabel"><GoogleBrandIcon className="cvGoogleMark" /><span>Expanding with</span></div><strong>Google UX · Google AI</strong></div>
             </div>
-            <Link className="cvSectionNext" href="#journey">
-              <strong>See what shaped this approach</strong>
-              <ArrowDownRightIcon className="cvDirectionalIcon" />
-            </Link>
           </div>
         </section>
 
@@ -102,10 +98,6 @@ export default async function HomePage() {
                 <p>UI/UX, responsive web design, wireframes, prototypes, and usability became the tools for turning friction into a clearer user journey.</p>
               </article>
             </div>
-            <Link className="cvSectionNext" href="#capabilities">
-              <strong>See how that becomes design decisions</strong>
-              <ArrowDownRightIcon className="cvDirectionalIcon" />
-            </Link>
           </div>
         </section>
 
@@ -146,10 +138,6 @@ export default async function HomePage() {
                 <p>Use AI-assisted exploration, clear states, specifications, and handoff to reduce the gap between design and build.</p>
               </div>
             </div>
-            <Link className="cvSectionNext" href="#credentials">
-              <strong>Check the foundation behind the practice</strong>
-              <ArrowDownRightIcon className="cvDirectionalIcon" />
-            </Link>
           </div>
         </section>
 
@@ -183,10 +171,6 @@ export default async function HomePage() {
                 <span>Applied foundation for generative AI, AI-assisted workflows, productivity, and professional delivery.</span>
               </div>
             </div>
-            <Link className="cvSectionNext" href={hasWork ? '#work' : '#contact'}>
-              <strong>{hasWork ? 'See the work behind the claims' : 'Turn the context into a conversation'}</strong>
-              <ArrowDownRightIcon className="cvDirectionalIcon" />
-            </Link>
           </div>
         </section>
 
@@ -201,10 +185,6 @@ export default async function HomePage() {
               <div className="projectGrid">
                 {work.map((project) => <ProjectCard project={project} key={project.projectKey} locale="en" />)}
               </div>
-              <Link className="cvSectionNext" href="#contact">
-                <strong>Have a similar challenge? Let’s talk.</strong>
-                <ArrowDownRightIcon className="cvDirectionalIcon" />
-              </Link>
             </div>
           </section>
         )}
