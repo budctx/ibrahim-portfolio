@@ -1,6 +1,6 @@
 'use client';
 
-import {useRef, useState, type KeyboardEvent} from 'react';
+import {useEffect, useRef, useState, type KeyboardEvent} from 'react';
 import {
   BadgeCheckIcon,
   BriefcaseIcon,
@@ -120,15 +120,40 @@ const copy: Record<Locale, {
 export function CareerMap({locale = 'en'}: {locale?: Locale}) {
   const data = copy[locale];
   const rtl = locale === 'ar';
-  const [activeId, setActiveId] = useState<string>('experience');
+  const [activeId, setActiveId] = useState<string>(data.nodes[0].id);
+  const [isInView, setIsInView] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+  const mapRef = useRef<HTMLDivElement | null>(null);
   const buttonRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const activeIndex = Math.max(0, data.nodes.findIndex((node) => node.id === activeId));
   const active = data.nodes[activeIndex] ?? data.nodes[0];
 
-  const activate = (index: number) => {
+  useEffect(() => {
+    const element = mapRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      {threshold: 0.25},
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isInView || isPaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const timer = window.setTimeout(() => {
+      setActiveId(data.nodes[(activeIndex + 1) % data.nodes.length].id);
+    }, 8000);
+
+    return () => window.clearTimeout(timer);
+  }, [activeIndex, data.nodes, isInView, isPaused]);
+
+  const activate = (index: number, focus = true) => {
     const normalized = (index + data.nodes.length) % data.nodes.length;
     setActiveId(data.nodes[normalized].id);
-    buttonRefs.current[normalized]?.focus();
+    if (focus) buttonRefs.current[normalized]?.focus();
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
@@ -148,7 +173,18 @@ export function CareerMap({locale = 'en'}: {locale?: Locale}) {
   };
 
   return (
-    <div className="cvMap" aria-label={rtl ? 'خريطة تكويني المهني' : 'Professional formation map'}>
+    <div
+      ref={mapRef}
+      className="cvMap"
+      data-scroll-motion="slide"
+      aria-label={rtl ? 'خريطة تكويني المهني' : 'Professional formation map'}
+      onPointerEnter={() => setIsPaused(true)}
+      onPointerLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsPaused(false);
+      }}
+    >
       <div className="cvMapIntro">
         <span>{data.kicker}</span>
         <strong>{data.title}</strong>
@@ -175,7 +211,7 @@ export function CareerMap({locale = 'en'}: {locale?: Locale}) {
               type="button"
               className="cvSignal"
               aria-pressed={node.id === activeId}
-              onClick={() => setActiveId(node.id)}
+              onClick={() => activate(index, false)}
               onKeyDown={(event) => handleKeyDown(event, index)}
             >
               <span className="cvSignalIndex">{String(index + 1).padStart(2, '0')}</span>
@@ -192,14 +228,25 @@ export function CareerMap({locale = 'en'}: {locale?: Locale}) {
 
         <div className="cvMapDetail" aria-live="polite" aria-label={active.label}>
           <div className="cvMapDetailNumber" aria-hidden="true">{String(activeIndex + 1).padStart(2, '0')}</div>
-          <div key={active.id} className="cvMapDetailBody cvMapDetailBodyMotion">
-            <span className="cvMapKicker">{active.label}</span>
-            <strong>{active.short}</strong>
-            <p>{active.detail}</p>
-            <div className="cvMapEvidence">
-              <span>{data.evidenceLabel}</span>
-              <b>{active.evidence}</b>
-            </div>
+          <div className="cvMapDetailStack">
+            {data.nodes.map((node, index) => {
+              const selected = index === activeIndex;
+              return (
+                <div
+                  key={node.id}
+                  className={"cvMapDetailBody" + (selected ? " cvMapDetailBodyActive" : "")}
+                  aria-hidden={!selected}
+                >
+                  <span className="cvMapKicker">{node.label}</span>
+                  <strong>{node.short}</strong>
+                  <p>{node.detail}</p>
+                  <div className="cvMapEvidence">
+                    <span>{data.evidenceLabel}</span>
+                    <b>{node.evidence}</b>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
