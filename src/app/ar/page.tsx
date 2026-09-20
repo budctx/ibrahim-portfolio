@@ -87,10 +87,6 @@ export default async function ArabicHomePage() {
               <div><div className="cvEvidenceLabel"><BadgeCheckIcon /><span>أعمل ضمن</span></div><strong>امتثال لمتطلبات DGA</strong></div>
               <div><div className="cvEvidenceLabel"><GoogleBrandIcon className="cvGoogleMark" /><span>وأتوسع عبر</span></div><strong>Google UX · Google AI</strong></div>
             </div>
-            <Link className="cvSectionNext" href="#journey">
-              <strong>شاهد ما الذي شكّل هذا المنهج</strong>
-              <ArrowDownRightIcon className="cvDirectionalIcon" />
-            </Link>
           </div>
         </section>
 
@@ -119,10 +115,6 @@ export default async function ArabicHomePage() {
                 <p>أصبح UI/UX والتصميم المتجاوب وWireframes وPrototypes واختبار قابلية الاستخدام أدوات لتحويل الاحتكاك إلى رحلة أوضح.</p>
               </article>
             </div>
-            <Link className="cvSectionNext" href="#capabilities">
-              <strong>شاهد كيف تتحول الخبرة إلى قرارات تصميم</strong>
-              <ArrowDownRightIcon className="cvDirectionalIcon" />
-            </Link>
           </div>
         </section>
 
@@ -163,10 +155,6 @@ export default async function ArabicHomePage() {
                 <p>أستخدم الاستكشاف المدعوم بالذكاء الاصطناعي والحالات والمواصفات والتسليم الواضح لتقليل المسافة بين التصميم والتطوير.</p>
               </div>
             </div>
-            <Link className="cvSectionNext" href="#credentials">
-              <strong>راجع الأساس الذي يدعم الممارسة</strong>
-              <ArrowDownRightIcon className="cvDirectionalIcon" />
-            </Link>
           </div>
         </section>
 
@@ -200,10 +188,6 @@ export default async function ArabicHomePage() {
                 <span>أساس تطبيقي في Generative AI وسير العمل المدعوم بالذكاء الاصطناعي والإنتاجية والتسليم المهني.</span>
               </div>
             </div>
-            <Link className="cvSectionNext" href={hasWork ? '#work' : '#contact'}>
-              <strong>{hasWork ? 'شاهد الأعمال خلف الادعاءات' : 'حوّل السياق إلى محادثة'}</strong>
-              <ArrowDownRightIcon className="cvDirectionalIcon" />
-            </Link>
           </div>
         </section>
 
@@ -218,10 +202,6 @@ export default async function ArabicHomePage() {
               <div className="projectGrid">
                 {work.map((project) => <ProjectCard project={project} key={project.projectKey} locale="ar" />)}
               </div>
-              <Link className="cvSectionNext" href="#contact">
-                <strong>عندك تحدٍ مشابه؟ خلّنا نتكلم.</strong>
-                <ArrowDownRightIcon className="cvDirectionalIcon" />
-              </Link>
             </div>
           </section>
         )}
