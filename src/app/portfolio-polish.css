@@ -110,8 +110,7 @@ html[data-cv-motion='ready'] [data-scroll-motion='drift'][data-motion-state='aft
 
   .cvPage:not(.cvRtl) .cvSectionBody > h2,
   .cvPage:not(.cvRtl) .cvBigCopy,
-  .cvPage:not(.cvRtl) .cvSectionIntro,
-  .cvPage:not(.cvRtl) .cvSectionNext {
+  .cvPage:not(.cvRtl) .cvSectionIntro {
     margin-inline-start: 0;
   }
 }
@@ -208,10 +207,6 @@ html[data-cv-motion='ready'] [data-scroll-motion='drift'][data-motion-state='aft
   .cvSectionBody > h2,
   .cvContact h2 {
     max-width: 14ch;
-  }
-
-  .cvSectionNext {
-    width: 100%;
   }
 
   html[data-cv-motion='ready'] [data-scroll-motion='slide'][data-motion-state='before'],
