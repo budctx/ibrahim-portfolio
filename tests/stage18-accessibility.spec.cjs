@@ -154,20 +154,14 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(mobile.right).toBeGreaterThanOrEqual(19);
   });
 
-  test('homepage narrative uses next-step CTAs and an animated keyword focus', async ({page}) => {
+  test('homepage keeps the animated keyword focus without section CTA bars', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
 
-    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
-    await expect(page.locator('.cvHeroKeywordLoop')).toBeVisible();
-    await expect(page.locator('#about .cvSectionNext')).toHaveAttribute('href', '#journey');
-    await expect(page.locator('#journey .cvSectionNext')).toHaveAttribute('href', '#capabilities');
-    await expect(page.locator('#capabilities .cvSectionNext')).toHaveAttribute('href', '#credentials');
-
-    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
-    await expect(page.locator('.cvHeroKeywordLoop')).toBeVisible();
-    await expect(page.locator('#about .cvSectionNext')).toHaveAttribute('href', '#journey');
-    await expect(page.locator('#journey .cvSectionNext')).toHaveAttribute('href', '#capabilities');
-    await expect(page.locator('#capabilities .cvSectionNext')).toHaveAttribute('href', '#credentials');
+    for (const route of ['/', '/ar']) {
+      await page.goto(`${BASE}${route}`, {waitUntil: 'networkidle'});
+      await expect(page.locator('.cvHeroKeywordLoop')).toBeVisible();
+      await expect(page.locator('.cvSectionNext')).toHaveCount(0);
+    }
   });
 
   test('contact exposes WhatsApp phone and Saudi Arabia in both locales', async ({page}) => {
