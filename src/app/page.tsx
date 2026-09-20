@@ -5,6 +5,7 @@ import {CareerMap} from '@/components/career-map';
 import {HomeHeader} from '@/components/home-header';
 import {HeroKeywordLoop} from '@/components/hero-keyword-loop';
 import {FloatingContactButton} from '@/components/floating-contact-button';
+import {ScrollMotionController} from '@/components/scroll-motion-controller';
 import {ContactCard} from '@/components/contact-card';
 import {
   ArrowDownRightIcon,
@@ -31,9 +32,10 @@ export default async function HomePage() {
       <div className="cvFrame">
         <HomeHeader locale="en" counterpartHref="/ar" hasWork={hasWork} />
         <FloatingContactButton locale="en" />
+        <ScrollMotionController />
 
         <section className="cvHero" aria-labelledby="cv-home-title">
-          <div className="cvHeroCopy">
+          <div className="cvHeroCopy" data-scroll-motion="rise">
             <p className="cvOverline">Ibrahim Al-Ajmi · Digital Product Designer · Saudi Arabia</p>
             <h1 id="cv-home-title">
               <span className="cvHeroTitleLine">I design digital products</span>
@@ -54,7 +56,7 @@ export default async function HomePage() {
           <CareerMap locale="en" />
         </section>
 
-        <section className="cvSection" id="about" aria-labelledby="about-title">
+        <section className="cvSection" id="about" data-scroll-motion="rise" aria-labelledby="about-title">
           <div className="cvSectionLabel"><span>01</span><span>About</span></div>
           <div className="cvSectionBody">
             <h2 id="about-title">Before the interface, I map the system.</h2>
@@ -76,7 +78,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="cvSection" id="journey" aria-labelledby="journey-title">
+        <section className="cvSection" id="journey" data-scroll-motion="slide" aria-labelledby="journey-title">
           <div className="cvSectionLabel"><span>02</span><span>Journey</span></div>
           <div className="cvSectionBody">
             <h2 id="journey-title">Systems → operations → UI/UX.</h2>
@@ -109,13 +111,13 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="cvTurningPoint" aria-label="Turning point">
+        <section className="cvTurningPoint" aria-label="Turning point" data-scroll-motion="scale">
           <span>The shift</span>
           <p>Design the workflow and the interface together.</p>
           <Link className="cvTurningPointCta" href="#capabilities">See how I work now <ArrowDownRightIcon /></Link>
         </section>
 
-        <section className="cvSection" id="capabilities" aria-labelledby="capabilities-title">
+        <section className="cvSection" id="capabilities" data-scroll-motion="drift" aria-labelledby="capabilities-title">
           <div className="cvSectionLabel"><span>03</span><span>How I work</span></div>
           <div className="cvSectionBody">
             <h2 id="capabilities-title">I turn complexity into decisions a team can build.</h2>
@@ -154,7 +156,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="cvSection" id="credentials" aria-labelledby="credentials-title">
+        <section className="cvSection" id="credentials" data-scroll-motion="rise" aria-labelledby="credentials-title">
           <div className="cvSectionLabel"><span>04</span><span>Credentials</span></div>
           <div className="cvSectionBody">
             <h2 id="credentials-title">Systems, UX, and AI training behind the work.</h2>
@@ -193,7 +195,7 @@ export default async function HomePage() {
         </section>
 
         {hasWork && (
-          <section className="cvSection" id="work" aria-labelledby="work-title">
+          <section className="cvSection" id="work" data-scroll-motion="scale" aria-labelledby="work-title">
             <div className="cvSectionLabel"><span>05</span><span>Work</span></div>
             <div className="cvSectionBody">
               <div className="cvSectionHead">
@@ -212,7 +214,7 @@ export default async function HomePage() {
           </section>
         )}
 
-        <section className="cvContact" id="contact" aria-labelledby="contact-title">
+        <section className="cvContact" id="contact" data-scroll-motion="rise" aria-labelledby="contact-title">
           <div>
             <span className="cvContactIndex">{hasWork ? '06' : '05'}</span>
             <p className="cvOverline">Contact</p>
