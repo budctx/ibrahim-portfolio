@@ -1,0 +1,243 @@
+/* Motion + grid polish layer. Loaded after portfolio.css. */
+
+.cvPage {
+  --cv-safe-inline: clamp(20px, 4vw, 64px);
+}
+
+.cvFrame {
+  width: min(1600px, calc(100% - (var(--cv-safe-inline) * 2)));
+}
+
+.cvMapDetailStack {
+  display: grid;
+  min-height: 100%;
+}
+
+.cvMapDetailStack > .cvMapDetailBody {
+  grid-area: 1 / 1;
+  align-self: start;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition:
+    opacity 280ms cubic-bezier(.2,.8,.2,1),
+    transform 360ms cubic-bezier(.2,.8,.2,1),
+    visibility 0s linear 360ms;
+}
+
+.cvMapDetailStack > .cvMapDetailBodyActive {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+html[data-cv-motion='ready'] [data-scroll-motion] {
+  will-change: opacity, transform;
+  transition:
+    opacity 520ms cubic-bezier(.2,.8,.2,1),
+    transform 680ms cubic-bezier(.2,.8,.2,1);
+}
+
+html[data-cv-motion='ready'] [data-scroll-motion][data-motion-state='in'] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+html[data-cv-motion='ready'] [data-scroll-motion='rise'][data-motion-state='before'] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+}
+
+html[data-cv-motion='ready'] [data-scroll-motion='rise'][data-motion-state='after'] {
+  opacity: 0;
+  transform: translate3d(0, -18px, 0);
+}
+
+html[data-cv-motion='ready'] [data-scroll-motion='slide'][data-motion-state='before'] {
+  opacity: 0;
+  transform: translate3d(24px, 0, 0);
+}
+
+html[data-cv-motion='ready'] [data-scroll-motion='slide'][data-motion-state='after'] {
+  opacity: 0;
+  transform: translate3d(-18px, 0, 0);
+}
+
+html[data-cv-motion='ready'] [data-scroll-motion='scale'][data-motion-state='before'] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0) scale(.985);
+}
+
+html[data-cv-motion='ready'] [data-scroll-motion='scale'][data-motion-state='after'] {
+  opacity: 0;
+  transform: translate3d(0, -12px, 0) scale(.995);
+}
+
+html[data-cv-motion='ready'] [data-scroll-motion='drift'][data-motion-state='before'] {
+  opacity: 0;
+  transform: translate3d(-24px, 16px, 0);
+}
+
+html[data-cv-motion='ready'] [data-scroll-motion='drift'][data-motion-state='after'] {
+  opacity: 0;
+  transform: translate3d(18px, -12px, 0);
+}
+
+@media (min-width: 1181px) {
+  .cvPage:not(.cvRtl) .cvHeroCopy {
+    max-inline-size: 680px;
+    padding-inline-end: clamp(8px, 1.25vw, 20px);
+  }
+
+  .cvPage:not(.cvRtl) .cvSection,
+  .cvPage:not(.cvRtl) .cvContact {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--cv-grid-gap);
+  }
+
+  .cvPage:not(.cvRtl) .cvSectionLabel,
+  .cvPage:not(.cvRtl) .cvContact > :first-child {
+    grid-column: 1 / 3;
+  }
+
+  .cvPage:not(.cvRtl) .cvSectionBody,
+  .cvPage:not(.cvRtl) .cvContact > :last-child {
+    grid-column: 3 / -1;
+  }
+
+  .cvPage:not(.cvRtl) .cvSectionBody > h2,
+  .cvPage:not(.cvRtl) .cvBigCopy,
+  .cvPage:not(.cvRtl) .cvSectionIntro,
+  .cvPage:not(.cvRtl) .cvSectionNext {
+    margin-inline-start: 0;
+  }
+}
+
+@media (max-width: 1180px) {
+  .cvHero {
+    padding-block: clamp(64px, 8vw, 88px) clamp(78px, 9vw, 104px);
+  }
+
+  .cvHeroCopy,
+  .cvMap {
+    max-width: min(100%, 900px);
+  }
+}
+
+@media (max-width: 760px) {
+  .cvPage {
+    --cv-safe-inline: 20px;
+  }
+
+  .cvHeader {
+    gap: 10px 14px;
+    padding-block: 12px 10px;
+  }
+
+  .cvNav {
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 4px 14px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+  }
+
+  .cvNav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cvHero {
+    gap: 40px;
+    padding-block: 48px 64px;
+  }
+
+  .cvHeroCopy {
+    padding-inline: 0;
+  }
+
+  .cvPage h1 {
+    font-size: clamp(2.8rem, 12.25vw, 4.1rem);
+    line-height: .99;
+  }
+
+  .cvLede {
+    max-width: 36ch;
+    margin-top: 22px;
+    line-height: 1.58;
+  }
+
+  .cvHeroKeywordLoop {
+    min-height: 72px;
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: 6px;
+    margin-top: 20px;
+  }
+
+  .cvHeroActions {
+    margin-top: 24px;
+  }
+
+  .cvMap {
+    padding: 16px;
+  }
+
+  .cvMapDetail {
+    min-height: 380px;
+  }
+
+  .cvMapDetailStack {
+    min-height: 300px;
+  }
+
+  .cvSection,
+  .cvContact {
+    padding-block: 72px;
+  }
+
+  .cvSectionLabel,
+  .cvContact > :first-child {
+    margin-bottom: 10px;
+  }
+
+  .cvSectionBody > h2,
+  .cvContact h2 {
+    max-width: 14ch;
+  }
+
+  .cvSectionNext {
+    width: 100%;
+  }
+
+  html[data-cv-motion='ready'] [data-scroll-motion='slide'][data-motion-state='before'],
+  html[data-cv-motion='ready'] [data-scroll-motion='drift'][data-motion-state='before'] {
+    transform: translate3d(0, 22px, 0);
+  }
+
+  html[data-cv-motion='ready'] [data-scroll-motion='slide'][data-motion-state='after'],
+  html[data-cv-motion='ready'] [data-scroll-motion='drift'][data-motion-state='after'] {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-cv-motion='ready'] [data-scroll-motion],
+  .cvMapDetailStack > .cvMapDetailBody {
+    opacity: 1;
+    transform: none;
+    transition: none !important;
+  }
+
+  .cvMapDetailStack > .cvMapDetailBody {
+    visibility: hidden;
+  }
+
+  .cvMapDetailStack > .cvMapDetailBodyActive {
+    visibility: visible;
+  }
+}
