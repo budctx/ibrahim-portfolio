@@ -7,6 +7,7 @@ import {CareerMap} from '@/components/career-map';
 import {HomeHeader} from '@/components/home-header';
 import {HeroKeywordLoop} from '@/components/hero-keyword-loop';
 import {FloatingContactButton} from '@/components/floating-contact-button';
+import {ScrollMotionController} from '@/components/scroll-motion-controller';
 import {ContactCard} from '@/components/contact-card';
 import {
   ArrowDownRightIcon,
@@ -48,9 +49,10 @@ export default async function ArabicHomePage() {
       <div className="cvFrame">
         <HomeHeader locale="ar" counterpartHref="/" hasWork={hasWork} />
         <FloatingContactButton locale="ar" />
+        <ScrollMotionController />
 
         <section className="cvHero" aria-labelledby="cv-home-title-ar">
-          <div className="cvHeroCopy">
+          <div className="cvHeroCopy" data-scroll-motion="rise">
             <p className="cvOverline">إبراهيم العجمي · مصمم منتجات رقمية · السعودية</p>
             <h1 id="cv-home-title-ar">
               <span className="cvHeroTitleLine">أصمم منتجات رقمية</span>
@@ -71,7 +73,7 @@ export default async function ArabicHomePage() {
           <CareerMap locale="ar" />
         </section>
 
-        <section className="cvSection" id="about" aria-labelledby="about-title-ar">
+        <section className="cvSection" id="about" data-scroll-motion="rise" aria-labelledby="about-title-ar">
           <div className="cvSectionLabel"><span>01</span><span>عني</span></div>
           <div className="cvSectionBody">
             <h2 id="about-title-ar">قبل الواجهة، أفهم النظام.</h2>
@@ -93,7 +95,7 @@ export default async function ArabicHomePage() {
           </div>
         </section>
 
-        <section className="cvSection" id="journey" aria-labelledby="journey-title-ar">
+        <section className="cvSection" id="journey" data-scroll-motion="slide" aria-labelledby="journey-title-ar">
           <div className="cvSectionLabel"><span>02</span><span>الرحلة</span></div>
           <div className="cvSectionBody">
             <h2 id="journey-title-ar">نظم معلومات ← تشغيل ← UI/UX.</h2>
@@ -126,13 +128,13 @@ export default async function ArabicHomePage() {
           </div>
         </section>
 
-        <section className="cvTurningPoint" aria-label="نقطة التحول">
+        <section className="cvTurningPoint" aria-label="نقطة التحول" data-scroll-motion="scale">
           <span>التحول</span>
           <p>أصمم سير العمل والواجهة معًا.</p>
           <Link className="cvTurningPointCta" href="#capabilities">شاهد كيف أعمل الآن <ArrowDownRightIcon /></Link>
         </section>
 
-        <section className="cvSection" id="capabilities" aria-labelledby="capabilities-title-ar">
+        <section className="cvSection" id="capabilities" data-scroll-motion="drift" aria-labelledby="capabilities-title-ar">
           <div className="cvSectionLabel"><span>03</span><span>كيف أعمل</span></div>
           <div className="cvSectionBody">
             <h2 id="capabilities-title-ar">أحوّل التعقيد إلى قرارات يستطيع الفريق تنفيذها.</h2>
@@ -171,7 +173,7 @@ export default async function ArabicHomePage() {
           </div>
         </section>
 
-        <section className="cvSection" id="credentials" aria-labelledby="credentials-title-ar">
+        <section className="cvSection" id="credentials" data-scroll-motion="rise" aria-labelledby="credentials-title-ar">
           <div className="cvSectionLabel"><span>04</span><span>المؤهلات</span></div>
           <div className="cvSectionBody">
             <h2 id="credentials-title-ar">نظم المعلومات وUX وAI خلف الممارسة.</h2>
@@ -210,7 +212,7 @@ export default async function ArabicHomePage() {
         </section>
 
         {hasWork && (
-          <section className="cvSection" id="work" aria-labelledby="work-title-ar">
+          <section className="cvSection" id="work" data-scroll-motion="scale" aria-labelledby="work-title-ar">
             <div className="cvSectionLabel"><span>05</span><span>الأعمال</span></div>
             <div className="cvSectionBody">
               <div className="cvSectionHead">
@@ -229,7 +231,7 @@ export default async function ArabicHomePage() {
           </section>
         )}
 
-        <section className="cvContact" id="contact" aria-labelledby="contact-title-ar">
+        <section className="cvContact" id="contact" data-scroll-motion="rise" aria-labelledby="contact-title-ar">
           <div>
             <span className="cvContactIndex">{hasWork ? '06' : '05'}</span>
             <p className="cvOverline">تواصل</p>
