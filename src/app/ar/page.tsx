@@ -88,7 +88,6 @@ export default async function ArabicHomePage() {
               <div><div className="cvEvidenceLabel"><GoogleBrandIcon className="cvGoogleMark" /><span>وأتوسع عبر</span></div><strong>Google UX · Google AI</strong></div>
             </div>
             <Link className="cvSectionNext" href="#journey">
-              <span>التالي</span>
               <strong>شاهد ما الذي شكّل هذا المنهج</strong>
               <ArrowDownRightIcon className="cvDirectionalIcon" />
             </Link>
@@ -121,7 +120,6 @@ export default async function ArabicHomePage() {
               </article>
             </div>
             <Link className="cvSectionNext" href="#capabilities">
-              <span>التالي</span>
               <strong>شاهد كيف تتحول الخبرة إلى قرارات تصميم</strong>
               <ArrowDownRightIcon className="cvDirectionalIcon" />
             </Link>
@@ -166,7 +164,6 @@ export default async function ArabicHomePage() {
               </div>
             </div>
             <Link className="cvSectionNext" href="#credentials">
-              <span>التالي</span>
               <strong>راجع الأساس الذي يدعم الممارسة</strong>
               <ArrowDownRightIcon className="cvDirectionalIcon" />
             </Link>
@@ -204,7 +201,6 @@ export default async function ArabicHomePage() {
               </div>
             </div>
             <Link className="cvSectionNext" href={hasWork ? '#work' : '#contact'}>
-              <span>التالي</span>
               <strong>{hasWork ? 'شاهد الأعمال خلف الادعاءات' : 'حوّل السياق إلى محادثة'}</strong>
               <ArrowDownRightIcon className="cvDirectionalIcon" />
             </Link>
@@ -223,7 +219,6 @@ export default async function ArabicHomePage() {
                 {work.map((project) => <ProjectCard project={project} key={project.projectKey} locale="ar" />)}
               </div>
               <Link className="cvSectionNext" href="#contact">
-                <span>التالي</span>
                 <strong>عندك تحدٍ مشابه؟ خلّنا نتكلم.</strong>
                 <ArrowDownRightIcon className="cvDirectionalIcon" />
               </Link>
