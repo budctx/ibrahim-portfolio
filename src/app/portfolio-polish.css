@@ -494,7 +494,7 @@ html[data-cv-motion='ready'] [data-scroll-motion='drift'][data-motion-state='aft
 .cvRtl.cvV3 .cvHeroV3 h1 {
   max-inline-size: 9.4em;
   font-size: clamp(3.65rem, 5.55vw, 6.35rem);
-  line-height: 1.08;
+  line-height: 1.16;
   letter-spacing: 0;
 }
 
