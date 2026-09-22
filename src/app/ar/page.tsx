@@ -28,12 +28,12 @@ export const metadata: Metadata = {
   title: 'إبراهيم — مصمم منتجات وتجارب رقمية',
   description: 'مصمم منتجات وتجارب رقمية في السعودية، أحوّل تعقيد الأنظمة وسير العمل إلى تجارب رقمية واضحة وقابلة للتنفيذ.',
   alternates: {
-    canonical: '/ar',
-    languages: {en: '/', ar: '/ar', 'x-default': '/'},
+    canonical: '/',
+    languages: {ar: '/', en: '/en', 'x-default': '/'},
   },
   keywords: [...ARABIC_PORTFOLIO_KEYWORDS],
   openGraph: {
-    url: '/ar',
+    url: '/',
     title: 'إبراهيم — مصمم منتجات وتجارب رقمية',
     description: 'أحوّل تعقيد الأنظمة وسير العمل إلى تجارب رقمية واضحة عبر UX وتصميم الويب والتفكير بالأنظمة وAI.',
   },
@@ -47,7 +47,7 @@ export default async function ArabicHomePage() {
   return (
     <main id="main" className="cvPage cvRtl cvV3" dir="rtl" lang="ar">
       <div className="cvFrame">
-        <HomeHeader locale="ar" counterpartHref="/" hasWork={hasWork} />
+        <HomeHeader locale="ar" counterpartHref="/en" hasWork={hasWork} />
         <FloatingContactButton locale="ar" />
         <ScrollMotionController />
 
