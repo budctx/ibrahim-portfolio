@@ -130,13 +130,13 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(desktop.map.left - desktop.copy.right).toBeGreaterThanOrEqual(40);
 
     await expect(page.locator('html')).toHaveAttribute('data-cv-motion', 'ready');
-    await page.locator('#about').scrollIntoViewIfNeeded();
-    await page.evaluate(() => document.getElementById('about')?.scrollIntoView({block: 'center'}));
-    await expect.poll(() => page.locator('#about').getAttribute('data-motion-state')).toBe('in');
+    await page.locator('#resolve').scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.getElementById('resolve')?.scrollIntoView({block: 'center'}));
+    await expect.poll(() => page.locator('#resolve').getAttribute('data-motion-state')).toBe('in');
 
-    await page.locator('#credentials').scrollIntoViewIfNeeded();
-    await page.evaluate(() => document.getElementById('credentials')?.scrollIntoView({block: 'center'}));
-    await expect.poll(() => page.locator('#about').getAttribute('data-motion-state')).toBe('after');
+    await page.locator('#evidence').scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.getElementById('evidence')?.scrollIntoView({block: 'center'}));
+    await expect.poll(() => page.locator('#resolve').getAttribute('data-motion-state')).toBe('after');
 
     await page.setViewportSize({width: 390, height: 844});
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
@@ -249,9 +249,9 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(maxTransitionMs).toBeLessThanOrEqual(0.1);
     expect(motion.scrollBehavior).toBe('auto');
 
-    await page.locator('header a[href="#about"]').click();
-    await expect(page).toHaveURL(/#about$/);
-    await expect(page.locator('#about-title')).toBeVisible();
+    await page.locator('header a[href="#resolve"]').click();
+    await expect(page).toHaveURL(/#resolve$/);
+    await expect(page.locator('#resolve-title')).toBeVisible();
 
     await context.close();
   });
@@ -272,17 +272,14 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(fontVars.arabic).not.toBe('');
     expect(fontVars.mono).not.toBe('');
 
-    await expect(page.locator('.cvGoogleBrand')).toHaveCount(2);
-    await expect(page.locator('.cvGoogleBrand svg').first()).toBeVisible();
+    await expect(page.locator('.cvEvidenceRailV3 > div')).toHaveCount(5);
     await expect(page.locator('.cvGoogleMark')).toBeVisible();
     await expect(page.locator('.cvLinkedInLink svg')).toBeVisible();
-    await expect(page.locator('.cvBadge')).toHaveCount(10);
 
     await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
-    await expect(page.locator('.cvGoogleBrand')).toHaveCount(2);
+    await expect(page.locator('.cvEvidenceRailV3 > div')).toHaveCount(5);
     await expect(page.locator('.cvGoogleMark')).toBeVisible();
     await expect(page.locator('.cvLinkedInLink svg')).toBeVisible();
-    await expect(page.locator('.cvBadge')).toHaveCount(10);
   });
 
 
@@ -291,8 +288,8 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     await page.setViewportSize({width: 1440, height: 1000});
     await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
 
-    const aboutLabel = page.locator('#about .cvSectionLabel');
-    const aboutTitle = page.locator('#about-title-ar');
+    const aboutLabel = page.locator('#resolve .cvSectionLabel');
+    const aboutTitle = page.locator('#resolve-title-ar');
     const labelBox = await aboutLabel.boundingBox();
     const titleBox = await aboutTitle.boundingBox();
 
@@ -303,12 +300,12 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(Math.abs(labelInlineStart - titleInlineStart)).toBeLessThanOrEqual(24);
     expect(labelBox.y + labelBox.height).toBeLessThanOrEqual(titleBox.y + 4);
 
-    const googleSize = await page.locator('.cvGoogleBrand svg').first().evaluate((element) => {
+    const evidenceIconSize = await page.locator('.cvEvidenceRailV3 .cvEvidenceLabel svg').first().evaluate((element) => {
       const rect = element.getBoundingClientRect();
       return {width: rect.width, height: rect.height};
     });
-    expect(googleSize.width).toBeGreaterThanOrEqual(38);
-    expect(googleSize.height).toBeGreaterThanOrEqual(38);
+    expect(evidenceIconSize.width).toBeGreaterThanOrEqual(30);
+    expect(evidenceIconSize.height).toBeGreaterThanOrEqual(30);
 
     const contactSizes = await page.locator('.cvContactGrid .cvContactCard').evaluateAll((elements) =>
       elements.map((element) => {
@@ -402,7 +399,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
       const hero = document.querySelector('.cvHero')?.getBoundingClientRect();
       const map = document.querySelector('.cvMap')?.getBoundingClientRect();
       const copy = document.querySelector('.cvHeroCopy')?.getBoundingClientRect();
-      const next = document.querySelector('#about')?.getBoundingClientRect();
+      const next = document.querySelector('#resolve')?.getBoundingClientRect();
       const mapGrid = document.querySelector('.cvMapGrid');
       const mapGridStyle = mapGrid ? getComputedStyle(mapGrid) : null;
       return {
@@ -427,17 +424,15 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(metrics.mapColumns.split(' ').filter(Boolean).length).toBeGreaterThanOrEqual(2);
   });
 
-  test('Arabic narrative headings share one axis without compressed line stacking', async ({page}) => {
+  test('Arabic core narrative headings preserve readable line rhythm', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
     await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
 
     const metrics = await page.evaluate(() => {
       const selectors = [
         '#cv-home-title-ar',
-        '#about-title-ar',
-        '#journey-title-ar',
-        '#capabilities-title-ar',
-        '#credentials-title-ar',
+        '#resolve-title-ar',
+        '#evidence-title-ar',
         '#contact-title-ar',
       ];
 
@@ -470,15 +465,15 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(sectionHeadings.every((item) => item.lines <= 2)).toBe(true);
   });
 
-  test('header tracks the current narrative section', async ({page}) => {
+  test('header tracks the current consolidated narrative section', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
-    await page.locator('#journey').scrollIntoViewIfNeeded();
-    await page.evaluate(() => document.getElementById('journey')?.scrollIntoView({block: 'center'}));
+    await page.locator('#evidence').scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.getElementById('evidence')?.scrollIntoView({block: 'center'}));
     await page.waitForTimeout(350);
 
-    await expect(page.locator('header a[href="#journey"]')).toHaveAttribute('aria-current', 'location');
+    await expect(page.locator('header a[href="#evidence"]')).toHaveAttribute('aria-current', 'location');
   });
 
   test('footer closes the document without a trailing layout gap', async ({page}) => {
@@ -502,11 +497,11 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
   test('career map is keyboard operable and updates one clear detail region', async ({page}) => {
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
-    const governance = page.getByRole('button', {name: /Digital governance & DGA/i});
-    await governance.focus();
-    await expect(governance).toBeFocused();
-    await governance.press('Enter');
-    await expect(governance).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.locator('.cvMapDetail')).toContainText('Digital governance & DGA');
+    const experience = page.getByRole('button', {name: /^04.*Experience/i});
+    await experience.focus();
+    await expect(experience).toBeFocused();
+    await experience.press('Enter');
+    await expect(experience).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('.cvMapDetail')).toContainText('DGA-oriented work');
   });
 });
