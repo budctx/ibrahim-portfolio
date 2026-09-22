@@ -17,7 +17,7 @@ const plexSans = IBM_Plex_Sans({
 const plexArabic = IBM_Plex_Sans_Arabic({
   weight: ['400', '500', '600', '700'],
   display: 'swap',
-  preload: false,
+  preload: true,
   variable: '--font-plex-arabic',
 });
 
