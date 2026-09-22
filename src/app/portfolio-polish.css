@@ -724,3 +724,60 @@ html[data-cv-motion='ready'] [data-scroll-motion='drift'][data-motion-state='aft
     margin-inline-start: 0;
   }
 }
+
+
+/* V3 short-viewport + RTL stability pass — Stage 18 run #181 */
+.cvV3 .cvFooter {
+  padding-bottom: 72px;
+}
+
+.cvRtl.cvV3 .cvHeroV3 .cvLede {
+  max-inline-size: 30ch;
+}
+
+@media (min-width: 1181px) and (max-height: 900px) {
+  .cvHeroV3 .cvMapV3 {
+    padding: 20px;
+  }
+
+  .cvHeroV3 .cvMapV3 .cvMapIntro {
+    padding-bottom: 14px;
+  }
+
+  .cvHeroV3 .cvMapV3 .cvMapIntro > strong {
+    font-size: clamp(1.2rem, 1.45vw, 1.5rem);
+  }
+
+  .cvHeroV3 .cvMapV3 .cvMapGrid {
+    padding-top: 18px;
+    gap: 28px;
+  }
+
+  .cvHeroV3 .cvMapV3 .cvSignal {
+    min-height: 88px;
+    padding-block: 10px;
+  }
+
+  .cvHeroV3 .cvMapV3 .cvMapDetail {
+    min-height: 330px;
+    padding: 22px;
+  }
+
+  .cvHeroV3 .cvMapV3 .cvMapDetailBody > strong {
+    margin-top: 14px;
+    font-size: clamp(1.55rem, 1.9vw, 2.05rem);
+  }
+
+  .cvHeroV3 .cvMapV3 .cvMapDetailBody > p {
+    margin-top: 16px;
+    line-height: 1.58;
+  }
+
+  .cvHeroV3 .cvMapV3 .cvMapEvidence {
+    margin-top: 22px;
+  }
+
+  .cvHeroV3 .cvMapV3 .cvMapHint {
+    margin-top: 10px;
+  }
+}
