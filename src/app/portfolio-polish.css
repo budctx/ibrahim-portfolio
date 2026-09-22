@@ -781,3 +781,9 @@ html[data-cv-motion='ready'] [data-scroll-motion='drift'][data-motion-state='aft
     margin-top: 10px;
   }
 }
+
+
+/* V3 anchor offset owns only one offset source: root scroll-padding. */
+.cvV3 .cvContact {
+  scroll-margin-top: 0;
+}
