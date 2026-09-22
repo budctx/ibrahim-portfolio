@@ -426,6 +426,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
 
   test('Arabic core narrative headings preserve readable line rhythm', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
+    await page.emulateMedia({reducedMotion: 'reduce'});
     await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
 
     const metrics = await page.evaluate(() => {
@@ -453,7 +454,6 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
       });
     });
 
-    console.log('AR_HEADING_METRICS', JSON.stringify(metrics));
     const axis = metrics.map((item) => item.right);
     expect(Math.max(...axis) - Math.min(...axis)).toBeLessThanOrEqual(18);
 
