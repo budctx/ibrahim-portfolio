@@ -1,5 +1,7 @@
+import type {Metadata} from 'next';
 import Link from 'next/link';
 import {getProjects} from '@/lib/content';
+import {ARABIC_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 import {ProjectCard} from '@/components/project-card';
 import {CareerMap} from '@/components/career-map';
 import {HomeHeader} from '@/components/home-header';
@@ -22,225 +24,178 @@ import {
   WorkflowIcon,
 } from '@/components/icons';
 
-export default async function HomePage() {
+export const metadata: Metadata = {
+  title: 'إبراهيم — مصمم منتجات وتجارب رقمية',
+  description: 'مصمم منتجات وتجارب رقمية في السعودية، أحوّل تعقيد الأنظمة وسير العمل إلى تجارب رقمية واضحة وقابلة للتنفيذ.',
+  alternates: {
+    canonical: '/',
+    languages: {ar: '/', en: '/en', 'x-default': '/'},
+  },
+  keywords: [...ARABIC_PORTFOLIO_KEYWORDS],
+  openGraph: {
+    url: '/',
+    title: 'إبراهيم — مصمم منتجات وتجارب رقمية',
+    description: 'أحوّل تعقيد الأنظمة وسير العمل إلى تجارب رقمية واضحة عبر UX وتصميم الويب والتفكير بالأنظمة وAI.',
+  },
+};
+
+export default async function ArabicHomePage() {
   const projects = await getProjects();
   const work = projects.filter((project) => project.classification !== 'playground').slice(0, 3);
   const hasWork = work.length > 0;
 
   return (
-    <main id="main" className="cvPage">
+    <main id="main" className="cvPage cvRtl cvV3" dir="rtl" lang="ar">
       <div className="cvFrame">
-        <HomeHeader locale="en" counterpartHref="/ar" hasWork={hasWork} />
-        <FloatingContactButton locale="en" />
+        <HomeHeader locale="ar" counterpartHref="/en" hasWork={hasWork} />
+        <FloatingContactButton locale="ar" />
         <ScrollMotionController />
 
-        <section className="cvHero" aria-labelledby="cv-home-title">
+        <section className="cvHero cvHeroV3" aria-labelledby="cv-home-title-ar">
           <div className="cvHeroCopy" data-scroll-motion="rise">
-            <p className="cvOverline">Ibrahim Al-Ajmi · Digital Product Designer · Saudi Arabia</p>
-            <h1 id="cv-home-title">
-              <span className="cvHeroTitleLine">I design digital products</span>
-              <em><span className="cvHeroTitleLine">that are easier to use.</span></em>
+            <p className="cvOverline">إبراهيم العجمي · مصمم منتجات وتجارب رقمية · السعودية</p>
+            <h1 id="cv-home-title-ar">
+              <span className="cvHeroTitleLine">أنظمة معقدة.</span>
+              <em><span className="cvHeroTitleLine">تجارب رقمية واضحة.</span></em>
             </h1>
             <p className="cvLede">
-              UI/UX, web design, and systems thinking for real workflows — from problem framing to a usable, implementation-ready interface.
+              أربط التفكير بالأنظمة وتجربة المستخدم وتصميم الويب والتنفيذ بمساعدة AI لتحويل تعقيد سير العمل الحقيقي إلى واجهات يفهمها المستخدم ويمكن للفريق تنفيذها.
             </p>
-            <HeroKeywordLoop locale="en" />
+            <HeroKeywordLoop locale="ar" />
             <div className="cvHeroActions">
-              <Link className="cvButton cvButtonPrimary" href="#about">
-                Start with how I think
+              <Link className="cvButton cvButtonPrimary" href="#resolve">
+                شاهد كيف يتحول النظام
                 <ArrowDownRightIcon className="cvDirectionalIcon" />
               </Link>
             </div>
           </div>
 
-          <CareerMap locale="en" />
+          <CareerMap locale="ar" />
         </section>
 
-        <section className="cvSection" id="about" data-scroll-motion="rise" aria-labelledby="about-title">
-          <div className="cvSectionLabel"><span>01</span><span>About</span></div>
+        <section className="cvSection cvResolve" id="resolve" data-scroll-motion="rise" aria-labelledby="resolve-title-ar">
+          <div className="cvSectionLabel"><span>01</span><span>التحويل</span></div>
           <div className="cvSectionBody">
-            <h2 id="about-title">Before the interface, I map the system.</h2>
+            <h2 id="resolve-title-ar">أبدأ بالنظام، لا بالشاشة.</h2>
             <p className="cvBigCopy">
-              Workflows, users, data, handoffs, constraints, and implementation come first. UI/UX gets clearer when the system behind it is clear.
+              الواجهة نتيجة وليست نقطة البداية. أحدد أولًا ما يحدث خلفها: المستخدمون والقواعد والمعلومات ونقاط التسليم والقيود والأماكن التي يبدأ فيها سير العمل بمقاومة المستخدم.
             </p>
-            <div className="cvEvidenceRail" aria-label="Professional evidence">
-              <div><div className="cvEvidenceLabel"><GraduationCapIcon /><span>Started with</span></div><strong>Bachelor&apos;s in MIS</strong></div>
-              <div><div className="cvEvidenceLabel"><WorkflowIcon /><span>Saw firsthand</span></div><strong>Healthcare workflows</strong></div>
-              <div><div className="cvEvidenceLabel"><BriefcaseIcon /><span>Designing now</span></div><strong>Web design · IAU</strong></div>
-              <div><div className="cvEvidenceLabel"><BadgeCheckIcon /><span>Working within</span></div><strong>Saudi DGA compliance</strong></div>
-              <div><div className="cvEvidenceLabel"><GoogleBrandIcon className="cvGoogleMark" /><span>Expanding with</span></div><strong>Google UX · Google AI</strong></div>
-            </div>
-          </div>
-        </section>
 
-        <section className="cvSection" id="journey" data-scroll-motion="slide" aria-labelledby="journey-title">
-          <div className="cvSectionLabel"><span>02</span><span>Journey</span></div>
-          <div className="cvSectionBody">
-            <h2 id="journey-title">Systems → operations → UI/UX.</h2>
-            <p className="cvSectionIntro">Each step changed what I notice in a digital product — and what I solve first.</p>
-            <div className="cvJourney cvJourneyRefined">
+            <div className="cvResolveFlow" aria-label="كيف أحول التعقيد إلى تجربة رقمية">
               <article>
-                <span className="cvStep">Understand</span>
-                <span className="cvJourneyMeta cvBadge">2019–2024 · MIS</span>
-                <h3>Map the logic</h3>
-                <p>Management Information Systems trained me to read data, dependencies, workflows, and information architecture before the screen.</p>
+                <span>01 · افهم</span>
+                <strong>ارسم النظام</strong>
+                <p>المستخدمون والأهداف والبيانات والاعتماديات وهندسة المعلومات والقيود التشغيلية.</p>
               </article>
+              <ArrowRightIcon className="cvResolveArrow" aria-hidden="true" />
               <article>
-                <span className="cvStep">Observe</span>
-                <span className="cvJourneyMeta cvBadge">2025 · Healthcare operations</span>
-                <h3>Find the friction</h3>
-                <p>Healthcare operations made wait time, handoffs, validation, and enterprise workflow problems concrete instead of theoretical.</p>
+                <span>02 · شخّص</span>
+                <strong>اكتشف الاحتكاك</strong>
+                <p>فجوات التسليم والخطوات الزائدة وضعف التسلسل والحالات الناقصة ومخاطر قابلية الاستخدام.</p>
               </article>
+              <ArrowRightIcon className="cvResolveArrow" aria-hidden="true" />
               <article>
-                <span className="cvStep">Shape</span>
-                <span className="cvJourneyMeta cvBadge">2025–Now · Web design</span>
-                <h3>Shape the flow</h3>
-                <p>UI/UX, responsive web design, wireframes, prototypes, and usability became the tools for turning friction into a clearer user journey.</p>
+                <span>03 · هيكل</span>
+                <strong>حوّل المشكلة إلى قرارات</strong>
+                <p>تدفقات المستخدم وتسلسل المحتوى والـWireframes ومنطق التفاعل والسلوك المتجاوب.</p>
+              </article>
+              <ArrowRightIcon className="cvResolveArrow" aria-hidden="true" />
+              <article>
+                <span>04 · نفّذ</span>
+                <strong>قلّل المسافة إلى البناء</strong>
+                <p>واجهات قابلة للوصول ونماذج أولية وحالات واضحة وحوكمة تصميم واستكشاف بمساعدة AI وتسليم للمطورين.</p>
               </article>
             </div>
           </div>
         </section>
 
-        <section className="cvTurningPoint" aria-label="Turning point" data-scroll-motion="scale">
-          <span>The shift</span>
-          <p>Design the workflow and the interface together.</p>
-          <Link className="cvTurningPointCta" href="#capabilities">See how I work now <ArrowDownRightIcon /></Link>
+        <section className="cvTurningPoint cvTurningPointV3" aria-label="مبدأ التصميم" data-scroll-motion="scale">
+          <span>مبدأ التصميم</span>
+          <p>الوضوح ليس تجميلًا بصريًا. بل قرار على مستوى النظام.</p>
+          <Link className="cvTurningPointCta" href="#evidence">لماذا أعمل بهذه الطريقة <ArrowDownRightIcon /></Link>
         </section>
 
-        <section className="cvSection" id="capabilities" data-scroll-motion="drift" aria-labelledby="capabilities-title">
-          <div className="cvSectionLabel"><span>03</span><span>How I work</span></div>
+        <section className="cvSection cvEvidenceSection" id="evidence" data-scroll-motion="drift" aria-labelledby="evidence-title-ar">
+          <div className="cvSectionLabel"><span>02</span><span>الخلفية</span></div>
           <div className="cvSectionBody">
-            <h2 id="capabilities-title">I turn complexity into decisions a team can build.</h2>
-            <p className="cvSectionIntro">UX strategy, interface design, governance, AI-assisted workflows, and developer handoff stay connected from the start.</p>
-            <div className="cvCapabilityPairs">
-              <div>
-                <span className="cvCapabilitySource cvBadge cvBadgeAccent">UX strategy · Systems thinking</span>
-                <ArrowRightIcon className="cvCapabilityArrow" />
-                <strong>Structure before screens</strong>
-                <p>Map user flows, dependencies, information architecture, and product logic before deciding what the interface should do.</p>
-              </div>
-              <div>
-                <span className="cvCapabilitySource cvBadge cvBadgeAccent">UI/UX · Responsive design</span>
-                <ArrowRightIcon className="cvCapabilityArrow" />
-                <strong>Usable across devices</strong>
-                <p>Turn flows into responsive interfaces, interaction states, wireframes, prototypes, and accessible patterns.</p>
-              </div>
-              <div>
-                <span className="cvCapabilitySource cvBadge cvBadgeAccent">Governance · DGA</span>
-                <ArrowRightIcon className="cvCapabilityArrow" />
-                <strong>Clear within constraints</strong>
-                <p>Design with digital standards, accessibility, consistency, and Saudi DGA requirements as part of the product — not a final check.</p>
-              </div>
-              <div>
-                <span className="cvCapabilitySource cvBadge cvBadgeAccent">Generative AI · Developer handoff</span>
-                <ArrowRightIcon className="cvCapabilityArrow" />
-                <strong>Closer to implementation</strong>
-                <p>Use AI-assisted exploration, clear states, specifications, and handoff to reduce the gap between design and build.</p>
-              </div>
+            <h2 id="evidence-title-ar">طريقة العمل جاءت من المسار الذي سبقها.</h2>
+            <p className="cvSectionIntro">
+              خلفيتي ليست قسم سيرة ذاتية منفصلًا؛ هي السبب في أنني أرى النظام والتشغيل وقابلية الاستخدام والحوكمة والتنفيذ كأجزاء مترابطة من المشكلة نفسها.
+            </p>
+
+            <div className="cvEvidenceRail cvEvidenceRailV3" aria-label="أدلة مهنية">
+              <div><div className="cvEvidenceLabel"><GraduationCapIcon /><span>الأساس</span></div><strong>نظم المعلومات الإدارية</strong></div>
+              <div><div className="cvEvidenceLabel"><WorkflowIcon /><span>التشغيل</span></div><strong>سير العمل في بيئة صحية</strong></div>
+              <div><div className="cvEvidenceLabel"><BriefcaseIcon /><span>الممارسة الحالية</span></div><strong>تصميم الويب · جامعة الإمام عبدالرحمن</strong></div>
+              <div><div className="cvEvidenceLabel"><BadgeCheckIcon /><span>الحوكمة</span></div><strong>أعمال رقمية موجهة لمتطلبات DGA</strong></div>
+              <div><div className="cvEvidenceLabel"><GoogleBrandIcon className="cvGoogleMark" /><span>التطوير المستمر</span></div><strong>Google UX · Google AI</strong></div>
             </div>
-          </div>
-        </section>
 
-        <section className="cvSection" id="credentials" data-scroll-motion="rise" aria-labelledby="credentials-title">
-          <div className="cvSectionLabel"><span>04</span><span>Credentials</span></div>
-          <div className="cvSectionBody">
-            <h2 id="credentials-title">Systems, UX, and AI training behind the work.</h2>
-            <div className="cvCredentials">
-              <div>
-                <div className="cvCredentialBrand cvCredentialBrandNeutral">
-                  <GraduationCapIcon />
-                  <span className="cvBadge cvBadgeIssuer">Academic</span>
-                </div>
-                <strong>Bachelor of Management Information Systems</strong>
-                <span>Imam Abdulrahman Bin Faisal University · 2019–2024</span>
-              </div>
-              <div>
-                <div className="cvCredentialBrand cvGoogleBrand">
-                  <GoogleBrandIcon />
-                  <span className="cvBadge cvBadgeIssuer">Google</span>
-                </div>
-                <strong>UX Design Professional Certificate</strong>
-                <span>User research, interaction design, wireframing, prototyping, usability testing, and user-centered product design.</span>
-              </div>
-              <div>
-                <div className="cvCredentialBrand cvGoogleBrand">
-                  <GoogleBrandIcon />
-                  <span className="cvBadge cvBadgeIssuer">Google</span>
-                </div>
-                <strong>AI Professional Certificate</strong>
-                <span>Applied foundation for generative AI, AI-assisted workflows, productivity, and professional delivery.</span>
-              </div>
+            <div className="cvJourney cvJourneyV3">
+              <article>
+                <span className="cvStep">2019–2024</span>
+                <h3>أصبحت الأنظمة هي العدسة.</h3>
+                <p>بكالوريوس نظم المعلومات الإدارية بنى أساس قراءة العمليات والمعلومات والاعتماديات ومنطق العمل قبل تفاصيل الواجهة.</p>
+              </article>
+              <article>
+                <span className="cvStep">2025</span>
+                <h3>جعل التشغيل الاحتكاك ملموسًا.</h3>
+                <p>تنسيق المرضى في بيئة صحية جعل الانتظار والتحقق ونقاط التسليم واحتكاك الأنظمة المؤسسية مسائل عملية وليست نظرية.</p>
+              </article>
+              <article>
+                <span className="cvStep">2025–الآن</span>
+                <h3>أصبح التصميم طبقة الحل.</h3>
+                <p>أربط اليوم منظور الأنظمة بواجهات متجاوبة وإمكانية الوصول والحوكمة والنماذج الأولية وتدفقات AI وتسليم التنفيذ.</p>
+              </article>
+            </div>
+
+            <div className="cvCredentialLine" aria-label="المؤهلات">
+              <span>المؤهلات</span>
+              <strong>بكالوريوس نظم معلومات إدارية · Google UX Design Professional Certificate · Google AI Professional Certificate</strong>
             </div>
           </div>
         </section>
 
         {hasWork && (
-          <section className="cvSection" id="work" data-scroll-motion="scale" aria-labelledby="work-title">
-            <div className="cvSectionLabel"><span>05</span><span>Work</span></div>
+          <section className="cvSection" id="work" data-scroll-motion="scale" aria-labelledby="work-title-ar">
+            <div className="cvSectionLabel"><span>03</span><span>الأعمال</span></div>
             <div className="cvSectionBody">
               <div className="cvSectionHead">
-                <h2 id="work-title">See the decisions in real work.</h2>
-                <Link href="/work">View all work</Link>
+                <h2 id="work-title-ar">القرارات عندما تُختبر في عمل حقيقي.</h2>
+                <Link href="/ar/work">عرض جميع الأعمال</Link>
               </div>
               <div className="projectGrid">
-                {work.map((project) => <ProjectCard project={project} key={project.projectKey} locale="en" />)}
+                {work.map((project) => <ProjectCard project={project} key={project.projectKey} locale="ar" />)}
               </div>
             </div>
           </section>
         )}
 
-        <section className="cvContact" id="contact" data-scroll-motion="rise" aria-labelledby="contact-title">
+        <section className="cvContact cvContactV3" id="contact" data-scroll-motion="rise" aria-labelledby="contact-title-ar">
           <div>
-            <span className="cvContactIndex">{hasWork ? '06' : '05'}</span>
-            <p className="cvOverline">Contact</p>
+            <span className="cvContactIndex">{hasWork ? '04' : '03'}</span>
+            <p className="cvOverline">تواصل</p>
           </div>
           <div>
             <div className="cvContactContext">
-              <span>Available</span>
-              <p>Digital product design, UI/UX, web design, UX strategy, and experience design opportunities in Saudi Arabia and remote collaboration.</p>
+              <span>متاح للتعاون</span>
+              <p>فرص المنتجات الرقمية وUI/UX وتجارب الويب واستراتيجية UX والمشاريع التي تركز على تحسين سير العمل داخل السعودية أو عن بعد.</p>
             </div>
-            <h2 id="contact-title">Have a product, workflow, or interface that needs clarity?</h2>
-            <p className="cvContactNote">Send the context. I can help frame the problem, improve the UX, and move the design closer to implementation.</p>
-            <div className="cvContactGrid" aria-label="Contact details">
-              <ContactCard
-                icon={<MailIcon />}
-                label="Email"
-                value="ibrahim.alajmi407@gmail.com"
-                href="mailto:ibrahim.alajmi407@gmail.com"
-              />
-              <ContactCard
-                icon={<LinkedInBrandIcon />}
-                label="LinkedIn"
-                value="ibrahim-al-ajmi-97ba02335"
-                href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335"
-                external
-                className="cvLinkedInLink"
-              />
-              <ContactCard
-                icon={<MessageCircleIcon />}
-                label="WhatsApp"
-                value="+966 59 786 6665"
-                href="https://wa.me/966597866665"
-                external
-              />
-              <ContactCard
-                icon={<PhoneIcon />}
-                label="Phone"
-                value="+966 59 786 6665"
-                href="tel:+966597866665"
-              />
-              <ContactCard
-                icon={<MapPinIcon />}
-                label="Location"
-                value="Saudi Arabia"
-              />
+            <h2 id="contact-title-ar">هل لديك سير عمل معقد يجب أن يبدو بسيطًا؟</h2>
+            <p className="cvContactNote">أرسل السياق. أستطيع المساعدة في فهم النظام وصياغة التجربة وتقريب الحل من التنفيذ.</p>
+            <div className="cvContactGrid" aria-label="بيانات التواصل">
+              <ContactCard icon={<MailIcon />} label="البريد" value="ibrahim.alajmi407@gmail.com" href="mailto:ibrahim.alajmi407@gmail.com" />
+              <ContactCard icon={<LinkedInBrandIcon />} label="LinkedIn" value="ibrahim-al-ajmi-97ba02335" href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" external className="cvLinkedInLink" />
+              <ContactCard icon={<MessageCircleIcon />} label="WhatsApp" value="+966 59 786 6665" href="https://wa.me/966597866665" external />
+              <ContactCard icon={<PhoneIcon />} label="الهاتف" value="+966 59 786 6665" href="tel:+966597866665" />
+              <ContactCard icon={<MapPinIcon />} label="الموقع" value="السعودية" />
             </div>
           </div>
         </section>
 
         <footer className="cvFooter">
-          <span>© Ibrahim</span>
-          <span>Digital Product Design · UI/UX · Web Design · Saudi Arabia</span>
+          <span>© إبراهيم</span>
+          <span>النظام ← التجربة · تصميم منتجات رقمية · UI/UX · الويب</span>
         </footer>
       </div>
     </main>

@@ -3,7 +3,7 @@ import {NextRequest, NextResponse} from 'next/server';
 export function proxy(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   const pathname = request.nextUrl.pathname;
-  const locale = pathname === '/ar' || pathname.startsWith('/ar/') ? 'ar' : 'en';
+  const locale = pathname === '/' || pathname === '/ar' || pathname.startsWith('/ar/') ? 'ar' : 'en';
   requestHeaders.set('x-portfolio-locale', locale);
 
   return NextResponse.next({

@@ -3,7 +3,7 @@ const AxeBuilder = require('@axe-core/playwright').default;
 
 const BASE = 'http://127.0.0.1:3000';
 
-for (const route of ['/', '/ar']) {
+for (const route of ['/', '/en']) {
   test(`axe WCAG 2.2 AA has no serious or critical violations on ${route}`, async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
     await page.goto(`${BASE}${route}`, {waitUntil: 'networkidle'});

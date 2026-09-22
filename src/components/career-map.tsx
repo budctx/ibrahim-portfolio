@@ -23,95 +23,92 @@ const copy: Record<Locale, {
   kicker: string;
   title: string;
   hint: string;
-  detailLabel: string;
   evidenceLabel: string;
   nodes: Node[];
 }> = {
   en: {
-    kicker: 'Why I design this way',
-    title: 'Five layers behind my product decisions.',
-    hint: 'Choose a layer, then continue to how I work.',
-    detailLabel: 'What changed',
-    evidenceLabel: 'Evidence',
+    kicker: 'System → Experience',
+    title: 'What changes between complexity and clarity.',
+    hint: 'The sequence advances automatically. Choose any layer to inspect it.',
+    evidenceLabel: 'Grounded in',
     nodes: [
       {
-        id: 'mis',
-        label: 'Management Information Systems',
-        short: 'Understand the system first.',
-        detail: 'Data, dependencies, workflows, and information architecture come before interface decisions.',
+        id: 'system',
+        label: 'System',
+        short: 'Understand what is actually happening.',
+        detail: 'Start with users, information, dependencies, goals, rules, constraints, and the workflow around the interface.',
         evidence: 'Management Information Systems',
       },
       {
-        id: 'operations',
-        label: 'Healthcare operations',
-        short: 'See friction in real workflows.',
-        detail: 'Wait time, handoffs, validation, and enterprise workflows made UX friction concrete.',
+        id: 'friction',
+        label: 'Friction',
+        short: 'Find where the workflow pushes back.',
+        detail: 'Look for waiting, handoff gaps, duplicate effort, weak hierarchy, unclear states, validation problems, and avoidable cognitive load.',
         evidence: 'Healthcare operations',
       },
       {
-        id: 'experience',
-        label: 'UI/UX Design',
-        short: 'Turn friction into a clearer flow.',
-        detail: 'User journeys, information architecture, wireframes, prototypes, responsive UI, and usability turn system logic into experience.',
-        evidence: 'UI/UX · Digital product design',
+        id: 'structure',
+        label: 'Structure',
+        short: 'Turn the problem into product logic.',
+        detail: 'Shape information architecture, user flows, content hierarchy, states, wireframes, responsive rules, and interaction decisions.',
+        evidence: 'UX · Web · Digital product design',
       },
       {
-        id: 'governance',
-        label: 'Digital governance & DGA',
-        short: 'Design inside real requirements.',
-        detail: 'Digital standards, accessibility, consistency, and DGA requirements belong inside the design process from the start.',
-        evidence: 'Digital governance · DGA-oriented work',
+        id: 'experience',
+        label: 'Experience',
+        short: 'Make the structure understandable.',
+        detail: 'Translate product logic into clear interfaces with usable interaction, accessible patterns, visual hierarchy, and intentional motion.',
+        evidence: 'UI/UX · Accessibility · DGA-oriented work',
       },
       {
         id: 'delivery',
-        label: 'AI + Developer Handoff',
-        short: 'Reduce the gap to implementation.',
-        detail: 'Generative AI speeds exploration; clear states, specifications, and developer handoff keep the design buildable.',
-        evidence: 'Generative AI workflows · Developer handoff',
+        label: 'Delivery',
+        short: 'Keep the design close to implementation.',
+        detail: 'Use prototypes, explicit states, specifications, AI-assisted exploration, and developer handoff to reduce ambiguity between design and build.',
+        evidence: 'Google UX · Google AI · Developer handoff',
       },
     ],
   },
   ar: {
-    kicker: 'لماذا أصمم بهذه الطريقة',
-    title: 'خمس طبقات خلف قراراتي في المنتج.',
-    hint: 'اختر طبقة، ثم أكمل إلى طريقة العمل.',
-    detailLabel: 'ما الذي تغيّر',
-    evidenceLabel: 'الدليل',
+    kicker: 'النظام ← التجربة',
+    title: 'ما الذي يتغيّر بين التعقيد والوضوح.',
+    hint: 'يتقدم التسلسل تلقائيًا. اختر أي طبقة لاستعراضها.',
+    evidenceLabel: 'مبني على',
     nodes: [
       {
-        id: 'mis',
-        label: 'نظم المعلومات الإدارية',
-        short: 'أفهم النظام أولًا.',
-        detail: 'البيانات والاعتماديات وسير العمل وهندسة المعلومات تسبق قرارات الواجهة.',
+        id: 'system',
+        label: 'النظام',
+        short: 'أفهم ما يحدث فعليًا.',
+        detail: 'أبدأ بالمستخدمين والمعلومات والاعتماديات والأهداف والقواعد والقيود وسير العمل المحيط بالواجهة.',
         evidence: 'نظم المعلومات الإدارية',
       },
       {
-        id: 'operations',
-        label: 'العمليات الصحية',
-        short: 'أرى الاحتكاك داخل سير عمل حقيقي.',
-        detail: 'وقت الانتظار ونقاط التسليم والتحقق من البيانات والأنظمة المؤسسية جعلت احتكاك UX ملموسًا.',
-        evidence: 'عمليات في بيئة صحية',
+        id: 'friction',
+        label: 'الاحتكاك',
+        short: 'أحدد أين يقاوم سير العمل المستخدم.',
+        detail: 'أبحث عن الانتظار وفجوات التسليم وتكرار الجهد وضعف التسلسل البصري والحالات غير الواضحة ومشاكل التحقق والحمل الذهني غير الضروري.',
+        evidence: 'العمليات الصحية',
+      },
+      {
+        id: 'structure',
+        label: 'البنية',
+        short: 'أحوّل المشكلة إلى منطق منتج.',
+        detail: 'أبني هندسة المعلومات وتدفقات المستخدم وتسلسل المحتوى والحالات والـWireframes وقواعد الاستجابة وقرارات التفاعل.',
+        evidence: 'UX · الويب · تصميم المنتجات الرقمية',
       },
       {
         id: 'experience',
-        label: 'UI/UX Design',
-        short: 'أحوّل الاحتكاك إلى تدفق أوضح.',
-        detail: 'User Journeys وهندسة المعلومات وWireframes وPrototypes وResponsive UI وقابلية الاستخدام تحوّل منطق النظام إلى تجربة.',
-        evidence: 'UI/UX · تصميم المنتجات الرقمية',
-      },
-      {
-        id: 'governance',
-        label: 'الحوكمة الرقمية وDGA',
-        short: 'أصمم داخل متطلبات حقيقية.',
-        detail: 'المعايير الرقمية وإمكانية الوصول والاتساق ومتطلبات DGA جزء من عملية التصميم منذ البداية.',
-        evidence: 'الحوكمة الرقمية · متطلبات DGA',
+        label: 'التجربة',
+        short: 'أجعل البنية مفهومة وقابلة للاستخدام.',
+        detail: 'أحوّل منطق المنتج إلى واجهة واضحة عبر تفاعل قابل للاستخدام وأنماط وصول وتسلسل بصري وحركة ذات غرض.',
+        evidence: 'UI/UX · إمكانية الوصول · أعمال موجهة لمتطلبات DGA',
       },
       {
         id: 'delivery',
-        label: 'AI + Developer Handoff',
-        short: 'أقلل المسافة إلى التنفيذ.',
-        detail: 'Generative AI يسرّع الاستكشاف، والحالات والمواصفات وDeveloper Handoff تحافظ على قابلية التنفيذ.',
-        evidence: 'تدفقات AI · تسليم المطورين',
+        label: 'التنفيذ',
+        short: 'أبقي التصميم قريبًا من البناء.',
+        detail: 'أستخدم النماذج الأولية والحالات الواضحة والمواصفات والاستكشاف بمساعدة AI وDeveloper Handoff لتقليل الغموض بين التصميم والتنفيذ.',
+        evidence: 'Google UX · Google AI · Developer Handoff',
       },
     ],
   },
@@ -175,9 +172,9 @@ export function CareerMap({locale = 'en'}: {locale?: Locale}) {
   return (
     <div
       ref={mapRef}
-      className="cvMap"
+      className="cvMap cvMapV3"
       data-scroll-motion="slide"
-      aria-label={rtl ? 'خريطة تكويني المهني' : 'Professional formation map'}
+      aria-label={rtl ? 'تحويل النظام إلى تجربة رقمية' : 'System to experience map'}
       onPointerEnter={() => setIsPaused(true)}
       onPointerLeave={() => setIsPaused(false)}
       onFocusCapture={() => setIsPaused(true)}
@@ -197,34 +194,34 @@ export function CareerMap({locale = 'en'}: {locale?: Locale}) {
         <div
           className={"cvMapTrack cvMapTrackActive" + (activeIndex + 1)}
           role="group"
-          aria-label={rtl ? 'طبقات التكوين المهني' : 'Professional formation layers'}
+          aria-label={rtl ? 'طبقات التحويل من النظام إلى التجربة' : 'System-to-experience layers'}
         >
           {data.nodes.map((node, index) => {
             const NodeIcon =
-              node.id === 'mis' ? GraduationCapIcon :
-              node.id === 'operations' ? WorkflowIcon :
+              node.id === 'system' ? GraduationCapIcon :
+              node.id === 'friction' ? WorkflowIcon :
+              node.id === 'structure' ? BriefcaseIcon :
               node.id === 'experience' ? SparklesIcon :
-              node.id === 'governance' ? BadgeCheckIcon :
-              BriefcaseIcon;
+              BadgeCheckIcon;
 
             return (
-            <button
-              key={node.id}
-              ref={(element) => { buttonRefs.current[index] = element; }}
-              type="button"
-              className="cvSignal"
-              aria-pressed={node.id === activeId}
-              onClick={() => activate(index, false)}
-              onKeyDown={(event) => handleKeyDown(event, index)}
-            >
-              <span className="cvSignalIndex">{String(index + 1).padStart(2, '0')}</span>
-              <span className="cvSignalLine" aria-hidden="true" />
-              <span className="cvSignalIcon" aria-hidden="true"><NodeIcon /></span>
-              <span className="cvSignalCopy">
-                <strong>{node.label}</strong>
-                <span>{node.short}</span>
-              </span>
-            </button>
+              <button
+                key={node.id}
+                ref={(element) => { buttonRefs.current[index] = element; }}
+                type="button"
+                className="cvSignal"
+                aria-pressed={node.id === activeId}
+                onClick={() => activate(index, false)}
+                onKeyDown={(event) => handleKeyDown(event, index)}
+              >
+                <span className="cvSignalIndex">{String(index + 1).padStart(2, '0')}</span>
+                <span className="cvSignalLine" aria-hidden="true" />
+                <span className="cvSignalIcon" aria-hidden="true"><NodeIcon /></span>
+                <span className="cvSignalCopy">
+                  <strong>{node.label}</strong>
+                  <span>{node.short}</span>
+                </span>
+              </button>
             );
           })}
         </div>

@@ -1,7 +1,7 @@
 const {test, expect} = require('@playwright/test');
 
 const BASE = 'http://127.0.0.1:3000';
-const routes = ['/', '/work', '/playground', '/about', '/ar', '/ar/work', '/ar/playground', '/ar/about'];
+const routes = ['/', '/en', '/work', '/playground', '/about', '/ar', '/ar/work', '/ar/playground', '/ar/about'];
 
 async function expectNoHorizontalOverflow(page) {
   const metrics = await page.evaluate(() => ({
@@ -52,12 +52,12 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
       await expectNoHorizontalOverflow(page);
       await expectCoreContentVisible(page);
 
-      if (route === '/' || route === '/ar') {
+      if (route === '/' || route === '/en' || route === '/ar') {
         await expect(page.locator('.cvMapGrid')).toBeVisible();
         await expect(page.locator('.cvSignal')).toHaveCount(5);
       }
 
-      if (route.startsWith('/ar')) {
+      if (route === '/' || route.startsWith('/ar')) {
         await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
         await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
       } else {
@@ -67,11 +67,31 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     }
   });
 
+
+  test('Arabic and dark theme are the first-visit defaults while user theme choice persists', async ({browser}) => {
+    const context = await browser.newContext({colorScheme: 'light'});
+    const page = await context.newPage();
+
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
+    await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+
+    const toggle = page.locator('.themeToggle');
+    await toggle.click();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+
+    await page.reload({waitUntil: 'networkidle'});
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+
+    await context.close();
+  });
+
   test('floating contact CTA works repeatedly and stays outside the hero in both locales', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
     await page.emulateMedia({reducedMotion: 'reduce'});
 
-    for (const route of ['/', '/ar']) {
+    for (const route of ['/', '/en']) {
       await page.goto(`${BASE}${route}`, {waitUntil: 'networkidle'});
       await expect(page.locator('.cvHeroActions a')).toHaveCount(1);
       await expect(page.locator('.cvHeroActions a[href="#contact"]')).toHaveCount(0);
@@ -93,7 +113,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
 
   test('career map starts at the top, advances after eight seconds, and keeps a stable detail frame', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
-    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/en`, {waitUntil: 'networkidle'});
 
     await expect(page.locator('.cvSignal').first()).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('.cvMapDetail')).toContainText('Management Information Systems');
@@ -111,7 +131,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
 
   test('English grid safe spaces hold on desktop and mobile while scroll motion enters and exits', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
-    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/en`, {waitUntil: 'networkidle'});
 
     const desktop = await page.evaluate(() => {
       const frame = document.querySelector('.cvFrame').getBoundingClientRect();
@@ -130,16 +150,16 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(desktop.map.left - desktop.copy.right).toBeGreaterThanOrEqual(40);
 
     await expect(page.locator('html')).toHaveAttribute('data-cv-motion', 'ready');
-    await page.locator('#about').scrollIntoViewIfNeeded();
-    await page.evaluate(() => document.getElementById('about')?.scrollIntoView({block: 'center'}));
-    await expect.poll(() => page.locator('#about').getAttribute('data-motion-state')).toBe('in');
+    await page.locator('#resolve').scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.getElementById('resolve')?.scrollIntoView({block: 'center'}));
+    await expect.poll(() => page.locator('#resolve').getAttribute('data-motion-state')).toBe('in');
 
-    await page.locator('#credentials').scrollIntoViewIfNeeded();
-    await page.evaluate(() => document.getElementById('credentials')?.scrollIntoView({block: 'center'}));
-    await expect.poll(() => page.locator('#about').getAttribute('data-motion-state')).toBe('after');
+    await page.locator('#evidence').scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.getElementById('evidence')?.scrollIntoView({block: 'center'}));
+    await expect.poll(() => page.locator('#resolve').getAttribute('data-motion-state')).toBe('after');
 
     await page.setViewportSize({width: 390, height: 844});
-    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/en`, {waitUntil: 'networkidle'});
     await expectNoHorizontalOverflow(page);
 
     const mobile = await page.evaluate(() => {
@@ -157,7 +177,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
   test('homepage keeps the animated keyword focus without section CTA bars', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
 
-    for (const route of ['/', '/ar']) {
+    for (const route of ['/', '/en']) {
       await page.goto(`${BASE}${route}`, {waitUntil: 'networkidle'});
       await expect(page.locator('.cvHeroKeywordLoop')).toBeVisible();
       await expect(page.locator('.cvSectionNext')).toHaveCount(0);
@@ -165,13 +185,13 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
   });
 
   test('contact exposes WhatsApp phone and Saudi Arabia in both locales', async ({page}) => {
-    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/en`, {waitUntil: 'networkidle'});
     await expect(page.locator('.cvContactGrid a[href="https://wa.me/966597866665"]')).toBeVisible();
     await expect(page.locator('.cvContactGrid a[href="tel:+966597866665"]')).toBeVisible();
     await expect(page.locator('.cvContactGrid')).toContainText('Saudi Arabia');
     await expect(page.locator('.cvContactGrid .cvContactCard')).toHaveCount(5);
 
-    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
     await expect(page.locator('.cvContactGrid a[href="https://wa.me/966597866665"]')).toBeVisible();
     await expect(page.locator('.cvContactGrid a[href="tel:+966597866665"]')).toBeVisible();
     await expect(page.locator('.cvContactGrid')).toContainText('السعودية');
@@ -224,7 +244,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     });
     const page = await context.newPage();
 
-    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/en`, {waitUntil: 'networkidle'});
 
     expect(await page.evaluate(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(true);
 
@@ -249,15 +269,15 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(maxTransitionMs).toBeLessThanOrEqual(0.1);
     expect(motion.scrollBehavior).toBe('auto');
 
-    await page.locator('header a[href="#about"]').click();
-    await expect(page).toHaveURL(/#about$/);
-    await expect(page.locator('#about-title')).toBeVisible();
+    await page.locator('header a[href="#resolve"]').click();
+    await expect(page).toHaveURL(/#resolve$/);
+    await expect(page.locator('#resolve-title')).toBeVisible();
 
     await context.close();
   });
 
   test('typography variables and visible brand marks render in both locales', async ({page}) => {
-    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/en`, {waitUntil: 'networkidle'});
 
     const fontVars = await page.evaluate(() => {
       const style = getComputedStyle(document.documentElement);
@@ -272,27 +292,24 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(fontVars.arabic).not.toBe('');
     expect(fontVars.mono).not.toBe('');
 
-    await expect(page.locator('.cvGoogleBrand')).toHaveCount(2);
-    await expect(page.locator('.cvGoogleBrand svg').first()).toBeVisible();
+    await expect(page.locator('.cvEvidenceRailV3 > div')).toHaveCount(5);
     await expect(page.locator('.cvGoogleMark')).toBeVisible();
     await expect(page.locator('.cvLinkedInLink svg')).toBeVisible();
-    await expect(page.locator('.cvBadge')).toHaveCount(10);
 
-    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
-    await expect(page.locator('.cvGoogleBrand')).toHaveCount(2);
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await expect(page.locator('.cvEvidenceRailV3 > div')).toHaveCount(5);
     await expect(page.locator('.cvGoogleMark')).toBeVisible();
     await expect(page.locator('.cvLinkedInLink svg')).toBeVisible();
-    await expect(page.locator('.cvBadge')).toHaveCount(10);
   });
 
 
 
   test('desktop visual polish keeps labels adjacent and brand CTAs prominent', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
-    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
-    const aboutLabel = page.locator('#about .cvSectionLabel');
-    const aboutTitle = page.locator('#about-title-ar');
+    const aboutLabel = page.locator('#resolve .cvSectionLabel');
+    const aboutTitle = page.locator('#resolve-title-ar');
     const labelBox = await aboutLabel.boundingBox();
     const titleBox = await aboutTitle.boundingBox();
 
@@ -303,12 +320,12 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(Math.abs(labelInlineStart - titleInlineStart)).toBeLessThanOrEqual(24);
     expect(labelBox.y + labelBox.height).toBeLessThanOrEqual(titleBox.y + 4);
 
-    const googleSize = await page.locator('.cvGoogleBrand svg').first().evaluate((element) => {
+    const evidenceIconSize = await page.locator('.cvEvidenceRailV3 .cvEvidenceLabel svg').first().evaluate((element) => {
       const rect = element.getBoundingClientRect();
       return {width: rect.width, height: rect.height};
     });
-    expect(googleSize.width).toBeGreaterThanOrEqual(38);
-    expect(googleSize.height).toBeGreaterThanOrEqual(38);
+    expect(evidenceIconSize.width).toBeGreaterThanOrEqual(30);
+    expect(evidenceIconSize.height).toBeGreaterThanOrEqual(30);
 
     const contactSizes = await page.locator('.cvContactGrid .cvContactCard').evaluateAll((elements) =>
       elements.map((element) => {
@@ -333,7 +350,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
 
   test('Arabic hero keeps a real safe zone and stacks before medium-width compression', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
-    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
     const desktop = await page.evaluate(() => {
       const rect = (selector) => document.querySelector(selector)?.getBoundingClientRect();
@@ -378,7 +395,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(new Set(desktop.lineTops).size).toBe(2);
 
     await page.setViewportSize({width: 1100, height: 1000});
-    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
     const medium = await page.evaluate(() => {
       const copy = document.querySelector('.cvHeroCopy')?.getBoundingClientRect();
@@ -396,13 +413,13 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
 
   test('desktop hero fits the first viewport without clipping core content', async ({page}) => {
     await page.setViewportSize({width: 1752, height: 864});
-    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
     const metrics = await page.evaluate(() => {
       const hero = document.querySelector('.cvHero')?.getBoundingClientRect();
       const map = document.querySelector('.cvMap')?.getBoundingClientRect();
       const copy = document.querySelector('.cvHeroCopy')?.getBoundingClientRect();
-      const next = document.querySelector('#about')?.getBoundingClientRect();
+      const next = document.querySelector('#resolve')?.getBoundingClientRect();
       const mapGrid = document.querySelector('.cvMapGrid');
       const mapGridStyle = mapGrid ? getComputedStyle(mapGrid) : null;
       return {
@@ -427,17 +444,16 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(metrics.mapColumns.split(' ').filter(Boolean).length).toBeGreaterThanOrEqual(2);
   });
 
-  test('Arabic narrative headings share one axis without compressed line stacking', async ({page}) => {
+  test('Arabic core narrative headings preserve readable line rhythm', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
-    await page.goto(`${BASE}/ar`, {waitUntil: 'networkidle'});
+    await page.emulateMedia({reducedMotion: 'reduce'});
+    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
     const metrics = await page.evaluate(() => {
       const selectors = [
         '#cv-home-title-ar',
-        '#about-title-ar',
-        '#journey-title-ar',
-        '#capabilities-title-ar',
-        '#credentials-title-ar',
+        '#resolve-title-ar',
+        '#evidence-title-ar',
         '#contact-title-ar',
       ];
 
@@ -470,21 +486,21 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
     expect(sectionHeadings.every((item) => item.lines <= 2)).toBe(true);
   });
 
-  test('header tracks the current narrative section', async ({page}) => {
+  test('header tracks the current consolidated narrative section', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
     await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
 
-    await page.locator('#journey').scrollIntoViewIfNeeded();
-    await page.evaluate(() => document.getElementById('journey')?.scrollIntoView({block: 'center'}));
+    await page.locator('#evidence').scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.getElementById('evidence')?.scrollIntoView({block: 'center'}));
     await page.waitForTimeout(350);
 
-    await expect(page.locator('header a[href="#journey"]')).toHaveAttribute('aria-current', 'location');
+    await expect(page.locator('header a[href="#evidence"]')).toHaveAttribute('aria-current', 'location');
   });
 
   test('footer closes the document without a trailing layout gap', async ({page}) => {
     await page.setViewportSize({width: 1440, height: 1000});
 
-    for (const route of ['/', '/ar']) {
+    for (const route of ['/', '/en']) {
       await page.goto(`${BASE}${route}`, {waitUntil: 'networkidle'});
       const footer = page.locator('.cvFooter');
       await footer.scrollIntoViewIfNeeded();
@@ -500,13 +516,13 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
   });
 
   test('career map is keyboard operable and updates one clear detail region', async ({page}) => {
-    await page.goto(`${BASE}/`, {waitUntil: 'networkidle'});
+    await page.goto(`${BASE}/en`, {waitUntil: 'networkidle'});
 
-    const governance = page.getByRole('button', {name: /Digital governance & DGA/i});
-    await governance.focus();
-    await expect(governance).toBeFocused();
-    await governance.press('Enter');
-    await expect(governance).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.locator('.cvMapDetail')).toContainText('Digital governance & DGA');
+    const experience = page.getByRole('button', {name: /^04.*Experience/i});
+    await experience.focus();
+    await expect(experience).toBeFocused();
+    await experience.press('Enter');
+    await expect(experience).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('.cvMapDetail')).toContainText('DGA-oriented work');
   });
 });

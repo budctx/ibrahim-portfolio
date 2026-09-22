@@ -2,7 +2,7 @@ import type {Metadata} from 'next';
 import {cookies, draftMode, headers} from 'next/headers';
 import type {ReactNode} from 'react';
 import {IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Arabic} from 'next/font/google';
-import {ENGLISH_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
+import {ARABIC_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 import './globals.css';
 import './portfolio.css';
 import './portfolio-polish.css';
@@ -17,7 +17,7 @@ const plexSans = IBM_Plex_Sans({
 const plexArabic = IBM_Plex_Sans_Arabic({
   weight: ['400', '500', '600', '700'],
   display: 'swap',
-  preload: false,
+  preload: true,
   variable: '--font-plex-arabic',
 });
 
@@ -33,25 +33,25 @@ const siteUrl = 'https://ibrahim-portfolio-blush.vercel.app';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Ibrahim — Digital Product & Experience Designer',
-    template: '%s — Ibrahim',
+    default: 'إبراهيم — مصمم منتجات وتجارب رقمية',
+    template: '%s — إبراهيم',
   },
-  description: 'Digital product designer in Saudi Arabia working across UI/UX, web design, UX strategy, information architecture, responsive interfaces, digital workflows, generative AI, and developer handoff.',
-  keywords: [...ENGLISH_PORTFOLIO_KEYWORDS],
+  description: 'مصمم منتجات وتجارب رقمية في السعودية، أحوّل تعقيد الأنظمة وسير العمل إلى تجارب رقمية واضحة وقابلة للتنفيذ.',
+  keywords: [...ARABIC_PORTFOLIO_KEYWORDS],
   alternates: {
     canonical: '/',
     languages: {
-      en: '/',
-      ar: '/ar',
+      ar: '/',
+      en: '/en',
       'x-default': '/',
     },
   },
   openGraph: {
     type: 'website',
     url: '/',
-    title: 'Ibrahim — Digital Product & Experience Designer',
-    description: 'UI/UX, web design, systems thinking, responsive interfaces, digital governance, generative AI workflows, and implementation-aware product design.',
-    siteName: 'Ibrahim Portfolio',
+    title: 'إبراهيم — مصمم منتجات وتجارب رقمية',
+    description: 'أنظمة معقدة وتجارب رقمية واضحة عبر UX وتصميم الويب والتفكير بالأنظمة وAI والتنفيذ القابل للبناء.',
+    siteName: 'بورتفوليو إبراهيم',
   },
   robots: {
     index: true,
@@ -62,8 +62,7 @@ export const metadata: Metadata = {
 const themeInit = `
 try {
   const saved = localStorage.getItem('portfolio-theme');
-  const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : preferred;
+  document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : 'dark';
 } catch (_) {}
 `;
 
