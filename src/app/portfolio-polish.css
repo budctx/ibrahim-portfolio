@@ -701,3 +701,26 @@ html[data-cv-motion='ready'] [data-scroll-motion='drift'][data-motion-state='aft
     transform: none !important;
   }
 }
+
+
+/* V3 regression fixes — evidence from Stage 18 Playwright run #180 */
+@media (min-width: 1181px) {
+  .cvHeroV3 {
+    min-height: min(920px, calc(100svh - 86px));
+  }
+
+  .cvContactV3 {
+    min-height: calc(100svh - 96px);
+  }
+
+  .cvRtl.cvV3 .cvHeroV3 h1 {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    margin-inline: 0;
+  }
+
+  .cvRtl.cvV3 .cvSectionBody > h2,
+  .cvRtl.cvV3 .cvContact h2 {
+    margin-inline-start: 0;
+  }
+}
