@@ -18,20 +18,16 @@ export function HomeHeader({locale = 'en', counterpartHref, hasWork = false}: Ho
   const labels = ar
     ? {
         home: 'الرئيسية',
-        about: 'عني',
-        journey: 'الرحلة',
-        capabilities: 'طريقة العمل',
-        credentials: 'المؤهلات',
+        resolve: 'طريقة العمل',
+        evidence: 'الخلفية',
         work: 'الأعمال',
         contact: 'تواصل',
         language: 'Switch to English',
       }
     : {
         home: 'Home',
-        about: 'About',
-        journey: 'Journey',
-        capabilities: 'How I work',
-        credentials: 'Credentials',
+        resolve: 'How I work',
+        evidence: 'Evidence',
         work: 'Work',
         contact: 'Contact',
         language: 'التبديل إلى العربية',
@@ -39,14 +35,12 @@ export function HomeHeader({locale = 'en', counterpartHref, hasWork = false}: Ho
 
   const navItems = useMemo(
     () => [
-      {id: 'about', label: labels.about},
-      {id: 'journey', label: labels.journey},
-      {id: 'capabilities', label: labels.capabilities},
-      {id: 'credentials', label: labels.credentials},
+      {id: 'resolve', label: labels.resolve},
+      {id: 'evidence', label: labels.evidence},
       ...(hasWork ? [{id: 'work', label: labels.work}] : []),
       {id: 'contact', label: labels.contact},
     ],
-    [hasWork, labels.about, labels.capabilities, labels.contact, labels.credentials, labels.journey, labels.work],
+    [hasWork, labels.contact, labels.evidence, labels.resolve, labels.work],
   );
 
   useEffect(() => {
