@@ -70,7 +70,7 @@ export function HomeHeader({locale = 'en', counterpartHref, hasWork = false}: Ho
 
   return (
     <header className="cvHeader">
-      <Link className="cvBrand" href={ar ? '/ar' : '/'} aria-label={labels.home}>
+      <Link className="cvBrand" href={ar ? '/' : '/en'} aria-label={labels.home}>
         <span className="cvBrandMark" aria-hidden="true"><b>I</b><i>/</i><b>A</b></span>
         <span className="cvBrandName">{ar ? 'إبراهيم العجمي' : 'Ibrahim Al-Ajmi'}</span>
       </Link>
