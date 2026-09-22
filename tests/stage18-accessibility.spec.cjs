@@ -453,6 +453,7 @@ test.describe('Interactive CV accessibility and responsive evidence', () => {
       });
     });
 
+    console.log('AR_HEADING_METRICS', JSON.stringify(metrics));
     const axis = metrics.map((item) => item.right);
     expect(Math.max(...axis) - Math.min(...axis)).toBeLessThanOrEqual(18);
 
