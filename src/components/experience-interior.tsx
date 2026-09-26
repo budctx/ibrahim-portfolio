@@ -1,3 +1,5 @@
+import {ContactDock} from '@/components/contact-dock';
+import {getCareerLayers, getCredentials, profileContact} from '@/lib/professional-profile';
 import Link from 'next/link';
 import {getProjects} from '@/lib/content';
 import {ProjectCard} from '@/components/project-card';
@@ -14,12 +16,6 @@ const pages = {
     work: {tag:'02 / الأعمال',title:'أعمال تستند إلى قرارات حقيقية.',lead:'هنا تُعرض دراسات الحالة المنشورة والمعتمدة فقط، بما فيها المشكلة والدور والقرارات وما يمكن إثباته.',cta:'استكشف قدراتي'},
     playground: {tag:'03 / الاستكشاف',title:'أختبر التفاعل قبل أن أقدمه كحل.',lead:'مساحة لتجارب التفاعل والأنظمة والذكاء الاصطناعي؛ منفصلة بوضوح عن الأعمال المهنية المنشورة.',cta:'اكتشف طريقة العمل'},
     aboutTitle:'من الأنظمة إلى تجربة الاستخدام.',
-    aboutParagraphs:[
-      'دراسة نظم المعلومات الإدارية كوّنت لدي فهمًا للبيانات والاعتماديات وتدفقات العمل.',
-      'العمل في بيئة تشغيل صحي جعل مشاكل الانتظار والتحقق ونقاط التسليم ملموسة.',
-      'في تصميم الويب وUI/UX أستخدم هذه الخلفية لبناء تدفقات وواجهات ونماذج أكثر وضوحًا.',
-    ],
-    credentials:['بكالوريوس نظم المعلومات الإدارية · جامعة الإمام عبدالرحمن بن فيصل','Google UX Design Professional Certificate','Google AI Professional Certificate'],
     workEmptyTitle:'لا توجد دراسات حالة منشورة بعد.',
     workEmpty:'عندما يكون هناك عمل حقيقي مكتمل ومرخّص للعرض، يُنشر هنا من Keystatic. لا تُعرض تجارب افتراضية بوصفها أعمالًا مهنية.',
     playgroundTitle:'نموذج تفاعل حي داخل هذا الموقع',
@@ -32,12 +28,6 @@ const pages = {
     work:{tag:'02 / WORK',title:'Work grounded in real decisions.',lead:'Only cleared, published case studies appear here, with the problem, role, decisions and what can genuinely be evidenced.',cta:'Explore my capabilities'},
     playground:{tag:'03 / EXPLORE',title:'Test interaction before calling it a solution.',lead:'Explorations in interaction, systems and AI, clearly separated from published professional work.',cta:'Explore the approach'},
     aboutTitle:'From systems to usable experiences.',
-    aboutParagraphs:[
-      'Management Information Systems built my understanding of data, dependencies and workflows.',
-      'Healthcare operations made waiting, validation and handoff friction tangible.',
-      'In web design and UI/UX I use that perspective to shape clearer flows, prototypes and interfaces.',
-    ],
-    credentials:['Bachelor of Management Information Systems · Imam Abdulrahman Bin Faisal University','Google UX Design Professional Certificate','Google AI Professional Certificate'],
     workEmptyTitle:'No public case studies yet.',
     workEmpty:'When real work is complete and approved for publication, it is added through Keystatic. Fictional demos are never presented as professional work.',
     playgroundTitle:'A live interaction study on this website',
@@ -68,11 +58,14 @@ export async function ExperienceInterior({locale, kind}: {locale: Locale; kind: 
 
       {kind === 'about' && <section className="xpInnerBody xpShell" aria-labelledby="xp-about-deep">
         <h2 id="xp-about-deep">{copy.aboutTitle}</h2>
-        <div className="xpInsideStatements">{copy.aboutParagraphs.map((text,i)=>
-          <article key={text}><span>0{i+1}</span><p>{text}</p></article>
+        <div className="xpInsideStatements">{getCareerLayers(locale).map((item,i)=>
+          <article key={item.period}>
+            <span>0{i+1}</span>
+            <p><strong>{item.evidence}</strong><br />{item.text}<small dir="ltr">{item.period}</small></p>
+          </article>
         )}</div>
-        <div className="xpInsideCredentials">{copy.credentials.map((text,i)=>
-          <p key={text}><span>0{i+1}</span><b dir="auto">{text}</b></p>
+        <div className="xpInsideCredentials">{getCredentials(locale).map((item,i)=>
+          <p key={item.title}><span>0{i+1}</span><b dir="auto">{item.title}</b><small>{item.detail}</small></p>
         )}</div>
       </section>}
 
@@ -89,12 +82,10 @@ export async function ExperienceInterior({locale, kind}: {locale: Locale; kind: 
 
       <section className="xpInnerContact xpShell">
         <p>CONTACT / IBRAHIM</p>
-        <a href="mailto:ibrahim.alajmi407@gmail.com">{copy.contact}<MailIcon aria-hidden="true"/></a>
+        <a href={"mailto:" + profileContact.email}>{copy.contact}<MailIcon aria-hidden="true"/></a>
       </section>
       <footer className="xpFooter xpShell"><span>{copy.foot}</span><Link href={home}>{copy.back} ↑</Link></footer>
-      <a href={home + '#contact'} className="xpFloatingContact" aria-label={copy.contact} title={copy.contact}>
-        <MailIcon aria-hidden="true"/><span>{ar ? 'تواصل' : 'Contact'}</span>
-      </a>
+      <ContactDock href={home + '#contact'} label={copy.contact} shortLabel={ar ? 'تواصل' : 'Contact'}/>
     </main>
   );
 }

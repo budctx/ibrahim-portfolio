@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import {ThemeToggle} from '@/components/theme-toggle';
+import {MailIcon} from '@/components/icons';
 
 type Locale = 'ar' | 'en';
 type Props = {locale: Locale; counterpartHref: string; isHome?: boolean};
@@ -25,6 +26,10 @@ export function ExperienceNavigation({locale, counterpartHref, isHome = false}: 
           ))}
         </nav>
         <div className="xpControls">
+          <a className="xpHeaderContact" href={(isHome ? '' : home) + '#contact'}
+            aria-label={ar ? 'الانتقال إلى التواصل' : 'Jump to contact'}>
+            <MailIcon aria-hidden="true" />
+          </a>
           <a href={counterpartHref} className="xpLanguage"
             aria-label={ar ? 'Switch to English' : 'التبديل إلى العربية'}
             lang={ar ? 'en' : 'ar'}>{ar ? 'English' : 'العربية'}</a>

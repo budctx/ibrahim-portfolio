@@ -1,3 +1,5 @@
+import {ContactDock} from '@/components/contact-dock';
+import {getCareerLayers, getCredentials, profileContact} from '@/lib/professional-profile';
 import Link from 'next/link';
 import {getProjects} from '@/lib/content';
 import {ProjectCard} from '@/components/project-card';
@@ -27,11 +29,6 @@ const narratives = {
     ],
     journeyTag: '02 / التكوين', journeyTitle: 'مسارات مختلفة. طريقة تفكير واحدة.',
     journeyText: 'ما تعلّمته في الأنظمة والتشغيل والتصميم يجتمع في طريقة واحدة لحل المشكلات.',
-    career: [
-      {step:'الأساس',period:'2019—2024',title:'نظم المعلومات الإدارية',text:'فهم الأنظمة والبيانات وهندسة المعلومات وسير العمل قبل واجهاتها.',evidence:'بكالوريوس · جامعة الإمام عبدالرحمن بن فيصل'},
-      {step:'الممارسة',period:'2025',title:'التشغيل في بيئة صحية',text:'رؤية أثر وقت الانتظار والتحقق ونقاط التسليم داخل العمليات اليومية.',evidence:'خبرة في العمليات الصحية'},
-      {step:'التطبيق',period:'2025—الآن',title:'تصميم الويب وتجربة المستخدم',text:'تحويل احتياجات المستخدم والقيود التقنية إلى تدفقات ونماذج وواجهات متجاوبة.',evidence:'تصميم الويب · جامعة الإمام عبدالرحمن بن فيصل'},
-    ],
     capabilityTag:'03 / ما أقدمه', capabilityTitle:'أحوّل الفهم إلى قرارات قابلة للبناء.',
     capabilityText:'ليست مهارات متفرقة؛ بل طبقات مترابطة من تعريف المشكلة حتى التسليم.',
     capabilities:[
@@ -41,11 +38,6 @@ const narratives = {
       {number:'04',category:'DELIVER',title:'تقريب الفكرة من التنفيذ',text:'Developer Handoff · Generative AI Workflows · Specifications'},
     ],
     credentialsTag:'04 / الأساس المعرفي',credentialsTitle:'معرفة تدعم الممارسة.',
-    credentials:[
-      {issuer:'IAU / أكاديمي',title:'بكالوريوس نظم المعلومات الإدارية',detail:'جامعة الإمام عبدالرحمن بن فيصل · 2019—2024'},
-      {issuer:'Google / UX',title:'UX Design Professional Certificate',detail:'البحث والتفاعل والنماذج واختبار قابلية الاستخدام'},
-      {issuer:'Google / AI',title:'AI Professional Certificate',detail:'سير العمل والإنتاجية المدعومة بالذكاء الاصطناعي'},
-    ],
     workTag:'05 / الأعمال',workTitle:'العمل الحقيقي يتكلم عن نفسه.',
     workText:'تُضاف دراسات الحالة هنا بعد اكتمال توثيقها واعتمادها للنشر. يمكنك الآن استكشاف طريقة تفكيري وقدراتي داخل هذه التجربة نفسها.',
     emptyTitle:'لا توجد أعمال منشورة حاليًا.',emptyText:'لن أعرض مشروعًا افتراضيًا بوصفه عملًا حقيقيًا. بنية الأعمال جاهزة لإضافة الحالات المستقبلية دون إعادة تصميم.',
@@ -72,11 +64,6 @@ const narratives = {
     ],
     journeyTag:'02 / FORMATION',journeyTitle:'Different disciplines. One way of thinking.',
     journeyText:'Systems, operations and design come together in how I approach problems.',
-    career:[
-      {step:'Foundation',period:'2019—2024',title:'Management Information Systems',text:'Understanding systems, data, information architecture and workflows before their interfaces.',evidence:'Bachelor’s · Imam Abdulrahman Bin Faisal University'},
-      {step:'Practice',period:'2025',title:'Healthcare operations',text:'Seeing the impact of wait times, validation and handoffs in daily operations.',evidence:'Healthcare operations experience'},
-      {step:'Application',period:'2025—Now',title:'Web design and UI/UX',text:'Turning user needs and technical constraints into flows, prototypes and responsive interfaces.',evidence:'Web design · Imam Abdulrahman Bin Faisal University'},
-    ],
     capabilityTag:'03 / CAPABILITIES',capabilityTitle:'Turning understanding into buildable decisions.',
     capabilityText:'Not isolated skills — connected layers from framing through delivery.',
     capabilities:[
@@ -86,11 +73,6 @@ const narratives = {
       {number:'04',category:'DELIVER',title:'Move closer to implementation',text:'Developer Handoff · Generative AI Workflows · Specifications'},
     ],
     credentialsTag:'04 / FOUNDATION',credentialsTitle:'Knowledge behind the practice.',
-    credentials:[
-      {issuer:'IAU / ACADEMIC',title:'Bachelor of Management Information Systems',detail:'Imam Abdulrahman Bin Faisal University · 2019—2024'},
-      {issuer:'GOOGLE / UX',title:'UX Design Professional Certificate',detail:'Research, interaction, prototyping and usability testing'},
-      {issuer:'GOOGLE / AI',title:'AI Professional Certificate',detail:'Applied AI-assisted workflows and professional productivity'},
-    ],
     workTag:'05 / WORK',workTitle:'Let real work speak for itself.',
     workText:'Case studies appear here once documented and cleared for publication. For now, this experience itself reveals how I think and what I do.',
     emptyTitle:'No public work yet.',emptyText:'A fictional project will never be presented as a real case study. The content system is ready for future work without redesign.',
@@ -143,7 +125,7 @@ export async function ExperienceHome({locale}: {locale: Locale}) {
         <div className="xpSectionContent">
           <h2 id="xp-journey-title" className="xpDisplay">{c.journeyTitle}</h2>
           <p className="xpSectionLead">{c.journeyText}</p>
-          <div className="xpJourney">{c.career.map((item,i)=>
+          <div className="xpJourney">{getCareerLayers(locale).map((item,i)=>
             <article className="xpJourneyRow" key={item.period}>
               <div className="xpJourneyNumber">0{i+1}<span aria-hidden="true">↗</span></div>
               <div className="xpJourneyBody"><span className="xpJourneyPeriod">{item.step} / <bdi>{item.period}</bdi></span>
@@ -172,7 +154,7 @@ export async function ExperienceHome({locale}: {locale: Locale}) {
         <div className="xpSectionIndex">{c.credentialsTag}</div>
         <div className="xpSectionContent">
           <h2 id="xp-credentials-title" className="xpDisplay">{c.credentialsTitle}</h2>
-          <div className="xpCredentials">{c.credentials.map((item,i)=>
+          <div className="xpCredentials">{getCredentials(locale).map((item,i)=>
             <div key={item.issuer} className="xpCredential">
               <span className="xpCredentialIcon" aria-hidden="true">{i === 0 ? <GraduationCapIcon /> : <GoogleBrandIcon />}</span>
               <div><small>{item.issuer}</small><h3 dir="auto">{item.title}</h3><p>{item.detail}</p></div>
@@ -200,12 +182,12 @@ export async function ExperienceHome({locale}: {locale: Locale}) {
         <h2 id="xp-contact-title">{c.contactTitle}</h2>
         <p>{c.contactText}</p>
         <div className="xpContactActions">
-          <a className="xpPrimaryLink" href="mailto:ibrahim.alajmi407@gmail.com"><MailIcon aria-hidden="true" />{c.email}<ArrowRightIcon aria-hidden="true" /></a>
-          <a className="xpSecondaryLink" href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noopener noreferrer"><LinkedInBrandIcon aria-hidden="true" />{c.linkedin}<span aria-hidden="true">↗</span></a>
+          <a className="xpPrimaryLink" href={"mailto:" + profileContact.email}><MailIcon aria-hidden="true" />{c.email}<ArrowRightIcon aria-hidden="true" /></a>
+          <a className="xpSecondaryLink" href={profileContact.linkedin} target="_blank" rel="noopener noreferrer"><LinkedInBrandIcon aria-hidden="true" />{c.linkedin}<span aria-hidden="true">↗</span></a>
         </div>
       </section>
       <footer className="xpFooter xpShell"><span>{c.footer}</span><a href="#main">{ar ? 'العودة للأعلى' : 'Back to top'} ↑</a></footer>
-      <a href="#contact" className="xpFloatingContact" aria-label={c.contactFloat} title={c.contactFloat}><MailIcon aria-hidden="true" /><span>{ar?'تواصل':'Contact'}</span></a>
+      <ContactDock href="#contact" label={c.contactFloat} shortLabel={ar ? 'تواصل' : 'Contact'}/>
     </main>
   );
 }

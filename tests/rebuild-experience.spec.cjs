@@ -142,6 +142,29 @@ test.describe('Rebuild v2 / authored experience acceptance', () => {
     await expect(page.locator('html')).toHaveAttribute('dir','rtl');
   });
 
+
+  test('verified CV facts are consistent in both authored languages', async ({page}) => {
+    for(const route of ['/', '/en']){
+      await page.goto(BASE+route,{waitUntil:'networkidle'});
+      const journey = page.locator('#journey');
+      await expect(journey).toContainText('04/2025—08/2025');
+      await expect(journey).toContainText('09/2019—10/2024');
+      await expect(page.locator('#credentials')).toContainText('Google UX Design Professional Certificate');
+      await expect(page.locator('#credentials')).toContainText('Google AI Professional Certificate');
+      await expect(journey).toContainText(route === '/' ? 'مستشفى الدكتور سليمان الحبيب' : 'Dr. Sulaiman Al Habib Hospital');
+    }
+  });
+
+  test('mobile header keeps contact reachable while floating dock yields to the interactive panel', async ({page}) => {
+    await page.setViewportSize({width:390,height:900});
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.goto(BASE+'/',{waitUntil:'networkidle'});
+    await expect(page.locator('.xpHeaderContact')).toBeVisible();
+    await expect(page.locator('.xpFloatingContact')).toBeHidden();
+    await page.locator('#credentials').scrollIntoViewIfNeeded();
+    await expect(page.locator('.xpFloatingContact')).toBeVisible();
+  });
+
   test('legacy Arabic home redirects to Arabic canonical',async ({page})=>{
     await page.goto(BASE+'/ar',{waitUntil:'networkidle'});
     await expect(page).toHaveURL(BASE+'/');

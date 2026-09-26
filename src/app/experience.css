@@ -243,3 +243,25 @@ html[data-theme='light'] .xp {
   .xpInsideCredentials p{min-height:132px;gap:15px}
   .xpInnerContact a{font-size:clamp(1.6rem,7vw,3rem)}
 }
+
+/* Verified CV facts preserve legibility without turning the page into a resume timeline. */
+.xpInsideStatements strong{display:inline-block;font-size:.78em;font-weight:600;color:var(--xp-accent);margin-bottom:7px}
+.xpInsideStatements small{display:block;font:500 .7rem/1.6 var(--font-plex-mono),monospace;color:var(--xp-muted);margin-top:11px}
+.xpInsideCredentials small{color:var(--xp-muted);font-size:.81rem;line-height:1.6}
+.xpLabProjects{margin-top:clamp(36px,5vw,72px)}
+
+/* A permanent header contact action plus a non-obscuring floating shortcut. */
+.xpHeaderContact{display:grid;place-items:center;min-width:44px;width:44px;min-height:44px;height:44px;border:1px solid var(--xp-line);color:var(--xp-ink)!important}
+.xpHeaderContact svg{width:18px;height:18px}
+.xpFloatingContact{
+  inset-inline-start:clamp(18px,3vw,48px);inset-inline-end:auto;
+  width:54px;min-width:54px;height:54px;min-height:54px;padding:0;
+  display:grid;place-items:center;border-radius:50%;
+}
+.xpFloatingContact span{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important}
+.xpFloatingContact[data-console-obscured='true']{visibility:hidden;opacity:0;pointer-events:none}
+@media(max-width:480px){
+  .xpControls{gap:4px}
+  .xpLanguage{min-width:46px}
+  .xpFloatingContact{inset-inline-start:18px;inset-inline-end:auto}
+}
