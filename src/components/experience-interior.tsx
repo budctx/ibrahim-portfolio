@@ -92,6 +92,9 @@ export async function ExperienceInterior({locale, kind}: {locale: Locale; kind: 
         <a href="mailto:ibrahim.alajmi407@gmail.com">{copy.contact}<MailIcon aria-hidden="true"/></a>
       </section>
       <footer className="xpFooter xpShell"><span>{copy.foot}</span><Link href={home}>{copy.back} ↑</Link></footer>
+      <a href={home + '#contact'} className="xpFloatingContact" aria-label={copy.contact} title={copy.contact}>
+        <MailIcon aria-hidden="true"/><span>{ar ? 'تواصل' : 'Contact'}</span>
+      </a>
     </main>
   );
 }

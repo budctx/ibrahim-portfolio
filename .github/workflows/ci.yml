@@ -48,6 +48,16 @@ jobs:
           curl -fsS http://127.0.0.1:3000/ > /dev/null
           npx playwright test \
             tests/rebuild-experience.spec.cjs \
+            tests/rebuild-interior.spec.cjs \
+            tests/rebuild-visual.spec.cjs \
             tests/stage18-axe.spec.cjs \
             tests/stage18-performance.spec.cjs \
             --reporter=line --workers=1
+
+      - name: Preserve visual QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-rebuild-visual-evidence
+          path: test-results/visuals/
+          if-no-files-found: ignore
