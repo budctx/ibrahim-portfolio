@@ -54,13 +54,13 @@ export const metadata: Metadata = {
     description: 'أفهم التعقيد وأصمم له وضوحًا — تصميم منتجات وتجارب رقمية.',
     siteName: 'Ibrahim Portfolio',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: process.env.VERCEL_ENV === 'production'
+    ? {index: true, follow: true}
+    : {index: false, follow: false, noarchive: true},
 };
 
 const themeInit = `
+document.documentElement.dataset.theme = 'dark';
 try {
   const saved = localStorage.getItem('portfolio-theme');
   const preferred = 'dark';

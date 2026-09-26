@@ -206,3 +206,40 @@ html[data-theme='light'] .xp {
   .xpPrimaryLink,.xpFloatingContact{border:2px solid ButtonText}
   .xpPulse,.xpConsoleLive i{border:1px solid CanvasText}
 }
+
+/* Cohesive secondary routes: same grid, type scale and contact behavior. */
+.xpInnerHero{min-height:clamp(470px,68svh,720px);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding-block:clamp(96px,11vw,160px) clamp(62px,8vw,108px);border-bottom:1px solid var(--xp-line)}
+.xpInnerTag{font:.75rem/1.6 var(--font-plex-mono),monospace;letter-spacing:.055em;color:var(--xp-accent)}
+.xp[lang='ar'] .xpInnerTag{font-family:var(--font-plex-arabic),sans-serif}
+.xpInnerHero h1{max-width:16ch;font-size:clamp(3.2rem,7vw,7.6rem);letter-spacing:-.055em;line-height:1.13;font-weight:550;text-wrap:balance;margin:18px 0 24px}
+.xp[lang='ar'] .xpInnerHero h1{letter-spacing:0;line-height:1.33}
+.xpInnerHero>p:not(.xpInnerTag){max-width:55ch;font-size:clamp(1.1rem,1.6vw,1.45rem);color:var(--xp-muted);line-height:1.78}
+.xpInnerBody{padding-block:clamp(65px,8vw,125px)}
+.xpInnerBody>h2{max-width:21ch;font-size:clamp(2.2rem,4.7vw,5rem);font-weight:560;line-height:1.25;letter-spacing:-.04em}
+.xp[lang='ar'] .xpInnerBody>h2{letter-spacing:0;line-height:1.43}
+.xpInsideStatements{margin-top:48px;border-top:1px solid var(--xp-line)}
+.xpInsideStatements article{display:grid;grid-template-columns:minmax(60px,1fr) minmax(0,7fr);gap:25px;border-bottom:1px solid var(--xp-line);padding:25px 0}
+.xpInsideStatements span{color:var(--xp-accent);font:500 .9rem var(--font-plex-mono),monospace}
+.xpInsideStatements p{max-width:50ch;font-size:clamp(1.2rem,2vw,2.1rem);line-height:1.7;margin:0}
+.xpInsideCredentials{margin-top:68px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.xpInsideCredentials p{margin:0;border:1px solid var(--xp-line);padding:24px;display:flex;flex-direction:column;gap:26px;min-height:188px}
+.xpInsideCredentials span{color:var(--xp-accent);font:500 .85rem var(--font-plex-mono),monospace}
+.xpInsideCredentials b{font-size:1.05rem;line-height:1.6;font-weight:550}
+.xpInnerBody .xpEmptyWork{max-width:1050px}
+.xpLabIntro{max-width:60ch}
+.xpLabIntro>span{font:.72rem var(--font-plex-mono),monospace;color:var(--xp-accent)}
+.xpLabIntro h2{font-size:clamp(1.8rem,3.2vw,3.7rem);font-weight:560;line-height:1.3;margin:20px 0}
+.xpLabIntro p{color:var(--xp-muted);font-size:1.1rem;line-height:1.8}
+.xpLabFrame{max-width:600px;margin-top:38px}
+.xpInnerContact{padding-block:clamp(62px,7vw,110px);border-top:1px solid var(--xp-line);border-bottom:1px solid var(--xp-line)}
+.xpInnerContact p{color:var(--xp-accent);font:.72rem var(--font-plex-mono),monospace}
+.xpInnerContact a{display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:clamp(2rem,4.6vw,5rem);font-weight:550;line-height:1.4;letter-spacing:-.035em}
+.xp[lang='ar'] .xpInnerContact a{letter-spacing:0}
+.xpInnerContact svg{width:clamp(30px,4vw,60px);height:clamp(30px,4vw,60px);flex:none;color:var(--xp-accent)}
+@media(max-width:760px){
+  .xpInnerHero{min-height:470px;padding-block:80px 65px}
+  .xpInnerHero h1{font-size:clamp(2.8rem,10vw,5rem)}
+  .xpInsideCredentials{grid-template-columns:1fr}
+  .xpInsideCredentials p{min-height:132px;gap:15px}
+  .xpInnerContact a{font-size:clamp(1.6rem,7vw,3rem)}
+}

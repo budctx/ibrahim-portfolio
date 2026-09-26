@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import {getProjects} from '@/lib/content';
 import {ProjectCard} from '@/components/project-card';
-import {ThemeToggle} from '@/components/theme-toggle';
+import {ExperienceNavigation} from '@/components/experience-navigation';
 import {ExperienceConsole} from '@/components/experience-console';
 import {
   ArrowDownRightIcon, ArrowRightIcon, GraduationCapIcon, WorkflowIcon,
@@ -108,23 +108,7 @@ export async function ExperienceHome({locale}: {locale: Locale}) {
   const ar = locale === 'ar';
   return (
     <main id="main" className="xp" lang={locale} dir={ar ? 'rtl' : 'ltr'}>
-      <header className="xpHeader">
-        <div className="xpShell xpHeaderInner">
-          <Link href={c.home} className="xpBrand" aria-label={ar ? 'العودة للرئيسية' : 'Go to homepage'}>
-            <span className="xpBrandGlyph" aria-hidden="true">i<span>·</span></span>
-            <span>IBRAHIM <small> / DIGITAL EXPERIENCE</small></span>
-          </Link>
-          <nav className="xpNav" aria-label={ar ? 'التنقل الرئيسي' : 'Primary navigation'}>
-            {['approach','journey','capabilities','credentials','work'].map((id,i) =>
-              <a key={id} href={'#'+id}>{c.nav[i]}</a>
-            )}
-          </nav>
-          <div className="xpControls">
-            <Link href={c.other} className="xpLanguage" aria-label={c.langLabel} lang={ar ? 'en' : 'ar'}>{c.otherLabel}</Link>
-            <ThemeToggle locale={locale} />
-          </div>
-        </div>
-      </header>
+      <ExperienceNavigation locale={locale} counterpartHref={c.other} isHome />
 
       <section className="xpHero xpShell" aria-labelledby="xp-title">
         <div className="xpHeroCopy">
