@@ -2,7 +2,7 @@ const {test, expect} = require('@playwright/test');
 
 const BASE = 'http://127.0.0.1:3000';
 
-for (const route of ['/', '/ar']) {
+for (const route of ['/', '/en']) {
   test(`lab performance guardrails on ${route}`, async ({page}) => {
     await page.addInitScript(() => {
       window.__portfolioVitals = {lcp: 0, cls: 0};
