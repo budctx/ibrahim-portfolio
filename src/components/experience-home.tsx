@@ -1,5 +1,6 @@
+import {ExperienceTrajectory} from '@/components/experience-trajectory';
 import {ContactDock} from '@/components/contact-dock';
-import {getCareerLayers, getCredentials, profileContact} from '@/lib/professional-profile';
+import {getCredentials, profileContact} from '@/lib/professional-profile';
 import Link from 'next/link';
 import {getProjects} from '@/lib/content';
 import {ProjectCard} from '@/components/project-card';
@@ -125,14 +126,7 @@ export async function ExperienceHome({locale}: {locale: Locale}) {
         <div className="xpSectionContent">
           <h2 id="xp-journey-title" className="xpDisplay">{c.journeyTitle}</h2>
           <p className="xpSectionLead">{c.journeyText}</p>
-          <div className="xpJourney">{getCareerLayers(locale).map((item,i)=>
-            <article className="xpJourneyRow" key={item.period}>
-              <div className="xpJourneyNumber">0{i+1}<span aria-hidden="true">↗</span></div>
-              <div className="xpJourneyBody"><span className="xpJourneyPeriod">{item.step} / <bdi>{item.period}</bdi></span>
-                <h3>{item.title}</h3><p>{item.text}</p><small>{item.evidence}</small>
-              </div>
-            </article>
-          )}</div>
+          <ExperienceTrajectory locale={locale}/>
         </div>
       </div></section>
 

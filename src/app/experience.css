@@ -265,3 +265,59 @@ html[data-theme='light'] .xp {
   .xpLanguage{min-width:46px}
   .xpFloatingContact{inset-inline-start:18px;inset-inline-end:auto}
 }
+
+/* Connected career constellation: a relationship, not a conventional timeline. */
+.xpTrajectory{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);border:1px solid var(--xp-line);margin-top:38px;min-height:440px}
+.xpTrajectoryNetwork{display:flex;flex-direction:column;min-width:0;padding:clamp(16px,2.25vw,30px);background:var(--xp-panel-2)}
+.xpTrajectoryTop{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--xp-muted);font:500 .62rem/1.5 var(--font-plex-mono),monospace;letter-spacing:.025em}
+.xpTrajectoryNodes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:clamp(32px,4vw,65px)}
+.xpTrajectoryNode{position:relative;display:flex;flex-direction:column;align-items:flex-start;text-align:start;min-width:0;min-height:158px;gap:11px;padding:17px 13px 23px;background:var(--xp-panel);color:var(--xp-muted);border:1px solid var(--xp-line);cursor:pointer;transition:background 240ms,border-color 240ms,transform 240ms}
+.xpTrajectoryNode:hover{transform:translateY(-3px)}
+.xpTrajectoryNode[data-active='true']{background:color-mix(in srgb,var(--xp-accent) 9%,var(--xp-panel));border-color:var(--xp-accent);color:var(--xp-ink)}
+.xpTrajectoryNodeNo{font:600 .64rem/1.5 var(--font-plex-mono),monospace;color:var(--xp-accent)}
+.xpTrajectoryNode strong{font-size:clamp(.95rem,1.25vw,1.3rem);font-weight:550;line-height:1.48;overflow-wrap:anywhere}
+.xpTrajectoryNode small{margin-top:auto;font:500 .68rem/1.55 var(--font-plex-mono),monospace;overflow-wrap:anywhere;unicode-bidi:isolate}
+.xpTrajectoryNode i{position:absolute;inset-inline-start:calc(50% - 3px);inset-block-end:-5px;width:7px;height:7px;background:var(--xp-muted);border:1px solid var(--xp-panel)}
+.xpTrajectoryNode[data-active='true'] i{background:var(--xp-accent)}
+.xpTrajectoryWires{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));height:55px;margin:0 5px}
+.xpTrajectoryWires:after{content:'';position:absolute;inset-inline:16.5%;inset-block-end:0;height:1px;background:var(--xp-line)}
+.xpTrajectoryWires span{justify-self:center;width:1px;height:100%;background:var(--xp-line)}
+.xpTrajectoryResolve{display:flex;align-items:center;gap:16px;margin-top:0;margin-inline:auto;border:1px solid var(--xp-accent);padding:12px 23px;color:var(--xp-accent);background:var(--xp-panel)}
+.xpTrajectoryResolveNode{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--xp-accent);border-radius:50%;font-size:1.3rem}
+.xpTrajectoryResolve div{display:grid}
+.xpTrajectoryResolve small{font:500 .59rem/1.4 var(--font-plex-mono),monospace;color:var(--xp-muted)}
+.xpTrajectoryResolve strong{font-size:1.4rem;font-weight:550}
+.xpTrajectoryDetail{display:flex;flex-direction:column;min-width:0;padding:clamp(23px,3vw,44px);border-inline-start:1px solid var(--xp-line);background:var(--xp-panel)}
+.xpTrajectoryDetailTag{font:500 .69rem/1.7 var(--font-plex-mono),monospace;color:var(--xp-accent)}
+.xpTrajectoryContent{display:flex;flex-direction:column;flex:1;animation:xpTrajectoryReveal 360ms ease-out both}
+.xpTrajectoryContent h3{margin:clamp(28px,4vw,52px) 0 15px;font-size:clamp(1.75rem,2.9vw,3.2rem);font-weight:550;letter-spacing:-.04em;line-height:1.25}
+.xp[lang='ar'] .xpTrajectoryContent h3{letter-spacing:0;line-height:1.4}
+.xpTrajectoryContent p{max-width:44ch;color:var(--xp-muted);line-height:1.8}
+.xpTrajectoryContent small{color:var(--xp-accent);font-size:.82rem;line-height:1.6;margin-top:auto}
+.xpTrajectoryPeriod{font:500 .66rem/1.5 var(--font-plex-mono),monospace;color:var(--xp-muted);margin-top:14px}
+.xpTrajectoryProgress{height:2px;width:100%;background:var(--xp-line);margin-top:22px}
+.xpTrajectoryProgress i{display:block;height:100%;background:var(--xp-accent);transition:width 280ms}
+@keyframes xpTrajectoryReveal{from{opacity:.5;transform:translateY(9px)}to{opacity:1;transform:none}}
+@media(max-width:1000px){
+ .xpTrajectory{grid-template-columns:1fr}
+ .xpTrajectoryDetail{border-inline-start:0;border-top:1px solid var(--xp-line);min-height:265px}
+ .xpTrajectoryContent h3{margin:18px 0 10px}
+ .xpTrajectoryContent small{margin-top:14px}
+}
+@media(max-width:480px){
+ .xpTrajectoryNetwork{padding:15px}
+ .xpTrajectoryNodes{gap:6px;margin-top:25px}
+ .xpTrajectoryNode{min-height:158px;padding:12px 7px 18px;gap:8px}
+ .xpTrajectoryNodeNo{font-size:.54rem}
+ .xpTrajectoryNode strong{font-size:.86rem}
+ .xpTrajectoryNode small{font-size:.54rem}
+ .xpTrajectoryDetail{padding:21px;min-height:275px}
+ .xpTrajectoryTop{font-size:.54rem}
+ .xpTrajectoryResolve{padding:8px 15px}
+ .xpTrajectoryResolve strong{font-size:1.12rem}
+}
+@media(prefers-reduced-motion:reduce){
+ .xpTrajectoryContent{animation:none}
+ .xpTrajectoryNode:hover{transform:none}
+ .xpTrajectoryProgress i{transition:none}
+}

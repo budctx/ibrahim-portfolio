@@ -151,6 +151,9 @@ test.describe('Rebuild v2 / authored experience acceptance', () => {
       await expect(journey).toContainText('09/2019—10/2024');
       await expect(page.locator('#credentials')).toContainText('Google UX Design Professional Certificate');
       await expect(page.locator('#credentials')).toContainText('Google AI Professional Certificate');
+      const operationNode = journey.locator('.xpTrajectoryNode').nth(1);
+      await operationNode.click();
+      await expect(operationNode).toHaveAttribute('aria-pressed','true');
       await expect(journey).toContainText(route === '/' ? 'مستشفى الدكتور سليمان الحبيب' : 'Dr. Sulaiman Al Habib Hospital');
     }
   });
