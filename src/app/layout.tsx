@@ -6,6 +6,7 @@ import {ENGLISH_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 import './globals.css';
 import './portfolio.css';
 import './portfolio-polish.css';
+import './experience.css';
 
 const plexSans = IBM_Plex_Sans({
   subsets: ['latin'],
@@ -33,24 +34,24 @@ const siteUrl = 'https://ibrahim-portfolio-blush.vercel.app';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Ibrahim — Digital Product & Experience Designer',
+    default: 'إبراهيم — مصمم منتجات وتجارب رقمية',
     template: '%s — Ibrahim',
   },
-  description: 'Digital product designer in Saudi Arabia working across UI/UX, web design, UX strategy, information architecture, responsive interfaces, digital workflows, generative AI, and developer handoff.',
+  description: 'إبراهيم العجمي؛ مصمم منتجات وتجارب رقمية في السعودية يجمع بين فهم الأنظمة وسير العمل وتجربة المستخدم.',
   keywords: [...ENGLISH_PORTFOLIO_KEYWORDS],
   alternates: {
     canonical: '/',
     languages: {
-      en: '/',
-      ar: '/ar',
+      ar: '/',
+      en: '/en',
       'x-default': '/',
     },
   },
   openGraph: {
     type: 'website',
     url: '/',
-    title: 'Ibrahim — Digital Product & Experience Designer',
-    description: 'UI/UX, web design, systems thinking, responsive interfaces, digital governance, generative AI workflows, and implementation-aware product design.',
+    title: 'إبراهيم — مصمم منتجات وتجارب رقمية',
+    description: 'أفهم التعقيد وأصمم له وضوحًا — تصميم منتجات وتجارب رقمية.',
     siteName: 'Ibrahim Portfolio',
   },
   robots: {
@@ -62,7 +63,7 @@ export const metadata: Metadata = {
 const themeInit = `
 try {
   const saved = localStorage.getItem('portfolio-theme');
-  const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const preferred = 'dark';
   document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : preferred;
 } catch (_) {}
 `;
