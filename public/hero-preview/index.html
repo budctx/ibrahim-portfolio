@@ -196,6 +196,19 @@ html,body{height:100%;overflow:hidden}
 }
 @media(prefers-reduced-motion:reduce){.contact-body{transform:none!important;opacity:1!important}.envelope,.envelope *{transition:none!important}}
 
+
+.contact-trigger{font:inherit;font-size:13px;cursor:pointer;justify-content:center;min-height:48px;padding:13px 24px}
+.contact-modal{width:min(380px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;padding:28px;border:1px solid #ffffff26;border-radius:24px;background:#181e28;color:#edf0f4;box-shadow:0 28px 100px #0006}
+.contact-modal::backdrop{background:#080b12b8;backdrop-filter:blur(12px)}
+.contact-modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.contact-modal h2{font-size:17px;font-weight:500;line-height:1.7;margin:0}
+.contact-modal-close{display:grid;place-items:center;width:40px;height:40px;flex-shrink:0;padding:0;background:transparent;border:1px solid #ffffff25;border-radius:50%;color:inherit;cursor:pointer}
+.contact-methods{display:flex;justify-content:center;gap:24px;padding:32px 0 10px;direction:ltr}
+.contact-method{display:grid;place-items:center;width:76px;height:76px;border:1px solid #ffffff30;border-radius:22px;background:#ffffff06;color:#e5e9ef;transition:background .2s,transform .2s}
+.contact-method:hover{background:#ffffff12;transform:translateY(-3px)}
+.contact-method:focus-visible{outline:2px solid #edf0f4;outline-offset:5px}
+.contact-method svg{width:30px;height:30px}
+@media(max-width:360px){.contact-modal{padding:20px}.contact-modal h2{font-size:15px}}
 </style></head>
 <body><div class="scenes" id="scenes"><main class="hero scene is-active" id="main">
 <header class="header"><div class="wordmark"><span data-ar="إبراهيم العجمي" data-en="Ibrahim Al-Ajmi">إبراهيم العجمي</span><small>PORTFOLIO / 2026</small></div><div class="controls"><button class="control" id="language" aria-label="Switch to English">E</button></div></header>
@@ -235,11 +248,7 @@ Considered design.</h2><div class="skill"><b>01</b><span>Digital interfaces</spa
 <div class="contact-body">
 <div class="contact-copy"><h3><span data-ar="عندك فكرة؟" data-en="Have an idea?">عندك فكرة؟</span><span data-ar="خلّنا نبدأ." data-en="Let’s make it happen.">خلّنا نبدأ.</span></h3>
 <p class="contact-intro" data-ar="لمشروع جديد، تعاون، أو فرصة عمل." data-en="For a new project, collaboration, or career opportunity.">لمشروع جديد، تعاون، أو فرصة عمل.</p>
-<div class="contact-links">
-<a class="contact-link" href="mailto:ibrahim.alajmi407@gmail.com"><span data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-<a class="contact-link" href="https://wa.me/966597866665" target="_blank" rel="noopener noreferrer"><span data-ar="واتساب" data-en="WhatsApp">واتساب</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-<a class="contact-link" href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-</div></div>
+<div class="contact-links"><button class="contact-link contact-trigger" id="contact-trigger" type="button" aria-haspopup="dialog" aria-controls="contact-modal" data-ar="اختر طريقة التواصل" data-en="Choose how to connect">اختر طريقة التواصل</button></div></div>
 <div class="envelope-area">
 <button class="envelope-button" id="envelope-button" aria-expanded="false" aria-controls="envelope-letter" aria-label="افتح ظرف التواصل" aria-describedby="envelope-hint">
 <span class="envelope" aria-hidden="true"><span class="envelope-back"></span>
@@ -250,6 +259,12 @@ Considered design.</h2><div class="skill"><b>01</b><span>Digital interfaces</spa
 <footer class="contact-footer"><span data-ar="إبراهيم العجمي" data-en="Ibrahim Al-Ajmi">إبراهيم العجمي</span><span>04 / 04</span></footer>
 </section></div>
 <nav class="scene-nav" aria-label="الأقسام"><button class="scene-dot" data-scene="main" aria-label="البداية" aria-current="true"></button><button class="scene-dot" data-scene="work" aria-label="الأعمال" aria-current="false"></button><button class="scene-dot" data-scene="about" aria-label="نبذة عني" aria-current="false"></button><button class="scene-dot" data-scene="contact" aria-label="تواصل" aria-current="false"></button></nav>
+<dialog class="contact-modal" id="contact-modal" aria-labelledby="contact-modal-title">
+<div class="contact-modal-head"><h2 id="contact-modal-title" data-ar="اختر طريقة التواصل" data-en="Choose how to connect">اختر طريقة التواصل</h2><button class="contact-modal-close" id="contact-modal-close" aria-label="إغلاق"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button></div>
+<div class="contact-methods">
+<a class="contact-method" id="contact-email" href="mailto:ibrahim.alajmi407@gmail.com" aria-label="البريد الإلكتروني" title="البريد الإلكتروني"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<a class="contact-method" id="contact-whatsapp" href="https://wa.me/966597866665" target="_blank" rel="noopener noreferrer" aria-label="واتساب" title="واتساب"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.88 11.88 0 0 0 12.04 0C5.46 0 .1 5.35.1 11.93c0 2.1.55 4.16 1.6 5.97L0 24l6.26-1.64a11.93 11.93 0 0 0 5.77 1.47h.01c6.58 0 11.94-5.35 11.94-11.93 0-3.19-1.24-6.18-3.46-8.42ZM12.04 21.8a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-3.71.97.99-3.61-.24-.38a9.9 9.9 0 0 1-1.51-5.26c0-5.47 4.45-9.92 9.93-9.92a9.85 9.85 0 0 1 7.02 2.91 9.85 9.85 0 0 1 2.91 7.02c0 5.47-4.45 9.92-9.98 9.86Zm5.44-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.47-1.76-1.64-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.21-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.21 3.09c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.71.63.72.23 1.38.2 1.9.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg></a>
+</div></dialog>
 <dialog class="project-modal" id="project-modal" aria-labelledby="modal-title" aria-describedby="modal-description">
 <button class="modal-close" id="modal-close" aria-label="إغلاق"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <div class="modal-art" id="modal-art" aria-hidden="true"></div><div class="modal-copy"><p class="modal-label" id="modal-category"></p><h2 id="modal-title"></h2><p class="modal-description" id="modal-description"></p><div class="modal-role"><strong data-ar="دوري" data-en="My role">دوري</strong><span id="modal-role"></span></div><a class="modal-link" id="modal-link" target="_blank" rel="noopener noreferrer" hidden data-ar="عرض المشروع" data-en="View project">عرض المشروع</a></div>
@@ -375,4 +390,15 @@ function translateContact(){
 }
 envelopeButton.addEventListener('click',()=>{envelopeButton.setAttribute('aria-expanded',String(envelopeButton.getAttribute('aria-expanded')!=='true'));translateContact()});
 language.addEventListener('click',translateContact);translateContact();
+
+const contactModal=document.getElementById('contact-modal'),contactTrigger=document.getElementById('contact-trigger');
+contactTrigger.addEventListener('click',()=>contactModal.showModal());
+document.getElementById('contact-modal-close').addEventListener('click',()=>contactModal.close());
+contactModal.addEventListener('click',e=>{if(e.target===contactModal){const r=contactModal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)contactModal.close()}});
+contactModal.addEventListener('close',()=>contactTrigger.focus());
+function translateContactModal(){
+ document.getElementById('contact-modal-close').setAttribute('aria-label',lang==='ar'?'إغلاق':'Close');
+ [['contact-email','البريد الإلكتروني','Email'],['contact-whatsapp','واتساب','WhatsApp']].forEach(([id,ar,en])=>{const el=document.getElementById(id),label=lang==='ar'?ar:en;el.setAttribute('aria-label',label);el.title=label});
+}
+language.addEventListener('click',translateContactModal);translateContactModal();
 </script></body></html>
