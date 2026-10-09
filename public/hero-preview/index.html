@@ -12,47 +12,46 @@
 /* Keep the English back copy and footer inside both card sizes. */
 .back .insert{padding:24px 18px}.back h2{font-size:23px;line-height:1.2;margin-bottom:18px;flex-shrink:0}.skill{flex-shrink:0;padding:11px 0}.back-footer{flex-shrink:0;padding-top:10px}
 html[lang=en] .name{font-size:17px;line-height:1.25;letter-spacing:-.5px}
+
+/* Flow layout: text and the complete badge motion envelope own separate tracks. */
+.hero{height:auto;min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
+.header{position:relative;inset:auto;height:auto;min-height:88px;gap:20px;padding:20px 5%}
+.stage{position:relative;inset:auto;display:grid;grid-template-columns:minmax(0,1fr) 420px minmax(0,1fr);grid-template-rows:1fr 1fr;column-gap:32px;min-height:560px;padding:0 5%;direction:ltr;align-items:center}
 .roles{display:contents}
-@media(min-width:1201px){html[lang=en] .role.one,html[lang=en] .role.two{font-size:clamp(32px,4.4vw,76px)}}
-@media(max-height:780px) and (min-width:1201px){.rig{height:42svh;min-height:260px}.badge-position{transform:scale(.84);transform-origin:50% 0;bottom:-180px}.role.one,.role.two{top:34%}.role.three,.role.four{top:66%}}
-/* Tablet: separate the badge from a balanced two-column role grid. */
-@media(max-width:1200px){
- .header{height:80px}.wordmark small{display:none}
- .rig{height:38svh;min-height:235px;max-height:500px}
- .roles{position:absolute;left:7%;right:7%;bottom:100px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px;direction:ltr}
- .roles .role{position:relative;inset:auto;min-width:0;font-size:clamp(25px,4.2vw,40px);letter-spacing:-1px}
- .roles .role span{font-size:11px;letter-spacing:.5px;margin-top:8px}
- html[lang=ar] .roles .role{direction:rtl;text-align:right}
- .footer{bottom:24px;left:7%;right:7%}
+.stage .role{position:relative;inset:auto;min-width:0;max-width:100%;font-size:clamp(28px,3.2vw,56px);letter-spacing:-1px;overflow-wrap:anywhere}
+.stage .role span{font-size:13px;line-height:1.6;letter-spacing:.5px}
+.stage .role.one{grid-column:1;grid-row:1;align-self:end;margin-bottom:36px}
+.stage .role.two{grid-column:3;grid-row:1;align-self:end;margin-bottom:36px}
+.stage .role.three{grid-column:1;grid-row:2;align-self:start;margin-top:36px}
+.stage .role.four{grid-column:3;grid-row:2;align-self:start;margin-top:36px}
+html[lang=ar] .card{direction:rtl}
+html[lang=en] .card{direction:ltr}
+html[lang=ar] .role{direction:rtl;text-align:right}
+html[lang=en] .role{direction:ltr;text-align:left}
+.rig{position:relative;inset:auto;margin:0;grid-column:2;grid-row:1 / 3;width:420px;height:560px;min-height:0;max-height:none;justify-self:center;align-self:center}
+.badge-position{top:140px;bottom:auto;left:50%;margin-left:-130px;width:260px;height:360px;transform:none}
+.footer{position:relative;inset:auto;padding:24px 5%;min-height:76px}
+@media(max-width:1100px){
+ .header{min-height:72px}.wordmark small{display:none}
+ .stage{display:flex;flex-direction:column;min-height:0;gap:24px;padding:0 7% 24px}
+ .rig{order:0;width:min(360px,100%);height:460px;flex:none}
+ .badge-position{top:50px}
+ .roles{order:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px;width:100%;direction:ltr}
+ .stage .roles .role{grid-column:auto;grid-row:auto;align-self:start;inset:auto;margin:0;font-size:clamp(23px,3.8vw,40px)}
+ .stage .role span{font-size:11px}
 }
 @media(max-width:700px){
- .header{height:72px;padding:0 18px;gap:8px}.wordmark{font-size:14px;white-space:nowrap}.controls{gap:7px;flex-shrink:0}.control{width:40px;height:40px}.motion{padding:0 10px;width:auto;font-size:11px}
- .rig{width:216px;margin-left:-108px;height:38svh;min-height:235px}
- .strap{left:101px;width:14px;height:calc(100% - 130px)}.badge-position{width:216px;height:300px;bottom:-175px;transform-origin:50% 0}.clip{left:95px}.slot{left:82px}
+ .header{padding:16px 18px;gap:12px}.wordmark{font-size:14px;white-space:nowrap}.control{width:40px;height:40px}
+ .rig{height:400px}
+ .badge-position{top:50px;width:216px;height:300px;margin-left:-108px}
+ .roles{gap:24px 16px}.barcode{height:17px}.card-bottom{padding-top:8px}
+ .stage .roles .role{font-size:clamp(18px,5.3vw,30px)}
+ .stage .role span{font-size:10px;letter-spacing:.2px}
+ .footer{padding:20px 7%;min-height:70px}.identity{font-size:12px}.identity small{font-size:10px}
  .face{padding:12px;border-radius:16px}.insert{padding:22px 14px 12px}.portrait{height:142px}.monogram{font-size:88px}.name{font-size:19px;margin-top:9px}.job{font-size:10px}.card-top{font-size:8px;margin-bottom:9px}
  .back .insert{padding:21px 13px}.back h2{font-size:18px;line-height:1.2;margin-bottom:13px}.skill{font-size:11px;padding:9px 0}.back-footer{font-size:10px;padding-top:8px}
- .roles{bottom:88px;gap:22px 16px}.roles .role{font-size:clamp(18px,5.7vw,30px);letter-spacing:-.7px}.roles .role span{font-size:10px;line-height:1.5;letter-spacing:.2px;margin-top:5px}
- .footer{bottom:20px}.hint{font-size:10px;gap:6px}.identity{font-size:12px}.identity small{font-size:10px}.barcode{height:17px}.card-bottom{padding-top:8px}
+
 }
-@media(max-width:700px) and (max-height:740px){.badge-position{transform:scale(.88)}.rig{height:34svh}}
-@media(max-width:700px) and (max-height:620px){.badge-position{transform:scale(.76)}.roles{gap:18px 16px}.header{height:64px}}
-@media(min-width:701px) and (max-width:1200px) and (max-height:760px){.rig{height:34svh;min-height:235px}.badge-position{transform:scale(.76);transform-origin:50% 0}}
-@media(max-width:700px) and (max-height:600px){.rig{height:215px;min-height:0}.badge-position{transform:scale(.68)}.roles{bottom:80px;gap:14px 16px}}
-@media(max-width:700px) and (max-height:520px){.rig{height:200px}.badge-position{transform:scale(.58)}}
-/* Short landscape screens place the roles beside the badge. */
-@media(min-width:540px) and (max-height:600px){
- .header{height:68px}.wordmark small{display:none}
- .rig{left:24%;width:260px;margin-left:-130px;height:240px;min-height:0;max-height:none}.strap{left:122px;width:16px;height:calc(100% - 190px)}.clip{left:117px}.slot{left:100px}.badge-position{width:260px;height:360px;bottom:-190px;transform:scale(.65);transform-origin:50% 0}.strap:after{top:28px;font-size:6px;letter-spacing:2px}
- .roles{display:grid;position:absolute;left:46%;right:5%;top:30%;bottom:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 18px;direction:ltr}
- .roles .role{position:relative;inset:auto;font-size:clamp(17px,2.7vw,30px);letter-spacing:-.7px}
- .roles .role span{font-size:10px;letter-spacing:.2px;line-height:1.5;margin-top:5px}
- html[lang=ar] .roles .role{direction:rtl;text-align:right}
- .footer{bottom:18px;left:5%;right:5%}.identity{font-size:12px}.identity small{font-size:10px}.hint{font-size:10px}
-}
-@media(min-width:540px) and (max-height:360px){.rig{height:230px}.badge-position{transform:scale(.52)}.roles{top:31%;gap:22px 16px}}
-/* Preserve readable content when zoom or browser chrome leaves very little height. */
-@media(max-height:319px){.hero{min-height:320px}}
-@media(max-width:539px) and (max-height:479px){.hero{min-height:480px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.role{opacity:1}}
 /* Hardware shares the badge coordinate system at every responsive scale. */
 .badge-position>.strap{left:50%;width:16px;top:-100vh;height:calc(100vh - 14px);transform:translateX(-50%);border-radius:0 0 4px 4px}
