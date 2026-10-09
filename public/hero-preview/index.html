@@ -157,6 +157,45 @@ html,body{height:100%;overflow:hidden}
  .about-method{margin-top:12px;padding-top:10px;font-size:10px}.about-footer{padding-block:8px}
 }
 @media(prefers-reduced-motion:reduce){.about .about-body{transform:none!important;opacity:1!important;transition:none}.about-cube{transition:none}}
+
+/* Contact: a tangible envelope with direct, always available contact links. */
+.contact{position:relative;display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;background:radial-gradient(ellipse at 32% 52%,#20304a 0%,#151c27 38%,#111214 78%)}
+.contact-header{padding:24px 7% 0}.contact-header h2{font-size:clamp(28px,4vw,54px);font-weight:600;letter-spacing:-1px;margin:0}
+.contact-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5vw;align-items:center;min-height:0;padding:20px 9%;transition:transform .8s cubic-bezier(.2,.75,.2,1),opacity .65s}
+.contact:not(.is-active) .contact-body{transform:perspective(1200px) translate3d(0,80px,-180px) rotateX(-12deg);opacity:0;pointer-events:none}
+.contact-copy{min-width:0}.contact-copy h3{font-size:clamp(32px,4.3vw,64px);line-height:1.35;letter-spacing:-1.3px;font-weight:500;margin:0 0 18px}.contact-copy h3 span{display:block}
+.contact-intro{font-size:clamp(12px,1.15vw,16px);line-height:1.8;color:#b8c3d2;margin:0 0 28px}
+.contact-links{display:flex;flex-wrap:wrap;gap:10px}.contact-link{display:inline-flex;align-items:center;gap:12px;min-height:46px;padding:12px 16px;border:1px solid #ffffff30;border-radius:30px;color:#edf0f4;text-decoration:none;font-size:12px;transition:background .2s,border-color .2s}
+.contact-link:first-child{background:#e5e9ef;color:#192331;border-color:#e5e9ef}.contact-link:hover{background:#ffffff16;border-color:#ffffff75}.contact-link:first-child:hover{background:#fff}.contact-link:focus-visible{outline:2px solid #edf0f4;outline-offset:5px}.contact-link svg{width:15px;height:15px;flex-shrink:0}
+.envelope-area{--env:clamp(210px,29vw,380px);display:grid;justify-items:center;gap:10px;min-width:0;direction:ltr}
+.envelope-button{width:calc(var(--env)*1.16);height:calc(var(--env)*1.02);padding:0;border:0;border-radius:24px;background:transparent;display:grid;place-items:center;color:#192331;cursor:pointer;perspective:1100px;-webkit-tap-highlight-color:transparent}
+.envelope{position:relative;display:block;width:var(--env);height:calc(var(--env)*.64);transform:rotateX(8deg) rotateY(-12deg) rotateZ(-5deg);transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.75,.2,1);margin-top:calc(var(--env)*.22)}
+.envelope-back{position:absolute;inset:0;background:linear-gradient(145deg,#a7b5c9,#667b99);border:1px solid #b8c6d8;border-radius:8px;box-shadow:0 32px 60px #0006}
+.envelope-letter{position:absolute;inset:8% 7% 4%;padding:9%;background:#edf0f4;border:1px solid #fff;border-radius:5px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;box-shadow:0 0 15px #0002;transform:translateY(0);transition:transform .65s cubic-bezier(.2,.75,.2,1);transition-delay:0s}
+.envelope-letter b{font:600 clamp(14px,1.7vw,22px)/1.4 'Readex Pro',Arial}.envelope-letter small{font:9px/1.8 Arial;letter-spacing:1px;color:#526077;margin-top:5px}.envelope-letter svg{width:22px;height:22px;margin-bottom:10px}
+.envelope-pocket{position:absolute;inset:0;background:linear-gradient(125deg,#d4dce7,#acbcd1);clip-path:polygon(0 0,50% 52%,100% 0,100% 100%,0 100%);border-radius:7px;transform:translateZ(2px)}
+.envelope-pocket:after{content:'';position:absolute;inset:0;clip-path:polygon(0 100%,50% 46%,100% 100%);background:linear-gradient(0deg,#c1cddb,#dde4ed)}
+.envelope-flap{position:absolute;inset:0;background:linear-gradient(155deg,#e4eaf2,#a8b9cf);clip-path:polygon(0 0,100% 0,50% 54%);transform-origin:50% 0;transform:translateZ(3px) rotateX(0);backface-visibility:visible;transition:transform .5s ease;transition-delay:.25s}
+.envelope-seal{position:absolute;left:calc(50% - 19px);top:43%;width:38px;height:38px;border-radius:50%;background:#22334d;color:#e5ecf5;display:grid;place-items:center;font:12px Arial;box-shadow:0 2px 5px #0003;transform:translateZ(4px);transition:opacity .2s .25s}
+.envelope-button[aria-expanded=true] .envelope{transform:rotateX(0) rotateY(-7deg) rotateZ(-2deg)}
+.envelope-button[aria-expanded=true] .envelope-flap{transform:translateZ(-1px) rotateX(180deg);transition-delay:0s}
+.envelope-button[aria-expanded=true] .envelope-letter{transform:translateY(-53%);transition-delay:.25s}
+.envelope-button[aria-expanded=true] .envelope-seal{opacity:0;transition-delay:0s}
+.envelope-hint{font-size:10px;color:#aebbd0;margin:0;text-align:center}
+.contact-footer{padding:16px 7%;display:flex;justify-content:space-between;color:#99a4b6;font-size:10px}
+@media(max-width:760px) and (min-height:551px),(max-width:639px){
+.contact-header{padding:22px 7% 0}.contact-header h2{font-size:30px}.contact-body{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:8px;padding:10px 9% 20px}
+.envelope-area{grid-row:1;--env:min(57vw,27dvh,270px);align-self:center;gap:2px}.contact-copy{grid-row:2;text-align:center}.contact-copy h3{font-size:clamp(28px,7vw,42px);line-height:1.3;margin-bottom:12px;letter-spacing:-.7px}.contact-intro{font-size:12px;margin-bottom:20px}.contact-links{justify-content:center;gap:8px}.contact-link{font-size:11px;padding:10px 13px;gap:8px}
+.envelope-letter b{font-size:14px}.envelope-letter small{font-size:8px}.envelope-letter svg{width:18px;height:18px;margin-bottom:5px}
+}
+@media(max-height:600px) and (max-width:639px){
+.contact-header{padding-top:14px}.contact-header h2{font-size:25px}.contact-body{padding:6px 9% 8px;gap:4px}.envelope-area{--env:min(45vw,27dvh,170px)}.contact-copy h3{font-size:25px;margin-bottom:8px}.contact-intro{font-size:10px;margin-bottom:12px}.contact-link{font-size:10px;padding:10px;gap:6px;min-height:44px}.contact-link svg{width:12px;height:12px}.envelope-letter b{font-size:10px}.envelope-letter small{font-size:6px}.envelope-letter svg{width:12px;height:12px;margin-bottom:3px}.envelope-seal{width:26px;height:26px;left:calc(50% - 13px);font-size:9px}.envelope-hint{font-size:9px}.contact-footer{padding-block:10px}
+}
+@media(max-height:550px) and (min-width:640px){
+.contact-header{padding-top:10px}.contact-header h2{font-size:26px}.contact-body{padding:8px 9%;gap:4vw}.contact-copy h3{font-size:32px;margin-bottom:10px}.contact-intro{font-size:11px;margin-bottom:16px}.contact-link{font-size:10px;padding:10px;gap:8px}.envelope-area{--env:min(25vw,48dvh)}.envelope-letter b{font-size:13px}.envelope-letter svg{width:16px;height:16px;margin-bottom:5px}.contact-footer{padding-block:8px}
+}
+@media(prefers-reduced-motion:reduce){.contact-body{transform:none!important;opacity:1!important}.envelope,.envelope *{transition:none!important}}
+
 </style></head>
 <body><div class="scenes" id="scenes"><main class="hero scene is-active" id="main">
 <header class="header"><div class="wordmark"><span data-ar="إبراهيم العجمي" data-en="Ibrahim Al-Ajmi">إبراهيم العجمي</span><small>PORTFOLIO / 2026</small></div><div class="controls"><button class="control" id="language" aria-label="Switch to English">E</button></div></header>
@@ -173,7 +212,7 @@ Considered design.</h2><div class="skill"><b>01</b><span>Digital interfaces</spa
 <header class="work-header"><h2 id="work-title" data-ar="أعمال" data-en="Work">أعمال</h2><p data-ar="أفكار تتحوّل إلى تجارب." data-en="Ideas, made tangible.">أفكار تتحوّل إلى تجارب.</p></header>
 <div class="work-body"><div class="project-track" id="project-track" role="region" aria-label="المشاريع" tabindex="0"></div>
 <div class="carousel-controls"><button class="carousel-arrow" id="project-prev" aria-label="المشروع السابق"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="carousel-count" id="project-count" aria-live="polite" aria-atomic="true">01 / 03</span><button class="carousel-arrow" id="project-next" aria-label="المشروع التالي"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
-<footer class="work-footer"><span data-ar="أمثلة تجريبية — تُستبدل بأعمالك" data-en="Demo projects — replace with your work">أمثلة تجريبية — تُستبدل بأعمالك</span><span>02 / 03</span></footer>
+<footer class="work-footer"><span data-ar="أمثلة تجريبية — تُستبدل بأعمالك" data-en="Demo projects — replace with your work">أمثلة تجريبية — تُستبدل بأعمالك</span><span>02 / 04</span></footer>
 </section>
 <section class="scene about" id="about" aria-labelledby="about-title">
 <header class="about-header"><h2 id="about-title" data-ar="نبذة عني" data-en="About me">نبذة عني</h2></header>
@@ -189,9 +228,28 @@ Considered design.</h2><div class="skill"><b>01</b><span>Digital interfaces</spa
 <span class="cube-face cube-left"></span><span class="cube-face cube-top"></span><span class="cube-face cube-bottom"></span></span></button>
 <div class="cube-controls" role="group" aria-label="مجالاتي"><button class="cube-dot" data-cube="0" aria-label="منتجات رقمية" aria-pressed="true"></button><button class="cube-dot" data-cube="1" aria-label="جرافيك" aria-pressed="false"></button><button class="cube-dot" data-cube="2" aria-label="أتمتة" aria-pressed="false"></button></div>
 <span class="visually-hidden" id="cube-status" aria-live="polite">منتجات رقمية</span>
-</div></div><footer class="about-footer"><span data-ar="اسحب أو اضغط لاستكشاف المجالات" data-en="Drag or tap to explore">اسحب أو اضغط لاستكشاف المجالات</span><span>03 / 03</span></footer>
+</div></div><footer class="about-footer"><span data-ar="اسحب أو اضغط لاستكشاف المجالات" data-en="Drag or tap to explore">اسحب أو اضغط لاستكشاف المجالات</span><span>03 / 04</span></footer>
+</section>
+<section class="scene contact" id="contact" aria-labelledby="contact-title">
+<header class="contact-header"><h2 id="contact-title" data-ar="تواصل" data-en="Contact">تواصل</h2></header>
+<div class="contact-body">
+<div class="contact-copy"><h3><span data-ar="عندك فكرة؟" data-en="Have an idea?">عندك فكرة؟</span><span data-ar="خلّنا نبدأ." data-en="Let’s make it happen.">خلّنا نبدأ.</span></h3>
+<p class="contact-intro" data-ar="لمشروع جديد، تعاون، أو فرصة عمل." data-en="For a new project, collaboration, or career opportunity.">لمشروع جديد، تعاون، أو فرصة عمل.</p>
+<div class="contact-links">
+<a class="contact-link" href="mailto:ibrahim.alajmi407@gmail.com"><span data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<a class="contact-link" href="https://wa.me/966597866665" target="_blank" rel="noopener noreferrer"><span data-ar="واتساب" data-en="WhatsApp">واتساب</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<a class="contact-link" href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div></div>
+<div class="envelope-area">
+<button class="envelope-button" id="envelope-button" aria-expanded="false" aria-controls="envelope-letter" aria-label="افتح ظرف التواصل" aria-describedby="envelope-hint">
+<span class="envelope" aria-hidden="true"><span class="envelope-back"></span>
+<span class="envelope-letter" id="envelope-letter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><b>Ibrahim Al-Ajmi</b><small>DIGITAL PRODUCT DESIGNER</small></span>
+<span class="envelope-flap"></span><span class="envelope-pocket"></span><span class="envelope-seal">IA</span></span>
+</button><p class="envelope-hint" id="envelope-hint">اضغط لفتح الظرف</p>
+</div></div>
+<footer class="contact-footer"><span data-ar="إبراهيم العجمي" data-en="Ibrahim Al-Ajmi">إبراهيم العجمي</span><span>04 / 04</span></footer>
 </section></div>
-<nav class="scene-nav" aria-label="الأقسام"><button class="scene-dot" data-scene="main" aria-label="البداية" aria-current="true"></button><button class="scene-dot" data-scene="work" aria-label="الأعمال" aria-current="false"></button><button class="scene-dot" data-scene="about" aria-label="نبذة عني" aria-current="false"></button></nav>
+<nav class="scene-nav" aria-label="الأقسام"><button class="scene-dot" data-scene="main" aria-label="البداية" aria-current="true"></button><button class="scene-dot" data-scene="work" aria-label="الأعمال" aria-current="false"></button><button class="scene-dot" data-scene="about" aria-label="نبذة عني" aria-current="false"></button><button class="scene-dot" data-scene="contact" aria-label="تواصل" aria-current="false"></button></nav>
 <dialog class="project-modal" id="project-modal" aria-labelledby="modal-title" aria-describedby="modal-description">
 <button class="modal-close" id="modal-close" aria-label="إغلاق"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <div class="modal-art" id="modal-art" aria-hidden="true"></div><div class="modal-copy"><p class="modal-label" id="modal-category"></p><h2 id="modal-title"></h2><p class="modal-description" id="modal-description"></p><div class="modal-role"><strong data-ar="دوري" data-en="My role">دوري</strong><span id="modal-role"></span></div><a class="modal-link" id="modal-link" target="_blank" rel="noopener noreferrer" hidden data-ar="عرض المشروع" data-en="View project">عرض المشروع</a></div>
@@ -307,4 +365,14 @@ function translateAbout(){
  selectCube(cubeIndex);
 }
 language.addEventListener('click',translateAbout);translateAbout();
+
+const envelopeButton=document.getElementById('envelope-button');
+function translateContact(){
+ const open=envelopeButton.getAttribute('aria-expanded')==='true';
+ envelopeButton.setAttribute('aria-label',lang==='ar'?(open?'أغلق ظرف التواصل':'افتح ظرف التواصل'):(open?'Close contact envelope':'Open contact envelope'));
+ document.getElementById('envelope-hint').textContent=lang==='ar'?(open?'خلّنا نتواصل':'اضغط لفتح الظرف'):(open?'Let’s connect':'Tap to open the envelope');
+ document.querySelector('[data-scene="contact"]').setAttribute('aria-label',lang==='ar'?'تواصل':'Contact');
+}
+envelopeButton.addEventListener('click',()=>{envelopeButton.setAttribute('aria-expanded',String(envelopeButton.getAttribute('aria-expanded')!=='true'));translateContact()});
+language.addEventListener('click',translateContact);translateContact();
 </script></body></html>
