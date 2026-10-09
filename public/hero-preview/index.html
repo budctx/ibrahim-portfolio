@@ -52,8 +52,60 @@ html[lang=ar] .role{direction:rtl}
 
 .badge-position>.clip{left:50%;top:-30px;width:32px;height:46px;transform:translateX(-50%);border:0;border-radius:0;background:none;box-shadow:none;filter:drop-shadow(0 2px 2px #0005);pointer-events:none;overflow:visible}
 .slot{left:50%;transform:translateX(-50%);top:8px;width:28px;height:6px}
+
+/* Full-screen scenes use native scrolling, including touch and keyboard. */
+html,body{height:100%;overflow:hidden}
+.scenes{height:100svh;height:100dvh;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;scroll-behavior:smooth;overscroll-behavior-y:contain}
+.scene{scroll-snap-align:start;scroll-snap-stop:always;height:100%;min-height:0}
+.scene .stage,.work-body{transition:transform .8s cubic-bezier(.2,.75,.2,1),opacity .65s;transform-origin:center;will-change:transform,opacity}
+.hero:not(.is-active) .stage{transform:perspective(1200px) translate3d(0,-70px,-180px) rotateX(12deg);opacity:0;pointer-events:none}
+.work:not(.is-active) .work-body{transform:perspective(1200px) translate3d(0,90px,-200px) rotateX(-12deg);opacity:0;pointer-events:none}
+.scene-nav{position:fixed;inset-inline-end:20px;top:50%;transform:translateY(-50%);z-index:8;display:grid;gap:14px}
+.scene-dot{width:24px;height:24px;border:0;background:transparent;cursor:pointer;display:grid;place-items:center;padding:0}
+.scene-dot:before{content:'';width:6px;height:6px;border:1px solid #aeb7c7;border-radius:50%;transition:.3s}
+.scene-dot[aria-current=true]:before{background:#eceeef;box-shadow:0 0 0 5px #ffffff12}
+.work{display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;position:relative;background:radial-gradient(ellipse at 70% 30%,#1e2b40,#12161e 55%,#111214)}
+.work-header{padding:24px 7% 0;display:flex;align-items:baseline;justify-content:space-between;gap:24px}
+.work-header h2{font-size:clamp(30px,4vw,54px);letter-spacing:-1px;margin:0}
+.work-header p{font-size:12px;color:#b9bdc5;margin:0;line-height:1.7}
+.work-body{min-height:0;display:grid;align-content:center;gap:24px}
+.project-track{display:flex;gap:clamp(16px,2.5vw,36px);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;padding:20px calc((100% - min(62vw,720px))/2);direction:ltr;overscroll-behavior-x:contain}
+.project-track::-webkit-scrollbar{display:none}
+.project-item{flex:0 0 min(62vw,720px);scroll-snap-align:center;min-width:0}
+.project-card{display:block;width:100%;padding:0;border:1px solid #ffffff20;border-radius:20px;background:#151a22;color:#f3f4f5;text-align:start;cursor:pointer;overflow:hidden;transition:transform .4s,border-color .4s,box-shadow .4s;touch-action:pan-x pan-y}
+.project-card:hover{transform:translateY(-5px);border-color:#ffffff55;box-shadow:0 18px 50px #0004}
+.project-card:focus-visible{outline-offset:-4px}
+.project-art{height:clamp(160px,37dvh,390px);position:relative;display:grid;place-items:center;overflow:hidden;direction:ltr;background:#dce1e8;color:#1c2536}
+.project-art:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,#fff2,transparent 55%,#0001)}
+.project-meta{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 24px}
+.project-meta h3{font-size:20px;margin:0 0 6px;font-weight:500}.project-meta p{font-size:11px;color:#aeb7c7;margin:0}
+.project-open{width:36px;height:36px;border:1px solid #ffffff24;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+.demo-mark{position:absolute;top:16px;left:18px;font-size:9px;letter-spacing:2px;border:1px solid currentColor;border-radius:20px;padding:6px 10px;opacity:.6;z-index:1}
+.art-symbol{width:100px;height:100px;border:2px solid #26364e;border-radius:30px;transform:rotate(-30deg);position:relative}
+.art-symbol:before{content:'';position:absolute;inset:18px;border:2px solid #26364e;border-radius:50%}
+.art-symbol:after{content:'';position:absolute;width:140px;height:1px;background:#26364e;top:50%;left:-20px}
+.art-word{position:absolute;bottom:24px;left:28px;font:600 clamp(18px,3vw,32px) Arial;letter-spacing:5px}
+.art-interface{background:#172237;color:#e4e9f1}
+.mini-ui{width:72%;max-width:430px;height:70%;max-height:250px;background:#e7ebf2;border:6px solid #ffffff20;border-radius:12px;box-shadow:20px 25px 50px #0005;transform:perspective(900px) rotateY(-12deg) rotateX(8deg);padding:18px;display:grid;grid-template-columns:1fr 2fr;gap:12px}
+.ui-sidebar{background:#23344e;border-radius:5px}.ui-main{display:grid;grid-template-rows:16px 1fr 1fr;gap:10px}.ui-main i{border-radius:5px;background:#b7c2d4}.ui-main i:first-child{width:55%;background:#657b9c}
+.art-poster{background:#263954;color:#eceeef}
+.poster-type{font:700 clamp(62px,12vw,150px)/.85 Arial;letter-spacing:-8px;transform:rotate(-8deg);text-align:center}.poster-type span{display:block;color:transparent;-webkit-text-stroke:1px #eceeef}
+.carousel-controls{display:flex;align-items:center;justify-content:center;gap:24px;direction:ltr}
+.carousel-arrow{width:44px;height:44px;border:1px solid #ffffff2a;border-radius:50%;color:#f3f4f5;background:transparent;cursor:pointer;display:grid;place-items:center}
+.carousel-arrow:disabled{opacity:.25;cursor:default}.carousel-arrow:hover:not(:disabled){background:#ffffff10}
+.carousel-count{font:12px Arial;letter-spacing:2px;color:#b8c2d2;min-width:60px;text-align:center}
+.work-footer{padding:16px 7%;font-size:10px;color:#99a4b6;display:flex;justify-content:space-between}
+.project-modal{width:min(860px,calc(100vw - 32px));max-height:calc(100dvh - 32px);padding:0;border:1px solid #ffffff30;border-radius:20px;background:#171d27;color:#f3f4f5;overflow:auto;overscroll-behavior:contain}
+.project-modal::backdrop{background:#080b12c9;backdrop-filter:blur(12px)}
+.modal-close{position:sticky;top:14px;margin:14px 14px -58px;float:right;width:44px;height:44px;border:1px solid #ffffff35;border-radius:50%;background:#151a22e8;color:#fff;cursor:pointer;z-index:2;display:grid;place-items:center}
+.modal-art .project-art{height:clamp(180px,34dvh,320px)}
+.modal-copy{padding:28px 32px 32px}.modal-label{color:#a8b4c7;font-size:10px;letter-spacing:1px;margin:0 0 10px}.modal-copy h2{font-size:clamp(25px,4vw,38px);margin:0 0 16px;font-weight:500}.modal-description{font-size:14px;line-height:1.9;color:#c3cbd7;max-width:62ch}
+.modal-role{display:flex;gap:20px;border-top:1px solid #ffffff20;padding-top:18px;margin-top:24px;font-size:12px;line-height:1.7}.modal-role strong{color:#99a7bc;font-weight:400}.modal-link[hidden]{display:none}.modal-link{display:inline-block;margin-top:22px;color:#eceeef;text-underline-offset:6px}
+@media(max-width:700px){.scene-nav{inset-inline-end:5px}.work-header{padding:22px 7% 0;display:block}.work-header p{margin-top:8px;font-size:10px}.work-body{gap:12px}.project-track{padding-inline:12%;gap:16px}.project-item{flex-basis:76vw}.project-art{height:clamp(160px,38dvh,340px)}.project-meta{padding:16px}.project-meta h3{font-size:17px}.project-meta p{font-size:10px}.modal-copy{padding:24px}.poster-type{font-size:90px;letter-spacing:-5px}.art-symbol{width:80px;height:80px}.mini-ui{padding:10px}}
+@media(max-height:550px){.work-header{padding-top:10px}.work-header h2{font-size:26px}.work-body{gap:4px}.project-track{padding-block:8px}.project-art{height:clamp(100px,36dvh,180px)}.project-meta{padding:10px 18px}.project-meta h3{font-size:16px;margin-bottom:3px}.carousel-arrow{width:34px;height:34px}.work-footer{padding-block:8px}.art-symbol{width:60px;height:60px}.art-word{bottom:12px;font-size:18px}.poster-type{font-size:75px}}
+@media(prefers-reduced-motion:reduce){.scenes{scroll-behavior:auto}.scene .stage,.work-body{transform:none!important;opacity:1!important;transition:none}.project-card:hover{transform:none}}
 </style></head>
-<body><main class="hero" id="main">
+<body><div class="scenes" id="scenes"><main class="hero scene is-active" id="main">
 <header class="header"><div class="wordmark"><span data-ar="إبراهيم العجمي" data-en="Ibrahim Al-Ajmi">إبراهيم العجمي</span><small>PORTFOLIO / 2026</small></div><div class="controls"><button class="control" id="language" aria-label="Switch to English">E</button></div></header>
 <section class="stage" aria-label="بطاقة التعريف التفاعلية">
 <div class="roles"><h1 class="role one"><span style="font:inherit;color:inherit;margin:0" data-ar="منتجات" data-en="DIGITAL">منتجات</span><span data-ar="تصميم المنتجات الرقمية" data-en="PRODUCT DESIGN">تصميم المنتجات الرقمية</span></h1>
@@ -63,7 +115,18 @@ html[lang=ar] .role{direction:rtl}
 <div class="rig"><div class="pendulum"><div class="badge-position"><div class="strap" aria-hidden="true"></div><svg class="clip" viewBox="0 0 32 46" aria-hidden="true"><defs><linearGradient id="metal" x1="0" x2="1"><stop stop-color="#6a717b"/><stop offset=".25" stop-color="#e2e6eb"/><stop offset=".5" stop-color="#a5adb8"/><stop offset=".78" stop-color="#f2f4f7"/><stop offset="1" stop-color="#7d8794"/></linearGradient></defs><rect x="6" y="2" width="20" height="21" rx="5" fill="none" stroke="url(#metal)" stroke-width="4"/><path d="M11 21h10v13c0 6-2 9-5 9s-5-3-5-9Z" fill="url(#metal)" stroke="#6e7886" stroke-width=".8"/><path d="M14 25v9" stroke="#fff" stroke-opacity=".5" stroke-linecap="round"/><circle cx="16" cy="37" r="2" fill="#697484"/><circle cx="16" cy="36.5" r="1" fill="#d7dde5"/></svg><button class="card" id="card" lang="en" dir="ltr" aria-label="اقلب بطاقة إبراهيم العجمي" aria-pressed="false"><div class="face front"><div class="slot"></div><div class="insert"><div class="card-top"><span>DESIGNER PASS</span></div><div class="portrait"><div class="monogram">IA</div><small>DIGITAL × VISUAL</small></div><div class="name">IBRAHIM AL-AJMI</div><p class="job">Digital Product Designer</p></div></div><div class="face back" aria-hidden="true"><div class="slot"></div><div class="insert"><h2 style="white-space:pre-line">Clear thinking.
 Considered design.</h2><div class="skill"><b>01</b><span>Digital interfaces</span></div><div class="skill"><b>02</b><span>User experience</span></div><div class="skill"><b>03</b><span>Graphic design</span></div><div class="back-footer">IBRAHIM AL-AJMI<br>Digital Product Designer</div></div></div></button></div></div></div>
 </section><footer class="footer"><div class="identity">Digital Product Designer</div></footer>
-</main><script>
+</main>
+<section class="scene work" id="work" aria-labelledby="work-title">
+<header class="work-header"><h2 id="work-title" data-ar="أعمال" data-en="Work">أعمال</h2><p data-ar="أفكار تتحوّل إلى تجارب." data-en="Ideas, made tangible.">أفكار تتحوّل إلى تجارب.</p></header>
+<div class="work-body"><div class="project-track" id="project-track" role="region" aria-label="المشاريع" tabindex="0"></div>
+<div class="carousel-controls"><button class="carousel-arrow" id="project-prev" aria-label="المشروع السابق"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="carousel-count" id="project-count" aria-live="polite" aria-atomic="true">01 / 03</span><button class="carousel-arrow" id="project-next" aria-label="المشروع التالي"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+<footer class="work-footer"><span data-ar="أمثلة تجريبية — تُستبدل بأعمالك" data-en="Demo projects — replace with your work">أمثلة تجريبية — تُستبدل بأعمالك</span><span>02 / 02</span></footer>
+</section></div>
+<nav class="scene-nav" aria-label="الأقسام"><button class="scene-dot" data-scene="main" aria-label="البداية" aria-current="true"></button><button class="scene-dot" data-scene="work" aria-label="الأعمال" aria-current="false"></button></nav>
+<dialog class="project-modal" id="project-modal" aria-labelledby="modal-title" aria-describedby="modal-description">
+<button class="modal-close" id="modal-close" aria-label="إغلاق"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<div class="modal-art" id="modal-art" aria-hidden="true"></div><div class="modal-copy"><p class="modal-label" id="modal-category"></p><h2 id="modal-title"></h2><p class="modal-description" id="modal-description"></p><div class="modal-role"><strong data-ar="دوري" data-en="My role">دوري</strong><span id="modal-role"></span></div><a class="modal-link" id="modal-link" target="_blank" rel="noopener noreferrer" hidden data-ar="عرض المشروع" data-en="View project">عرض المشروع</a></div>
+</dialog><script>
 const card=document.getElementById('card'),language=document.getElementById('language');let flipped=false,paused=matchMedia('(prefers-reduced-motion: reduce)').matches,lang='ar',userInteracted=false;const reduce=matchMedia('(prefers-reduced-motion: reduce)');
 function flip(){flipped=!flipped;card.style.setProperty('--flip',flipped?'180deg':'0deg');card.setAttribute('aria-pressed',String(flipped));card.querySelector('.front').setAttribute('aria-hidden',String(flipped));card.querySelector('.back').setAttribute('aria-hidden',String(!flipped))}
 card.addEventListener('click',()=>{userInteracted=true;flip()});
@@ -82,4 +145,77 @@ function fitBadge(){
  badge.style.setProperty('--badge-top',Math.max(28,(h-360*scale)/2)+'px');
 }
 new ResizeObserver(fitBadge).observe(rig);fitBadge();
+
+// Reusable project records: replace demo text/art or supply image + optional url.
+const projects=[
+ {id:'identity',title:{ar:'هوية بصرية',en:'Visual identity'},category:{ar:'تصميم هوية',en:'Brand identity'},description:{ar:'مثال تجريبي لعرض مشروع هوية بصرية. استبدل هذه النبذة بفكرة المشروع، هدفه، وأبرز ما صممته.',en:'A demo layout for a visual identity project. Replace this overview with the project idea, its goal, and the key design decisions.'},role:{ar:'الهوية والتصميم البصري',en:'Identity & visual design'},art:'identity',image:null,url:null},
+ {id:'interface',title:{ar:'تجربة رقمية',en:'Digital experience'},category:{ar:'تصميم منتجات',en:'Product design'},description:{ar:'مثال تجريبي لعرض واجهة أو منتج رقمي. أضف المشكلة التي عالجتها وكيف ساعد التصميم المستخدم.',en:'A demo layout for an interface or digital product. Describe the problem and how the design helps the user.'},role:{ar:'تصميم الواجهات وتجربة المستخدم',en:'Interface & user experience design'},art:'interface',image:null,url:null},
+ {id:'graphic',title:{ar:'اتجاه بصري',en:'Visual direction'},category:{ar:'تصميم جرافيكي',en:'Graphic design'},description:{ar:'مثال تجريبي لعرض عمل جرافيكي أو حملة بصرية. أضف السياق والفكرة ودورك في التنفيذ.',en:'A demo layout for graphic work or a visual campaign. Add its context, creative idea, and your contribution.'},role:{ar:'التصميم الجرافيكي',en:'Graphic design'},art:'poster',image:null,url:null}
+];
+const track=document.getElementById('project-track'),modal=document.getElementById('project-modal');
+const prev=document.getElementById('project-prev'),next=document.getElementById('project-next');
+let projectIndex=0,openedProject=null,projectOpener=null,projectScrollTimer;
+function projectArt(p){
+ const art=document.createElement('div');art.className='project-art art-'+p.art;
+ if(p.image){const img=document.createElement('img');img.src=p.image;img.alt='';img.style.cssText='width:100%;height:100%;object-fit:cover';art.append(img);return art}
+ art.innerHTML='<span class="demo-mark">DEMO / '+(projects.indexOf(p)+1).toString().padStart(2,'0')+'</span>'+
+ (p.art==='identity'?'<div class="art-symbol"></div><span class="art-word">FORM / STUDIO</span>':p.art==='interface'?'<div class="mini-ui"><div class="ui-sidebar"></div><div class="ui-main"><i></i><i></i><i></i></div></div>':'<div class="poster-type">MAKE<span>SHAPE</span></div>');
+ return art;
+}
+function updateProjectCount(){document.getElementById('project-count').textContent=String(projectIndex+1).padStart(2,'0')+' / '+String(projects.length).padStart(2,'0');prev.disabled=projectIndex===0;next.disabled=projectIndex===projects.length-1}
+function moveProject(index,behavior=reduce.matches?'auto':'smooth'){
+ projectIndex=Math.max(0,Math.min(projects.length-1,index));
+ const item=track.children[projectIndex];
+ track.scrollTo({left:item.offsetLeft-(track.clientWidth-item.offsetWidth)/2,behavior});updateProjectCount();
+}
+function fillModal(p){
+ document.getElementById('modal-art').replaceChildren(projectArt(p));
+ document.getElementById('modal-category').textContent=p.category[lang];
+ document.getElementById('modal-title').textContent=p.title[lang];
+ document.getElementById('modal-description').textContent=p.description[lang];
+ document.getElementById('modal-role').textContent=p.role[lang];
+ const link=document.getElementById('modal-link');link.hidden=!p.url;
+ if(p.url)link.href=p.url;else link.removeAttribute('href');
+ modal.lang=lang;modal.dir=lang==='ar'?'rtl':'ltr';
+}
+function openProject(p,opener){openedProject=p;projectOpener=opener;fillModal(p);modal.showModal()}
+function renderProjects(){
+ track.replaceChildren();
+ projects.forEach(p=>{
+ const item=document.createElement('article');item.className='project-item';
+ const btn=document.createElement('button');btn.className='project-card';btn.type='button';btn.dir=lang==='ar'?'rtl':'ltr';btn.setAttribute('aria-haspopup','dialog');btn.setAttribute('aria-label',(lang==='ar'?'عرض ':'Open ')+p.title[lang]);
+ const art=projectArt(p);art.setAttribute('aria-hidden','true');btn.append(art);
+ const meta=document.createElement('div');meta.className='project-meta';
+ const text=document.createElement('div'),title=document.createElement('h3'),category=document.createElement('p');
+ title.textContent=p.title[lang];category.textContent=p.category[lang];text.append(title,category);
+ const icon=document.createElement('span');icon.className='project-open';icon.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>';
+ meta.append(text,icon);btn.append(meta);btn.addEventListener('click',()=>openProject(p,btn));item.append(btn);track.append(item);
+ });requestAnimationFrame(()=>moveProject(projectIndex,'auto'));
+ prev.setAttribute('aria-label',lang==='ar'?'المشروع السابق':'Previous project');next.setAttribute('aria-label',lang==='ar'?'المشروع التالي':'Next project');
+ track.setAttribute('aria-label',lang==='ar'?'المشاريع':'Projects');
+ document.getElementById('modal-close').setAttribute('aria-label',lang==='ar'?'إغلاق':'Close');
+ document.querySelector('.scene-nav').setAttribute('aria-label',lang==='ar'?'الأقسام':'Sections');
+ document.querySelector('[data-scene="main"]').setAttribute('aria-label',lang==='ar'?'البداية':'Introduction');
+ document.querySelector('[data-scene="work"]').setAttribute('aria-label',lang==='ar'?'الأعمال':'Work');
+ if(openedProject)fillModal(openedProject);
+}
+prev.addEventListener('click',()=>moveProject(projectIndex-1));next.addEventListener('click',()=>moveProject(projectIndex+1));
+track.addEventListener('scroll',()=>{clearTimeout(projectScrollTimer);projectScrollTimer=setTimeout(()=>{const center=track.scrollLeft+track.clientWidth/2;let nearest=0,distance=Infinity;[...track.children].forEach((e,i)=>{const delta=Math.abs(e.offsetLeft+e.offsetWidth/2-center);if(delta<distance){distance=delta;nearest=i}});projectIndex=nearest;updateProjectCount()},150)},{passive:true});
+track.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();moveProject(projectIndex+(e.key==='ArrowRight'?1:-1))}});
+document.getElementById('modal-close').addEventListener('click',()=>modal.close());
+modal.addEventListener('click',e=>{if(e.target===modal){const r=modal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)modal.close()}});
+modal.addEventListener('close',()=>{openedProject=null;if(projectOpener?.isConnected)projectOpener.focus()});
+language.addEventListener('click',renderProjects);
+new ResizeObserver(()=>moveProject(projectIndex,'auto')).observe(track);renderProjects();
+const scenes=document.getElementById('scenes');
+document.querySelectorAll('.scene-dot').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.scene).scrollIntoView({behavior:reduce.matches?'auto':'smooth',block:'start'})));
+new IntersectionObserver(entries=>entries.forEach(entry=>{
+ const active=entry.intersectionRatio>=.55;entry.target.classList.toggle('is-active',active);
+ entry.target.inert=!active;
+ if(active)document.querySelectorAll('.scene-dot').forEach(b=>b.setAttribute('aria-current',String(b.dataset.scene===entry.target.id)));
+}),{root:scenes,threshold:[0,.55,1]}).observe(document.getElementById('main'));
+const workObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+ const active=entry.intersectionRatio>=.55;entry.target.classList.toggle('is-active',active);entry.target.inert=!active;
+ if(active)document.querySelectorAll('.scene-dot').forEach(b=>b.setAttribute('aria-current',String(b.dataset.scene===entry.target.id)));
+}),{root:scenes,threshold:[0,.55,1]});workObserver.observe(document.getElementById('work'));
 </script></body></html>
