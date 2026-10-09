@@ -13,44 +13,38 @@
 .back .insert{padding:24px 18px}.back h2{font-size:23px;line-height:1.2;margin-bottom:18px;flex-shrink:0}.skill{flex-shrink:0;padding:11px 0}.back-footer{flex-shrink:0;padding-top:10px}
 html[lang=en] .name{font-size:17px;line-height:1.25;letter-spacing:-.5px}
 
-/* Flow layout: text and the complete badge motion envelope own separate tracks. */
-.hero{height:auto;min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
-.header{position:relative;inset:auto;height:auto;min-height:88px;gap:20px;padding:20px 5%}
-.stage{position:relative;inset:auto;display:grid;grid-template-columns:minmax(0,1fr) 420px minmax(0,1fr);grid-template-rows:1fr 1fr;column-gap:32px;min-height:560px;padding:0 5%;direction:ltr;align-items:center}
+/* One viewport per scene; the motion area and text tracks never overlap. */
+.hero{height:100svh;height:100dvh;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden}
+.header{position:relative;inset:auto;height:auto;min-height:64px;padding:16px 5%;gap:16px}
+.stage{position:relative;inset:auto;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,32%) minmax(0,1fr);grid-template-rows:1fr 1fr;gap:0 clamp(20px,3vw,56px);padding:0 7%;direction:ltr}
 .roles{display:contents}
-.stage .role{position:relative;inset:auto;min-width:0;max-width:100%;font-size:clamp(28px,3.2vw,56px);letter-spacing:-1px;overflow-wrap:anywhere}
-.stage .role span{font-size:13px;line-height:1.6;letter-spacing:.5px}
-.stage .role.one{grid-column:1;grid-row:1;align-self:end;margin-bottom:36px}
-.stage .role.two{grid-column:3;grid-row:1;align-self:end;margin-bottom:36px}
-.stage .role.three{grid-column:1;grid-row:2;align-self:start;margin-top:36px}
-.stage .role.four{grid-column:3;grid-row:2;align-self:start;margin-top:36px}
-html[lang=ar] .card{direction:rtl}
-html[lang=en] .card{direction:ltr}
-html[lang=ar] .role{direction:rtl;text-align:right}
-html[lang=en] .role{direction:ltr;text-align:left}
-.rig{position:relative;inset:auto;margin:0;grid-column:2;grid-row:1 / 3;width:420px;height:560px;min-height:0;max-height:none;justify-self:center;align-self:center}
-.badge-position{top:140px;bottom:auto;left:50%;margin-left:-130px;width:260px;height:360px;transform:none}
-.footer{position:relative;inset:auto;padding:24px 5%;min-height:76px}
-@media(max-width:1100px){
- .header{min-height:72px}.wordmark small{display:none}
- .stage{display:flex;flex-direction:column;min-height:0;gap:24px;padding:0 7% 24px}
- .rig{order:0;width:min(360px,100%);height:460px;flex:none}
- .badge-position{top:50px}
- .roles{order:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px;width:100%;direction:ltr}
- .stage .roles .role{grid-column:auto;grid-row:auto;align-self:start;inset:auto;margin:0;font-size:clamp(23px,3.8vw,40px)}
- .stage .role span{font-size:11px}
+.stage .role{position:relative;inset:auto;margin:0;min-width:0;max-width:100%;font-size:clamp(24px,3.2vw,54px);letter-spacing:-.5px;overflow-wrap:anywhere;text-align:center;align-self:center}
+.stage .role span{font-size:clamp(10px,1vw,13px);line-height:1.6;letter-spacing:.3px;margin-top:10px}
+.stage .role.one{grid-column:1;grid-row:1}
+.stage .role.two{grid-column:3;grid-row:1}
+.stage .role.three{grid-column:1;grid-row:2}
+.stage .role.four{grid-column:3;grid-row:2}
+html[lang=ar] .card,html[lang=ar] .role{direction:rtl}
+html[lang=en] .card,html[lang=en] .role{direction:ltr}
+.rig{position:relative;inset:auto;margin:0;grid-column:2;grid-row:1 / 3;width:100%;height:100%;min-height:0;max-height:none}
+.badge-position{top:var(--badge-top,60px);bottom:auto;left:50%;margin-left:-130px;width:260px;height:360px;transform:scale(var(--badge-scale,1));transform-origin:50% 0}
+.footer{position:relative;inset:auto;padding:16px 7%;min-height:0}
+.identity{font-size:12px}
+.front .portrait{flex:1;min-height:0}
+@media(max-width:900px) and (min-height:551px),(max-width:639px){
+ .header{padding:12px 6%;min-height:60px}.wordmark{font-size:14px}.wordmark small{display:none}.control{width:40px;height:40px}
+ .stage{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:12px;padding:0 7%}
+ .rig{grid-column:1;grid-row:1;width:min(100%,360px);justify-self:center}
+ .roles{grid-column:1;grid-row:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,3vh,28px) 20px;padding:8px 0}
+ .stage .roles .role{grid-column:auto;grid-row:auto;font-size:clamp(18px,4.4vw,30px);align-self:start}
+ .stage .role span{font-size:10px;margin-top:6px}
+ .footer{padding:12px 7%}.identity{font-size:10px}
 }
-@media(max-width:700px){
- .header{padding:16px 18px;gap:12px}.wordmark{font-size:14px;white-space:nowrap}.control{width:40px;height:40px}
- .rig{height:400px}
- .badge-position{top:50px;width:216px;height:300px;margin-left:-108px}
- .roles{gap:24px 16px}.barcode{height:17px}.card-bottom{padding-top:8px}
- .stage .roles .role{font-size:clamp(18px,5.3vw,30px)}
- .stage .role span{font-size:10px;letter-spacing:.2px}
- .footer{padding:20px 7%;min-height:70px}.identity{font-size:12px}.identity small{font-size:10px}
- .face{padding:12px;border-radius:16px}.insert{padding:22px 14px 12px}.portrait{height:142px}.monogram{font-size:88px}.name{font-size:19px;margin-top:9px}.job{font-size:10px}.card-top{font-size:8px;margin-bottom:9px}
- .back .insert{padding:21px 13px}.back h2{font-size:18px;line-height:1.2;margin-bottom:13px}.skill{font-size:11px;padding:9px 0}.back-footer{font-size:10px;padding-top:8px}
-
+@media(max-height:550px) and (min-width:640px){
+ .header{padding:8px 5%;min-height:52px}.wordmark{font-size:14px}.wordmark small{display:none}.control{width:36px;height:36px}
+ .stage{grid-template-columns:minmax(0,1fr) minmax(180px,28%) minmax(0,1fr);padding:0 5%;column-gap:20px}
+ .stage .role{font-size:clamp(18px,2.8vw,28px)}.stage .role span{font-size:10px;margin-top:6px}
+ .footer{padding:8px 5%}.identity{font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.role{opacity:1}}
 /* Hardware shares the badge coordinate system at every responsive scale. */
@@ -66,9 +60,9 @@ html[lang=en] .role{direction:ltr;text-align:left}
 <p class="role two"><strong data-ar="تجارب" data-en="EXPERIENCE">تجارب</strong><span data-ar="واجهات تتمحور حول المستخدم" data-en="USER-CENTERED INTERFACES">واجهات تتمحور حول المستخدم</span></p>
 <p class="role three"><strong data-ar="جرافيك" data-en="GRAPHIC">جرافيك</strong><span data-ar="تصميم بصري" data-en="VISUAL DESIGN">تصميم بصري</span></p>
 <p class="role four"><strong data-ar="هويات" data-en="IDENTITY">هويات</strong><span data-ar="لغة بصرية متّسقة" data-en="COHESIVE VISUAL LANGUAGE">لغة بصرية متّسقة</span></p></div>
-<div class="rig"><div class="pendulum"><div class="badge-position"><div class="strap" aria-hidden="true"></div><svg class="clip" viewBox="0 0 32 46" aria-hidden="true"><defs><linearGradient id="metal" x1="0" x2="1"><stop stop-color="#6a717b"/><stop offset=".25" stop-color="#e2e6eb"/><stop offset=".5" stop-color="#a5adb8"/><stop offset=".78" stop-color="#f2f4f7"/><stop offset="1" stop-color="#7d8794"/></linearGradient></defs><rect x="6" y="2" width="20" height="21" rx="5" fill="none" stroke="url(#metal)" stroke-width="4"/><path d="M11 21h10v13c0 6-2 9-5 9s-5-3-5-9Z" fill="url(#metal)" stroke="#6e7886" stroke-width=".8"/><path d="M14 25v9" stroke="#fff" stroke-opacity=".5" stroke-linecap="round"/><circle cx="16" cy="37" r="2" fill="#697484"/><circle cx="16" cy="36.5" r="1" fill="#d7dde5"/></svg><button class="card" id="card" aria-label="اقلب بطاقة إبراهيم العجمي" aria-pressed="false"><div class="face front"><div class="slot"></div><div class="insert"><div class="card-top"><span>DESIGNER PASS</span><span>001 / 26</span></div><div class="portrait"><div class="monogram">IA</div><small>DIGITAL × VISUAL</small></div><div class="name" data-ar="إبراهيم العجمي" data-en="IBRAHIM AL-AJMI">إبراهيم العجمي</div><p class="job">Digital Product Designer</p><div class="card-bottom"><div class="barcode" aria-hidden="true"></div><small>AL KHOBAR, SA</small></div></div></div><div class="face back" aria-hidden="true"><div class="slot"></div><div class="insert"><h2 data-ar="فكرة واضحة.\nتجربة متقنة." data-en="Clear thinking.\nConsidered design." style="white-space:pre-line">فكرة واضحة.
-تجربة متقنة.</h2><div class="skill"><b>01</b><span data-ar="تصميم المنتجات" data-en="Product design">تصميم المنتجات</span></div><div class="skill"><b>02</b><span data-ar="تجربة المستخدم" data-en="User experience">تجربة المستخدم</span></div><div class="skill"><b>03</b><span data-ar="التصميم الجرافيكي" data-en="Graphic design">التصميم الجرافيكي</span></div><div class="back-footer">IBRAHIM AL-AJMI<br>Digital Product Designer</div></div></div></button></div></div></div>
-</section><footer class="footer"><div class="identity">Digital Product Designer<small data-ar="الخبر، السعودية" data-en="Al Khobar, Saudi Arabia">الخبر، السعودية</small></div></footer>
+<div class="rig"><div class="pendulum"><div class="badge-position"><div class="strap" aria-hidden="true"></div><svg class="clip" viewBox="0 0 32 46" aria-hidden="true"><defs><linearGradient id="metal" x1="0" x2="1"><stop stop-color="#6a717b"/><stop offset=".25" stop-color="#e2e6eb"/><stop offset=".5" stop-color="#a5adb8"/><stop offset=".78" stop-color="#f2f4f7"/><stop offset="1" stop-color="#7d8794"/></linearGradient></defs><rect x="6" y="2" width="20" height="21" rx="5" fill="none" stroke="url(#metal)" stroke-width="4"/><path d="M11 21h10v13c0 6-2 9-5 9s-5-3-5-9Z" fill="url(#metal)" stroke="#6e7886" stroke-width=".8"/><path d="M14 25v9" stroke="#fff" stroke-opacity=".5" stroke-linecap="round"/><circle cx="16" cy="37" r="2" fill="#697484"/><circle cx="16" cy="36.5" r="1" fill="#d7dde5"/></svg><button class="card" id="card" aria-label="اقلب بطاقة إبراهيم العجمي" aria-pressed="false"><div class="face front"><div class="slot"></div><div class="insert"><div class="card-top"><span>DESIGNER PASS</span><span>001 / 26</span></div><div class="portrait"><div class="monogram">IA</div><small>DIGITAL × VISUAL</small></div><div class="name" data-ar="إبراهيم العجمي" data-en="IBRAHIM AL-AJMI">إبراهيم العجمي</div><p class="job">Digital Product Designer</p></div></div><div class="face back" aria-hidden="true"><div class="slot"></div><div class="insert"><h2 data-ar="فكرة واضحة.\nتجربة متقنة." data-en="Clear thinking.\nConsidered design." style="white-space:pre-line">فكرة واضحة.
+تجربة متقنة.</h2><div class="skill"><b>01</b><span data-ar="واجهات رقمية" data-en="Digital interfaces">واجهات رقمية</span></div><div class="skill"><b>02</b><span data-ar="تجربة المستخدم" data-en="User experience">تجربة المستخدم</span></div><div class="skill"><b>03</b><span data-ar="التصميم الجرافيكي" data-en="Graphic design">التصميم الجرافيكي</span></div><div class="back-footer">IBRAHIM AL-AJMI<br>Digital Product Designer</div></div></div></button></div></div></div>
+</section><footer class="footer"><div class="identity">Digital Product Designer</div></footer>
 </main><script>
 const card=document.getElementById('card'),language=document.getElementById('language');let flipped=false,paused=matchMedia('(prefers-reduced-motion: reduce)').matches,lang='ar',userInteracted=false;const reduce=matchMedia('(prefers-reduced-motion: reduce)');
 function flip(){flipped=!flipped;card.style.setProperty('--flip',flipped?'180deg':'0deg');card.setAttribute('aria-pressed',String(flipped));card.querySelector('.front').setAttribute('aria-hidden',String(flipped));card.querySelector('.back').setAttribute('aria-hidden',String(!flipped))}
@@ -78,4 +72,14 @@ language.addEventListener('click',()=>{lang=lang==='ar'?'en':'ar';document.docum
 setTimeout(()=>{if(!paused&&!userInteracted&&!reduce.matches){flip();setTimeout(()=>{if(!paused&&!userInteracted)flip()},2100)}},2600);
 card.addEventListener('pointermove',e=>{if(e.pointerType==='mouse'&&!paused&&!reduce.matches){const r=card.getBoundingClientRect();card.style.setProperty('--tilt-x',((.5-(e.clientY-r.top)/r.height)*8)+'deg')}});card.addEventListener('pointerleave',()=>card.style.setProperty('--tilt-x','0deg'));
 reduce.addEventListener('change',e=>{if(e.matches){paused=true;syncMotion()}});
+
+// Fit the complete interactive object into its own grid track, including sway clearance.
+const rig=document.querySelector('.rig'),badge=document.querySelector('.badge-position');
+function fitBadge(){
+ const w=rig.clientWidth,h=rig.clientHeight;
+ const scale=Math.max(.1,Math.min(1,(w-36)/300,(h-52)/390));
+ badge.style.setProperty('--badge-scale',scale);
+ badge.style.setProperty('--badge-top',Math.max(28,(h-360*scale)/2)+'px');
+}
+new ResizeObserver(fitBadge).observe(rig);fitBadge();
 </script></body></html>
