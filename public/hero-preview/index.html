@@ -209,6 +209,7 @@ html,body{height:100%;overflow:hidden}
 .contact-method:focus-visible{outline:2px solid #edf0f4;outline-offset:5px}
 .contact-method svg{width:30px;height:30px}
 @media(max-width:360px){.contact-modal{padding:20px}.contact-modal h2{font-size:15px}}
+.art-athar{background:radial-gradient(ellipse at 25% 30%,#29435b,#152031 65%,#10151e);color:#eef3f6}.athar-cover{width:80%;height:85%;display:flex;align-items:center;justify-content:space-around;gap:24px}.athar-word{font-size:clamp(34px,6vw,76px);font-weight:600;text-align:center}.athar-word>span{display:block;font:10px Arial;letter-spacing:5px;margin-top:12px}.athar-card{width:42%;max-width:190px;height:90%;max-height:260px;background:linear-gradient(135deg,#f0f3f6,#c9d3de);border:1px solid #ffffff80;box-shadow:12px 18px 40px #0005;border-radius:14px;transform:perspective(800px) rotateY(-13deg) rotateZ(7deg);color:#213043;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;gap:8px;text-align:center}.athar-card>i{font:22px Arial;font-style:normal;background:#233a52;color:#eff4f9;border-radius:50%;width:48px;height:48px;display:grid;place-items:center}.athar-card>strong{font:600 11px Arial}.athar-card>small{font:8px Arial}.athar-lines{display:flex;gap:7px;margin:8px}.athar-lines b{width:15px;height:15px;border-radius:50%;background:#647a91}.athar-chip{font:6px Arial;letter-spacing:1px}.athar-cover{direction:ltr}@media(max-height:550px){.athar-card{gap:4px;padding:8px}.athar-card>i{width:26px;height:26px;font-size:14px}.athar-lines{margin:2px}.athar-lines b{width:9px;height:9px}.athar-chip{display:none}}
 </style></head>
 <body><div class="scenes" id="scenes"><main class="hero scene is-active" id="main">
 <header class="header"><div class="wordmark"><span data-ar="إبراهيم العجمي" data-en="Ibrahim Al-Ajmi">إبراهيم العجمي</span><small>PORTFOLIO / 2026</small></div><div class="controls"><button class="control" id="language" aria-label="Switch to English">E</button></div></header>
@@ -225,7 +226,7 @@ Considered design.</h2><div class="skill"><b>01</b><span>Digital interfaces</spa
 <header class="work-header"><h2 id="work-title" data-ar="أعمال" data-en="Work">أعمال</h2><p data-ar="أفكار تتحوّل إلى تجارب." data-en="Ideas, made tangible.">أفكار تتحوّل إلى تجارب.</p></header>
 <div class="work-body"><div class="project-track" id="project-track" role="region" aria-label="المشاريع" tabindex="0"></div>
 <div class="carousel-controls"><button class="carousel-arrow" id="project-prev" aria-label="المشروع السابق"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="carousel-count" id="project-count" aria-live="polite" aria-atomic="true">01 / 03</span><button class="carousel-arrow" id="project-next" aria-label="المشروع التالي"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
-<footer class="work-footer"><span data-ar="أمثلة تجريبية — تُستبدل بأعمالك" data-en="Demo projects — replace with your work">أمثلة تجريبية — تُستبدل بأعمالك</span></footer>
+<footer class="work-footer"><span data-ar="أثر + قوالب لإضافة أعمال لاحقًا" data-en="ATHAR + templates for future projects">أمثلة تجريبية — تُستبدل بأعمالك</span></footer>
 </section>
 <section class="scene about" id="about" aria-labelledby="about-title">
 <header class="about-header"><h2 id="about-title" data-ar="نبذة عني" data-en="About me">نبذة عني</h2></header>
@@ -267,7 +268,7 @@ Considered design.</h2><div class="skill"><b>01</b><span>Digital interfaces</spa
 </div></dialog>
 <dialog class="project-modal" id="project-modal" aria-labelledby="modal-title" aria-describedby="modal-description">
 <button class="modal-close" id="modal-close" aria-label="إغلاق"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<div class="modal-art" id="modal-art" aria-hidden="true"></div><div class="modal-copy"><p class="modal-label" id="modal-category"></p><h2 id="modal-title"></h2><p class="modal-description" id="modal-description"></p><div class="modal-role"><strong data-ar="دوري" data-en="My role">دوري</strong><span id="modal-role"></span></div><a class="modal-link" id="modal-link" target="_blank" rel="noopener noreferrer" hidden data-ar="عرض المشروع" data-en="View project">عرض المشروع</a></div>
+<div class="modal-art" id="modal-art" aria-hidden="true"></div><div class="modal-copy"><p class="modal-label" id="modal-category"></p><h2 id="modal-title"></h2><p class="modal-description" id="modal-description"></p><a class="modal-link" id="modal-link" target="_blank" rel="noopener noreferrer" hidden data-ar="عرض المشروع" data-en="View project">عرض المشروع</a></div>
 </dialog><script>
 const card=document.getElementById('card'),language=document.getElementById('language');let flipped=false,paused=matchMedia('(prefers-reduced-motion: reduce)').matches,lang='ar',userInteracted=false;const reduce=matchMedia('(prefers-reduced-motion: reduce)');
 function flip(){flipped=!flipped;card.style.setProperty('--flip',flipped?'180deg':'0deg');card.setAttribute('aria-pressed',String(flipped));card.querySelector('.front').setAttribute('aria-hidden',String(flipped));card.querySelector('.back').setAttribute('aria-hidden',String(!flipped))}
@@ -290,15 +291,17 @@ new ResizeObserver(fitBadge).observe(rig);fitBadge();
 
 // Reusable project records: replace demo text/art or supply image + optional url.
 const projects=[
- {id:'identity',title:{ar:'هوية بصرية',en:'Visual identity'},category:{ar:'تصميم هوية',en:'Brand identity'},description:{ar:'مثال تجريبي لعرض مشروع هوية بصرية. استبدل هذه النبذة بفكرة المشروع، هدفه، وأبرز ما صممته.',en:'A demo layout for a visual identity project. Replace this overview with the project idea, its goal, and the key design decisions.'},role:{ar:'الهوية والتصميم البصري',en:'Identity & visual design'},art:'identity',image:null,url:null},
- {id:'interface',title:{ar:'تجربة رقمية',en:'Digital experience'},category:{ar:'تصميم منتجات',en:'Product design'},description:{ar:'مثال تجريبي لعرض واجهة أو منتج رقمي. أضف المشكلة التي عالجتها وكيف ساعد التصميم المستخدم.',en:'A demo layout for an interface or digital product. Describe the problem and how the design helps the user.'},role:{ar:'تصميم الواجهات وتجربة المستخدم',en:'Interface & user experience design'},art:'interface',image:null,url:null},
- {id:'graphic',title:{ar:'اتجاه بصري',en:'Visual direction'},category:{ar:'تصميم جرافيكي',en:'Graphic design'},description:{ar:'مثال تجريبي لعرض عمل جرافيكي أو حملة بصرية. أضف السياق والفكرة ودورك في التنفيذ.',en:'A demo layout for graphic work or a visual campaign. Add its context, creative idea, and your contribution.'},role:{ar:'التصميم الجرافيكي',en:'Graphic design'},art:'poster',image:null,url:null}
+ {id:'athar',title:{ar:'أثر',en:'ATHAR'},category:{ar:'بطاقة أعمال رقمية',en:'Digital business card'},description:{ar:'أثر يجمع هويتك المهنية، مهاراتك وروابطك في بطاقة رقمية واحدة، تشاركها بسهولة عبر رابط أو رمز QR أو بطاقة NFC.',en:'ATHAR brings your professional profile, skills, and links into one digital business card, ready to share through a link, QR code, or NFC card.'},art:'athar',image:null,url:'https://atharca.vercel.app/'},
+ {id:'identity',title:{ar:'هوية بصرية',en:'Visual identity'},category:{ar:'تصميم هوية',en:'Brand identity'},description:{ar:'مثال تجريبي لعرض مشروع هوية بصرية. استبدل هذه النبذة بفكرة المشروع، هدفه، وأبرز ما صممته.',en:'A demo layout for a visual identity project. Replace this overview with the project idea, its goal, and the key design decisions.'},art:'identity',image:null,url:null},
+ {id:'interface',title:{ar:'تجربة رقمية',en:'Digital experience'},category:{ar:'تصميم منتجات',en:'Product design'},description:{ar:'مثال تجريبي لعرض واجهة أو منتج رقمي. أضف المشكلة التي عالجتها وكيف ساعد التصميم المستخدم.',en:'A demo layout for an interface or digital product. Describe the problem and how the design helps the user.'},art:'interface',image:null,url:null},
+ {id:'graphic',title:{ar:'اتجاه بصري',en:'Visual direction'},category:{ar:'تصميم جرافيكي',en:'Graphic design'},description:{ar:'مثال تجريبي لعرض عمل جرافيكي أو حملة بصرية. أضف السياق والفكرة.',en:'A demo layout for graphic work or a visual campaign. Add its context and creative idea.'},art:'poster',image:null,url:null}
 ];
 const track=document.getElementById('project-track'),modal=document.getElementById('project-modal');
 const prev=document.getElementById('project-prev'),next=document.getElementById('project-next');
 let projectIndex=0,openedProject=null,projectOpener=null,projectScrollTimer;
 function projectArt(p){
  const art=document.createElement('div');art.className='project-art art-'+p.art;
+ if(p.art==='athar'){art.innerHTML='<div class="athar-cover"><span class="athar-word">أثر<span>ATHAR</span></span><div class="athar-card"><i>IA</i><strong>Ibrahim Al-Ajmi</strong><small>Digital Product Designer</small><div class="athar-lines"><b></b><b></b><b></b></div><span class="athar-chip">DIGITAL BUSINESS CARD</span></div></div>';return art}
  if(p.image){const img=document.createElement('img');img.src=p.image;img.alt='';img.style.cssText='width:100%;height:100%;object-fit:cover';art.append(img);return art}
  art.innerHTML='<span class="demo-mark">DEMO / '+(projects.indexOf(p)+1).toString().padStart(2,'0')+'</span>'+
  (p.art==='identity'?'<div class="art-symbol"></div><span class="art-word">FORM / STUDIO</span>':p.art==='interface'?'<div class="mini-ui"><div class="ui-sidebar"></div><div class="ui-main"><i></i><i></i><i></i></div></div>':'<div class="poster-type">MAKE<span>SHAPE</span></div>');
@@ -315,7 +318,6 @@ function fillModal(p){
  document.getElementById('modal-category').textContent=p.category[lang];
  document.getElementById('modal-title').textContent=p.title[lang];
  document.getElementById('modal-description').textContent=p.description[lang];
- document.getElementById('modal-role').textContent=p.role[lang];
  const link=document.getElementById('modal-link');link.hidden=!p.url;
  if(p.url)link.href=p.url;else link.removeAttribute('href');
  modal.lang=lang;modal.dir=lang==='ar'?'rtl':'ltr';
