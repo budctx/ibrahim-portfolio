@@ -1,0 +1,18 @@
+/* Extracted from approved production c0e7723; shared by home and galleries. */
+.project-card{display:block;width:100%;padding:0;border:1px solid #ffffff20;border-radius:20px;background:#151a22;color:#f3f4f5;text-align:start;cursor:pointer;overflow:hidden;transition:transform .4s,border-color .4s,box-shadow .4s;touch-action:pan-x pan-y}
+.project-card:hover{transform:translateY(-5px);border-color:#ffffff55;box-shadow:0 18px 50px #0004}
+.project-card:focus-visible{outline-offset:-4px}
+.project-art{height:clamp(160px,37dvh,390px);position:relative;display:grid;place-items:center;overflow:hidden;direction:ltr;background:#dce1e8;color:#1c2536}
+.project-art:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,#fff2,transparent 55%,#0001)}
+.project-meta{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 24px}
+.project-meta h3{font-size:20px;margin:0 0 6px;font-weight:500}.project-meta p{font-size:11px;color:#aeb7c7;margin:0}
+.project-open{width:36px;height:36px;border:1px solid #ffffff24;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+.project-modal{width:min(860px,calc(100vw - 32px));max-height:calc(100dvh - 32px);padding:0;border:1px solid #ffffff30;border-radius:20px;background:#171d27;color:#f3f4f5;overflow:auto;overscroll-behavior:contain}
+.project-modal::backdrop{background:#080b12c9;backdrop-filter:blur(12px)}
+.modal-close{position:sticky;top:14px;margin:14px 14px -58px;float:right;width:44px;height:44px;border:1px solid #ffffff35;border-radius:50%;background:#151a22e8;color:#fff;cursor:pointer;z-index:2;display:grid;place-items:center}
+.modal-art .project-art{height:clamp(180px,34dvh,320px)}
+.modal-copy{padding:28px 32px 32px}.modal-label{color:#a8b4c7;font-size:10px;letter-spacing:1px;margin:0 0 10px}.modal-copy h2{font-size:clamp(25px,4vw,38px);margin:0 0 16px;font-weight:500}.modal-description{font-size:14px;line-height:1.9;color:#c3cbd7;max-width:62ch}
+.modal-role{display:flex;gap:20px;border-top:1px solid #ffffff20;padding-top:18px;margin-top:24px;font-size:12px;line-height:1.7}.modal-role strong{color:#99a7bc;font-weight:400}.modal-link[hidden]{display:none}.modal-link{display:inline-block;margin-top:22px;color:#eceeef;text-underline-offset:6px}
+@media(max-width:700px){.project-meta{padding:16px}.project-meta h3{font-size:17px}.project-meta p{font-size:10px}.modal-copy{padding:24px}}
+@media(max-height:550px){.project-meta{padding:10px 18px}.project-meta h3{font-size:16px;margin-bottom:3px}}
+@media(prefers-reduced-motion:reduce){.project-card:hover{transform:none}.project-card{transition:none}}

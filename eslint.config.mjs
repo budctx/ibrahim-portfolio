@@ -1,0 +1,1 @@
+export default [{files:['public/portfolio/*.js'],languageOptions:{ecmaVersion:'latest',sourceType:'module'},rules:{'no-duplicate-imports':'error','no-unreachable':'error','no-constant-condition':'error','no-dupe-args':'error','no-dupe-keys':'error','constructor-super':'error','valid-typeof':'error'}}];
