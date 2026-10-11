@@ -32,11 +32,20 @@ export function bindProjectModal(dialog, {getLang, renderArt, onClose = () => {}
     dialog.querySelector('#modal-category').textContent = p.category[lang];
     dialog.querySelector('#modal-title').textContent = p.title[lang];
     dialog.querySelector('#modal-description').textContent = p.description[lang];
-    entity.hidden = !p.entity; entity.textContent = p.entity ? p.entity[lang] : '';
+    entity.hidden = !p.entity; entity.replaceChildren();
+    if (p.entity) {
+      if (p.entityLogo) {
+        const logo = document.createElement('img'); logo.src = p.entityLogo;
+        logo.alt = ''; logo.width = 28; logo.height = 28; entity.append(logo);
+      }
+      const name = document.createElement('span');
+      name.textContent = p.categorySlug === 'discord' && !p.selfInitiated ? (lang === 'ar' ? 'سيرفر ' + p.entity[lang] : p.entity[lang] + ' server') : p.entity[lang];
+      entity.append(name);
+    }
     const link = dialog.querySelector('#modal-link'); link.hidden = !p.url;
     if (p.url) link.href = p.url; else link.removeAttribute('href');
     dialog.lang = lang; dialog.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    closeButton.setAttribute('aria-label', lang === 'ar' ? 'إغلاق' : 'Close');
+    closeButton?.setAttribute('aria-label', lang === 'ar' ? 'إغلاق' : 'Close');
   }
   function open(p, source) {
     opener = source || fallbackFocus?.() || null; fill(p);
@@ -45,20 +54,25 @@ export function bindProjectModal(dialog, {getLang, renderArt, onClose = () => {}
     scrollStyles.forEach(([el]) => { el.style.overflow = 'hidden'; });
     dialog.showModal(); dialog.scrollTop = 0;
   }
-  function close() { if (dialog.open) dialog.close(); }
-  closeButton.addEventListener('click', close);
+  function close() {
+    if (!dialog.open) return;
+    dialog.close(); finalizeClose();
+  }
+  closeButton?.addEventListener('click', close);
   dialog.addEventListener('click', e => {
     if (e.target !== dialog) return;
-    const r = dialog.getBoundingClientRect();
+    const r = (dialog.querySelector('.gallery-modal-panel') || dialog).getBoundingClientRect();
     if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) close();
   });
-  dialog.addEventListener('close', () => {
-    // close events are queued: an intervening history action may already reopen it.
-    if (dialog.open) return;
+  function finalizeClose() {
+    // Native close events are queued; finish each session once, synchronously.
+    if (dialog.open || scrollStyles === null) return;
     scrollStyles?.forEach(([el, value]) => { el.style.overflow = value; }); scrollStyles = null;
     if (opener?.isConnected) opener.focus({preventScroll:true});
     onClose();
-  });
+  }
+  dialog.addEventListener('cancel', e => {e.preventDefault(); close();});
+  dialog.addEventListener('close', finalizeClose);
   dialog.addEventListener('keydown', e => {
     if (e.key !== 'Tab') return;
     const items = [...dialog.querySelectorAll('a[href],button:not([disabled]),input:not([disabled])')].filter(el => !el.hidden && el.getClientRects().length);

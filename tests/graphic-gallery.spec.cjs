@@ -17,27 +17,27 @@ for(const lang of ['en','ar']) {
   expect(await page.locator('body').evaluate(e=>getComputedStyle(e).overflow)).toBe('hidden');
   await expect(page.locator('#modal-art img')).toHaveCount(2);
   expect(await page.locator('#modal-art img').first().evaluate(e=>getComputedStyle(e).objectFit)).toBe('contain');
-  await page.locator('#modal-close').focus();await page.keyboard.press('Shift+Tab');await expect(page.locator('.modal-share')).toBeFocused();
-  await page.keyboard.press('Tab');await expect(page.locator('#modal-close')).toBeFocused();
+  await page.locator('#gallery-language').focus();await page.keyboard.press('Shift+Tab');await expect(page.locator('.modal-share')).toBeFocused();
+  await page.keyboard.press('Tab');await expect(page.locator('#gallery-language')).toBeFocused();
   await page.keyboard.press('Escape');await expect(modal(page)).not.toBeVisible();await expect(page).not.toHaveURL(/design=/);await expect(page.locator('[data-design^="preview-test-"]')).toBeFocused();
-  await page.locator('[data-design^="preview-test-"]').click();await page.locator('#modal-close').click();await expect(page).not.toHaveURL(/design=/);
+  await page.locator('[data-design^="preview-test-"]').click();await page.keyboard.press('Escape');await expect(page).not.toHaveURL(/design=/);
  });
  test(`${lang} deep link reload history and direct close`,async({page})=>{
   await page.goto(route(lang)+ '?design=preview-test-discord');await expect(modal(page)).toBeVisible();await page.reload();await expect(modal(page)).toBeVisible();
-  await page.locator('#modal-close').click();await expect(page).toHaveURL(new RegExp(route(lang)+'$'));
+  await page.keyboard.press('Escape');await expect(page).toHaveURL(new RegExp(route(lang)+'$'));
   await page.locator('[data-design^="preview-test-"]').click();await page.goBack();await expect(modal(page)).not.toBeVisible();await page.goForward();await expect(modal(page)).toBeVisible();
-  await page.locator('#modal-close').click();await expect(page).not.toHaveURL(/design=/);await page.locator('[data-design^="preview-test-"]').click();await expect(modal(page)).toBeVisible();await expect(page).toHaveURL(/design=/);
+  await page.keyboard.press('Escape');await expect(page).not.toHaveURL(/design=/);await page.locator('[data-design^="preview-test-"]').click();await expect(modal(page)).toBeVisible();await expect(page).toHaveURL(/design=/);
  });
  test(`${lang} selected design preserved by language link`,async({page})=>{
   await open(page,lang);const href=await page.locator('#gallery-language').getAttribute('href');expect(href).toContain('design=preview-test-discord');
-  await page.locator('#modal-language').click();await expect(modal(page)).toBeVisible();await expect(page.locator('html')).toHaveAttribute('lang',lang==='ar'?'en':'ar');
+  await page.locator('#gallery-language').click();await expect(modal(page)).toBeVisible();await expect(page.locator('html')).toHaveAttribute('lang',lang==='ar'?'en':'ar');
  });
 }
 for(const [w,h] of [[320,568],[375,812],[390,844],[768,1024],[1440,900],[1920,1080],[844,390]])for(const lang of ['en','ar']) {
  test(`${lang} responsive ${w}x${h}`,async({page})=>{
   await page.setViewportSize({width:w,height:h});await page.goto(route(lang,'graphic-design'));await overflow(page);await expect(page.locator('.category-link')).toHaveCount(4);
   await open(page,lang);await overflow(page);
-  const close=await page.locator('#modal-close').boundingBox();expect(close.x).toBeGreaterThanOrEqual(0);expect(close.y).toBeGreaterThanOrEqual(0);expect(close.x+close.width).toBeLessThanOrEqual(w+1);
+  const close=await page.locator('#gallery-language').boundingBox();expect(close.x).toBeGreaterThanOrEqual(0);expect(close.y).toBeGreaterThanOrEqual(0);expect(close.x+close.width).toBeLessThanOrEqual(w+1);
   await page.locator('.modal-share').scrollIntoViewIfNeeded();await expect(page.locator('.modal-share')).toBeInViewport();
   if([390,1440].includes(w)) {await page.screenshot({path:`docs/gallery/evidence/${lang}-${w}-modal.png`,fullPage:true});await page.keyboard.press('Escape');await page.screenshot({path:`docs/gallery/evidence/${lang}-${w}-category.png`,fullPage:true});}
  });
@@ -50,7 +50,7 @@ test('homepage retains ATHAR and primary collection card',async({page})=>{await 
 test('rapid close and reopen does not orphan a modal or scroll lock',async({page})=>{
  await open(page);
  for(let i=0;i<5;i++){
-  await page.locator('#modal-close').click();
+  await page.keyboard.press('Escape');
   await page.locator('[data-design^="preview-test-"]').click();
   await expect(modal(page)).toBeVisible();await expect(page).toHaveURL(/design=/);
  }
@@ -60,7 +60,7 @@ test('rapid close and reopen does not orphan a modal or scroll lock',async({page
 test.describe('touch interactions',()=>{
  test.use({hasTouch:true,viewport:{width:390,height:844}});
  test('tap category and card then close',async({page})=>{
-  await page.goto(route('ar','graphic-design'));await page.locator('.category-link').first().tap();await page.locator('[data-design^="preview-test-"]').tap();await expect(modal(page)).toBeVisible();await page.locator('#modal-close').tap();await expect(modal(page)).not.toBeVisible();
+  await page.goto(route('ar','graphic-design'));await page.locator('.category-link').first().tap();await page.locator('[data-design^="preview-test-"]').tap();await expect(modal(page)).toBeVisible();await page.locator('#project-modal').tap({position:{x:10,y:10}});await expect(modal(page)).not.toBeVisible();
  });
 });
 test('light system preference retains approved dark-only design',async({page})=>{
@@ -97,7 +97,7 @@ test('Rais broadcast banners publish as three separate designs',async({page})=>{
  const slugs=['rais-rocket-league','rais-brawlhalla','rais-call-of-duty'];
  for(const slug of slugs){
   const card=page.locator(`[data-design="${slug}"]`);await expect(card).toBeVisible();
-  await card.click();await expect(modal(page)).toBeVisible();await expect(page.locator('#modal-description')).toContainText('بنر برودكاست');await expect(page.locator('.modal-copy')).toContainText('Rais');
+  await card.click();await expect(modal(page)).toBeVisible();await expect(page.locator('#modal-description')).toContainText('إعلان بطولة');await expect(page.locator('.modal-copy')).toContainText('Rais');
   await expect(page.locator('#modal-art img')).toHaveCount(1);
   expect(await page.locator('#modal-art img').evaluate(e=>e.complete&&e.naturalWidth===1920&&e.naturalHeight===700)).toBeTruthy();
   await page.keyboard.press('Escape');
@@ -111,4 +111,18 @@ test('deployed gallery functions include the published CMS files',()=>{
   const trace=JSON.parse(fs.readFileSync(`.next/server/app/${prefix}/[gallery]/route.js.nft.json`,'utf8'));
   for(const slug of ['rais-rocket-league','rais-brawlhalla','rais-call-of-duty'])expect(trace.files.some(p=>p.endsWith(`content/graphic-designs/${slug}.yaml`))).toBeTruthy();
  }
+});
+
+test('media-first modal compact mobile controls and server attribution',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto(route('ar')+'?design=rais-rocket-league');
+ await expect(modal(page)).toBeVisible();await expect(page.locator('#modal-close')).toHaveCount(0);
+ await expect(page.locator('#gallery-language')).toBeInViewport();await expect(page.locator('.modal-copy #gallery-language')).toHaveCount(0);
+ await expect(page.locator('.modal-share')).toHaveAccessibleName('نسخ رابط التصميم');await expect(page.locator('.modal-share')).toHaveText('');
+ await expect(page.locator('#modal-category')).toHaveText('ديسكورد');await expect(page.locator('#modal-entity')).toContainText('سيرفر Rais');
+ await expect(page.locator('#modal-entity img')).toBeVisible();
+ expect(await page.locator('#modal-entity img').evaluate(e=>e.complete&&e.naturalWidth>0)).toBeTruthy();
+ const copy=await page.locator('.modal-copy').boundingBox();expect(copy.height).toBeLessThan(190);
+ const image=await page.locator('#modal-art img').boundingBox(),language=await page.locator('#gallery-language').boundingBox();expect(language.y+language.height).toBeLessThan(image.y);
+ await page.screenshot({path:'docs/gallery/evidence/rais-compact-mobile.png',fullPage:true});
+ await page.locator('#project-modal').click({position:{x:10,y:10}});await expect(modal(page)).not.toBeVisible();await expect(page).not.toHaveURL(/design=/);
 });

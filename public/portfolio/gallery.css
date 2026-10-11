@@ -60,3 +60,25 @@ html[lang=ar] .gallery-landing .category-link{direction:rtl;letter-spacing:0}
  .floating-design{width:clamp(115px,20dvh,220px)}
  .gallery-landing .category-list{row-gap:12px}
 }
+/* Gallery media takes priority; controls sit in the page header and compact footer. */
+.gallery-modal{width:100%;height:100dvh;max-width:none;max-height:none;margin:0;padding:84px 16px 24px;border:0;border-radius:0;background:transparent;overflow:auto}
+.gallery-modal[open]{display:flex;flex-direction:column;align-items:center;justify-content:safe center}
+.gallery-modal-topbar{position:fixed;top:0;inset-inline:7%;height:82px;display:flex;align-items:center;justify-content:flex-end;z-index:3;pointer-events:none}
+.gallery-modal-topbar .gallery-language{pointer-events:auto;background:#11151c}
+.gallery-modal-panel{width:min(1100px,100%);flex:none;border:1px solid #ffffff30;border-radius:20px;overflow:hidden;background:#171d27}
+.gallery-modal .modal-art .gallery-art img{max-height:70dvh}
+.gallery-modal .modal-copy{padding:16px 20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center}
+.gallery-modal .modal-label{width:max-content;max-width:100%;grid-column:1/-1;display:inline-flex;padding:2px 10px;border:1px solid #ffffff30;border-radius:20px;font-size:11px;letter-spacing:0;margin:0;line-height:1.7}
+.gallery-modal .modal-copy h2{grid-column:1/-1;font-size:clamp(19px,2.3vw,28px);line-height:1.5;margin:0}
+.gallery-modal #modal-description{grid-column:1/-1;font-size:13px;line-height:1.7;margin:0}
+.gallery-modal #modal-entity{display:flex;gap:8px;align-items:center;margin:4px 0 0;font-size:12px;line-height:1.5}
+.gallery-modal #modal-entity[hidden]{display:none}
+.gallery-modal #modal-entity img{width:28px;height:28px;object-fit:contain;border-radius:50%}
+.gallery-modal .modal-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.gallery-modal .modal-share{display:grid;place-items:center;flex:none;width:44px;height:44px;padding:0;margin:0;border-radius:50%}
+.gallery-modal .share-feedback{margin:0;font-size:11px}
+.gallery-modal .share-url{max-width:240px}
+.gallery-modal .modal-link{grid-column:1/-1;margin:0}
+@media(max-width:650px){.gallery-modal{padding:82px 12px 20px}.gallery-modal .modal-copy{padding:12px 14px;gap:4px 10px}.gallery-modal-panel{border-radius:16px}}
+.gallery-modal .modal-label{grid-column:2;grid-row:1;justify-self:end}
+.gallery-modal .modal-copy h2{grid-column:1;grid-row:1;font-size:clamp(17px,2.3vw,28px)}
