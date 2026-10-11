@@ -232,6 +232,7 @@ for(const lang of ['ar','en'])test(`${lang} badge exit synchronized replacement 
  await page.locator('[data-cube="1"]').click();await expect(page.locator('#cube-skills')).toHaveAttribute('data-phase','leaving');await expect(page.locator('#cube-skills')).toHaveAttribute('aria-hidden','true');
  await expect(page.locator('.cube-skills li')).toHaveText(['Photoshop','Illustrator','InDesign','After Effects']);await expect(page.locator('#cube-skills')).toHaveAttribute('data-phase','ready');
  expect(await page.locator('.cube-skills span').evaluateAll(items=>items.map(e=>e.dataset.tool))).toEqual(['Ps','Ai','Id','Ae']);
+ await expect(page.locator('.skill-tool[aria-hidden="true"]')).toHaveCount(4);
  await page.locator('[data-cube="2"]').click();await page.locator('[data-cube="0"]').click();await page.locator('[data-cube="1"]').click();await expect(page.locator('.cube-skills li')).toHaveText(['Photoshop','Illustrator','InDesign','After Effects']);
  await page.locator('[data-cube="2"]').click();await page.emulateMedia({reducedMotion:'reduce'});await expect(page.locator('#cube-skills')).toHaveAttribute('data-phase','ready');await expect(page.locator('.cube-skills li')).toHaveText(['AI Workflows','Prompt Design','Tool Integration','AI Automation']);
  await expect(page.locator('.cube-skills span[data-tool]')).toHaveCount(0);await expect(page.locator('#cube-skills')).not.toHaveAttribute('aria-hidden','true');

@@ -397,7 +397,7 @@ function renderCubeSkills(){
   skillList.setAttribute('aria-label',(lang==='ar'?'مهارات — ':'Skills — ')+cubeLabels[lang][index]);
   badges.forEach((badge,i)=>{
    badge.style.opacity='';const chip=badge.firstElementChild;chip.textContent=cubeSkills[index][i];
-   if(index===1)chip.dataset.tool=toolMonograms[i];else chip.removeAttribute('data-tool');
+   if(index===1){chip.dataset.tool=toolMonograms[i];const icon=document.createElement('i');icon.className='skill-tool';icon.setAttribute('aria-hidden','true');icon.textContent=toolMonograms[i];chip.prepend(icon)}else chip.removeAttribute('data-tool');
    if(animate&&!reduce.matches)badge.animate([{opacity:0,transform:`translate(${i%2?-28:28}px,${i<2?22:-22}px) scale(.94)`},{opacity:1,transform:'none'}],{duration:300,delay:i*20,easing:'cubic-bezier(.2,.75,.2,1)',fill:'backwards'});
   });
  };
