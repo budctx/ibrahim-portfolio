@@ -67,3 +67,27 @@ test('light system preference retains approved dark-only design',async({page})=>
  await page.emulateMedia({colorScheme:'light'});await page.goto(route('en','graphic-design'));
  expect(await page.locator('html').evaluate(e=>getComputedStyle(e).colorScheme)).toBe('dark');
 });
+for(const lang of ['en','ar']) test(`${lang} floating landing fits and interactive tilt works`,async({page})=>{
+ for(const [width,height] of [[320,568],[390,844],[768,1024],[1440,900],[844,390]]){
+  await page.setViewportSize({width,height});await page.goto(route(lang,'graphic-design'));
+  const object=page.locator('.floating-design');await expect(object).toBeVisible();await overflow(page);
+  const bounds=await object.boundingBox();
+  for(const link of await page.locator('.category-link').all()){
+   await expect(link).toBeInViewport();const b=await link.boundingBox();
+   expect(b.x+b.width<=bounds.x || b.x>=bounds.x+bounds.width || b.y+b.height<=bounds.y || b.y>=bounds.y+bounds.height).toBeTruthy();
+  }
+  await object.focus();const before=await object.evaluate(e=>e.style.getPropertyValue('--rotate-y'));
+  await page.keyboard.press('ArrowRight');expect(await object.evaluate(e=>e.style.getPropertyValue('--rotate-y'))).not.toBe(before);
+  if(width===390||width===1440)await page.screenshot({path:`docs/gallery/evidence/${lang}-${width}-floating.png`,fullPage:true});
+ }
+ await page.emulateMedia({reducedMotion:'reduce'});expect(await page.locator('.floating-design').evaluate(e=>getComputedStyle(e).animationName)).toBe('none');
+});
+test('floating object pointer drag and gallery three-column grid',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto(route('en','graphic-design'));
+ const object=page.locator('.floating-design');await object.hover();const b=await object.boundingBox();
+ await page.mouse.move(b.x+b.width/2,b.y+b.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2+60,b.y+b.height/2+30,{steps:6});await page.mouse.up();
+ expect(await object.evaluate(e=>e.style.getPropertyValue('--rotate-y'))).not.toBe('-16deg');
+ await page.goto(route('en'));expect(await page.locator('.gallery-grid').evaluate(e=>getComputedStyle(e).gridTemplateColumns.split(' ').length)).toBe(3);
+ await page.setViewportSize({width:768,height:1024});expect(await page.locator('.gallery-grid').evaluate(e=>getComputedStyle(e).gridTemplateColumns.split(' ').length)).toBe(2);
+ await page.setViewportSize({width:390,height:844});expect(await page.locator('.gallery-grid').evaluate(e=>getComputedStyle(e).gridTemplateColumns.split(' ').length)).toBe(1);
+});
