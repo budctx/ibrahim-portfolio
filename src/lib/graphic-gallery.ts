@@ -16,7 +16,7 @@ export type GraphicImage = {url: string; alt: GalleryText};
 export type GraphicDesign = {
   id: string; slug: string; title: GalleryText; description: GalleryText; entity: GalleryText;
   category: GalleryText; categorySlug: GraphicCategorySlug; cover: GraphicImage;
-  images: GraphicImage[]; order: number;
+  images: GraphicImage[]; order: number; entityLogo?: string; selfInitiated?: boolean;
 };
 const reader = createReader(process.cwd(), config);
 type Entry = NonNullable<Awaited<ReturnType<typeof reader.collections.graphicDesigns.read>>>;
@@ -38,6 +38,7 @@ export function mapPublishedGraphicDesign(slug: string, entry: Entry): GraphicDe
     description: {en: entry.descriptionEn, ar: entry.descriptionAr},
     entity: entry.selfInitiated ? {en: 'Self-initiated work', ar: 'عمل شخصي'} : {en: entry.entityEn, ar: entry.entityAr},
     category: category.title, categorySlug: category.slug,
+    entityLogo: safeImage(entry.entityLogo) ? entry.entityLogo : undefined, selfInitiated: entry.selfInitiated,
     cover: {url: entry.cover, alt: {en: entry.coverAltEn, ar: entry.coverAltAr}},
     images: entry.images.map(image => ({url: image.image!, alt: {en: image.altEn, ar: image.altAr}})),
     order: entry.order ?? 999,

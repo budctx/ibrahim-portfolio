@@ -34,6 +34,7 @@ export default config({
         selfInitiated: fields.checkbox({label: 'Self-initiated work (no client)', defaultValue: false}),
         entityEn: text('Client / entity — English (required unless self-initiated)'),
         entityAr: text('Client / entity — Arabic (required unless self-initiated)'),
+        entityLogo: imageField('Client / server logo (optional)'),
         category: fields.select({label: 'Discipline', options: [
           {label: 'Discord', value: 'discord'},
           {label: 'Brand Identity', value: 'brand-identity'},

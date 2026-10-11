@@ -17,8 +17,7 @@ function syncLanguageLink() {
   if (slug && designs.has(slug)) url.searchParams.set('design', slug);
   else url.searchParams.delete('design');
   language.href = url.pathname + url.search;
-  const modalLanguage=document.getElementById('modal-language');
-  if(modalLanguage)modalLanguage.href=language.href;
+
 }
 
 function renderArt(p, inModal = false) {
@@ -38,6 +37,8 @@ function renderArt(p, inModal = false) {
   return art;
 }
 
+const languageHome = language.parentElement;
+const topbar = dialog.querySelector('.gallery-modal-topbar');
 const modal = bindProjectModal(dialog, {
   getLang: () => lang, renderArt,
   fallbackFocus: () => document.getElementById('gallery-title'),
@@ -52,7 +53,7 @@ const modal = bindProjectModal(dialog, {
 function syncFromUrl() {
   const url = new URL(location.href), slug = url.searchParams.get('design');
   const p = designs.get(slug);
-  if (p) modal.open(p, cards.get(slug));
+  if (p) {topbar.append(language); modal.open(p, cards.get(slug));}
   else {
     if (slug) {
       url.searchParams.delete('design'); history.replaceState(null, '', url);
@@ -85,7 +86,9 @@ if (grid) {
 }
 
 const share = document.createElement('button'); share.type = 'button'; share.className = 'modal-share';
-share.textContent = lang === 'ar' ? 'نسخ رابط التصميم' : 'Copy design link';
+share.setAttribute('aria-label', lang === 'ar' ? 'نسخ رابط التصميم' : 'Copy design link');
+share.title = share.getAttribute('aria-label');
+share.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></svg>';
 const feedback = document.createElement('span'); feedback.setAttribute('role','status'); feedback.className = 'share-feedback';
 const copyField = document.createElement('input'); copyField.readOnly = true; copyField.hidden = true;
 copyField.className = 'share-url'; copyField.setAttribute('aria-label',lang === 'ar' ? 'رابط التصميم' : 'Design URL');
@@ -93,9 +96,9 @@ share.addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(location.href); feedback.textContent = lang === 'ar' ? 'تم النسخ' : 'Copied'; }
   catch {copyField.hidden = false; copyField.value = location.href; copyField.focus(); copyField.select();}
 });
-const modalLanguage=language.cloneNode(true); modalLanguage.id='modal-language'; modalLanguage.classList.add('modal-language');
-dialog.querySelector('.modal-copy').append(modalLanguage, share, feedback, copyField);
-dialog.addEventListener('close', () => {feedback.textContent = ''; copyField.hidden = true;});
+const actions = document.createElement('div'); actions.className = 'modal-actions'; actions.append(share, feedback, copyField);
+dialog.querySelector('.modal-copy').append(actions);
+dialog.addEventListener('close', () => {if(dialog.open)return; languageHome.append(language); feedback.textContent = ''; copyField.hidden = true;});
 window.addEventListener('popstate', () => {
   historyClosePending=false; syncFromUrl();
   if(queuedOpen){const slug=queuedOpen;queuedOpen=null;cards.get(slug)?.click();}
