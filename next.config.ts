@@ -1,6 +1,10 @@
 import type {NextConfig} from 'next';
 const nextConfig: NextConfig = {
  reactStrictMode: true,
+ outputFileTracingIncludes: {
+  '/work/*': ['./content/graphic-designs/**/*.yaml'],
+  '/ar/work/*': ['./content/graphic-designs/**/*.yaml'],
+ },
  async rewrites() {
   return {beforeFiles:[
    {source:'/',destination:'/hero-preview/index.html'},

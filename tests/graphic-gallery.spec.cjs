@@ -104,3 +104,11 @@ test('Rais broadcast banners publish as three separate designs',async({page})=>{
  }
  await page.screenshot({path:'docs/gallery/evidence/rais-three-banners.png',fullPage:true});
 });
+
+test('deployed gallery functions include the published CMS files',()=>{
+ const fs=require('node:fs');
+ for(const prefix of ['work','ar/work']){
+  const trace=JSON.parse(fs.readFileSync(`.next/server/app/${prefix}/[gallery]/route.js.nft.json`,'utf8'));
+  for(const slug of ['rais-rocket-league','rais-brawlhalla','rais-call-of-duty'])expect(trace.files.some(p=>p.endsWith(`content/graphic-designs/${slug}.yaml`))).toBeTruthy();
+ }
+});
