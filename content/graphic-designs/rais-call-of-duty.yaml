@@ -1,0 +1,17 @@
+designId: "rais-call-of-duty"
+slug: "rais-call-of-duty"
+titleEn: "Call of Duty Tournament"
+titleAr: "بطولة Call of Duty"
+descriptionEn: "Discord broadcast banner for the Call of Duty tournament."
+descriptionAr: "بنر برودكاست لبطولة Call of Duty."
+selfInitiated: false
+entityEn: "Rais"
+entityAr: "Rais"
+category: "discord"
+cover: "/project-media/rais/rais-call-of-duty.webp"
+coverAltEn: "Rais Call of Duty tournament announcement banner"
+coverAltAr: "بنر إعلان بطولة Call of Duty لجهة Rais"
+images: []
+order: 3
+status: "published"
+contentOrigin: "real"
