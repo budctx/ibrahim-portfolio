@@ -194,7 +194,7 @@ for(const lang of ['ar','en'])test(`${lang} mobile horizontal work swipe then ve
  await swipe(195,570,0,-450);await expect(page.locator('#contact')).toHaveClass(/is-active/);
  // Return and test wheel chaining over the selected card too.
  await page.locator('[data-scene="work"]').click();await expect(page.locator('#work')).toHaveClass(/is-active/);
- await page.locator('#project-next').click();
+ await expect(page.locator('#project-count')).toHaveText(lang==='ar'?'تصميم جرافيكي':'Graphic Design');
  const selected=await page.locator('.project-card').last().boundingBox();await page.mouse.move(195,selected.y+80);await page.mouse.wheel(0,700);
  await expect(page.locator('#about')).toHaveClass(/is-active/);
 });
