@@ -80,7 +80,7 @@ for(const lang of ['en','ar']) test(`${lang} floating landing fits and interacti
   await page.keyboard.press('ArrowRight');expect(await object.evaluate(e=>e.style.getPropertyValue('--rotate-y'))).not.toBe(before);
   if(width===390||width===1440)await page.screenshot({path:`docs/gallery/evidence/${lang}-${width}-floating.png`,fullPage:true});
  }
- await page.emulateMedia({reducedMotion:'reduce'});expect(await page.locator('.floating-design').evaluate(e=>getComputedStyle(e).animationName)).toBe('none');
+ await page.emulateMedia({reducedMotion:'reduce'});expect(await page.locator('.design-stack').evaluate(e=>getComputedStyle(e).animationName)).toBe('none');
 });
 test('floating object pointer drag and gallery three-column grid',async({page})=>{
  await page.setViewportSize({width:1440,height:900});await page.goto(route('en','graphic-design'));

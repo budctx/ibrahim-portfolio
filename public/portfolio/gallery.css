@@ -22,8 +22,8 @@ html[lang=ar] .gallery-landing .category-link{direction:rtl;letter-spacing:0}
 .gallery-object{grid-column:2;grid-row:1/3;align-self:center;display:grid;place-items:center;min-width:0;perspective:1200px}
 .floating-design{position:relative;display:block;width:min(100%,260px);aspect-ratio:260/350;padding:0;border:0;background:transparent;border-radius:20px;cursor:grab;touch-action:none;perspective:1000px}
 .design-stack{display:block;position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--rotate-x,-8deg)) rotateY(var(--rotate-y,-16deg));transition:transform .65s cubic-bezier(.22,.8,.25,1)}
-.floating-design.is-visible{animation:gallery-float 6s ease-in-out infinite}
-.floating-design:hover,.floating-design:focus-visible,.floating-design.is-dragging{animation-play-state:paused}
+.floating-design.is-visible .design-stack{animation:gallery-float 6s ease-in-out infinite}
+.floating-design:hover .design-stack,.floating-design:focus-visible .design-stack,.floating-design.is-dragging .design-stack{animation-play-state:paused}
 .floating-design.is-dragging{cursor:grabbing}.is-dragging .design-stack{transition:none}
 .design-sheet{position:absolute;inset:0;border-radius:18px;border:1px solid #d5dce678;box-shadow:0 30px 45px #05080d55;overflow:hidden}
 .sheet-back{background:linear-gradient(145deg,#304058,#121925);transform:translate3d(-18px,-8px,-28px) rotate(-9deg)}
@@ -36,7 +36,7 @@ html[lang=ar] .gallery-landing .category-link{direction:rtl;letter-spacing:0}
 .composition-block{position:absolute;background:#e8ebef;width:43%;height:28%;bottom:14%;right:14%;transform:rotate(-15deg)}
 .sheet-bottom{font-size:10px;letter-spacing:1px;margin-top:20px;line-height:1.7}.sheet-bottom>span{display:block;font-size:8px;color:#4a5565;letter-spacing:.5px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-@keyframes gallery-float{0%,100%{transform:translateY(8px) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+@keyframes gallery-float{0%,100%{translate:0 8px;rotate:-2deg}50%{translate:0 -10px;rotate:2deg}}
 @media(max-width:1100px){.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:900px) and (min-height:551px),(max-width:639px){
  .gallery-stage{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(240px,1fr) auto;gap:24px;min-height:0}
@@ -51,7 +51,7 @@ html[lang=ar] .gallery-landing .category-link{direction:rtl;letter-spacing:0}
  .gallery-stage{min-height:240px;grid-template-columns:minmax(0,1fr) minmax(180px,28%) minmax(0,1fr);gap:0 20px}
  .floating-design{width:150px}.gallery-landing .category-link{font-size:clamp(18px,2.8vw,28px);gap:8px;padding:8px 0}.gallery-landing .category-arrow{width:32px;height:32px}
 }
-@media(prefers-reduced-motion:reduce){.floating-design.is-visible{animation:none}.design-stack{transition:none}}
+@media(prefers-reduced-motion:reduce){.floating-design.is-visible .design-stack{animation:none}.design-stack{transition:none}}
 @media(max-width:900px) and (min-height:551px),(max-width:639px){
  .gallery-landing .gallery-header{min-height:70px}
  .gallery-landing .gallery-heading{margin:0 0 12px}
