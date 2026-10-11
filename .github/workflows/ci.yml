@@ -51,3 +51,39 @@ jobs:
             tests/stage18-axe.spec.cjs \
             tests/stage18-performance.spec.cjs \
             --reporter=line --workers=1
+
+  graphic-gallery:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ENV: preview
+      GRAPHIC_GALLERY_FIXTURES: '1'
+      GALLERY_BASE_URL: http://127.0.0.1:3101
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npx eslint public/portfolio/*.js
+      - run: node tests/gallery-content.test.cjs
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Gallery browser, accessibility and responsive tests
+        run: |
+          npm run start -- --hostname 127.0.0.1 --port 3101 > /tmp/gallery-next.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:3101/work/graphic-design > /dev/null; then break; fi
+            sleep 1
+          done
+          npm run test:gallery
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: graphic-gallery-qa
+          path: |
+            test-results/
+            docs/gallery/evidence/
