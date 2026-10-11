@@ -54,20 +54,25 @@ export function bindProjectModal(dialog, {getLang, renderArt, onClose = () => {}
     scrollStyles.forEach(([el]) => { el.style.overflow = 'hidden'; });
     dialog.showModal(); dialog.scrollTop = 0;
   }
-  function close() { if (dialog.open) dialog.close(); }
+  function close() {
+    if (!dialog.open) return;
+    dialog.close(); finalizeClose();
+  }
   closeButton?.addEventListener('click', close);
   dialog.addEventListener('click', e => {
     if (e.target !== dialog) return;
     const r = (dialog.querySelector('.gallery-modal-panel') || dialog).getBoundingClientRect();
     if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) close();
   });
-  dialog.addEventListener('close', () => {
-    // close events are queued: an intervening history action may already reopen it.
-    if (dialog.open) return;
+  function finalizeClose() {
+    // Native close events are queued; finish each session once, synchronously.
+    if (dialog.open || scrollStyles === null) return;
     scrollStyles?.forEach(([el, value]) => { el.style.overflow = value; }); scrollStyles = null;
     if (opener?.isConnected) opener.focus({preventScroll:true});
     onClose();
-  });
+  }
+  dialog.addEventListener('cancel', e => {e.preventDefault(); close();});
+  dialog.addEventListener('close', finalizeClose);
   dialog.addEventListener('keydown', e => {
     if (e.key !== 'Tab') return;
     const items = [...dialog.querySelectorAll('a[href],button:not([disabled]),input:not([disabled])')].filter(el => !el.hidden && el.getClientRects().length);

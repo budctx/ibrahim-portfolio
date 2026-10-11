@@ -43,6 +43,7 @@ const modal = bindProjectModal(dialog, {
   getLang: () => lang, renderArt,
   fallbackFocus: () => document.getElementById('gallery-title'),
   onClose() {
+    languageHome.append(language);
     const url = new URL(location.href);
     if (!url.searchParams.has('design')) return;
     if (history.state?.[stateKey] === basePath) {historyClosePending=true; history.back();}
