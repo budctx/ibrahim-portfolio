@@ -4,7 +4,7 @@
 
 Baseline read: `EXPERT_DEPARTMENT_OS_AUTOBOOT_v1.6.9(1).md`, Library ID `libfile_02f1cdb394588191b8cdc3f236b8cef7`, governance/review search and lines 82–161 inspected. Applied evidence labels, blocking-failure rule, audit identity, regression invalidation and truthful completion invariant. The local `expert-os-context-v1.7.0/modules/CONTEXT_CREDIT_OPTIMIZATION.md` was read; it explicitly calls itself an **unmerged candidate overlay**, not a certified replacement. Its selective-context guidance does not lower acceptance requirements.
 
-This is AI source review through the requested eight expert perspectives, not eight independent human certifications. A delegated AI source audit examined actual repository files; browser and automated evidence must be attributed separately. Context is sufficient for the source findings below; insufficient for final visual/runtime certification.
+This is AI source review through the requested eight expert perspectives, not eight independent human certifications. A delegated AI source audit examined actual repository files; browser and automated evidence must be attributed separately. The initial review below is retained as an audit trail. Final runtime evidence and unresolved gates are recorded in the final addendum.
 
 ## Initial perspective reviews
 
@@ -33,3 +33,18 @@ Published data excludes draft, hidden, development-origin, invalid slugs, duplic
 ## Final gate
 
 **NOT YET CERTIFIED.** This is the initial review checkpoint. Do not claim final PASS until G-01 browser verification and required test evidence are resolved. Deployment/readiness and production-unchanged claims require tool readback at handoff. Owner approval remains mandatory after Preview delivery regardless of technical outcome.
+
+## Final review addendum — 2026-10-11
+
+Tested application SHA: `6c0bb29eb8d4b730dc3d28647ac689766811cb1e`. CI run 38116317047: gallery 28/28 browser tests and 5 content tests pass; build, TypeScript and scoped JavaScript ESLint pass. Desktop/mobile EN/AR screenshots captured. Public Vercel Preview manually exercised.
+
+- IA/UX: four-category navigation and direct links verified.
+- Art direction: approved shared card/dialog used; inspected Arabic mobile modal and English desktop category. Dark-only/four-scene baseline retained.
+- Frontend: shared factory/dialog, route renderer and Keystatic reader validated; authenticated CMS writes remain untested.
+- Interaction: G-02 corrected with queued opens during history close; rapid cycles, Back/Forward and reload pass.
+- Accessibility: G-01 corrected and multiimage containment verified; axe, keyboard, focus, touch emulation and reduced motion pass on tested states. No comprehensive certification claimed.
+- Bilingual: all route/content checks and responsive matrix pass in both languages.
+- QA: gallery suite passes; legacy Stage18 suite has 5 passing and 16 failing tests, largely targeting obsolete layout selectors, unresolved.
+- Performance: no new runtime dependency; lazy image reuse and small shared runtime source reviewed. Field performance and real uploaded artwork sizes unmeasured.
+
+**Final overall verdict: BLOCKED, not PASS.** Dependency audit reports 1 critical/5 high in versions already on main. Legacy failures and authenticated CMS validation remain open. Gallery Preview is available for owner visual review; no merge/Production deployment. See [full handoff](review-handoff.md) for evidence, limitations, fixes and owner decisions.
