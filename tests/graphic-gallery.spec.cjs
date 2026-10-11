@@ -208,8 +208,32 @@ for(const lang of ['ar','en'])test(`${lang} four floating skills follow cube sel
   for(const badge of await page.locator('.cube-skills li').all())await expect(badge).toBeInViewport({ratio:1});
  }
  await page.locator('[data-cube="0"]').click();await page.locator('[data-cube="2"]').click();await page.locator('[data-cube="1"]').click();await expect(page.locator('.cube-skills li')).toHaveText(sets[1]);
+ await expect.poll(()=>page.locator('.about-cube,.cube-skills li').evaluateAll(items=>items.some(e=>e.getAnimations().some(a=>a.playState==='running')))).toBe(false);
  await page.screenshot({path:`docs/gallery/evidence/skills-${lang}-390.png`});
  await page.emulateMedia({reducedMotion:'reduce'});expect(await page.locator('.cube-skills span').first().evaluate(e=>getComputedStyle(e).animationName)).toBe('none');
  expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
  const badge=await page.locator('.cube-skills li').first().boundingBox();await page.mouse.move(badge.x+badge.width/2,badge.y+badge.height/2);await page.mouse.wheel(0,800);await expect(page.locator('#contact')).toHaveClass(/is-active/);
+});
+
+for(const lang of ['ar','en'])test(`${lang} section URL follows scroll navigation reload and history`,async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});const home=lang==='ar'?'/':'/en';
+ await page.goto(home+'#work');await expect(page.locator('#work')).toHaveClass(/is-active/);
+ await page.mouse.move(190,400);await page.mouse.wheel(0,800);await expect(page).toHaveURL(/#about$/);await expect(page.locator('#about')).toHaveClass(/is-active/);
+ await page.reload();await expect(page.locator('#about')).toHaveClass(/is-active/);
+ await page.locator('[data-scene="contact"]').click();await expect(page).toHaveURL(/#contact$/);await expect(page.locator('#contact')).toHaveClass(/is-active/);
+ await page.goBack();await expect(page).toHaveURL(/#about$/);await expect(page.locator('#about')).toHaveClass(/is-active/);
+ await page.goForward();await expect(page).toHaveURL(/#contact$/);await expect(page.locator('#contact')).toHaveClass(/is-active/);
+ await page.reload();await expect(page.locator('#contact')).toHaveClass(/is-active/);
+ await page.emulateMedia({reducedMotion:'no-preference'});await page.locator('[data-scene="main"]').click();await expect(page).toHaveURL(/#main$/);await expect(page.locator('#main')).toHaveClass(/is-active/);
+ await expect.poll(()=>page.locator('#scenes').evaluate(e=>Math.round(e.scrollTop))).toBe(0);await expect(page).toHaveURL(/#main$/);
+});
+for(const lang of ['ar','en'])test(`${lang} badge exit synchronized replacement tool symbols rapid cancel`,async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto((lang==='ar'?'/':'/en')+'#about');await expect(page.locator('#about')).toHaveClass(/is-active/);
+ await page.locator('[data-cube="1"]').click();await expect(page.locator('#cube-skills')).toHaveAttribute('data-phase','leaving');await expect(page.locator('#cube-skills')).toHaveAttribute('aria-hidden','true');
+ await expect(page.locator('.cube-skills li')).toHaveText(['Photoshop','Illustrator','InDesign','After Effects']);await expect(page.locator('#cube-skills')).toHaveAttribute('data-phase','ready');
+ expect(await page.locator('.cube-skills span').evaluateAll(items=>items.map(e=>e.dataset.tool))).toEqual(['Ps','Ai','Id','Ae']);
+ await page.locator('[data-cube="2"]').click();await page.locator('[data-cube="0"]').click();await page.locator('[data-cube="1"]').click();await expect(page.locator('.cube-skills li')).toHaveText(['Photoshop','Illustrator','InDesign','After Effects']);
+ await page.locator('[data-cube="2"]').click();await page.emulateMedia({reducedMotion:'reduce'});await expect(page.locator('#cube-skills')).toHaveAttribute('data-phase','ready');await expect(page.locator('.cube-skills li')).toHaveText(['AI Workflows','Prompt Design','Tool Integration','AI Automation']);
+ await expect(page.locator('.cube-skills span[data-tool]')).toHaveCount(0);await expect(page.locator('#cube-skills')).not.toHaveAttribute('aria-hidden','true');
+ await page.waitForTimeout(600);await expect(page.locator('.cube-skills li')).toHaveText(['AI Workflows','Prompt Design','Tool Integration','AI Automation']);
 });

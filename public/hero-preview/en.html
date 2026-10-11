@@ -355,7 +355,20 @@ new ResizeObserver(entries=>{
  moveProject(projectIndex,'instant');
 }).observe(track);renderProjects();
 const scenes=document.getElementById('scenes');
-document.querySelectorAll('.scene-dot').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.scene).scrollIntoView({behavior:reduce.matches?'auto':'smooth',block:'start'})));
+const sceneIds=['main','work','about','contact'];
+let sceneDestination=sceneIds.includes(location.hash.slice(1))?location.hash.slice(1):null;
+function syncSceneHash(id){
+ if(sceneDestination&&sceneDestination!==id)return;
+ sceneDestination=null;
+ if(location.hash!=='#'+id)history.replaceState(history.state,'','#'+id);
+}
+document.querySelectorAll('.scene-dot').forEach(b=>b.addEventListener('click',()=>{
+ const id=b.dataset.scene;sceneDestination=id;
+ if(location.hash!=='#'+id)history.pushState(history.state,'','#'+id);
+ document.getElementById(id).scrollIntoView({behavior:reduce.matches?'auto':'smooth',block:'start'});
+}));
+for(const event of ['wheel','touchstart'])scenes.addEventListener(event,()=>{sceneDestination=null},{passive:true});
+scenes.addEventListener('keydown',e=>{if(['ArrowDown','ArrowUp','PageDown','PageUp','Home','End'].includes(e.key))sceneDestination=null});
 
 const sceneRatios=new Map();
 const sceneObserver=new IntersectionObserver(entries=>{
@@ -364,20 +377,39 @@ const sceneObserver=new IntersectionObserver(entries=>{
  if(!visible||visible[1]<=0)return;
  document.querySelectorAll('.scene').forEach(section=>{const active=section===visible[0];section.classList.toggle('is-active',active);section.inert=!active});
  document.querySelectorAll('.scene-dot').forEach(b=>b.setAttribute('aria-current',String(b.dataset.scene===visible[0].id)));
+ syncSceneHash(visible[0].id);
 },{root:scenes,threshold:[0,.25,.5,.75,1]});
 document.querySelectorAll('.scene').forEach(section=>sceneObserver.observe(section));
 const cubeButton=document.getElementById('cube-control'),cube=document.querySelector('.about-cube');
 const cubeLabels={ar:['منتجات رقمية','جرافيك','أتمتة'],en:['Digital products','Graphic design','Automation']};
 const cubeSkills=[['UI/UX','Wireframing','Prototyping','Design Systems'],['Photoshop','Illustrator','InDesign','After Effects'],['AI Workflows','Prompt Design','Tool Integration','AI Automation']];
 const skillList=document.getElementById('cube-skills');
+let skillTimer=null,skillEpoch=0,renderedSkillIndex=-1;
+const toolMonograms=['Ps','Ai','Id','Ae'];
 function renderCubeSkills(){
- skillList.setAttribute('aria-label',(lang==='ar'?'مهارات — ':'Skills — ')+cubeLabels[lang][cubeIndex]);
- [...skillList.children].forEach((badge,i)=>{
-  badge.getAnimations().forEach(animation=>animation.cancel());
-  badge.firstElementChild.textContent=cubeSkills[cubeIndex][i];
-  if(!reduce.matches)badge.animate([{opacity:0,transform:`translate(${i%2?-24:24}px,${i<2?18:-18}px) scale(.94)`},{opacity:1,transform:'none'}],{duration:300,delay:i*25,easing:'cubic-bezier(.2,.75,.2,1)',fill:'backwards'});
+ const index=cubeIndex,epoch=++skillEpoch;
+ clearTimeout(skillTimer);skillTimer=null;
+ const badges=[...skillList.children];
+ badges.forEach(badge=>badge.getAnimations().forEach(animation=>animation.cancel()));
+ const commit=(animate)=>{
+  if(epoch!==skillEpoch)return;
+  skillTimer=null;renderedSkillIndex=index;skillList.dataset.phase='ready';skillList.removeAttribute('aria-hidden');
+  skillList.setAttribute('aria-label',(lang==='ar'?'مهارات — ':'Skills — ')+cubeLabels[lang][index]);
+  badges.forEach((badge,i)=>{
+   badge.style.opacity='';const chip=badge.firstElementChild;chip.textContent=cubeSkills[index][i];
+   if(index===1)chip.dataset.tool=toolMonograms[i];else chip.removeAttribute('data-tool');
+   if(animate&&!reduce.matches)badge.animate([{opacity:0,transform:`translate(${i%2?-28:28}px,${i<2?22:-22}px) scale(.94)`},{opacity:1,transform:'none'}],{duration:300,delay:i*20,easing:'cubic-bezier(.2,.75,.2,1)',fill:'backwards'});
+  });
+ };
+ if(reduce.matches||renderedSkillIndex<0||renderedSkillIndex===index){commit(false);return}
+ skillList.dataset.phase='leaving';skillList.setAttribute('aria-hidden','true');
+ badges.forEach((badge,i)=>{
+  badge.style.opacity='0';badge.animate([{opacity:1,transform:'none'},{opacity:0,transform:`translate(${i%2?-16:16}px,${i<2?12:-12}px) scale(.96)`}],{duration:140,easing:'ease-out'});
  });
+ // New skills emerge at the midpoint of the existing 800ms cube rotation.
+ skillTimer=setTimeout(()=>commit(true),400);
 }
+reduce.addEventListener('change',()=>{if(reduce.matches)renderCubeSkills()});
 let cubeIndex=0,cubeAngle=-24,cubePointer=null,suppressCubeClick=false;
 function selectCube(index){
  const nextIndex=(index+3)%3,base=-24-nextIndex*90;
@@ -447,6 +479,6 @@ document.querySelector('meta[property="og:locale"]').content=lang==='ar'?'ar_SA'
 document.querySelector('link[rel="canonical"]').href="https://ibrahim-portfolio-blush.vercel.app"+path;
 });
 
-function restoreSceneHash(){const id=location.hash.slice(1);if(['main','work','about','contact'].includes(id))document.getElementById(id).scrollIntoView({behavior:'instant',block:'start'});}
+function restoreSceneHash(){const id=location.hash.slice(1)||'main';if(sceneIds.includes(id)){sceneDestination=id;document.getElementById(id).scrollIntoView({behavior:'instant',block:'start'});}}
 requestAnimationFrame(restoreSceneHash);window.addEventListener('hashchange',restoreSceneHash);
 </script></body></html>
