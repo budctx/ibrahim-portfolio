@@ -62,3 +62,10 @@
  .contact-copy h3{font-size:32px;margin-bottom:10px}.contact-intro{font-size:12px;margin-bottom:14px}.contact-trigger{font-size:12px;padding:10px 16px}.envelope-area{--env:min(24vw,44dvh)}
 }
 @media(prefers-reduced-motion:reduce){.cube-dot{transition:none}.scene.is-active .work-body,.scene.is-active .about-body,.scene.is-active .contact-body{will-change:auto}}
+@media(min-width:640px) and (max-width:900px) and (min-height:551px){
+ .about-body,.contact-body{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:20px;padding:12px 9%}
+ .about-copy{grid-row:2;max-width:100%}.cube-area{grid-row:1;--cube:clamp(130px,21dvh,200px);gap:14px}
+ .contact-copy{grid-row:2;text-align:center}.contact-links{justify-content:center}.envelope-area{grid-row:1;--env:min(40vw,28dvh,280px)}
+ .about-summary{max-width:none}.about-copy h3{font-size:30px}.about-role{margin-bottom:12px}.about-method{margin-top:12px}
+ .contact-copy h3{font-size:36px}.contact-intro{margin-bottom:18px}
+}

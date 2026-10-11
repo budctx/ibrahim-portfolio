@@ -393,9 +393,12 @@ language.addEventListener('click',translateContact);translateContact();
 const contactModal=document.getElementById('contact-modal'),contactTrigger=document.getElementById('contact-trigger');
 let contactScrollStyle=null;
 contactTrigger.addEventListener('click',()=>{contactScrollStyle=scenes.style.overflow;scenes.style.overflow='hidden';contactModal.showModal()});
-document.getElementById('contact-modal-close').addEventListener('click',()=>contactModal.close());
-contactModal.addEventListener('click',e=>{if(e.target===contactModal){const r=contactModal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)contactModal.close()}});
-contactModal.addEventListener('close',()=>{if(contactScrollStyle!==null){scenes.style.overflow=contactScrollStyle;contactScrollStyle=null}contactTrigger.focus({preventScroll:true})});
+function finishContactClose(){if(contactModal.open||contactScrollStyle===null)return;scenes.style.overflow=contactScrollStyle;contactScrollStyle=null;contactTrigger.focus({preventScroll:true})}
+function closeContact(){if(!contactModal.open)return;contactModal.close();finishContactClose()}
+document.getElementById('contact-modal-close').addEventListener('click',closeContact);
+contactModal.addEventListener('cancel',e=>{e.preventDefault();closeContact()});
+contactModal.addEventListener('click',e=>{if(e.target===contactModal){const r=contactModal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeContact()}});
+contactModal.addEventListener('close',finishContactClose);
 function translateContactModal(){
  document.getElementById('contact-modal-close').setAttribute('aria-label',lang==='ar'?'إغلاق':'Close');
  [['contact-email','البريد الإلكتروني','Email'],['contact-whatsapp','واتساب','WhatsApp']].forEach(([id,ar,en])=>{const el=document.getElementById(id),label=lang==='ar'?ar:en;el.setAttribute('aria-label',label);el.title=label});
