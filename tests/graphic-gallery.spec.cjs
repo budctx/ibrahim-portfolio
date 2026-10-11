@@ -166,3 +166,36 @@ test('Hero interaction and section navigation preserved',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');await page.locator('#card').click();await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');await page.locator('#card').click();await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
  for(const id of ['work','about','contact','main']){await page.locator(`[data-scene="${id}"]`).click();await expect(page.locator('#'+id)).toHaveClass(/is-active/);await expect(page.locator('.scene.is-active')).toHaveCount(1);}
 });
+
+for(const lang of ['ar','en'])test(`${lang} mobile horizontal work swipe then vertical exit`,async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ const touch=await page.context().newCDPSession(page);
+ await touch.send('Emulation.setTouchEmulationEnabled',{enabled:true});
+ const home=lang==='ar'?'/':'/en';await page.goto(home+'#work');
+ await expect(page.locator('#work')).toHaveClass(/is-active/);
+ const swipe=async(x,y,dx,dy)=>{
+  await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
+  for(let i=1;i<=12;i++){
+   await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+dx*i/12,y:y+dy*i/12}]});
+   await page.waitForTimeout(20);
+  }
+  await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+ };
+ const card=await page.locator('.project-card').first().boundingBox();
+ await swipe(320,card.y+80,-245,0);
+ await expect(page.locator('#project-count')).toHaveText(lang==='ar'?'تصميم جرافيكي':'Graphic Design');
+ // Exercise dynamic viewport height changes with the second card selected.
+ await page.setViewportSize({width:390,height:780});
+ await swipe(195,570,0,-450);
+ await expect(page.locator('#about')).toHaveClass(/is-active/);
+ await expect.poll(()=>page.locator('#scenes').evaluate(e=>e.scrollTop)).toBeGreaterThan(1400);
+ await page.waitForTimeout(1200);
+ await expect(page.locator('#about')).toHaveClass(/is-active/);
+ await swipe(195,570,0,-450);await expect(page.locator('#contact')).toHaveClass(/is-active/);
+ // Return and test wheel chaining over the selected card too.
+ await page.locator('[data-scene="work"]').click();await expect(page.locator('#work')).toHaveClass(/is-active/);
+ await expect.poll(()=>page.locator('#scenes').evaluate(e=>Math.round(e.scrollTop))).toBe(780);
+ await expect(page.locator('#project-count')).toHaveText(lang==='ar'?'تصميم جرافيكي':'Graphic Design');
+ const selected=await page.locator('.project-card').last().boundingBox();await page.mouse.move(195,selected.y+80);await page.mouse.wheel(0,700);
+ await expect(page.locator('#about')).toHaveClass(/is-active/);
+});

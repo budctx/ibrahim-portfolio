@@ -89,7 +89,7 @@ html,body{height:100%;overflow:hidden}
 .work-body{min-height:0;display:grid;align-content:center;gap:24px}
 .project-track{display:flex;gap:clamp(16px,2.5vw,36px);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;padding:20px calc((100% - min(62vw,720px))/2);direction:ltr;overscroll-behavior-x:contain}
 .project-track::-webkit-scrollbar{display:none}
-.project-item{flex:0 0 min(62vw,720px);scroll-snap-align:center;min-width:0}
+.project-item{flex:0 0 min(62vw,720px);scroll-snap-align:none center;min-width:0}
 .demo-mark{position:absolute;top:16px;left:18px;font-size:9px;letter-spacing:2px;border:1px solid currentColor;border-radius:20px;padding:6px 10px;opacity:.6;z-index:1}
 .art-symbol{width:100px;height:100px;border:2px solid #26364e;border-radius:30px;transform:rotate(-30deg);position:relative}
 .art-symbol:before{content:'';position:absolute;inset:18px;border:2px solid #26364e;border-radius:50%}
@@ -343,7 +343,16 @@ prev.addEventListener('click',()=>moveProject(projectIndex-1));next.addEventList
 track.addEventListener('scroll',()=>{clearTimeout(projectScrollTimer);projectScrollTimer=setTimeout(()=>{const center=track.scrollLeft+track.clientWidth/2;let nearest=0,distance=Infinity;[...track.children].forEach((e,i)=>{const delta=Math.abs(e.offsetLeft+e.offsetWidth/2-center);if(delta<distance){distance=delta;nearest=i}});projectIndex=nearest;updateProjectCount()},150)},{passive:true});
 track.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();moveProject(projectIndex+(e.key==='ArrowRight'?1:-1))}});
 language.addEventListener('click',renderProjects);
-new ResizeObserver(()=>moveProject(projectIndex,'auto')).observe(track);renderProjects();
+// Mobile browser chrome changes height during vertical gestures. Recenter only
+// on a genuine width change, never on the way out of the Work scene.
+let projectTrackWidth=0;
+new ResizeObserver(entries=>{
+ const width=entries[0].contentRect.width;
+ if(Math.abs(width-projectTrackWidth)<1)return;
+ projectTrackWidth=width;
+ if(!document.getElementById('work').classList.contains('is-active'))return;
+ moveProject(projectIndex,'instant');
+}).observe(track);renderProjects();
 const scenes=document.getElementById('scenes');
 document.querySelectorAll('.scene-dot').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.scene).scrollIntoView({behavior:reduce.matches?'auto':'smooth',block:'start'})));
 
