@@ -241,12 +241,13 @@ Considered design.</h2><div class="skill"><b>01</b><span>Digital interfaces</spa
 <div class="about-copy"><h3 data-ar="إبراهيم العجمي" data-en="Ibrahim Al-Ajmi">إبراهيم العجمي</h3><p class="about-role">Digital Product Designer</p>
 <p class="about-summary" data-ar="أصمّم منتجات رقمية، وجرافيك وهويات بصرية. وأوظّف الذكاء الاصطناعي والأتمتة لتجربة الأفكار وتطويرها." data-en="I design digital products, graphics, and visual identities. I use AI and automation to prototype and refine ideas.">أصمّم منتجات رقمية، وجرافيك وهويات بصرية. وأوظّف الذكاء الاصطناعي والأتمتة لتجربة الأفكار وتطويرها.</p>
 <p class="about-method" data-ar="أفهم الهدف، أصمّم، أختبر وأحسّن." data-en="Understand the goal. Design, test, refine.">أفهم الهدف، أصمّم، أختبر وأحسّن.</p></div>
-<div class="cube-area"><button class="cube-control" id="cube-control" aria-label="تدوير المكعّب إلى المجال التالي" aria-describedby="cube-status">
+<div class="cube-area"><div class="cube-orbit"><button class="cube-control" id="cube-control" aria-label="تدوير المكعّب إلى المجال التالي" aria-describedby="cube-status">
 <span class="about-cube" aria-hidden="true">
 <span class="cube-face cube-front"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="4"/><path d="M7 15h26M16 15v18"/></svg><span data-ar="منتجات رقمية" data-en="Digital products">منتجات رقمية</span></span>
 <span class="cube-face cube-right"><svg viewBox="0 0 40 40" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><path d="m23 23 12-14a3.5 3.5 0 0 0-5-5L16 16Z"/><path d="M16 16c-4-1-7 2-7 6 0 5-4 8-6 9 7 4 15 3 18-3 1-2 2-4 2-5Z"/></svg><span data-ar="جرافيك" data-en="Graphic design">جرافيك</span></span>
 <span class="cube-face cube-back"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="3" y="15" width="10" height="10" rx="2"/><rect x="27" y="3" width="10" height="10" rx="2"/><rect x="27" y="27" width="10" height="10" rx="2"/><path d="M13 20h7V8h7M20 20v12h7"/></svg><span data-ar="أتمتة" data-en="Automation">أتمتة</span></span>
 <span class="cube-face cube-left"></span><span class="cube-face cube-top"></span><span class="cube-face cube-bottom"></span></span></button>
+<ul class="cube-skills" id="cube-skills" aria-label="Skills"><li><span lang="en"></span></li><li><span lang="en"></span></li><li><span lang="en"></span></li><li><span lang="en"></span></li></ul></div>
 <div class="cube-controls" role="group" aria-label="مجالاتي"><button class="cube-dot" data-cube="0" aria-label="منتجات رقمية" aria-pressed="true"><span data-ar="منتجات رقمية" data-en="Digital products">منتجات رقمية</span></button><button class="cube-dot" data-cube="1" aria-label="جرافيك" aria-pressed="false"><span data-ar="جرافيك" data-en="Graphic design">جرافيك</span></button><button class="cube-dot" data-cube="2" aria-label="أتمتة" aria-pressed="false"><span data-ar="أتمتة" data-en="Automation">أتمتة</span></button></div>
 <span class="visually-hidden" id="cube-status" aria-live="polite">منتجات رقمية</span>
 </div></div><footer class="about-footer"><span data-ar="اسحب أو اضغط لاستكشاف المجالات" data-en="Drag or tap to explore">اسحب أو اضغط لاستكشاف المجالات</span></footer>
@@ -367,13 +368,24 @@ const sceneObserver=new IntersectionObserver(entries=>{
 document.querySelectorAll('.scene').forEach(section=>sceneObserver.observe(section));
 const cubeButton=document.getElementById('cube-control'),cube=document.querySelector('.about-cube');
 const cubeLabels={ar:['منتجات رقمية','جرافيك','أتمتة'],en:['Digital products','Graphic design','Automation']};
+const cubeSkills=[['UI/UX','Wireframing','Prototyping','Design Systems'],['Photoshop','Illustrator','InDesign','After Effects'],['AI Workflows','Prompt Design','Tool Integration','AI Automation']];
+const skillList=document.getElementById('cube-skills');
+function renderCubeSkills(){
+ skillList.setAttribute('aria-label',(lang==='ar'?'مهارات — ':'Skills — ')+cubeLabels[lang][cubeIndex]);
+ [...skillList.children].forEach((badge,i)=>{
+  badge.getAnimations().forEach(animation=>animation.cancel());
+  badge.firstElementChild.textContent=cubeSkills[cubeIndex][i];
+  if(!reduce.matches)badge.animate([{opacity:0,transform:`translate(${i%2?-24:24}px,${i<2?18:-18}px) scale(.94)`},{opacity:1,transform:'none'}],{duration:300,delay:i*25,easing:'cubic-bezier(.2,.75,.2,1)',fill:'backwards'});
+ });
+}
 let cubeIndex=0,cubeAngle=-24,cubePointer=null,suppressCubeClick=false;
 function selectCube(index){
  const nextIndex=(index+3)%3,base=-24-nextIndex*90;
  cubeAngle=base+360*Math.round((cubeAngle-base)/360);
  cubeIndex=nextIndex;cube.style.setProperty('--cube-angle',cubeAngle+'deg');
  document.querySelectorAll('.cube-dot').forEach((b,i)=>{b.setAttribute('aria-pressed',String(i===cubeIndex));b.setAttribute('aria-label',cubeLabels[lang][i])});
- document.getElementById('cube-status').textContent=cubeLabels[lang][cubeIndex];
+ document.getElementById('cube-status').textContent=cubeLabels[lang][cubeIndex]+': '+cubeSkills[cubeIndex].join(', ');
+ renderCubeSkills();
 }
 cubeButton.addEventListener('click',()=>{if(suppressCubeClick){suppressCubeClick=false;return}selectCube(cubeIndex+1)});
 cubeButton.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();selectCube(cubeIndex+(e.key==='ArrowRight'?1:-1))}});
