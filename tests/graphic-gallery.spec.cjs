@@ -134,7 +134,7 @@ for(const lang of ['ar','en']) for(const [width,height] of [[320,568],[390,844],
   for(const id of ['work','about','contact']){
    await page.goto(home+'#'+id);await expect(page.locator('#'+id)).toHaveClass(/is-active/);
    await expect(page.locator('.scene.is-active')).toHaveCount(1);await overflow(page);
-   const selectors=id==='work'?['.work-header','.project-card','.work-footer']:id==='about'?['.about-header','.about-copy','.cube-control','.cube-controls','.about-footer']:['.contact-header','.contact-copy','.envelope-button','.envelope-hint','.contact-footer'];
+   const selectors=id==='work'?['.work-header','.project-card','.work-footer']:id==='about'?['.about-header','.about-copy','.cube-control','.cube-controls','.cube-orbit','.cube-skills','.about-footer']:['.contact-header','.contact-copy','.envelope-button','.envelope-hint','.contact-footer'];
    for(const selector of selectors){
     const items=page.locator('#'+id+' '+selector);const first=items.first();await expect(first).toBeVisible();
     const box=await first.boundingBox();expect(box.y,selector).toBeGreaterThanOrEqual(-1);expect(box.y+box.height,selector).toBeLessThanOrEqual(height+1);
@@ -198,4 +198,18 @@ for(const lang of ['ar','en'])test(`${lang} mobile horizontal work swipe then ve
  await expect(page.locator('#project-count')).toHaveText(lang==='ar'?'تصميم جرافيكي':'Graphic Design');
  const selected=await page.locator('.project-card').last().boundingBox();await page.mouse.move(195,selected.y+80);await page.mouse.wheel(0,700);
  await expect(page.locator('#about')).toHaveClass(/is-active/);
+});
+
+for(const lang of ['ar','en'])test(`${lang} four floating skills follow cube selection and allow vertical scrolling`,async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto((lang==='ar'?'/':'/en')+'#about');await expect(page.locator('#about')).toHaveClass(/is-active/);
+ const sets=[['UI/UX','Wireframing','Prototyping','Design Systems'],['Photoshop','Illustrator','InDesign','After Effects'],['AI Workflows','Prompt Design','Tool Integration','AI Automation']];
+ for(let i=0;i<3;i++){
+  await page.locator(`[data-cube="${i}"]`).click();await expect(page.locator('.cube-skills li')).toHaveText(sets[i]);await expect(page.locator('#cube-status')).toContainText(sets[i][3]);
+  for(const badge of await page.locator('.cube-skills li').all())await expect(badge).toBeInViewport({ratio:1});
+ }
+ await page.locator('[data-cube="0"]').click();await page.locator('[data-cube="2"]').click();await page.locator('[data-cube="1"]').click();await expect(page.locator('.cube-skills li')).toHaveText(sets[1]);
+ await page.screenshot({path:`docs/gallery/evidence/skills-${lang}-390.png`});
+ await page.emulateMedia({reducedMotion:'reduce'});expect(await page.locator('.cube-skills span').first().evaluate(e=>getComputedStyle(e).animationName)).toBe('none');
+ expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
+ const badge=await page.locator('.cube-skills li').first().boundingBox();await page.mouse.move(badge.x+badge.width/2,badge.y+badge.height/2);await page.mouse.wheel(0,800);await expect(page.locator('#contact')).toHaveClass(/is-active/);
 });
