@@ -1,0 +1,28 @@
+import {getGraphicDesigns, graphicCategories, type GraphicDesign} from './graphic-gallery';
+
+type Locale = 'ar' | 'en';
+const origin = 'https://ibrahim-portfolio-blush.vercel.app';
+const esc = (value: string) => value.replace(/[&<>"']/g, character => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[character]!));
+const arrow = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function card(design: GraphicDesign, locale: Locale) {
+  return `<div class="project-item"><a class="project-card" href="?design=${encodeURIComponent(design.slug)}" data-design="${esc(design.slug)}"><div class="project-art art-image"><img src="${esc(design.cover.url)}" alt="${esc(design.cover.alt[locale])}" loading="lazy" decoding="async"></div><div class="project-meta"><div><h3>${esc(design.title[locale])}</h3><p>${esc(design.category[locale])}</p></div><span class="project-open">${arrow}</span></div></a></div>`;
+}
+
+export async function galleryResponse(slug: string, locale: Locale): Promise<Response> {
+  const category = graphicCategories.find(item => item.slug === slug);
+  const landing = slug === 'graphic-design';
+  const valid = landing || Boolean(category);
+  const prefix = locale === 'ar' ? '/ar' : '';
+  const path = `${prefix}/work/${valid ? slug : 'graphic-design'}`;
+  const alternate = `${locale === 'en' ? '/ar' : ''}/work/${valid ? slug : 'graphic-design'}`;
+  const galleryTitle = locale === 'ar' ? 'التصميم الجرافيكي' : 'Graphic Design';
+  const title = !valid ? (locale === 'ar' ? 'المعرض غير موجود' : 'Gallery not found') : category?.title[locale] ?? galleryTitle;
+  const designs = category ? await getGraphicDesigns(category.slug) : [];
+  const home = locale === 'ar' ? '/#work' : '/en#work';
+  const back = locale === 'ar' ? 'العودة للأعمال' : 'Back to work';
+  const empty = locale === 'ar' ? 'لا توجد أعمال منشورة في هذا القسم بعد.' : 'No published designs in this category yet.';
+  const data = JSON.stringify({locale, categorySlug: category?.slug ?? null, designs, categories: graphicCategories}).replace(/</g, '\\u003c');
+  const content = !valid ? `<p class="gallery-empty">${locale === 'ar' ? 'اختر أحد أقسام المعرض.' : 'Choose a gallery category.'}</p><a class="gallery-back" href="${prefix}/work/graphic-design">${galleryTitle}</a>` : landing ? `<nav class="category-list" aria-label="${locale === 'ar' ? 'أقسام التصميم' : 'Design categories'}">${graphicCategories.map(item => `<a class="category-link" href="${prefix}/work/${item.slug}"><span>${esc(item.title[locale])}</span><span class="category-arrow">${arrow}</span></a>`).join('')}</nav>` : `<div id="gallery-grid" class="gallery-grid">${designs.map(item => card(item, locale)).join('')}</div><p id="gallery-empty" class="gallery-empty"${designs.length ? ' hidden' : ''}>${empty}</p>`;
+  const html = `<!doctype html><html lang="${locale}" dir="${locale === 'ar' ? 'rtl' : 'ltr'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark"><meta name="robots" content="noindex,nofollow"><title>${esc(title)} — Ibrahim Al-Ajmi</title><link rel="canonical" href="${origin}${path}"><link rel="alternate" hreflang="en" href="${origin}/work/${valid ? slug : 'graphic-design'}"><link rel="alternate" hreflang="ar" href="${origin}/ar/work/${valid ? slug : 'graphic-design'}"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/portfolio/work.css"><link rel="stylesheet" href="/portfolio/gallery.css"></head><body><a class="skip-link" href="#gallery-title">${locale === 'ar' ? 'انتقل للمحتوى' : 'Skip to content'}</a><div class="gallery-shell"><header class="gallery-header"><a class="gallery-back" href="${home}">${back}</a><a id="gallery-language" class="gallery-language" href="${alternate}" lang="${locale === 'ar' ? 'en' : 'ar'}" aria-label="${locale === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}">${locale === 'ar' ? 'E' : 'ع'}</a></header><main><div class="gallery-heading">${category ? `<a class="gallery-parent" href="${prefix}/work/graphic-design">${galleryTitle}</a>` : ''}<h1 id="gallery-title" tabindex="-1">${esc(title)}</h1></div>${content}</main></div><dialog class="project-modal" id="project-modal" aria-labelledby="modal-title" aria-describedby="modal-description"><button class="modal-close" id="modal-close" aria-label="${locale === 'ar' ? 'إغلاق' : 'Close'}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="modal-art" id="modal-art"></div><div class="modal-copy"><p class="modal-label" id="modal-category"></p><h2 id="modal-title"></h2><p class="modal-description" id="modal-description"></p><a class="modal-link" id="modal-link" target="_blank" rel="noopener noreferrer" hidden>${locale === 'ar' ? 'عرض المشروع' : 'View project'}</a></div></dialog><script type="application/json" id="gallery-data">${data}</script><script type="module" src="/portfolio/gallery.js"></script></body></html>`;
+  return new Response(html, {status: valid ? 200 : 404, headers: {'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'private, no-store', 'X-Robots-Tag': 'noindex, nofollow'}});
+}

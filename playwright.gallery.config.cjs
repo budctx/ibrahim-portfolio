@@ -1,0 +1,2 @@
+const {defineConfig}=require('@playwright/test');
+module.exports=defineConfig({testDir:'./tests',testMatch:'graphic-gallery.spec.cjs',timeout:45000,expect:{timeout:10000},workers:2,reporter:[['list'],['json',{outputFile:'test-results/gallery-results.json'}]],use:{baseURL:process.env.GALLERY_BASE_URL||'http://127.0.0.1:3101',headless:true,trace:'retain-on-failure',screenshot:'only-on-failure'}});
