@@ -33,7 +33,7 @@ for(const lang of ['en','ar']) {
   await page.locator('#modal-language').click();await expect(modal(page)).toBeVisible();await expect(page.locator('html')).toHaveAttribute('lang',lang==='ar'?'en':'ar');
  });
 }
-for(const [w,h] of [[320,568],[390,844],[768,1024],[1440,900],[1920,1080],[844,390]])for(const lang of ['en','ar']) {
+for(const [w,h] of [[320,568],[375,812],[390,844],[768,1024],[1440,900],[1920,1080],[844,390]])for(const lang of ['en','ar']) {
  test(`${lang} responsive ${w}x${h}`,async({page})=>{
   await page.setViewportSize({width:w,height:h});await page.goto(route(lang,'graphic-design'));await overflow(page);await expect(page.locator('.category-link')).toHaveCount(4);
   await open(page,lang);await overflow(page);
@@ -45,3 +45,25 @@ for(const [w,h] of [[320,568],[390,844],[768,1024],[1440,900],[1920,1080],[844,3
 test('axe WCAG 2.2 AA landing gallery modal both languages',async({page})=>{for(const lang of ['en','ar']){await page.goto(route(lang,'graphic-design'));expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);await open(page,lang);expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);}});
 test('reduced motion no gallery transitions',async({page})=>{await page.emulateMedia({reducedMotion:'reduce'});await page.goto(route('en','graphic-design'));expect(await page.locator('.category-link').first().evaluate(e=>getComputedStyle(e).transitionDuration)).toBe('0s');await open(page);await page.keyboard.press('Escape');await expect(modal(page)).not.toBeVisible();});
 test('homepage retains ATHAR and primary collection card',async({page})=>{await page.goto('/');await expect(page.locator('.project-card')).toHaveCount(5);await expect(page.locator('.project-card').first()).toContainText(/أثر|ATHAR/);const link=page.locator('.project-card[href*="graphic-design"]');await expect(link).toHaveCount(1);await page.locator('#work').evaluate(e=>e.scrollIntoView());await link.click();await expect(page).toHaveURL(/work\/graphic-design/);});
+
+// Exercise rapid native close/history events without waiting for animation.
+test('rapid close and reopen does not orphan a modal or scroll lock',async({page})=>{
+ await open(page);
+ for(let i=0;i<5;i++){
+  await page.locator('#modal-close').click();
+  await page.locator('[data-design]').click();
+  await expect(modal(page)).toBeVisible();await expect(page).toHaveURL(/design=/);
+ }
+ await page.keyboard.press('Escape');await expect(modal(page)).not.toBeVisible();await expect(page).not.toHaveURL(/design=/);
+ expect(await page.locator('body').evaluate(e=>e.style.overflow)).toBe('');
+});
+test.describe('touch interactions',()=>{
+ test.use({hasTouch:true,viewport:{width:390,height:844}});
+ test('tap category and card then close',async({page})=>{
+  await page.goto(route('ar','graphic-design'));await page.locator('.category-link').first().tap();await page.locator('[data-design]').tap();await expect(modal(page)).toBeVisible();await page.locator('#modal-close').tap();await expect(modal(page)).not.toBeVisible();
+ });
+});
+test('light system preference retains approved dark-only design',async({page})=>{
+ await page.emulateMedia({colorScheme:'light'});await page.goto(route('en','graphic-design'));
+ expect(await page.locator('html').evaluate(e=>getComputedStyle(e).colorScheme)).toBe('dark');
+});

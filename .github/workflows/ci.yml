@@ -87,3 +87,32 @@ jobs:
           path: |
             test-results/
             docs/gallery/evidence/
+
+  existing-regressions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Run unchanged Stage 18 tests independently of audit gate
+        run: |
+          npm run start -- --hostname 127.0.0.1 --port 3000 > /tmp/legacy-next.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:3000/ > /dev/null; then break; fi
+            sleep 1
+          done
+          npx playwright test tests/stage18-accessibility.spec.cjs tests/stage18-axe.spec.cjs tests/stage18-performance.spec.cjs --reporter=json --workers=1 > legacy-results.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: legacy-regression-qa
+          path: |
+            legacy-results.json
+            test-results/

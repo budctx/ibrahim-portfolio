@@ -9,6 +9,7 @@ const designs = new Map(data.designs.map(p => [p.slug, p]));
 const cards = new Map();
 const basePath = location.pathname;
 const stateKey = 'graphicGalleryModal';
+let historyClosePending=false, queuedOpen=null;
 
 function syncLanguageLink() {
   const url = new URL(language.href);
@@ -43,7 +44,7 @@ const modal = bindProjectModal(dialog, {
   onClose() {
     const url = new URL(location.href);
     if (!url.searchParams.has('design')) return;
-    if (history.state?.[stateKey] === basePath) history.back();
+    if (history.state?.[stateKey] === basePath) {historyClosePending=true; history.back();}
     else {url.searchParams.delete('design'); history.replaceState(history.state, '', url); syncLanguageLink();}
   }
 });
@@ -72,6 +73,7 @@ if (grid) {
     const url = new URL(location.href); url.searchParams.set('design', p.slug);
     const card = createProjectCard(p, {lang, renderArt, href:url.pathname + url.search,
       onOpen(project) {
+        if(historyClosePending){queuedOpen=project.slug;return;}
         if (new URL(location.href).searchParams.get('design') !== project.slug)
           history.pushState({[stateKey]:basePath}, '', url.pathname + url.search);
         syncFromUrl();
@@ -94,5 +96,8 @@ share.addEventListener('click', async () => {
 const modalLanguage=language.cloneNode(true); modalLanguage.id='modal-language'; modalLanguage.classList.add('modal-language');
 dialog.querySelector('.modal-copy').append(modalLanguage, share, feedback, copyField);
 dialog.addEventListener('close', () => {feedback.textContent = ''; copyField.hidden = true;});
-window.addEventListener('popstate', syncFromUrl);
+window.addEventListener('popstate', () => {
+  historyClosePending=false; syncFromUrl();
+  if(queuedOpen){const slug=queuedOpen;queuedOpen=null;cards.get(slug)?.click();}
+});
 syncFromUrl();
