@@ -153,4 +153,16 @@ for(const lang of ['ar','en']) for(const [width,height] of [[320,568],[390,844],
 for(const lang of ['ar','en'])test(`${lang} homepage real work and contact interaction regressions`,async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});const home=lang==='ar'?'/':'/en';
  await page.goto(home+'#work');await expect(page.locator('#work')).toHaveClass(/is-active/);await page.locator('.project-card').first().click();await expect(modal(page)).toBeVisible();await expect(page.locator('#modal-title')).toHaveText(lang==='ar'?'أثر':'ATHAR');await page.keyboard.press('Escape');await expect(modal(page)).not.toBeVisible();
- await page.locator('#project-next').click();await
+ await page.locator('#project-next').click();await expect(page.locator('#project-count')).toHaveText(lang==='ar'?'تصميم جرافيكي':'Graphic Design');await page.locator('.project-card[href*="graphic-design"]').click();await expect(page).toHaveURL(/work\/graphic-design/);
+ await page.goto(home+'#contact');await expect(page.locator('#contact')).toHaveClass(/is-active/);await page.locator('#envelope-button').click();await expect(page.locator('#envelope-button')).toHaveAttribute('aria-expanded','true');
+ await page.locator('#contact-trigger').click();await expect(page.locator('#contact-modal')).toBeVisible();expect(await page.locator('#scenes').evaluate(e=>e.style.overflow)).toBe('hidden');
+ await expect(page.locator('.contact-method')).toHaveCount(2);await page.locator('#contact-modal-close').focus();await page.keyboard.press('Shift+Tab');await expect(page.locator('#contact-whatsapp')).toBeFocused();await page.keyboard.press('Escape');await expect(page.locator('#contact-trigger')).toBeFocused();expect(await page.locator('#scenes').evaluate(e=>e.style.overflow)).toBe('');
+ for(const id of ['work','about','contact']){
+  await page.goto(home+'#'+id);await expect(page.locator('#'+id)).toHaveClass(/is-active/);
+  expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
+ }
+});
+test('Hero interaction and section navigation preserved',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');await page.locator('#card').click();await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');await page.locator('#card').click();await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
+ for(const id of ['work','about','contact','main']){await page.locator(`[data-scene="${id}"]`).click();await expect(page.locator('#'+id)).toHaveClass(/is-active/);await expect(page.locator('.scene.is-active')).toHaveCount(1);}
+});
