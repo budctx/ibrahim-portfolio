@@ -1,0 +1,17 @@
+designId: "rais-rocket-league"
+slug: "rais-rocket-league"
+titleEn: "Rocket League Tournament"
+titleAr: "بطولة Rocket League"
+descriptionEn: "Discord broadcast banner for the Rocket League tournament."
+descriptionAr: "بنر برودكاست لبطولة Rocket League."
+selfInitiated: false
+entityEn: "Rais"
+entityAr: "Rais"
+category: "discord"
+cover: "/project-media/rais/rais-rocket-league.webp"
+coverAltEn: "Rais Rocket League tournament announcement banner"
+coverAltAr: "بنر إعلان بطولة Rocket League لجهة Rais"
+images: []
+order: 1
+status: "published"
+contentOrigin: "real"

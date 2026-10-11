@@ -1,0 +1,17 @@
+designId: "rais-brawlhalla"
+slug: "rais-brawlhalla"
+titleEn: "Brawlhalla Tournament"
+titleAr: "بطولة Brawlhalla"
+descriptionEn: "Discord broadcast banner for the Brawlhalla tournament."
+descriptionAr: "بنر برودكاست لبطولة Brawlhalla."
+selfInitiated: false
+entityEn: "Rais"
+entityAr: "Rais"
+category: "discord"
+cover: "/project-media/rais/rais-brawlhalla.webp"
+coverAltEn: "Rais Brawlhalla tournament announcement banner"
+coverAltAr: "بنر إعلان بطولة Brawlhalla لجهة Rais"
+images: []
+order: 2
+status: "published"
+contentOrigin: "real"
