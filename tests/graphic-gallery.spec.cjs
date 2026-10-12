@@ -263,17 +263,19 @@ for(const lang of ['ar','en']){
   await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
   await page.locator('[data-scene="main"]').click();await expect(page.locator('#main')).toHaveClass(/is-active/);
   await expect.poll(()=>pendulumState(page)).toBe('running');
-  await page.locator('#card').click();await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');
+  await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
+  await page.locator('#card').press('Enter');await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');
   await page.locator('[data-scene="work"]').click();await expect(page.locator('#work')).toHaveClass(/is-active/);
   await expect.poll(()=>pendulumState(page)).toBe('paused');
  });
  test(`${lang} motion lifecycle preference round trip preserves manual flip and cube final state`,async({page})=>{
   await page.emulateMedia({reducedMotion:'no-preference'});await page.goto(home+'#main');
   await expect.poll(()=>pendulumState(page)).toBe('running');
-  await page.locator('#card').click();await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');
+  await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
+  await page.locator('#card').press('Enter');await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');
   await page.emulateMedia({reducedMotion:'reduce'});
   await expect(page.locator('.pendulum')).toHaveCSS('animation-name','none');
-  await page.locator('#card').click();await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
+  await page.locator('#card').press('Enter');await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
   await page.emulateMedia({reducedMotion:'no-preference'});
   await expect(page.locator('.pendulum')).toHaveCSS('animation-name','sway');
   await expect.poll(()=>pendulumState(page)).toBe('running');
@@ -301,7 +303,7 @@ for(const lang of ['ar','en']){
   await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');
   await visibilityContract(page,false);
   await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false',{timeout:3500});
-  await page.locator('#card').click();await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');
+  await page.locator('#card').press('Enter');await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');
   await page.locator('[data-scene="contact"]').click();await expect(page.locator('#contact')).toHaveClass(/is-active/);
   await visibilityContract(page,true);await visibilityContract(page,false);
   await expect.poll(()=>pendulumState(page)).toBe('paused');
@@ -326,7 +328,8 @@ for(const lang of ['ar','en']){
 }
 test('motion lifecycle actual native tab visibility when supported',async({page,context})=>{
  await page.goto('/#main');await expect.poll(()=>pendulumState(page)).toBe('running');
- await page.locator('#card').click(); // suppress introduction timer while validating sway lifecycle
+ await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
+ await page.locator('#card').press('Enter'); // suppress introduction timer while validating sway lifecycle
  const other=await context.newPage();
  try{
   await other.goto('about:blank');await other.bringToFront();
