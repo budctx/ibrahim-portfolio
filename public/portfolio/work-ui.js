@@ -1,3 +1,10 @@
+// Touch focus remains functional; its ring returns as soon as a keyboard is used.
+document.addEventListener('pointerdown',event=>{
+ document.documentElement.dataset.inputModality=event.pointerType==='touch'?'touch':'pointer';
+},{capture:true,passive:true});
+document.addEventListener('keydown',event=>{
+ if(!['Shift','Control','Alt','Meta'].includes(event.key))document.documentElement.dataset.inputModality='keyboard';
+},true);
 /* The approved Work DOM factory and native dialog, shared by home and gallery. */
 export const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>';
 

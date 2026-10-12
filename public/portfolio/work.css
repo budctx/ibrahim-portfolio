@@ -16,3 +16,5 @@
 @media(max-width:700px){.project-meta{padding:16px}.project-meta h3{font-size:17px}.project-meta p{font-size:10px}.modal-copy{padding:24px}}
 @media(max-height:550px){.project-meta{padding:10px 18px}.project-meta h3{font-size:16px;margin-bottom:3px}}
 @media(prefers-reduced-motion:reduce){.project-card:hover{transform:none}.project-card{transition:none}}
+
+@media(hover:none) and (pointer:coarse){html[data-input-modality=touch] :is(a,button,input,[tabindex]):focus{outline:none!important}}
