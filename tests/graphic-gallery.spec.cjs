@@ -343,7 +343,7 @@ test('motion lifecycle actual native tab visibility when supported',async({page,
 });
 
 test('mobile touch removes focus ring and keyboard restores it across home and gallery',async({browser})=>{
- const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});const page=await context.newPage();
+ const context=await browser.newContext({baseURL:process.env.GALLERY_BASE_URL||'http://127.0.0.1:3101',viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});const page=await context.newPage();
  for(const path of ['/#about','/work/graphic-design']){
   await page.goto(path);const target=page.locator(path.includes('about')?'[data-cube="1"]':'.floating-design');
   await target.tap();await expect(target).toBeFocused();await expect(target).toHaveCSS('outline-style','none');
