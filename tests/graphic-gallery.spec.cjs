@@ -238,3 +238,106 @@ for(const lang of ['ar','en'])test(`${lang} badge exit synchronized replacement 
  await expect(page.locator('.cube-skills span[data-tool]')).toHaveCount(0);await expect(page.locator('#cube-skills')).not.toHaveAttribute('aria-hidden','true');
  await page.waitForTimeout(600);await expect(page.locator('.cube-skills li')).toHaveText(['AI Workflows','Prompt Design','Tool Integration','AI Automation']);
 });
+
+// Lifecycle regressions use rendered motion and final UI state, not source-string checks.
+// Visibility contracts below explicitly synthesize document visibility; they are not
+// evidence of native OS tab backgrounding. The separate native case reports a skip
+// if the selected headless browser does not expose actual document.hidden changes.
+const pendulumState=page=>page.locator('.pendulum').evaluate(e=>getComputedStyle(e).animationPlayState);
+async function visibilityContract(page,hidden){
+ await page.evaluate(value=>{
+  Object.defineProperty(document,'hidden',{configurable:true,get:()=>value});
+  Object.defineProperty(document,'visibilityState',{configurable:true,get:()=>value?'hidden':'visible'});
+  document.dispatchEvent(new Event('visibilitychange'));
+ },hidden);
+}
+for(const lang of ['ar','en']){
+ const home=lang==='ar'?'/':'/en';
+ test(`${lang} motion lifecycle offscreen Hero stops sway and introductory flip`,async({page})=>{
+  await page.emulateMedia({reducedMotion:'no-preference'});await page.goto(home+'#contact');
+  await expect(page.locator('#contact')).toHaveClass(/is-active/);
+  await expect.poll(()=>pendulumState(page)).toBe('paused');
+  const before=await page.locator('.pendulum').evaluate(e=>getComputedStyle(e).transform);
+  await page.waitForTimeout(3000); // crosses the 2600ms automatic introduction timer
+  expect(await page.locator('.pendulum').evaluate(e=>getComputedStyle(e).transform)).toBe(before);
+  await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
+  await page.locator('[data-scene="main"]').click();await expect(page.locator('#main')).toHaveClass(/is-active/);
+  await expect.poll(()=>pendulumState(page)).toBe('running');
+  await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
+  await page.locator('#card').press('Enter');await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');
+  await page.locator('[data-scene="work"]').click();await expect(page.locator('#work')).toHaveClass(/is-active/);
+  await expect.poll(()=>pendulumState(page)).toBe('paused');
+ });
+ test(`${lang} motion lifecycle preference round trip preserves manual flip and cube final state`,async({page})=>{
+  await page.emulateMedia({reducedMotion:'no-preference'});await page.goto(home+'#main');
+  await expect.poll(()=>pendulumState(page)).toBe('running');
+  await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
+  await page.locator('#card').press('Enter');await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await expect(page.locator('.pendulum')).toHaveCSS('animation-name','none');
+  await page.locator('#card').press('Enter');await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await expect(page.locator('.pendulum')).toHaveCSS('animation-name','sway');
+  await expect.poll(()=>pendulumState(page)).toBe('running');
+  await page.locator('[data-scene="about"]').click();await expect(page.locator('#about')).toHaveClass(/is-active/);
+  await page.locator('[data-cube="1"]').click();await page.locator('[data-cube="2"]').click();
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await expect(page.locator('#cube-skills')).toHaveAttribute('data-phase','ready');
+  await expect(page.locator('.cube-skills li')).toHaveText(['AI Workflows','Prompt Design','Tool Integration','AI Automation']);
+  await expect(page.locator('#cube-skills')).not.toHaveAttribute('aria-hidden','true');
+  expect(await page.locator('.cube-skills span').evaluateAll(items=>items.every(e=>getComputedStyle(e).animationName==='none'))).toBe(true);
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.locator('[data-cube="0"]').click();
+  await expect(page.locator('.cube-skills li')).toHaveText(['UI/UX','Wireframing','Prototyping','Design Systems']);
+  await expect(page.locator('#cube-skills')).toHaveAttribute('data-phase','ready');
+  expect(await page.locator('.cube-skills span').evaluateAll(items=>items.every(e=>getComputedStyle(e).animationPlayState==='running'))).toBe(true);
+ });
+ test(`${lang} motion lifecycle synthetic visibility event contract guards Hero timer`,async({page})=>{
+  test.info().annotations.push({type:'evidence-scope',description:'Synthetic document visibility event contract; not native tab-background evidence.'});
+  await page.goto(home+'#main');await expect(page.locator('#main')).toHaveClass(/is-active/);
+  await visibilityContract(page,true);await expect.poll(()=>pendulumState(page)).toBe('paused');
+  await page.waitForTimeout(3000);await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
+  await visibilityContract(page,false);await expect.poll(()=>pendulumState(page)).toBe('running');
+  await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true',{timeout:4000});
+  await visibilityContract(page,true);await page.waitForTimeout(3000);
+  await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');
+  await visibilityContract(page,false);
+  await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false',{timeout:3500});
+  await page.locator('#card').press('Enter');await expect(page.locator('#card')).toHaveAttribute('aria-pressed','true');
+  await page.locator('[data-scene="contact"]').click();await expect(page.locator('#contact')).toHaveClass(/is-active/);
+  await visibilityContract(page,true);await visibilityContract(page,false);
+  await expect.poll(()=>pendulumState(page)).toBe('paused');
+ });
+ test(`${lang} motion lifecycle gallery intersection survives synthetic visibility return`,async({page})=>{
+  test.info().annotations.push({type:'evidence-scope',description:'Real IntersectionObserver/scroll geometry with test-only trailing spacer plus synthetic document visibility events.'});
+  await page.setViewportSize({width:390,height:200});await page.goto(route(lang,'graphic-design'));
+  const object=page.locator('.floating-design');await object.scrollIntoViewIfNeeded();
+  await expect(object).toHaveClass(/is-visible/);await page.mouse.move(0,0);
+  await visibilityContract(page,true);await expect(object).not.toHaveClass(/is-visible/);
+  await visibilityContract(page,false);await expect(object).toHaveClass(/is-visible/);
+  // A trailing spacer supplies offscreen geometry even when the approved landing fits one viewport.
+  await page.evaluate(()=>{const spacer=document.createElement('div');spacer.setAttribute('data-qa-spacer','');spacer.style.height='1200px';document.body.append(spacer);window.scrollTo(0,document.documentElement.scrollHeight);});
+  await expect.poll(()=>object.evaluate(e=>e.getBoundingClientRect().bottom)).toBeLessThanOrEqual(0);
+  await expect(object).not.toHaveClass(/is-visible/);
+  await visibilityContract(page,true);await visibilityContract(page,false);
+  await expect(object).not.toHaveClass(/is-visible/);
+  await expect(page.locator('.design-stack')).toHaveCSS('animation-name','none');
+  await object.scrollIntoViewIfNeeded();await expect(object).toHaveClass(/is-visible/);
+  await expect(page.locator('.design-stack')).toHaveCSS('animation-name','gallery-float');
+ });
+}
+test('motion lifecycle actual native tab visibility when supported',async({page,context})=>{
+ await page.goto('/#main');await expect.poll(()=>pendulumState(page)).toBe('running');
+ await expect(page.locator('#card')).toHaveAttribute('aria-pressed','false');
+ await page.locator('#card').press('Enter'); // suppress introduction timer while validating sway lifecycle
+ const other=await context.newPage();
+ try{
+  await other.goto('about:blank');await other.bringToFront();
+  let hidden=false;
+  try{await expect.poll(()=>page.evaluate(()=>document.hidden),{timeout:2000}).toBe(true);hidden=true;}catch{}
+  test.skip(!hidden,'Browser did not expose actual hidden-tab state; synthetic contracts cover listener behavior only.');
+  await expect.poll(()=>pendulumState(page)).toBe('paused');
+  await page.bringToFront();await expect.poll(()=>page.evaluate(()=>document.hidden)).toBe(false);
+  await expect.poll(()=>pendulumState(page)).toBe('running');
+ }finally{await other.close();}
+});
