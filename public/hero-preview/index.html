@@ -279,14 +279,38 @@ Considered design.</h2><div class="skill"><b>01</b><span>Digital interfaces</spa
 <div class="modal-art" id="modal-art" aria-hidden="true"></div><div class="modal-copy"><p class="modal-label" id="modal-category"></p><h2 id="modal-title"></h2><p class="modal-description" id="modal-description"></p><a class="modal-link" id="modal-link" target="_blank" rel="noopener noreferrer" hidden data-ar="عرض المشروع" data-en="View project">عرض المشروع</a></div>
 </dialog><script type="module">
 import {createProjectCard,bindProjectModal} from "/portfolio/work-ui.js";
-const card=document.getElementById('card'),language=document.getElementById('language');let flipped=false,paused=matchMedia('(prefers-reduced-motion: reduce)').matches,lang='ar',userInteracted=false;const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+const card=document.getElementById('card'),language=document.getElementById('language'),hero=document.querySelector('.hero');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+let flipped=false,paused=true,lang='ar',userInteracted=false;
+// Count introductory delays only while the Hero is active and visible.
+let heroActive=!['work','about','contact'].includes(location.hash.slice(1));
+let introTimer=null,introStarted=0,introRemaining=2600,introPhase=0;
+function heroMotionAllowed(){return heroActive&&!document.hidden&&!reduce.matches}
+function suspendIntro(){
+ if(introTimer===null)return;
+ clearTimeout(introTimer);introTimer=null;
+ introRemaining=Math.max(0,introRemaining-(performance.now()-introStarted));
+}
+function syncMotion(){
+ paused=!heroMotionAllowed();hero.classList.toggle('paused',paused);
+ if(paused){card.style.setProperty('--tilt-x','0deg');suspendIntro()}
+ if(userInteracted||introPhase>=2){suspendIntro();return}
+ if(paused||introTimer!==null)return;
+ introStarted=performance.now();
+ introTimer=setTimeout(()=>{
+  introTimer=null;introRemaining=0;
+  if(!heroMotionAllowed()||userInteracted){syncMotion();return}
+  flip();introPhase++;introRemaining=introPhase===1?2100:0;syncMotion();
+ },introRemaining);
+}
 function flip(){flipped=!flipped;card.style.setProperty('--flip',flipped?'180deg':'0deg');card.setAttribute('aria-pressed',String(flipped));card.querySelector('.front').setAttribute('aria-hidden',String(flipped));card.querySelector('.back').setAttribute('aria-hidden',String(!flipped))}
-card.addEventListener('click',()=>{userInteracted=true;flip()});
-function syncMotion(){document.querySelector('.hero').classList.toggle('paused',paused)}syncMotion();
+card.addEventListener('click',()=>{userInteracted=true;suspendIntro();flip()});
+syncMotion();
 language.addEventListener('click',()=>{lang=lang==='ar'?'en':'ar';document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.querySelectorAll('[data-ar]').forEach(el=>el.textContent=el.dataset[lang].replace(/\\n/g,'\n'));language.textContent=lang==='ar'?'E':'ع';language.setAttribute('aria-label',lang==='ar'?'Switch to English':'التحويل للعربية');card.setAttribute('aria-label',lang==='ar'?'اقلب بطاقة إبراهيم العجمي':'Flip Ibrahim’s card');document.querySelector('.stage').setAttribute('aria-label',lang==='ar'?'بطاقة التعريف التفاعلية':'Interactive identity card');syncMotion()});
-setTimeout(()=>{if(!paused&&!userInteracted&&!reduce.matches){flip();setTimeout(()=>{if(!paused&&!userInteracted)flip()},2100)}},2600);
+
 card.addEventListener('pointermove',e=>{if(e.pointerType==='mouse'&&!paused&&!reduce.matches){const r=card.getBoundingClientRect();card.style.setProperty('--tilt-x',((.5-(e.clientY-r.top)/r.height)*8)+'deg')}});card.addEventListener('pointerleave',()=>card.style.setProperty('--tilt-x','0deg'));
-reduce.addEventListener('change',e=>{if(e.matches){paused=true;syncMotion()}});
+reduce.addEventListener('change',syncMotion);
+document.addEventListener('visibilitychange',syncMotion);
 
 // Fit the complete interactive object into its own grid track, including sway clearance.
 const rig=document.querySelector('.rig'),badge=document.querySelector('.badge-position');
@@ -376,6 +400,7 @@ const sceneObserver=new IntersectionObserver(entries=>{
  const visible=[...sceneRatios].sort((a,b)=>b[1]-a[1])[0];
  if(!visible||visible[1]<=0)return;
  document.querySelectorAll('.scene').forEach(section=>{const active=section===visible[0];section.classList.toggle('is-active',active);section.inert=!active});
+ heroActive=visible[0]===hero;syncMotion();
  document.querySelectorAll('.scene-dot').forEach(b=>b.setAttribute('aria-current',String(b.dataset.scene===visible[0].id)));
  syncSceneHash(visible[0].id);
 },{root:scenes,threshold:[0,.25,.5,.75,1]});

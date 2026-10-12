@@ -40,11 +40,14 @@ if (control && stage) {
     else x=clamp(x+(event.key==='ArrowUp'?-6:6),22);
     render();
   });
+  let isIntersecting=false;
+  function syncVisibility(){control.classList.toggle('is-visible',isIntersecting&&!document.hidden&&!reduced.matches)}
   const visibility = new IntersectionObserver(entries => {
-    control.classList.toggle('is-visible', entries[0].isIntersecting && !document.hidden);
+    isIntersecting=entries[0].isIntersecting;syncVisibility();
   });
   visibility.observe(control);
-  document.addEventListener('visibilitychange',()=>control.classList.toggle('is-visible',!document.hidden));
-  reduced.addEventListener('change',()=>{x=-8;y=-16;render();});
+  document.addEventListener('visibilitychange',syncVisibility);
+  reduced.addEventListener('change',()=>{x=-8;y=-16;render();syncVisibility();});
+  syncVisibility();
   render();
 }
