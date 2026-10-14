@@ -8,10 +8,10 @@ selfInitiated: false
 entityEn: RAIS Games
 entityAr: رايس
 category: social-campaigns
-cover: null
+cover: /project-media/rais-fortnite-tournament.webp
 coverAltEn: 'Red-and-black Fortnite tournament advertisement for RAIS Games featuring a hooded character.'
 coverAltAr: 'إعلان بطولة فورتنايت لرايس بألوان الأحمر والأسود مع شخصية ترتدي غطاء رأس.'
 images: []
 order: 10
-status: draft
+status: published
 contentOrigin: real
