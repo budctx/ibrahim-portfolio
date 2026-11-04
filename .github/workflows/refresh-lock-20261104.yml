@@ -8,7 +8,7 @@ on:
       - .github/workflows/refresh-lock-20261104.yml
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   regenerate:
@@ -34,14 +34,15 @@ jobs:
           if (version('source-map-js') !== '1.2.2') throw new Error('source-map-js version mismatch');
           console.log(JSON.stringify({ next: version('next'), sharp: version('sharp'), sourceMap: version('source-map-js') }));
           NODE
-      - name: Commit only refreshed lockfile to maintenance branch
+      - name: Emit reviewed lockfile chunks for GitHub connector transfer
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add package-lock.json
-          if git diff --cached --quiet; then
-            echo "Lockfile already up to date."
-          else
-            git commit -m "security: refresh locked dependency graph"
-            git push origin HEAD:maintenance/ci-security-20261104
-          fi
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const lock = JSON.stringify(JSON.parse(fs.readFileSync('package-lock.json', 'utf8')));
+          const size = 4000;
+          for (let i = 0; i < lock.length; i += size) {
+            const label = String(Math.floor(i / size)).padStart(4, '0');
+            console.log('LOCKCHUNK:' + label + ':' + lock.slice(i, i + size));
+          }
+          console.log('LOCKCHUNKEND:' + lock.length);
+          NODE
