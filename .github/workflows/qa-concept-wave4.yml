@@ -1,0 +1,50 @@
+name: Concept Wave 04 — Bilingual Preview QA
+on:
+  push:
+    branches: [concept/editorial-interactive-v1-20261104]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  concept-preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      VERCEL_ENV: preview
+      CONCEPT_BASE_URL: http://127.0.0.1:3201
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install packages
+        run: npm ci
+      - name: TypeScript
+        run: npm run typecheck
+      - name: Production build
+        run: npm run build
+      - name: Browser
+        run: npx playwright install --with-deps chromium
+      - name: Test 5-section bilingual preview + gallery
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run start -- --hostname 127.0.0.1 --port 3201 > /tmp/concept-next.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          for i in {1..40}; do
+            if curl -fsS http://127.0.0.1:3201/concept-v2/ar.html -o /tmp/qa-concept.html; then break; fi
+            sleep 1
+          done
+          grep -q "concept-work-shell" /tmp/qa-concept.html
+          curl -fsSI http://127.0.0.1:3201/concept-v2/ar.html | tr -d '\r' | grep -qi '^x-robots-tag: noindex'
+          npx playwright test tests/concept-wave4.spec.cjs --reporter=line --workers=2
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: concept-wave4-visual-evidence
+          path: |
+            concept-evidence/
+            test-results/
+          retention-days: 30

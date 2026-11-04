@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Graphic Design — Concept Preview | Ibrahim Al-Ajmi</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap">
+<style>
+:root{--cream:#f0eee8;--ink:#171c20;--line:#c9cbc5;--green:#486a52;--warm:#d99472}
+*{box-sizing:border-box}
+html,body{min-height:100%;margin:0}
+body{background:var(--cream);font-family:'Readex Pro',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+button,a{font:inherit}a{color:inherit}button{cursor:pointer}
+a:focus-visible,button:focus-visible{outline:3px solid var(--green);outline-offset:4px}
+.gallery-wrap{width:min(1460px,100% - 9vw);margin:auto}
+.glb-head{display:flex;align-items:center;justify-content:space-between;padding:29px 0;border-bottom:1px solid var(--line)}
+.glb-logo{font:600 15px Arial;letter-spacing:-.2px;direction:ltr}.glb-logo small{font:400 9px Arial;display:block;letter-spacing:1.5px;margin-top:5px;color:#606b66}
+.glb-actions{display:flex;align-items:center;gap:13px}
+.glb-back,.glb-language{border:1px solid #171c2044;background:transparent;padding:10px 15px;text-decoration:none;border-radius:30px;font-size:11px;transition:background .2s}
+.glb-back:hover,.glb-language:hover{background:#e1e2da}
+.glb-language{min-width:39px;text-align:center}
+.glb-intro{padding:clamp(55px,10vh,130px) 0 clamp(35px,6vh,65px);display:grid;grid-template-columns:1fr auto;gap:25px;align-items:end}
+.kicker{display:flex;align-items:center;gap:12px;font:600 10px Arial;letter-spacing:1.8px;color:var(--green);direction:ltr}
+.kicker:before{content:'';width:24px;height:1px;background:currentColor}
+.glb-intro h1{font-size:clamp(52px,9.1vw,148px);line-height:1.02;letter-spacing:-.06em;font-weight:600;margin:17px 0 0}
+.glb-intro .glb-note{max-width:260px;font-size:13px;line-height:1.9;color:#536059;margin-bottom:10px}
+.glb-meta{display:flex;justify-content:space-between;gap:16px;align-items:center;border-top:1px solid var(--line);padding:15px 0;margin-bottom:15px;color:#667069;font:500 11px Arial;letter-spacing:.7px}
+.glb-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(13px,2.1vw,35px);padding-bottom:clamp(75px,10vw,170px)}
+.glb-item{border:0;text-align:inherit;background:transparent;min-width:0;display:block;padding:0;border-radius:0;cursor:zoom-in}
+.glb-frame{position:relative;overflow:hidden;background:#1b2026;aspect-ratio:1.34;border-radius:6px}
+.glb-frame:after{content:'';position:absolute;inset:0;border:1px solid #0002;pointer-events:none;border-radius:inherit}
+.glb-frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .85s cubic-bezier(.2,.7,.15,1);filter:saturate(.9)}
+.glb-item:hover .glb-frame img{transform:scale(1.045);filter:saturate(1)}
+.glb-index{position:absolute;top:16px;left:17px;z-index:2;display:grid;place-items:center;width:33px;height:33px;border-radius:50%;background:#f1eee6;color:#182021;font:600 10px Arial}
+.glb-item figcaption{display:flex;justify-content:space-between;align-items:start;gap:12px;padding:16px 2px 25px}
+.glb-item strong{display:block;font-size:clamp(15px,1.6vw,23px);font-weight:600}
+.glb-item small{display:block;font-size:10px;color:#66746a;margin-top:6px;letter-spacing:.2px}
+.glb-item .plus{font:400 22px Arial;border:1px solid #9ca49d;border-radius:50%;width:34px;height:34px;display:grid;place-items:center;transition:transform .3s,background .3s}
+.glb-item:hover .plus{transform:rotate(90deg);background:#dce4d7}
+.glb-footer{padding:24px 0 55px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:18px;color:#7a817a;font:500 10px Arial;letter-spacing:1.2px}
+.glb-modal{border:0;padding:0;max-width:none;max-height:none;width:100vw;height:100dvh;background:#0b0e13;color:white;margin:0}
+.glb-modal::backdrop{background:#06090dec}
+.glb-modal-inner{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:clamp(14px,3vw,35px) clamp(14px,4vw,56px);gap:18px}
+.glb-modal-head{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.glb-modal-heading{font:600 11px Arial;letter-spacing:2px;color:#b8c6c6}
+.glb-modal-close{border:1px solid #ffffff55;background:none;color:white;padding:9px 16px;border-radius:22px}
+.glb-modal-close:hover{background:#ffffff22}
+.glb-modal-stage{min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;place-items:center}
+.glb-modal-stage img{width:100%;height:100%;max-width:1200px;max-height:75dvh;object-fit:contain;display:block}
+.glb-modal-prev,.glb-modal-next{border:1px solid #ffffff38;background:transparent;color:white;width:44px;height:44px;border-radius:50%;font:24px Arial}
+.glb-modal-prev:hover,.glb-modal-next:hover{background:#ffffff20}
+.glb-modal-foot{display:flex;align-items:center;justify-content:space-between;gap:15px;border-top:1px solid #ffffff27;padding-top:17px}
+.glb-modal-foot strong{font-size:clamp(14px,2vw,22px)}
+.glb-modal-foot small{display:block;font-size:11px;color:#a0acaf;margin-top:6px}
+.glb-modal-count{font:600 12px Arial;color:#b3bfba;direction:ltr}
+@media(max-width:650px){
+.gallery-wrap{width:calc(100% - 34px)}
+.glb-head{padding:16px 0}
+.glb-back{padding:10px 11px}
+.glb-intro{grid-template-columns:1fr;gap:9px;padding-top:46px}
+.glb-intro h1{font-size:clamp(47px,12vw,79px)}
+.glb-intro .glb-note{max-width:320px;font-size:12px;margin:0}
+.glb-grid{grid-template-columns:1fr;gap:14px}
+.glb-frame{aspect-ratio:1.4}
+.glb-item figcaption{padding:12px 1px 18px}
+.glb-meta{font-size:9px}
+.glb-modal-inner{gap:8px}
+.glb-modal-stage{gap:4px}
+.glb-modal-prev,.glb-modal-next{width:30px;height:30px;font-size:18px}
+.glb-modal-stage img{max-height:77dvh}
+.glb-modal-heading{font-size:9px;letter-spacing:1px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="gallery-wrap">
+  <header class="glb-head">
+    <div class="glb-logo">IBRAHIM AL-AJMI<small>DESIGN ARCHIVE / CONCEPT</small></div>
+    <div class="glb-actions"><a class="glb-back" id="back" href="/concept-v2/ar.html#work">Back to Work</a><button class="glb-language" id="language" type="button" aria-label="Switch language">ع</button></div>
+  </header>
+  <div class="glb-intro">
+    <div><div class="kicker">GRAPHIC DESIGN / SELECTED WORK</div><h1 id="heading">Visual impact.<br>By design.</h1></div>
+    <p class="glb-note" id="note">Real graphic work for the RAIS gaming community. A selection of campaign and tournament visuals.</p>
+  </div>
+  <div class="glb-meta"><span id="label">RAIS / VISUAL DESIGN</span><span>04 SELECTED WORKS · 2026</span></div>
+  <main class="glb-grid" aria-label="Graphic design portfolio" id="gallery"></main>
+  <footer class="glb-footer"><span>© IBRAHIM AL-AJMI · CONCEPT PREVIEW</span><span>REAL WORK / NO PLACEHOLDERS</span></footer>
+</div>
+<dialog class="glb-modal" id="lightbox" aria-labelledby="modalTitle">
+  <div class="glb-modal-inner">
+    <div class="glb-modal-head"><span class="glb-modal-heading">SELECTED ARTWORK / RAIS</span><button class="glb-modal-close" type="button" id="close">Close ✕</button></div>
+    <div class="glb-modal-stage" id="stage">
+      <button class="glb-modal-prev" type="button" id="prev" aria-label="Previous work">‹</button>
+      <img id="bigImage" src="" alt="">
+      <button class="glb-modal-next" type="button" id="next" aria-label="Next work">›</button>
+    </div>
+    <div class="glb-modal-foot"><div><strong id="modalTitle"></strong><small id="modalSub"></small></div><span class="glb-modal-count" id="counter"></span></div>
+  </div>
+</dialog>
+<script>
+(()=>{
+const works=[
+{image:'/project-media/rais/rais-rocket-league.webp',en:'Rocket League Tournament',ar:'بطولة Rocket League',altEn:'RAIS Rocket League tournament announcement graphic',altAr:'تصميم إعلان بطولة Rocket League لمجتمع رايس'},
+{image:'/project-media/rais/rais-brawlhalla.webp',en:'Brawlhalla Tournament',ar:'بطولة Brawlhalla',altEn:'RAIS Brawlhalla tournament announcement graphic',altAr:'تصميم إعلان بطولة Brawlhalla لمجتمع رايس'},
+{image:'/project-media/rais/rais-call-of-duty.webp',en:'Call of Duty Tournament',ar:'بطولة Call of Duty',altEn:'RAIS Call of Duty tournament announcement graphic',altAr:'تصميم إعلان بطولة Call of Duty لمجتمع رايس'},
+{image:'/project-media/rais-fortnite-tournament.webp',en:'Fortnite Tournament',ar:'إعلان بطولة فورتنايت',altEn:'RAIS Fortnite tournament graphic',altAr:'تصميم إعلان بطولة فورتنايت لمجتمع رايس'}];
+let lang=new URL(location.href).searchParams.get('lang')==='ar'?'ar':'en',selected=0,trigger=null,x0=null;
+const $=x=>document.getElementById(x),dialog=$('lightbox');
+const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const txt=(en,ar)=>lang==='ar'?ar:en;
+function render(){
+  document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  $('back').textContent=txt('Back to Work','عودة للأعمال');$('back').href='/concept-v2/'+(lang==='ar'?'ar':'en')+'.html#work';
+  $('language').textContent=txt('ع','EN');$('language').setAttribute('aria-label',txt('Switch to Arabic','التبديل إلى الإنجليزية'));
+  $('heading').innerHTML=txt('Visual impact.<br>By design.','حضور بصري.<br>بكل تفصيل.');
+  $('note').textContent=txt('Real graphic work for the RAIS gaming community. A selection of campaign and tournament visuals.','أعمال جرافيك حقيقية لمجتمع رايس، بين الحملات والإعلانات والبطولات.');
+  $('label').textContent=txt('RAIS / VISUAL DESIGN','رايس / تصميم بصري');
+  $('gallery').setAttribute('aria-label',txt('Graphic design portfolio','معرض أعمال التصميم الجرافيكي'));
+  $('gallery').innerHTML=works.map((w,i)=>'<button class="glb-item" data-index="'+i+'" aria-label="'+esc(txt('Inspect '+w.en,'معاينة '+w.ar))+'"><div class="glb-frame"><img src="'+w.image+'" alt="'+esc(txt(w.altEn,w.altAr))+'" loading="'+(i===0?'eager':'lazy')+'" decoding="async"><span class="glb-index">0'+(i+1)+'</span></div><figcaption><div><strong>'+esc(w[lang])+'</strong><small>'+txt('RAIS · Tournament Graphic','رايس · إعلان بطولة')+'</small></div><span class="plus" aria-hidden="true">+</span></figcaption></button>').join('');
+  $('close').textContent=txt('Close ✕','إغلاق ✕');$('prev').setAttribute('aria-label',txt('Previous work','العمل السابق'));$('next').setAttribute('aria-label',txt('Next work','العمل التالي'));
+  document.querySelectorAll('.glb-item').forEach(b=>b.addEventListener('click',()=>open(Number(b.dataset.index),b)));
+  history.replaceState(null,'','?lang='+lang+(dialog.open?'#'+works[selected].en.toLowerCase().replaceAll(' ','-'):''));
+  if(dialog.open)show();
+}
+function show(){
+  const w=works[selected];
+  $('bigImage').src=w.image;$('bigImage').alt=w[lang==='ar'?'altAr':'altEn'];
+  $('modalTitle').textContent=w[lang];$('modalSub').textContent=txt('RAIS · Graphic Design','رايس · تصميم جرافيكي');
+  $('counter').textContent=String(selected+1).padStart(2,'0')+' / 04';
+}
+function open(i,el){selected=i;trigger=el;show();dialog.showModal();$('close').focus();}
+function move(d){selected=(selected+works.length+d)%works.length;show();}
+function close(){dialog.close();}
+$('language').addEventListener('click',()=>{lang=lang==='en'?'ar':'en';render();});
+$('prev').addEventListener('click',()=>move(-1));$('next').addEventListener('click',()=>move(1));$('close').addEventListener('click',close);
+dialog.addEventListener('click',e=>{if(e.target===dialog)close();});
+dialog.addEventListener('close',()=>{trigger?.focus({preventScroll:true});$('bigImage').removeAttribute('src');});
+dialog.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();move(lang==='ar'?1:-1);}else if(e.key==='ArrowRight'){e.preventDefault();move(lang==='ar'?-1:1);}});
+$('stage').addEventListener('touchstart',e=>{x0=e.touches[0]?.clientX;},{passive:true});
+$('stage').addEventListener('touchend',e=>{if(x0===null)return;const dx=(e.changedTouches[0]?.clientX??x0)-x0;if(Math.abs(dx)>45)move(dx>0?(lang==='ar'?-1:1):(lang==='ar'?1:-1));x0=null;},{passive:true});
+render();
+})();
+</script></body></html>
