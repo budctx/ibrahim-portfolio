@@ -243,3 +243,26 @@ body:has(.concept-approach.is-active) .scene-nav .scene-dot[aria-current=true]:b
  .concept-approach .concept-main{gap:10px}
  .concept-method-card{padding:8px 12px}
 }
+
+/* Reduced motion must remove animation, not the static spatial composition.
+   The previous global transform:none stacked both RAIS visuals at identical XY. */
+@media(prefers-reduced-motion:reduce){
+  .concept-gallery-card .concept-poster:first-child,
+  .concept-gallery-card:hover .concept-poster:first-child{
+    transform:rotate(-16deg) translate(-18%,12%)!important;
+  }
+  .concept-gallery-card .concept-poster:nth-child(2),
+  .concept-gallery-card:hover .concept-poster:nth-child(2){
+    transform:rotate(11deg) translate(23%,-7%)!important;
+  }
+}
+@media(max-width:600px) and (prefers-reduced-motion:reduce){
+  .concept-gallery-card .concept-poster:first-child,
+  .concept-gallery-card:hover .concept-poster:first-child{
+    transform:translate(-98%,-46%) rotate(-12deg)!important;
+  }
+  .concept-gallery-card .concept-poster:nth-child(2),
+  .concept-gallery-card:hover .concept-poster:nth-child(2){
+    transform:translate(-2%,-55%) rotate(10deg)!important;
+  }
+}
