@@ -31,7 +31,7 @@ jobs:
       - name: Build
         run: npm run build
   graphic-gallery:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       VERCEL_ENV: preview
       GRAPHIC_GALLERY_FIXTURES: '1'
@@ -70,7 +70,7 @@ jobs:
     # Keep the existing job ID for required-check continuity.
     # Historical tests/stage18-*.spec.cjs target a superseded .cv* homepage;
     # tests/portfolio-production.spec.cjs covers the actual live scene system.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
