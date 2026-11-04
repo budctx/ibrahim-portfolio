@@ -23,8 +23,10 @@ for(const locale of routes){
     await page.screenshot({path:'concept-evidence/'+locale.lang+'-approach-desktop.png',fullPage:false,animations:'disabled'});
     await page.locator('.scene-dot[data-scene=about]').click();
     await expect(page.locator('#about')).toHaveClass(/is-active/,{timeout:10000});
+    await page.screenshot({path:'concept-evidence/'+locale.lang+'-about-desktop.png',fullPage:false,animations:'disabled'});
     await page.locator('.scene-dot[data-scene=contact]').click();
     await expect(page.locator('#contact')).toHaveClass(/is-active/,{timeout:10000});
+    await page.screenshot({path:'concept-evidence/'+locale.lang+'-contact-desktop.png',fullPage:false,animations:'disabled'});
     await page.locator('#contact-trigger').click();
     await expect(page.locator('#contact-modal')).toHaveJSProperty('open',true);
     await page.locator('#contact-modal-close').click();
@@ -46,6 +48,12 @@ for(const locale of routes){
     await page.locator('.scene-dot[data-scene=approach]').click();
     await expect(page.locator('#approach')).toHaveClass(/is-active/,{timeout:10000});
     await page.screenshot({path:'concept-evidence/'+locale.lang+'-approach-mobile.png',fullPage:false,animations:'disabled'});
+    await page.locator('.scene-dot[data-scene=about]').click();
+    await expect(page.locator('#about')).toHaveClass(/is-active/,{timeout:10000});
+    await page.screenshot({path:'concept-evidence/'+locale.lang+'-about-mobile.png',fullPage:false,animations:'disabled'});
+    await page.locator('.scene-dot[data-scene=contact]').click();
+    await expect(page.locator('#contact')).toHaveClass(/is-active/,{timeout:10000});
+    await page.screenshot({path:'concept-evidence/'+locale.lang+'-contact-mobile.png',fullPage:false,animations:'disabled'});
     await page.goto(BASE+'/concept-v2/gallery.html?lang='+locale.lang,{waitUntil:'networkidle'});
     await expect(page.locator('.glb-item')).toHaveCount(4);
     const images=await page.locator('.glb-item img').evaluateAll(els=>els.map(e=>({loaded:e.complete&&e.naturalWidth>0,url:e.src})));
