@@ -215,3 +215,31 @@ body:has(.concept-approach.is-active) .scene-nav .scene-dot[aria-current=true]:b
  .concept-approach .concept-main{grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
  .concept-approach .concept-method{align-content:start}
 }
+
+/* Final optical and RTL screenshot corrections. Physical edges avoid a
+   bidi-direction conflict between the LTR numeric counter and RTL cards. */
+.concept-work-card .concept-card-number{
+  inset-inline-start:unset!important;inset-inline-end:unset!important;
+  left:20px!important;right:auto!important;
+}
+.concept-work-card .concept-card-arrow{
+  inset-inline-start:unset!important;inset-inline-end:unset!important;
+  right:18px!important;left:auto!important;
+}
+@media(max-width:600px){
+ .concept-work-card .concept-card-number{left:14px!important;right:auto!important}
+ .concept-work-card .concept-card-arrow{right:12px!important;left:auto!important}
+ .concept-gallery-card .concept-poster{left:50%;top:50%}
+ .concept-gallery-card .concept-poster:first-child,
+ .concept-gallery-card:hover .concept-poster:first-child{transform:translate(-98%,-46%) rotate(-12deg)}
+ .concept-gallery-card .concept-poster:nth-child(2),
+ .concept-gallery-card:hover .concept-poster:nth-child(2){transform:translate(-2%,-55%) rotate(10deg)}
+ .concept-approach .concept-main{
+  display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:24px;
+ }
+ .concept-approach .concept-method{align-content:center;width:100%}
+}
+@media(max-width:600px) and (max-height:650px){
+ .concept-approach .concept-main{gap:10px}
+ .concept-method-card{padding:8px 12px}
+}
