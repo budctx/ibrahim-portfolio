@@ -57,6 +57,8 @@ jobs:
             if curl -fsS http://127.0.0.1:3101/work/graphic-design > /dev/null; then break; fi
             sleep 1
           done
+          # The public preview must never be indexable.
+          curl -fsSI http://127.0.0.1:3101/ | tr -d '\r' | grep -iq '^x-robots-tag: noindex, nofollow, noarchive'
           npm run test:gallery
       - uses: actions/upload-artifact@v4
         if: always()
