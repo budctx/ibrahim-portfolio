@@ -30,30 +30,8 @@ jobs:
         run: node scripts/css-audit.mjs
       - name: Build
         run: npm run build
-      - name: Install Stage 18 QA browser
-        run: |
-          npm install --no-save --package-lock=false @playwright/test@1.63.0 @axe-core/playwright@4.10.2
-          npx playwright install --with-deps chromium
-      - name: Run Stage 18 responsive accessibility QA
-        run: |
-          npm run start > /tmp/portfolio-next.log 2>&1 &
-          SERVER_PID=$!
-          trap 'kill $SERVER_PID || true' EXIT
-          for i in {1..30}; do
-            if curl -fsS http://127.0.0.1:3000/ > /dev/null; then
-              break
-            fi
-            sleep 1
-          done
-          curl -fsS http://127.0.0.1:3000/ > /dev/null
-          npx playwright test \
-            tests/stage18-accessibility.spec.cjs \
-            tests/stage18-axe.spec.cjs \
-            tests/stage18-performance.spec.cjs \
-            --reporter=line --workers=1
-
   graphic-gallery:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       VERCEL_ENV: preview
       GRAPHIC_GALLERY_FIXTURES: '1'
@@ -79,6 +57,8 @@ jobs:
             if curl -fsS http://127.0.0.1:3101/work/graphic-design > /dev/null; then break; fi
             sleep 1
           done
+          # The public preview must never be indexable.
+          curl -fsSI http://127.0.0.1:3101/ | tr -d '\r' | grep -iq '^x-robots-tag: noindex, nofollow, noarchive'
           npm run test:gallery
       - uses: actions/upload-artifact@v4
         if: always()
@@ -89,30 +69,38 @@ jobs:
             docs/gallery/evidence/
 
   existing-regressions:
-    runs-on: ubuntu-latest
+    # Keep the existing job ID for required-check continuity.
+    # Historical tests/stage18-*.spec.cjs target a superseded .cv* homepage;
+    # tests/portfolio-production.spec.cjs covers the actual live scene system.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - run: npm run build
-      - run: npx playwright install --with-deps chromium
-      - name: Run unchanged Stage 18 tests independently of audit gate
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Build production application
+        run: npm run build
+      - name: Install Chromium for current production regression
+        run: npx playwright install --with-deps chromium
+      - name: Run bilingual scene, responsive, keyboard and accessibility regression
         run: |
-          npm run start -- --hostname 127.0.0.1 --port 3000 > /tmp/legacy-next.log 2>&1 &
+          npm run start -- --hostname 127.0.0.1 --port 3000 > /tmp/current-next.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
-          for i in {1..30}; do
-            if curl -fsS http://127.0.0.1:3000/ > /dev/null; then break; fi
+          for i in {1..40}; do
+            if curl -fsS http://127.0.0.1:3000/ > /dev/null 2>&1; then break; fi
             sleep 1
           done
-          npx playwright test tests/stage18-accessibility.spec.cjs tests/stage18-axe.spec.cjs tests/stage18-performance.spec.cjs --reporter=json --workers=1 > legacy-results.json
+          if ! curl -fsS http://127.0.0.1:3000/ > /dev/null; then
+            cat /tmp/current-next.log
+            exit 1
+          fi
+          npx playwright test tests/portfolio-production.spec.cjs --reporter=line --workers=2
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: failure()
         with:
-          name: legacy-regression-qa
-          path: |
-            legacy-results.json
-            test-results/
+          name: current-production-regression-failures
+          path: test-results/
