@@ -112,8 +112,24 @@ test('legacy Arabic URL canonicalizes to the current Arabic root', async ({page}
 test('both locale roots expose self-canonical metadata and reciprocal alternates', async ({page}) => {
   for (const {path, lang} of locales) {
     await load(page, path);
-    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', BASE.replace('127.0.0.1:3000', 'ibrahim-portfolio-blush.vercel.app') + (lang === 'en' ? '/en' : '/'));
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://ibrahim-portfolio-blush.vercel.app' + (lang === 'en' ? '/en' : '/'));
     await expect(page.locator('link[rel="alternate"][hreflang="ar"]')).toHaveCount(1);
     await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveCount(1);
   }
 });
+
+for (const {path, lang} of locales) {
+  test(`${lang} 200% root-text resize retains access at narrow widths`, async ({page}) => {
+    await page.setViewportSize({width: 390, height: 844});
+    await page.emulateMedia({reducedMotion: 'reduce'});
+    await load(page, path);
+    await page.addStyleTag({content: 'html {font-size: 200% !important;}'});
+    const fontSize = await page.evaluate(() => parseFloat(getComputedStyle(document.documentElement).fontSize));
+    expect(fontSize).toBeGreaterThanOrEqual(30);
+    for (const id of ['main', 'work', 'about', 'contact']) {
+      await page.locator(`[data-scene="${id}"]`).click();
+      await expect(page.locator('#' + id)).toHaveClass(/is-active/);
+      await noHorizontalOverflow(page);
+    }
+  });
+}
