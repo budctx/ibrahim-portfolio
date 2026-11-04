@@ -194,3 +194,24 @@ body:has(.concept-approach.is-active) .scene-nav .scene-dot[aria-current=true]:b
  .concept-work-card,.concept-athar-visual,.concept-poster,.concept-card-arrow,.concept-method-card{transition:none!important;transform:none!important}
  #work .work-body{transition:none!important}
 }
+
+/* Visual QA fixes after reviewing actual browser screenshots (AR/EN, 390px/1280px). */
+.concept-work-card .concept-card-number{
+  inset-inline-start:auto;left:21px;right:auto;direction:ltr;
+}
+.concept-work-card .concept-card-arrow{
+  inset-inline-end:auto;right:19px;left:auto;
+}
+@media(max-width:600px){
+ .concept-work-card .concept-card-number{left:14px;right:auto;inset-inline-start:auto}
+ .concept-work-card .concept-card-arrow{right:12px;left:auto;inset-inline-end:auto}
+ .concept-athar-visual{padding:10px 12px}
+ .concept-athar-visual .concept-athar-lock{font-size:clamp(23px,6.3vw,29px)}
+ .concept-athar-visual .concept-athar-foot{font-size:7px;letter-spacing:.7px;white-space:nowrap}
+ .concept-print-stack .concept-poster:first-child{transform:rotate(-12deg) translate(-43%,13%)}
+ .concept-print-stack .concept-poster:nth-child(2){transform:rotate(9deg) translate(43%,-7%)}
+ .concept-gallery-card:hover .concept-poster:first-child{transform:rotate(-12deg) translate(-43%,13%)}
+ .concept-gallery-card:hover .concept-poster:nth-child(2){transform:rotate(9deg) translate(43%,-7%)}
+ .concept-approach .concept-main{grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
+ .concept-approach .concept-method{align-content:start}
+}
