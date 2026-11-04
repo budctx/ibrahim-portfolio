@@ -105,7 +105,7 @@ for (const {path, lang, dir} of locales) {
 
 test('legacy Arabic URL canonicalizes to the current Arabic root', async ({page}) => {
   await page.goto(BASE + '/ar', {waitUntil: 'domcontentloaded'});
-  await expect(page).toHaveURL(BASE + '/');
+  await expect.poll(() => new URL(page.url()).pathname).toBe('/'); // #main is a valid scene anchor
   await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
 });
 
