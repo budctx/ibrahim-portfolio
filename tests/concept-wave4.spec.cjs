@@ -16,6 +16,7 @@ for(const locale of routes){
     await page.locator('.scene-dot[data-scene=work]').click();
     await expect(page.locator('#work')).toHaveClass(/is-active/,{timeout:10000});
     await expect.poll(async()=>page.locator('.concept-poster').evaluateAll(xs=>xs.every(im=>im.complete&&im.naturalWidth>0)),{timeout:12000}).toBe(true);
+    console.log('POSTER_RECT '+locale.lang+': '+JSON.stringify(await page.locator('.concept-poster').evaluateAll(xs=>xs.map(im=>({src:im.src,r:(r=>({x:r.x,y:r.y,w:r.width,h:r.height}))(im.getBoundingClientRect()),pos:getComputedStyle(im).position,transform:getComputedStyle(im).transform,opacity:getComputedStyle(im).opacity,z:getComputedStyle(im).zIndex})))));
     await expect(page.locator('.concept-gallery-card')).toHaveAttribute('href','/concept-v2/gallery.html?lang='+locale.lang);
     await page.screenshot({path:'concept-evidence/'+locale.lang+'-work-desktop.png',fullPage:false,animations:'disabled'});
     await page.locator('.scene-dot[data-scene=approach]').click();
@@ -38,6 +39,7 @@ for(const locale of routes){
     await page.locator('.scene-dot[data-scene=work]').click();
     await expect(page.locator('#work')).toHaveClass(/is-active/,{timeout:10000});
     await expect.poll(async()=>page.locator('.concept-poster').evaluateAll(xs=>xs.every(im=>im.complete&&im.naturalWidth>0)),{timeout:12000}).toBe(true);
+    console.log('POSTER_RECT '+locale.lang+': '+JSON.stringify(await page.locator('.concept-poster').evaluateAll(xs=>xs.map(im=>({src:im.src,r:(r=>({x:r.x,y:r.y,w:r.width,h:r.height}))(im.getBoundingClientRect()),pos:getComputedStyle(im).position,transform:getComputedStyle(im).transform,opacity:getComputedStyle(im).opacity,z:getComputedStyle(im).zIndex})))));
     const metrics=await page.evaluate(()=>({w:document.documentElement.clientWidth,sw:document.documentElement.scrollWidth}));
     expect(metrics.sw).toBeLessThanOrEqual(metrics.w+1);
     await page.screenshot({path:'concept-evidence/'+locale.lang+'-work-mobile.png',fullPage:false,animations:'disabled'});
