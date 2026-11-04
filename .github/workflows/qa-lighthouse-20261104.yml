@@ -1,0 +1,101 @@
+name: Portfolio QA — Lighthouse evidence (temporary)
+on:
+  push:
+    branches: [qa/lighthouse-cms-evidence-20261104]
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check installed Chrome
+        run: |
+          command -v google-chrome || command -v google-chrome-stable
+          google-chrome --version || google-chrome-stable --version
+      - name: Install pinned Lighthouse
+        run: npm install -g lighthouse@13.6.0 --no-fund --no-audit
+      - name: Audit real production across locales and form factors
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p reports
+          failed=0
+          base="https://ibrahim-portfolio-blush.vercel.app"
+          checks=(
+            "ar-mobile|$base/|mobile"
+            "en-mobile|$base/en|mobile"
+            "ar-desktop|$base/|desktop"
+            "en-desktop|$base/en|desktop"
+            "gallery-ar-mobile|$base/ar/work/graphic-design|mobile"
+            "gallery-en-mobile|$base/work/graphic-design|mobile"
+          )
+          for line in "${checks[@]}"; do
+            IFS='|' read -r name url device <<< "$line"
+            echo "AUDIT_START: $name $url ($device)"
+            preset=()
+            if [[ "$device" == "desktop" ]]; then preset=(--preset=desktop); fi
+            lighthouse "$url" \
+              "${preset[@]}" \
+              --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
+              --max-wait-for-load=45000 \
+              --only-categories=performance,accessibility,best-practices,seo \
+              --output=json --output=html \
+              --output-path="reports/$name" \
+              --quiet || { echo "AUDIT_FAILED:$name"; failed=1; }
+          done
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const names = ['ar-mobile','en-mobile','ar-desktop','en-desktop','gallery-ar-mobile','gallery-en-mobile'];
+          let anyMissing = false;
+          for (const name of names) {
+            const filename = 'reports/' + name + '.report.json';
+            if (!fs.existsSync(filename)) {
+              anyMissing = true; console.log('AUDIT_MISSING:' + name); continue;
+            }
+            const r = JSON.parse(fs.readFileSync(filename));
+            const cat = r.categories || {};
+            const score = x => cat[x] ? Math.round(cat[x].score * 100) : null;
+            const metric = id => r.audits?.[id]?.numericValue ?? null;
+            const insights = Object.values(r.audits || {})
+              .filter(x => x.score !== null && x.score < 0.9 && x.details?.type === 'opportunity')
+              .sort((a,b)=>(b.details.overallSavingsMs||0)-(a.details.overallSavingsMs||0))
+              .slice(0,5).map(x => ({id:x.id, title:x.title, savingsMs:x.details.overallSavingsMs || null}));
+            console.log('AUDIT_SUMMARY:' + JSON.stringify({
+              name, requestedUrl:r.requestedUrl, finalUrl:r.finalDisplayedUrl,
+              error:r.runtimeError?.message || null,
+              performance:score('performance'), accessibility:score('accessibility'),
+              bestPractices:score('best-practices'), seo:score('seo'),
+              lcpMs:metric('largest-contentful-paint'),
+              cls:metric('cumulative-layout-shift'),
+              tbtMs:metric('total-blocking-time'),
+              speedIndexMs:metric('speed-index'), 
+              insights
+            }));
+          }
+          if(anyMissing)process.exitCode = 1;
+          NODE
+          exit "$failed"
+      - name: Public Keystatic route smoke — no authenticated changes
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="https://ibrahim-portfolio-blush.vercel.app/keystatic"
+          curl -fLsS -o /tmp/keystatic-page.html "$url"
+          grep -q "Content Studio" /tmp/keystatic-page.html
+          grep -Eq 'noindex|nofollow' /tmp/keystatic-page.html
+          echo "CMS_PUBLIC_SMOKE:Keystatic admin shell accessible and noindex; authenticated save/publish NOT tested"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: portfolio-lighthouse-2026-11-04
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 30
