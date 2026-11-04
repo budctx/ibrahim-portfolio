@@ -50,7 +50,7 @@ for(const locale of routes){
     await page.locator('.glb-item').first().click();
     await expect(page.locator('#lightbox')).toHaveJSProperty('open',true);
     await page.keyboard.press('ArrowRight');
-    await expect(page.locator('#counter')).toContainText('02 / 04');
+    await expect(page.locator('#counter')).toContainText(locale.lang==='ar'?'04 / 04':'02 / 04');
     await page.keyboard.press('Escape');
     await expect(page.locator('#lightbox')).toHaveJSProperty('open',false);
   });
