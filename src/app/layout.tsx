@@ -63,7 +63,7 @@ export const metadata: Metadata = {
 const themeInit = `
 try {
   const saved = localStorage.getItem('portfolio-theme');
-  const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const preferred = 'dark'; // Published homepage and gallery are dark-first.
   document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : preferred;
 } catch (_) {}
 `;
