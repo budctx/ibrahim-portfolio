@@ -27,7 +27,7 @@ for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
   await page.locator('.caseContents a[href="#decisions"]').focus();
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/#decisions$/);
-  await page.locator('.cvHeader .cvLang').click();
+  await page.locator('.portfolioHeader .portfolioLanguage').click();
   await expect(page.locator('main')).toHaveAttribute('lang',locale==='ar'?'en':'ar');
   await expect(page.locator('h1')).toBeVisible();
  });
@@ -38,29 +38,35 @@ test('draft stays absent from public work listing',async({page})=>{
 });
 
 for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
- test(`interior design consistency: ${locale} ${width}`,async({page})=>{
+ test(`published-home design parity: ${locale} ${width}`,async({page})=>{
   await page.setViewportSize({width,height:900});
   const prefix=locale==='ar'?'/ar':'';
-  await page.goto(prefix||'/');
-  const brand=await page.locator('.cvHeader .cvBrand').innerText();
-  const initialNavLinks=await page.locator('.cvHeader .cvNav a').allTextContents();
-  expect(brand).toContain(locale==='ar'?'إبراهيم':'Ibrahim');
+  const home=locale==='ar'?'/':'/en';
+  const displayName=locale==='ar'?'إبراهيم العجمي':'Ibrahim Al-Ajmi';
+  // The live homepage is a static Readex Pro scene via next.config rewrites,
+  // not the unpublished React cvPage homepage.
+  await page.goto(home);
+  await expect(page.locator('.wordmark')).toContainText(displayName);
   for(const route of ['/work','/about','/playground','/projects/bud-discord-events']) {
    const response=await page.goto(prefix+route);
    expect(response.status()).toBe(200);
-   const header=page.locator('.cvHeader');
-   await expect(header).toBeVisible();
    await expect(page.locator('main')).toHaveClass(/cvInteriorPage/);
+   const header=page.locator('.portfolioHeader');
+   await expect(header).toBeVisible();
+   await expect(header.locator('.portfolioWordmark')).toContainText(displayName);
+   await expect(header.locator('.portfolioWordmark small')).toHaveText('PORTFOLIO / 2026');
    await expect(page.locator('.cvInteriorFrame')).toBeVisible();
-   expect(await header.locator('.cvBrand').innerText()).toBe(brand);
-   expect(await header.locator('.cvNav a').allTextContents()).toEqual(expect.arrayContaining(initialNavLinks));
-   const bg=await page.locator('main').evaluate(el=>getComputedStyle(el).backgroundColor);
-   expect(bg).not.toBe('rgba(0, 0, 0, 0)');
+   const computed=await page.locator('main').evaluate(el=>({
+    font:getComputedStyle(el).fontFamily,
+    color:getComputedStyle(el).color,
+   }));
+   expect(computed.font).toContain('Readex Pro');
+   expect(computed.color).toBe('rgb(243, 244, 245)');
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   }
-  await page.locator('.cvHeader .cvNav').getByRole('link',{name:locale==='ar'?'الأعمال':'Work',exact:true}).click();
+  await page.locator('.portfolioHeader .portfolioNavigation').getByRole('link',{name:locale==='ar'?'الأعمال':'Work',exact:true}).click();
   await expect(page).toHaveURL(new RegExp(`${prefix}/work$`));
-  await page.locator('.cvHeader .cvLang').click();
+  await page.locator('.portfolioHeader .portfolioLanguage').click();
   await expect(page.locator('main')).toHaveAttribute('lang',locale==='ar'?'en':'ar');
  });
 }
