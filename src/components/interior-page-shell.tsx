@@ -17,7 +17,7 @@ export function InteriorPageShell({locale, counterpartHref, children, className}
   return (
     <main
       id="main"
-      className={['cvPage', 'cvInteriorPage', ar ? 'cvRtl' : '', className].filter(Boolean).join(' ')}
+      className={['cvPage', 'cvInteriorPage', ar ? 'cvRtl rtl' : '', className].filter(Boolean).join(' ')}
       dir={ar ? 'rtl' : 'ltr'}
       lang={locale}
     >
