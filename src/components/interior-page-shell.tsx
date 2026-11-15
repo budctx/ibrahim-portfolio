@@ -9,15 +9,15 @@ type InteriorPageProps = {
 };
 
 /**
- * The homepage owns the portfolio's design foundation.
- * Interior routes use the same full-width page surface and 1600px content grid.
+ * The actual public homepage (hero-preview) is the visual authority.
+ * Interior routes share its color, type and spacing language while remaining scrollable.
  */
 export function InteriorPageShell({locale, counterpartHref, children, className}: InteriorPageProps) {
   const ar = locale === 'ar';
   return (
     <main
       id="main"
-      className={['cvPage', 'cvInteriorPage', ar ? 'cvRtl rtl' : '', className].filter(Boolean).join(' ')}
+      className={['cvPage', 'cvInteriorPage', ar ? 'cvRtl' : '', className].filter(Boolean).join(' ')}
       dir={ar ? 'rtl' : 'ltr'}
       lang={locale}
     >
