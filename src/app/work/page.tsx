@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import {SiteHeader} from '@/components/site-header';
+import {InteriorPageShell} from '@/components/interior-page-shell';
 import {ProjectCard} from '@/components/project-card';
 import {getProjects} from '@/lib/content';
 
@@ -20,8 +20,8 @@ export default async function WorkPage() {
   const firstHref = flagship.length ? '#flagship-projects' : selected.length ? '#selected-work' : '/#contact';
 
   return (
-    <main id="main" className="shell">
-      <SiteHeader locale="en" counterpartHref="/ar/work" />
+    <InteriorPageShell locale="en" counterpartHref="/ar/work">
+      
       <section className="pageIntro">
         <div className="eyebrow">Work</div>
         <h1>See how the decisions hold up.</h1>
@@ -50,7 +50,7 @@ export default async function WorkPage() {
           <a className="sectionLink" href="/#contact">Discuss a digital product, UI/UX, or web design need</a>
         </section>
       )}
-    </main>
+    </InteriorPageShell>
   );
 }
 
