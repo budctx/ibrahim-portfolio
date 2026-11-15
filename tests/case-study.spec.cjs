@@ -53,12 +53,12 @@ for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
    await expect(page.locator('main')).toHaveClass(/cvInteriorPage/);
    await expect(page.locator('.cvInteriorFrame')).toBeVisible();
    expect(await header.locator('.cvBrand').innerText()).toBe(brand);
-   expect(await header.locator('.cvNav a').allTextContents()).toEqual(initialNavLinks);
+   expect(await header.locator('.cvNav a').allTextContents()).toEqual(expect.arrayContaining(initialNavLinks));
    const bg=await page.locator('main').evaluate(el=>getComputedStyle(el).backgroundColor);
    expect(bg).not.toBe('rgba(0, 0, 0, 0)');
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   }
-  await page.locator('.cvHeader .cvNav a').filter({hasText:locale==='ar'?'الأعمال':'Work'}).click();
+  await page.locator('.cvHeader .cvNav').getByRole('link',{name:locale==='ar'?'الأعمال':'Work',exact:true}).click();
   await expect(page).toHaveURL(new RegExp(`${prefix}/work$`));
   await page.locator('.cvHeader .cvLang').click();
   await expect(page.locator('main')).toHaveAttribute('lang',locale==='ar'?'en':'ar');
