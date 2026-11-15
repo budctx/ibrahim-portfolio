@@ -40,6 +40,9 @@ export type ProjectImage = {
   url: string;
   altEn?: string;
   altAr?: string;
+  section?: string;
+  captionEn?: string;
+  captionAr?: string;
 };
 
 export type ProjectSummary = {
@@ -103,7 +106,7 @@ function mapProject(slug: string, entry: NonNullable<ProjectEntry>): ProjectSumm
       ? {url: entry.cover, altEn: entry.coverAltEn, altAr: entry.coverAltAr}
       : undefined,
     gallery: entry.gallery.flatMap((item) =>
-      item.image ? [{url: item.image, altEn: item.altEn, altAr: item.altAr}] : [],
+      item.image ? [{url: item.image, altEn: item.altEn, altAr: item.altAr, section: item.section, captionEn: item.captionEn, captionAr: item.captionAr}] : [],
     ),
   };
 }
@@ -159,7 +162,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectSummary | n
   const entry = await reader.collections.projects.read(slug);
 
   if (!entry) return null;
-  if (!(await isDraftRequest()) && !isPublicReady(entry)) return null;
+  if (!(await isDraftRequest()) && process.env.VERCEL_ENV !== 'preview' && process.env.NODE_ENV !== 'development' && !isPublicReady(entry)) return null;
 
   return mapProject(slug, entry);
 }

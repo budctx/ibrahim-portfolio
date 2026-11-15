@@ -109,6 +109,9 @@ export default config({
             image: imageField('Image'),
             altEn: text('Alt text — English'),
             altAr: text('Alt text — Arabic'),
+            section: fields.select({label: 'Narrative placement', options: ['gallery','problem','context','process','decisions','outcome'].map(value => ({label: value, value})), defaultValue: 'gallery'}),
+            captionEn: text('Caption — English', true),
+            captionAr: text('Caption — Arabic', true),
           }),
           {
             label: 'Gallery',
