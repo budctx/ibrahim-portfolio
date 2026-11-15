@@ -1,3 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&display=swap');
+
+/* The live / and /en routes serve the approved dark, Readex Pro scene.
+   Interior articles adopt its typography, atmospheric blue/black palette,
+   wordmark and circular controls. This scopes changes to Next.js interior pages. */
+.cvPage.cvInteriorPage {
+  --bg: #111214;
+  --fg: #f3f4f5;
+  --muted: #b8c3d2;
+  --line: #ffffff25;
+  --surface: #151a22;
+  --surface-strong: #202a39;
+  --focus: #dbe7ff;
+  --cv-accent: #c0cee1;
+  --cv-hairline: #ffffff25;
+  --cv-ink-soft: #c3cbd7;
+  --cv-focus: #dbe7ff;
+  color: var(--fg);
+  color-scheme: dark;
+  background: radial-gradient(ellipse at 28% 13%, #202a39 0%, #191d24 38%, #111214 76%);
+  font-family: 'Readex Pro', var(--font-plex-arabic), var(--font-plex-sans), sans-serif;
+}
+
+html[data-theme='dark'] .cvPage.cvInteriorPage {
+  --cv-accent: #c0cee1;
+  --cv-hairline: #ffffff25;
+}
+
+html[data-theme='light'] .cvPage.cvInteriorPage {
+  --bg: #f3f4f5;
+  --fg: #191c22;
+  --muted: #5b6878;
+  --line: #c4cede;
+  --surface: #e5e9ef;
+  --surface-strong: #dbe3ef;
+  --focus: #29435b;
+  --cv-accent: #29435b;
+  --cv-hairline: #c4cede;
+  --cv-ink-soft: #445166;
+  --cv-focus: #29435b;
+  color-scheme: light;
+  background: radial-gradient(ellipse at 25% 9%, #dce6f0 0%, #eef1f5 40%, #f3f4f5 80%);
+}
+
+.cvInteriorPage .cvInteriorFrame {
+  width: min(1320px, 86%);
+}
+
+.cvInteriorPage .portfolioHeader {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  min-height: 100px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(16px, 2.4vw, 34px);
+  border-bottom: 1px solid var(--cv-hairline);
+  background: color-mix(in srgb, var(--bg) 91%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.cvInteriorPage .portfolioWordmark {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 12px;
+  row-gap: 1px;
+  min-height: 44px;
+  align-content: center;
+  white-space: nowrap;
+}
+
+.cvInteriorPage .portfolioWordmark span {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -.5px;
+}
+
+.cvInteriorPage .portfolioWordmark small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.cvInteriorPage .portfolioNavigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: clamp(12px, 1.6vw, 26px);
+  row-gap: 8px;
+  min-width: 0;
+}
+
+.cvInteriorPage .portfolioNavigation a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--cv-ink-soft);
+  font-size: clamp(.75rem, 1vw, .88rem);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.cvInteriorPage .portfolioNavigation a:hover,
+.cvInteriorPage .portfolioNavigation a:focus-visible {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: .3em;
+}
+
+.cvInteriorPage .portfolioControls {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.cvInteriorPage .portfolioLanguage,
+.cvInteriorPage .portfolioControls .themeToggle {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--cv-hairline);
+  border-radius: 50%;
+  color: var(--fg);
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: .8rem;
+  font-weight: 400;
+  transition: background .2s, border-color .2s;
+}
+
+.cvInteriorPage .portfolioControls .themeToggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.cvInteriorPage .portfolioLanguage:hover,
+.cvInteriorPage .portfolioControls .themeToggle:hover {
+  background: color-mix(in srgb, var(--fg) 9%, transparent);
+  border-color: color-mix(in srgb, var(--fg) 42%, transparent);
+}
+
+.cvInteriorPage .portfolioLanguage:focus-visible,
+.cvInteriorPage .portfolioControls .themeToggle:focus-visible {
+  outline: 2px solid var(--cv-focus);
+  outline-offset: 4px;
+}
+
+/* The public scenes and graphic gallery use Readex Pro, not Plex Mono captions. */
+.cvInteriorPage .pageIntro > .eyebrow,
+.cvInteriorPage .aboutSplit .eyebrow,
+.cvInteriorPage .caseHeading > .eyebrow,
+.cvInteriorPage .caseTools,
+.cvInteriorPage .caseContents span,
+.cvInteriorPage .caseChapterHeading .eyebrow {
+  font-family: inherit;
+  letter-spacing: 0;
+}
+
+.cvInteriorPage .projectCardMedia,
+.cvInteriorPage .caseEvidence a {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.cvInteriorPage .projectCard {
+  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+}
+
+@media (hover:hover) and (pointer:fine) {
+  .cvInteriorPage .projectCard:hover {
+    transform: translateY(-5px);
+  }
+}
+
+@media (max-width: 980px) {
+  .cvInteriorPage .portfolioHeader {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding-block: 16px 8px;
+    row-gap: 3px;
+  }
+
+  .cvInteriorPage .portfolioNavigation {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    gap: 22px;
+  }
+
+  .cvInteriorPage .portfolioControls {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .cvInteriorPage .portfolioWordmark {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 760px) {
+  .cvInteriorPage .portfolioHeader {
+    min-height: 108px;
+  }
+
+  .cvInteriorPage .portfolioWordmark {
+    white-space: normal;
+    column-gap: 8px;
+  }
+
+  .cvInteriorPage .portfolioWordmark span {
+    font-size: 16px;
+  }
+
+  .cvInteriorPage .portfolioWordmark small {
+    font-size: 10px;
+  }
+
+  .cvInteriorPage .portfolioNavigation a {
+    font-size: 12px;
+  }
+
+  .cvInteriorPage .cvInteriorFrame {
+    width: 86%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cvInteriorPage .portfolioLanguage,
+  .cvInteriorPage .portfolioControls .themeToggle,
+  .cvInteriorPage .projectCard {
+    transition: none;
+  }
+
+  .cvInteriorPage .projectCard:hover {
+    transform: none;
+  }
+}
 /* Interior portfolio routes — derived from the approved homepage editorial system.
    All additions are scoped: the homepage and Graphic Design Gallery remain unchanged. */
 
