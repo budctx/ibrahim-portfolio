@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import {SiteHeader} from '@/components/site-header';
+import {InteriorPageShell} from '@/components/interior-page-shell';
 import {ProjectCard} from '@/components/project-card';
 import {getProjects} from '@/lib/content';
 import {ARABIC_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
@@ -22,8 +22,8 @@ export default async function ArabicWorkPage() {
   const firstHref = flagship.length ? '#flagship-projects' : selected.length ? '#selected-work' : '/ar#contact';
 
   return (
-    <main id="main" className="shell rtl" dir="rtl" lang="ar">
-      <SiteHeader locale="ar" counterpartHref="/work" />
+    <InteriorPageShell locale="ar" counterpartHref="/work">
+      
       <section className="pageIntro">
         <div className="eyebrow">الأعمال</div>
         <h1>شاهد كيف تصمد القرارات داخل العمل.</h1>
@@ -52,7 +52,7 @@ export default async function ArabicWorkPage() {
           <a className="sectionLink" href="/ar#contact">ناقش احتياجًا في تصميم المنتجات أو UI/UX أو الويب</a>
         </section>
       )}
-    </main>
+    </InteriorPageShell>
   );
 }
 
