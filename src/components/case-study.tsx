@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import {SiteHeader} from '@/components/site-header';
+import {InteriorPageShell} from '@/components/interior-page-shell';
 import type {ProjectImage, ProjectSummary} from '@/lib/content';
 
 export function CaseStudy({project: p, locale}: {project: ProjectSummary; locale: 'en' | 'ar'}) {
@@ -20,8 +20,7 @@ export function CaseStudy({project: p, locale}: {project: ProjectSummary; locale
     </a>
     {(ar ? im.captionAr : im.captionEn) && <figcaption>{ar ? im.captionAr : im.captionEn}</figcaption>}
   </figure>);
-  return <main id="main" className="shell caseStudy" dir={ar ? 'rtl' : 'ltr'} lang={locale}>
-    <SiteHeader locale={locale} counterpartHref={ar ? `/projects/${p.slug}` : `/ar/projects/${p.slug}`} />
+  return <InteriorPageShell locale={locale} counterpartHref={ar ? `/projects/${p.slug}` : `/ar/projects/${p.slug}`} className="caseStudy">
     {(process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV === 'development') && <aside className="caseReview">{ar ? 'معاينة للمراجعة — لم تُعتمد للنشر أو حقوق الصور بعد.' : 'Review preview — publication and image rights are pending approval.'}</aside>}
     <header className="caseHeading">
       <Link href={work} className="sectionLink">{ar ? 'جميع الأعمال' : 'All work'}</Link>
@@ -39,5 +38,5 @@ export function CaseStudy({project: p, locale}: {project: ProjectSummary; locale
     </section>)}
     {(p.gallery || []).some(im => !im.section || im.section === 'gallery') && <section aria-label={ar ? 'صور إضافية' : 'Additional images'}>{media((p.gallery || []).filter(im => !im.section || im.section === 'gallery'))}</section>}
     <nav className="projectFooterNav" aria-label={ar ? 'تنقل المشروع' : 'Project navigation'}><Link href={work}>{ar ? 'العودة للأعمال' : 'Back to work'}</Link>{p.projectUrl && <a href={p.projectUrl} target="_blank" rel="noreferrer">{ar ? 'جرّب بُعد' : 'Explore the live product'}</a>}</nav>
-  </main>;
+  </InteriorPageShell>;
 }
