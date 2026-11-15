@@ -9,12 +9,10 @@ type HomeHeaderProps = {
   locale?: 'en' | 'ar';
   counterpartHref: string;
   hasWork?: boolean;
-  mode?: 'home' | 'interior';
 };
 
-export function HomeHeader({locale = 'en', counterpartHref, hasWork = false, mode = 'home'}: HomeHeaderProps) {
+export function HomeHeader({locale = 'en', counterpartHref, hasWork = false}: HomeHeaderProps) {
   const ar = locale === 'ar';
-  const homePath = ar ? '/ar' : '/';
   const [activeSection, setActiveSection] = useState('');
 
   const labels = ar
@@ -45,14 +43,13 @@ export function HomeHeader({locale = 'en', counterpartHref, hasWork = false, mod
       {id: 'journey', label: labels.journey},
       {id: 'capabilities', label: labels.capabilities},
       {id: 'credentials', label: labels.credentials},
-      ...(hasWork || mode === 'interior' ? [{id: 'work', label: labels.work}] : []),
+      ...(hasWork ? [{id: 'work', label: labels.work}] : []),
       {id: 'contact', label: labels.contact},
     ],
-    [hasWork, mode, labels.about, labels.capabilities, labels.contact, labels.credentials, labels.journey, labels.work],
+    [hasWork, labels.about, labels.capabilities, labels.contact, labels.credentials, labels.journey, labels.work],
   );
 
   useEffect(() => {
-    if (mode !== 'home') return;
     const sections = navItems
       .map((item) => document.getElementById(item.id))
       .filter((section): section is HTMLElement => Boolean(section));
@@ -75,7 +72,7 @@ export function HomeHeader({locale = 'en', counterpartHref, hasWork = false, mod
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, [navItems, mode]);
+  }, [navItems]);
 
   return (
     <header className="cvHeader">
@@ -88,9 +85,9 @@ export function HomeHeader({locale = 'en', counterpartHref, hasWork = false, mod
         {navItems.map((item) => (
           <Link
             key={item.id}
-            href={mode === 'interior' ? item.id === 'work' ? `${ar ? '/ar' : ''}/work` : `${homePath === '/' ? '/' : homePath}#${item.id}` : '#' + item.id}
-            aria-current={mode === 'home' && activeSection === item.id ? 'location' : undefined}
-            onClick={mode === 'home' ? () => setActiveSection(item.id) : undefined}
+            href={'#' + item.id}
+            aria-current={activeSection === item.id ? 'location' : undefined}
+            onClick={() => setActiveSection(item.id)}
           >
             {item.label}
           </Link>
