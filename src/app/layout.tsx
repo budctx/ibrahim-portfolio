@@ -6,6 +6,7 @@ import {ENGLISH_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 import './globals.css';
 import './portfolio.css';
 import './portfolio-polish.css';
+import './portfolio-interior.css';
 
 const plexSans = IBM_Plex_Sans({
   subsets: ['latin'],
