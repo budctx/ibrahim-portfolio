@@ -2,6 +2,8 @@ import type {NextConfig} from 'next';
 const nextConfig: NextConfig = {
  reactStrictMode: true,
  outputFileTracingIncludes: {
+  '/projects/*': ['./content/projects/**/*.yaml'],
+  '/ar/projects/*': ['./content/projects/**/*.yaml'],
   '/work/*': ['./content/graphic-designs/**/*.yaml'],
   '/ar/work/*': ['./content/graphic-designs/**/*.yaml'],
  },
