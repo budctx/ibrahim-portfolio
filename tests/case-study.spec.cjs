@@ -27,7 +27,7 @@ for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
   await page.locator('.caseContents a[href="#decisions"]').focus();
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/#decisions$/);
-  await page.getByRole('link',{name:locale==='ar'?'EN':'AR',exact:true}).click();
+  await page.locator('.cvHeader .cvLang').click();
   await expect(page.locator('main')).toHaveAttribute('lang',locale==='ar'?'en':'ar');
   await expect(page.locator('h1')).toBeVisible();
  });
@@ -36,3 +36,31 @@ test('draft stays absent from public work listing',async({page})=>{
  await page.goto('/work');
  await expect(page.locator('a[href="/projects/bud-discord-events"]')).toHaveCount(0);
 });
+
+for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
+ test(`interior design consistency: ${locale} ${width}`,async({page})=>{
+  await page.setViewportSize({width,height:900});
+  const prefix=locale==='ar'?'/ar':'';
+  await page.goto(prefix||'/');
+  const brand=await page.locator('.cvHeader .cvBrand').innerText();
+  const initialNavLinks=await page.locator('.cvHeader .cvNav a').allTextContents();
+  expect(brand).toContain(locale==='ar'?'إبراهيم':'Ibrahim');
+  for(const route of ['/work','/about','/playground','/projects/bud-discord-events']) {
+   const response=await page.goto(prefix+route);
+   expect(response.status()).toBe(200);
+   const header=page.locator('.cvHeader');
+   await expect(header).toBeVisible();
+   await expect(page.locator('main')).toHaveClass(/cvInteriorPage/);
+   await expect(page.locator('.cvInteriorFrame')).toBeVisible();
+   expect(await header.locator('.cvBrand').innerText()).toBe(brand);
+   expect(await header.locator('.cvNav a').allTextContents()).toEqual(initialNavLinks);
+   const bg=await page.locator('main').evaluate(el=>getComputedStyle(el).backgroundColor);
+   expect(bg).not.toBe('rgba(0, 0, 0, 0)');
+   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  }
+  await page.locator('.cvHeader .cvNav a').filter({hasText:locale==='ar'?'الأعمال':'Work'}).click();
+  await expect(page).toHaveURL(new RegExp(`${prefix}/work$`));
+  await page.locator('.cvHeader .cvLang').click();
+  await expect(page.locator('main')).toHaveAttribute('lang',locale==='ar'?'en':'ar');
+ });
+}
