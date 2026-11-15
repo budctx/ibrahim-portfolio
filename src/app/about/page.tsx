@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 import Link from 'next/link';
-import {SiteHeader} from '@/components/site-header';
+import {InteriorPageShell} from '@/components/interior-page-shell';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -32,8 +32,8 @@ const capabilities = [
 
 export default function AboutPage() {
   return (
-    <main id="main" className="shell">
-      <SiteHeader locale="en" counterpartHref="/ar/about" />
+    <InteriorPageShell locale="en" counterpartHref="/ar/about">
+      
 
       <section className="pageIntro">
         <div className="eyebrow">About</div>
@@ -133,6 +133,6 @@ export default function AboutPage() {
           <Link href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">LinkedIn</Link>
         </div>
       </section>
-    </main>
+    </InteriorPageShell>
   );
 }
