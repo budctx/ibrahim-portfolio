@@ -1,0 +1,91 @@
+@import url('/portfolio/work.css');
+
+/* Shared homepage Work card visuals, native dialog, and arrow controls.
+   Only the footer layout is scoped to the related-work section. */
+.relatedWork {
+  width: 100%;
+  padding-block: clamp(72px, 8vw, 118px) clamp(22px, 3vw, 40px);
+  border-top: 1px solid var(--cv-hairline, #ffffff25);
+  color: #f3f4f5;
+}
+.relatedWorkHeader { margin-bottom: clamp(25px, 3.5vw, 48px); }
+.relatedWorkIndex { color: #b8c3d2; font-size: 12px; letter-spacing: .04em; }
+.relatedWorkHeader h2 { color: var(--fg, #f3f4f5); font-weight: 500; font-size: clamp(2.3rem, 4vw, 4.2rem); line-height: 1.3; margin: 12px 0; }
+.relatedWorkHeader p { color: var(--cv-ink-soft, #c3cbd7); font-size: clamp(14px, 1.2vw, 17px); margin: 0; }
+.relatedWorkLoading { color: var(--cv-ink-soft, #c3cbd7); margin: 0 0 18px; font-size: 13px; }
+.relatedWorkLoading[hidden] { display: none; }
+.relatedWork .project-track {
+  display: flex;
+  gap: clamp(16px, 2.5vw, 36px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 20px 12%;
+  direction: ltr;
+  overscroll-behavior-x: contain;
+}
+.relatedWork .project-track::-webkit-scrollbar { display: none; }
+.relatedWork .project-item { flex: 0 0 76vw; min-width: 0; scroll-snap-align: center; }
+.relatedWork .project-card { display: block; height: 100%; }
+.relatedWork .project-meta h3 { font-size: clamp(18px, 1.8vw, 24px); }
+.relatedWork .project-meta p { font-size: 12px; line-height: 1.6; }
+.relatedWork .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 24px; direction: ltr; padding-top: 20px; }
+.relatedWork .carousel-arrow { width: 44px; height: 44px; min-width: 44px; display: grid; place-items: center; border: 1px solid #ffffff2a; background: transparent; color: #f3f4f5; border-radius: 50%; cursor: pointer; }
+.relatedWork .carousel-arrow:disabled { opacity: .25; cursor: default; }
+.relatedWork .carousel-arrow:hover:not(:disabled) { background: #ffffff10; }
+.relatedWork .carousel-count { color: #b8c3d2; min-width: 120px; text-align: center; font-size: 12px; }
+.relatedWork[data-single='true'] .carousel-controls { display: none; }
+
+/* Original homepage art: imported rendering from work-projects.js uses these classes. */
+.relatedWork .art-athar { background: radial-gradient(ellipse at 25% 30%,#29435b,#152031 65%,#10151e); color: #eef3f6; }
+.relatedWork .athar-cover { position: absolute; inset: 4% 10%; display: flex; align-items: center; justify-content: space-around; gap: 20px; }
+.relatedWork .athar-word { font-size: clamp(34px, 6vw, 76px); font-weight: 600; text-align: center; }
+.relatedWork .athar-word > span { display: block; font: 10px Arial, sans-serif; letter-spacing: 5px; margin-top: 12px; }
+.relatedWork .athar-real-card { display: block; height: 100%; max-height: 100%; width: auto; max-width: 56%; min-height: 0; object-fit: contain; border-radius: 12px; box-shadow: 0 15px 35px #0004; }
+.relatedWork .art-collection { background: radial-gradient(ellipse at 25% 30%,#29435b,#152031 65%,#10151e); color: #edf0f4; }
+.relatedWork .collection-cover { position: relative; display: grid; align-content: center; width: 72%; height: 72%; padding: 8%; font-size: clamp(42px, 7vw, 88px); font-weight: 600; line-height: .95; letter-spacing: -3px; transform: rotate(-4deg); background: #24334a; border: 1px solid #c4cede66; border-radius: 12px; box-shadow: 12px 18px 40px #0004; isolation: isolate; }
+.relatedWork .collection-cover::before, .relatedWork .collection-cover::after { content: ''; position: absolute; inset: 0; border: 1px solid #c4cede55; border-radius: 12px; z-index: -1; pointer-events: none; }
+.relatedWork .collection-cover::before { background: #657489; transform: translate(12px,-6px) rotate(7deg); }
+.relatedWork .collection-cover::after { background: #24334a; transform: translate(-10px,4px) rotate(-5deg); }
+.relatedWork .collection-cover span:last-child { margin-left: 50px; }
+.relatedWork .art-product { background: #182234; }
+
+/* Keep the original homepage popup, including native focus management. */
+.relatedWork .project-modal { max-width: min(860px, calc(100vw - 32px)); }
+.relatedWork .modal-art .project-art { height: clamp(180px, 34dvh, 320px); }
+.relatedWork .modal-art .project-art img { max-height: 100%; }
+.relatedWork .modal-copy { color: #f3f4f5; }
+.relatedWork .modal-link { display: inline-block; min-height: 44px; padding-block: 10px; }
+.relatedWork .modal-link[hidden] { display: none; }
+
+@media (min-width: 900px) {
+  .relatedWork .project-track {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 28px;
+    width: 100%;
+    padding: 20px 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .relatedWork .project-item { flex-basis: auto; }
+  .relatedWork .project-art { height: clamp(190px, 25vw, 390px); }
+  .relatedWork .carousel-controls { display: none; }
+  .relatedWork[data-single='true'] .project-track { grid-template-columns: minmax(0,1fr); max-width: 700px; }
+}
+@media (max-width: 899px) {
+  .relatedWork .project-track { padding-inline: 12%; }
+  .relatedWork .project-item { flex-basis: 76vw; }
+  .relatedWork .project-art { height: clamp(160px, 36dvh, 340px); }
+}
+@media (max-width: 650px) {
+  .relatedWork .project-item { flex-basis: 76vw; }
+  .relatedWork .collection-cover { font-size: clamp(32px, 7vw, 50px); }
+  .relatedWork .athar-word { font-size: clamp(28px, 7vw, 45px); }
+  .relatedWork .modal-copy { padding: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .relatedWork .project-card { transition: none; }
+  .relatedWork .project-card:hover { transform: none; }
+}
