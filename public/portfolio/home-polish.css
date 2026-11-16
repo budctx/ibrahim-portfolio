@@ -107,3 +107,23 @@ html[dir=rtl] .about-role{text-align:right}
 @media(prefers-reduced-motion:reduce){.cube-skills span,.cube-skills li:nth-child(n) span{animation:none}}
 
 .skill-tool:before{content:attr(data-symbol)}
+
+/* Reuse the approved carousel when the discovery feed includes 3+ real projects.
+   Preserve the original two-card desktop grid unchanged. */
+@media (min-width:900px) {
+  .work.has-overflowing-projects .project-track {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 28px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    width: min(1120px, 82%);
+    padding-block: 20px;
+  }
+  .work.has-overflowing-projects .project-item {
+    flex: 0 0 calc((100% - 28px) / 2);
+    scroll-snap-align: center;
+  }
+  .work.has-overflowing-projects .carousel-controls {display:flex;}
+}
