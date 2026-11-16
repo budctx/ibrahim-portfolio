@@ -70,3 +70,53 @@ for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
   await expect(page.locator('main')).toHaveAttribute('lang',locale==='ar'?'en':'ar');
  });
 }
+
+test('shared homepage carousel opens BU\'D preview through the real Work modal', async({page}) => {
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.goto('/#work');
+  await page.locator('[data-scene="work"]').click();
+  await expect(page.locator('#work.scene')).toHaveClass(/is-active/);
+  const card=page.locator('#project-track .project-card').filter({hasText:'بُعد'});
+  await expect(card).toHaveCount(1);
+  await card.click();
+  const dialog=page.locator('#project-modal');
+  await expect(dialog).toBeVisible();
+  const cta=dialog.locator('#modal-link');
+  await expect(cta).toHaveAttribute('href','/ar/projects/bud-discord-events');
+  await expect(cta).toHaveText('عرض المشروع');
+  await cta.click();
+  await expect(page).toHaveURL(/\/ar\/projects\/bud-discord-events$/);
+  await expect(page.locator('.relatedWork[data-ready="true"]')).toBeVisible();
+  await expect(page.locator('.relatedWork .project-card')).toHaveCount(2);
+  await page.getByRole('link',{name:'العودة إلى الأعمال',exact:true}).click();
+  await expect(page).toHaveURL(/\/#work$/);
+});
+
+for(const locale of ['en','ar']) {
+ test(`shared related Work carousel has original cards, modal and return navigation: ${locale}`,async({page})=>{
+  const prefix=locale==='ar'?'/ar':'';
+  await page.setViewportSize({width:390,height:844});
+  await page.goto(`${prefix}/projects/bud-discord-events`);
+  const section=page.locator('[data-related-work]');
+  await expect(section).toHaveAttribute('data-ready','true');
+  await expect(section.locator('.project-card')).toHaveCount(2);
+  const cards=section.locator('.project-card');
+  await cards.first().click();
+  const modal=section.locator('dialog.project-modal');
+  await expect(modal).toBeVisible();
+  await expect(modal.locator('#modal-title')).toContainText(locale==='ar'?'أثر':'ATHAR');
+  await expect(modal.locator('#modal-link')).toHaveAttribute('href','https://atharca.vercel.app/');
+  await modal.locator('#modal-close').click();
+  await expect(modal).not.toBeVisible();
+  await expect(cards.first()).toBeFocused();
+  await cards.nth(1).click();
+  await expect(modal).toBeVisible();
+  await expect(modal.locator('#modal-link')).toHaveAttribute('href',locale==='ar'?'/ar/work/graphic-design':'/work/graphic-design');
+  await modal.locator('#modal-close').click();
+  await expect(section.locator('.carousel-count')).not.toBeEmpty();
+  const back=page.getByRole('link',{name:locale==='ar'?'العودة إلى الأعمال':'Back to work',exact:true});
+  await expect(back).toHaveAttribute('href',locale==='ar'?'/#work':'/en#work');
+  await expect(page.getByRole('link',{name:locale==='ar'?'العودة للرئيسية':'Back to homepage',exact:true})).toHaveAttribute('href',locale==='ar'?'/':'/en');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ });
+}
