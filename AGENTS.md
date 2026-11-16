@@ -7,3 +7,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Portfolio editorial work
+
+Before adding or editing visitor-facing project content, read `docs/editorial-style-guide.md`. It governs bilingual voice, terminology, evidence claims and Keystatic presentation choices. Keep the published homepage's visual and interaction system.

@@ -45,7 +45,16 @@ export type ProjectImage = {
   captionAr?: string;
 };
 
+export type ChapterPresentation = {
+  section: string;
+  layout: 'editorial' | 'statement' | 'steps' | 'decisions' | 'split';
+  leadEn?: string;
+  leadAr?: string;
+  items: {titleEn?: string; titleAr?: string; bodyEn?: string; bodyAr?: string}[];
+};
+
 export type ProjectSummary = {
+  presentations?: ChapterPresentation[];
   projectKey: string;
   titleEn: string;
   titleAr: string;
@@ -82,6 +91,7 @@ type ProjectEntry = Awaited<ReturnType<typeof localReader.collections.projects.r
 
 function mapProject(slug: string, entry: NonNullable<ProjectEntry>): ProjectSummary {
   return {
+    presentations: entry.presentations.map(item => ({...item, layout: item.layout as ChapterPresentation['layout'], items: [...item.items]})),
     projectKey: entry.projectKey,
     titleEn: entry.titleEn,
     titleAr: entry.titleAr,

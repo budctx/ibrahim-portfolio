@@ -104,7 +104,6 @@ export function ProjectCard({project, locale = 'en'}: ProjectCardProps) {
         <h3 data-signal="title">{title}</h3>
         <div className="meta" data-signal="meta">
           <span>{role ?? ''}</span>
-          <span>{project.year ?? ''}</span>
         </div>
       </div>
     </Link>

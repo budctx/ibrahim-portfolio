@@ -55,7 +55,7 @@ for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
    const header=page.locator('.portfolioHeader');
    await expect(header).toBeVisible();
    await expect(header.locator('.portfolioWordmark')).toContainText(displayName);
-   await expect(header.locator('.portfolioWordmark small')).toHaveText('PORTFOLIO / 2026');
+   await expect(header.locator('.portfolioWordmark small')).toHaveText('PORTFOLIO');
    await expect(page.locator('.cvInteriorFrame')).toBeVisible();
    const computed=await page.locator('main').evaluate(el=>({
     font:getComputedStyle(el).fontFamily,
@@ -88,7 +88,7 @@ test('shared homepage carousel opens BU\'D preview through the real Work modal',
   await expect(page).toHaveURL(/\/ar\/projects\/bud-discord-events$/);
   await expect(page.locator('.relatedWork[data-ready="true"]')).toBeVisible();
   await expect(page.locator('.relatedWork .project-card')).toHaveCount(2);
-  await page.getByRole('link',{name:'العودة إلى الأعمال',exact:true}).click();
+  await page.locator('.projectFooterNav').getByRole('link',{name:'العودة للأعمال',exact:true}).click();
   await expect(page).toHaveURL(/\/#work$/);
 });
 
@@ -114,9 +114,10 @@ for(const locale of ['en','ar']) {
   await expect(modal.locator('#modal-link')).toHaveAttribute('href',locale==='ar'?'/ar/work/graphic-design':'/work/graphic-design');
   await modal.locator('#modal-close').click();
   await expect(section.locator('.carousel-count')).not.toBeEmpty();
-  const back=page.locator('.projectFooterNav').getByRole('link',{name:locale==='ar'?'العودة إلى الأعمال':'Back to work',exact:true});
+  const back=page.locator('.projectFooterNav').getByRole('link',{name:locale==='ar'?'العودة للأعمال':'Back to work',exact:true});
   await expect(back).toHaveAttribute('href',locale==='ar'?'/#work':'/en#work');
-  await expect(page.locator('.projectFooterNav').getByRole('link',{name:locale==='ar'?'العودة للرئيسية':'Back to homepage',exact:true})).toHaveAttribute('href',locale==='ar'?'/':'/en');
+  await expect(page.locator('.projectFooterNav a')).toHaveCount(2);
+  await expect(page.locator('.portfolioNavigation a')).toHaveCount(1);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  });
 }
@@ -156,6 +157,28 @@ for(const locale of ['ar','en'])for(const width of [320,360,430,540,768,850,900,
       expect(box.width,key).toBeGreaterThan(0);
     }
     const footer=page.locator('.projectFooterNav');
-    await expect(footer.getByRole('link',{name:locale==='ar'?'العودة إلى الأعمال':'Back to work'})).toBeVisible();
+    await expect(footer.getByRole('link',{name:locale==='ar'?'العودة للأعمال':'Back to work'})).toBeVisible();
   });
+}
+
+for (const locale of ['ar','en']) for (const width of [320,768,1920]) {
+ test(`editorial contracts ${locale} ${width}`, async({page})=>{
+  await page.setViewportSize({width,height:900});
+  await page.goto(`${locale==='ar'?'/ar':''}/projects/bud-discord-events`);
+  await expect(page.locator('.portfolioNavigation a')).toHaveCount(1);
+  await expect(page.locator('.caseLead')).toHaveCount(1);
+  await expect(page.locator('#process .caseItems li')).toHaveCount(4);
+  await expect(page.locator('#decisions .caseItems li')).toHaveCount(3);
+  await expect(page.locator('main')).not.toContainText(/2026|November|نوفمبر|Captured|PORTFOLIO \/ /);
+  const actions=page.locator('.projectFooterNav a');
+  await expect(actions).toHaveCount(2);
+  await expect(actions.nth(1)).toHaveAttribute('target','_blank');
+  const boxes=await actions.evaluateAll(items=>items.map(el=>{const r=el.getBoundingClientRect();return {y:r.y,height:r.height,left:r.left,right:r.right,scroll:el.scrollWidth,client:el.clientWidth};}));
+  expect(Math.abs(boxes[0].y-boxes[1].y)).toBeLessThan(2);
+  expect(Math.abs(boxes[0].height-boxes[1].height)).toBeLessThan(2);
+  expect(boxes.every(b=>b.left>=0&&b.right<=width&&b.scroll<=b.client+1)).toBe(true);
+  await actions.first().focus();await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(new RegExp(`${locale==='ar'?'/':'/en'}#work$`));
+  await expect(page.locator('#work')).toHaveClass(/is-active/);
+ });
 }
