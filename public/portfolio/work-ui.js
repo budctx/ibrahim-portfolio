@@ -49,8 +49,22 @@ export function bindProjectModal(dialog, {getLang, renderArt, onClose = () => {}
       name.textContent = p.categorySlug === 'discord' && !p.selfInitiated ? (lang === 'ar' ? 'سيرفر ' + p.entity[lang] : p.entity[lang] + ' server') : p.entity[lang];
       entity.append(name);
     }
-    const link = dialog.querySelector('#modal-link'); link.hidden = !p.url;
-    if (p.url) link.href = p.url; else link.removeAttribute('href');
+    const link = dialog.querySelector('#modal-link');
+    const destination = typeof p.url === 'string' ? p.url : p.url?.[lang];
+    link.hidden = !destination;
+    if (destination) {
+      link.href = destination;
+      const internal = destination.startsWith('/') && !destination.startsWith('//');
+      link.target = internal ? '_self' : '_blank';
+      link.rel = internal ? '' : 'noopener noreferrer';
+      link.textContent = p.action === 'case-study'
+        ? (lang === 'ar' ? 'عرض المشروع' : 'View case study')
+        : p.action === 'collection'
+          ? (lang === 'ar' ? 'عرض المعرض' : 'Explore collection')
+          : (lang === 'ar' ? 'زيارة المشروع' : 'Visit live project');
+    } else {
+      link.removeAttribute('href');
+    }
     dialog.lang = lang; dialog.dir = lang === 'ar' ? 'rtl' : 'ltr';
     closeButton?.setAttribute('aria-label', lang === 'ar' ? 'إغلاق' : 'Close');
   }
@@ -65,6 +79,10 @@ export function bindProjectModal(dialog, {getLang, renderArt, onClose = () => {}
     if (!dialog.open) return;
     dialog.close(); finalizeClose();
   }
+  // Close internal navigation dialogs before routing so browser Back restores a usable carousel.
+  dialog.querySelector('#modal-link')?.addEventListener('click', event => {
+    if (event.currentTarget.target === '_self') close();
+  });
   closeButton?.addEventListener('click', close);
   dialog.addEventListener('click', e => {
     if (e.target !== dialog) return;
