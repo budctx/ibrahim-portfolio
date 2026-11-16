@@ -89,3 +89,17 @@
   .relatedWork .project-card { transition: none; }
   .relatedWork .project-card:hover { transform: none; }
 }
+
+/* The original carousel cards deliberately retain their dark canvas.
+   Neutral UI chrome adapts when the reader opts for the light page theme. */
+html[data-theme='light'] .relatedWorkIndex,
+html[data-theme='light'] .relatedWork .carousel-count {
+  color: var(--cv-ink-soft, #445166);
+}
+html[data-theme='light'] .relatedWork .carousel-arrow {
+  color: var(--fg, #191c22);
+  border-color: var(--cv-hairline, #c4cede);
+}
+html[data-theme='light'] .relatedWork .carousel-arrow:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--fg) 8%, transparent);
+}
