@@ -23,7 +23,7 @@ export function CaseStudy({project: p, locale}: {project: ProjectSummary; locale
     {(ar ? im.captionAr : im.captionEn) && <figcaption>{ar ? im.captionAr : im.captionEn}</figcaption>}
   </figure>);
   return <InteriorPageShell locale={locale} counterpartHref={ar ? `/projects/${p.slug}` : `/ar/projects/${p.slug}`} className="caseStudy">
-    {(process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV === 'development') && <aside className="caseReview">{ar ? 'معاينة للمراجعة — لم تُعتمد للنشر أو حقوق الصور بعد.' : 'Review preview — publication and image rights are pending approval.'}</aside>}
+    {(process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV === 'development') && <aside className="caseReview">{ar ? 'معاينة إصدار تجريبي — النسخة الرسمية متاحة على البورتفوليو.' : 'Preview build — the published version is available on the portfolio.'}</aside>}
     <header className="caseHeading">
       <Link href={work} className="sectionLink">{ar ? 'العودة للأعمال' : 'Back to work'}</Link>
       <div className="eyebrow">{ar ? p.typeAr : p.typeEn} · {p.year}</div>
