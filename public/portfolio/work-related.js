@@ -51,7 +51,7 @@ async function mount() {
     }
     function select(n, behavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth') {
       index = Math.max(0, Math.min(projects.length - 1, n));
-      if (matchMedia('(max-width: 899px)').matches) {
+      if (getComputedStyle(track).display === 'flex') {
         const item = track.children[index];
         if (item) {
           const target = item.offsetLeft - (track.clientWidth - item.offsetWidth) / 2;
@@ -69,7 +69,7 @@ async function mount() {
       select(index + (event.key === 'ArrowRight' ? 1 : -1));
     });
     track.addEventListener('scroll', () => {
-      if (matchMedia('(min-width: 900px)').matches) return;
+      if (getComputedStyle(track).display !== 'flex') return;
       clearTimeout(scrollDebounce);
       scrollDebounce = setTimeout(() => {
         const center = track.scrollLeft + track.clientWidth / 2;
