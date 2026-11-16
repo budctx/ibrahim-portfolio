@@ -120,3 +120,42 @@ for(const locale of ['en','ar']) {
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  });
 }
+
+
+/* Fluid article layout gate: test intrinsic sizing through breakpoint boundaries,
+   not just the three device presets used by the case-study editorial suite. */
+for(const locale of ['ar','en'])for(const width of [320,360,430,540,768,850,900,1024,1280,1920]) {
+  test(`fluid case-study and related carousel ${locale} ${width}px`,async({page})=>{
+    await page.setViewportSize({width,height:width===850?620:width<600?690:900});
+    await page.goto(`${locale==='ar'?'/ar':''}/projects/bud-discord-events`);
+    await expect(page.locator('main.cvInteriorPage')).toBeVisible();
+    const title=page.locator('.caseHeading h1');
+    await expect(title).toBeVisible();
+    const rail=page.locator('[data-related-work]');
+    await expect(rail).toHaveAttribute('data-ready','true');
+    await expect(rail.locator('.project-card')).toHaveCount(2);
+    const dimensions=await page.evaluate(()=>{
+      const bounds=selector=>{
+        const r=document.querySelector(selector)?.getBoundingClientRect();
+        return r?{left:r.left,right:r.right,width:r.width,height:r.height}:null;
+      };
+      return {
+        documentWidth:document.documentElement.scrollWidth,
+        viewWidth:window.innerWidth,
+        title:bounds('.caseHeading h1'),
+        content:bounds('.caseChapter .caseCopy'),
+        media:bounds('.caseEvidence img'),
+        related:bounds('.relatedWork .project-track'),
+      };
+    });
+    expect(dimensions.documentWidth).toBeLessThanOrEqual(dimensions.viewWidth+1);
+    for(const key of ['title','content','media','related']){
+      const box=dimensions[key];expect(box,key).not.toBeNull();
+      expect(box.left,key).toBeGreaterThanOrEqual(-2);
+      expect(box.right,key).toBeLessThanOrEqual(width+2);
+      expect(box.width,key).toBeGreaterThan(0);
+    }
+    const footer=page.locator('.projectFooterNav');
+    await expect(footer.getByRole('link',{name:locale==='ar'?'العودة إلى الأعمال':'Back to work'})).toBeVisible();
+  });
+}
