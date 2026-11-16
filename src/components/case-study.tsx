@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {InteriorPageShell} from '@/components/interior-page-shell';
+import {RelatedWorkCarousel} from '@/components/related-work-carousel';
 import type {ProjectImage, ProjectSummary} from '@/lib/content';
 
 export function CaseStudy({project: p, locale}: {project: ProjectSummary; locale: 'en' | 'ar'}) {
   const ar = locale === 'ar';
-  const work = ar ? '/ar/work' : '/work';
+  const work = ar ? '/#work' : '/en#work';
+  const home = ar ? '/' : '/en';
   const title = ar ? p.titleAr : p.titleEn;
   const sections = [
     {id: 'problem', title: ar ? 'المشكلة والفرصة' : 'The opportunity', body: ar ? p.problemAr : p.problemEn},
@@ -37,6 +39,11 @@ export function CaseStudy({project: p, locale}: {project: ProjectSummary; locale
       {(p.gallery || []).filter(im => im.section === s.id).length > 0 && <div className="caseChapterMedia">{media((p.gallery || []).filter(im => im.section === s.id))}</div>}
     </section>)}
     {(p.gallery || []).some(im => !im.section || im.section === 'gallery') && <section aria-label={ar ? 'صور إضافية' : 'Additional images'}>{media((p.gallery || []).filter(im => !im.section || im.section === 'gallery'))}</section>}
-    <nav className="projectFooterNav" aria-label={ar ? 'تنقل المشروع' : 'Project navigation'}><Link href={work}>{ar ? 'العودة للأعمال' : 'Back to work'}</Link>{p.projectUrl && <a href={p.projectUrl} target="_blank" rel="noreferrer">{ar ? 'جرّب بُعد' : 'Explore the live product'}</a>}</nav>
+    <RelatedWorkCarousel key={p.slug} locale={locale} currentSlug={p.slug} />
+    <nav className="projectFooterNav" aria-label={ar ? 'تنقل المشروع' : 'Project navigation'}>
+      <Link href={work}>{ar ? 'العودة إلى الأعمال' : 'Back to work'}</Link>
+      <Link href={home}>{ar ? 'العودة للرئيسية' : 'Back to homepage'}</Link>
+      {p.projectUrl && <a href={p.projectUrl} target="_blank" rel="noreferrer">{ar ? 'زيارة المنتج' : 'Visit live product'}</a>}
+    </nav>
   </InteriorPageShell>;
 }
