@@ -116,7 +116,7 @@ for(const locale of ['en','ar']) {
   await expect(section.locator('.carousel-count')).not.toBeEmpty();
   const back=page.getByRole('link',{name:locale==='ar'?'العودة إلى الأعمال':'Back to work',exact:true});
   await expect(back).toHaveAttribute('href',locale==='ar'?'/#work':'/en#work');
-  await expect(page.getByRole('link',{name:locale==='ar'?'العودة للرئيسية':'Back to homepage',exact:true})).toHaveAttribute('href',locale==='ar'?'/':'/en');
+  await expect(page.locator('.projectFooterNav').getByRole('link',{name:locale==='ar'?'العودة للرئيسية':'Back to homepage',exact:true})).toHaveAttribute('href',locale==='ar'?'/':'/en');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  });
 }
