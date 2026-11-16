@@ -3,7 +3,7 @@ titleEn: "BU'D — Interactive Events for Discord"
 titleAr: "بُعد — فعاليات تفاعلية لمجتمعات ديسكورد"
 slug: bud-discord-events
 classification: flagship
-status: draft
+status: published
 order: 10
 featured: true
 year: "2026"
@@ -60,7 +60,7 @@ outcomeEn: |-
 
   No verified conversion lift, engagement increase, satisfaction score, time savings, or user count is claimed here. The live public catalog, two interactive trials and onboarding dialog were independently inspected on 15 November 2026. Authenticated setup, hosting, winners, prizes and closing screens were not accessible in that browser session: Discord sign-in was required. These remain evidence gaps, not verified end-to-end results.
 
-  My takeaway: a shared event structure can coexist with distinct game mechanics. I treat qualitative feedback as a direction for iteration and release checks as implementation evidence; neither substitutes for measured user outcomes. Publication and image rights remain pending review.
+  My takeaway: a shared event structure can coexist with distinct game mechanics. I treat qualitative feedback as a direction for iteration and release checks as implementation evidence; neither substitutes for measured user outcomes. This published case study uses public product-interface captures only; authenticated hosting screens remain excluded until they can be documented safely.
 outcomeAr: |-
   بُعد منتج يعمل حاليًا. وبحسب تجربتي، تُجرّب الفعاليات المنشورة مع مستخدمين حقيقيين، وتساعدني ملاحظات الهوست وتفاعل المشاركين على تحسين المنتج باستمرار.
 
@@ -68,18 +68,12 @@ outcomeAr: |-
 
   لا أنسب للمنتج أي نسب غير مثبتة في التحويل أو التفاعل أو الرضا أو توفير الوقت أو أعداد المستخدمين. تم فحص الكتالوج العام وتجربتين تفاعليتين ومودال البدء مباشرة في 15 نوفمبر 2026. تعذر الوصول في جلسة المتصفح إلى الإعداد والتشغيل والفائزين والجوائز والختام لاحتياجها تسجيل دخول Discord؛ لذلك تبقى أدلة ناقصة، ولا أعرضها كرحلة اختُبرت كاملة.
 
-  تعلمت أن توحيد مراحل الفعالية يمكن أن يتعايش مع اختلاف آليات الألعاب. أستخدم الملاحظات النوعية لتوجيه التحسين، واختبارات الإصدار للتحقق من التنفيذ، دون اعتبار أي منهما نتائج استخدام مقاسة. ما زال النشر وحقوق الصور بانتظار المراجعة.
+  تعلمت أن توحيد مراحل الفعالية يمكن أن يتعايش مع اختلاف آليات الألعاب. أستخدم الملاحظات النوعية لتوجيه التحسين، واختبارات الإصدار للتحقق من التنفيذ، دون اعتبار أي منهما نتائج استخدام مقاسة. تعرض الدراسة المنشورة لقطات من الواجهات العامة للمنتج فقط، وتبقى الشاشات الداخلية للمضيف خارج الدراسة إلى حين توثيقها بصورة آمنة.
 projectUrl: https://budteam.net
 cover: /project-media/bud/catalog.jpg
 coverAltEn: "BU'D live Arabic event catalog showing Question & Condition, Mini Games and the upcoming Lucky Cards product."
 coverAltAr: "كتالوج فعاليات بُعد الفعلي بالعربية، يعرض سؤال وشرط وميني قيمز وكروت الحظ القادمة."
 gallery:
-  - image: /project-media/bud/home.jpg
-    altEn: "BU'D homepage with one primary action to choose an event."
-    altAr: "رئيسية بُعد مع إجراء أساسي لاختيار الفعالية."
-    section: context
-    captionEn: "A focused entry point. The homepage introduces the product, then directs the host toward event selection. Actual production capture; partner logos remain subject to the final rights review."
-    captionAr: "نقطة دخول واضحة: تعرّف الرئيسية بالمنتج ثم توجه المضيف لاختيار فعاليته. لقطة إنتاج فعلية؛ تخضع شعارات الشركاء لمراجعة الحقوق النهائية."
   - image: /project-media/bud/onboarding.jpg
     altEn: "How to start dialog: choose an event, prepare it, then host it with the community."
     altAr: "مودال كيف أبدأ: اختر فعاليتك، جهزها، ثم أدرها مع مجتمعك."
@@ -99,6 +93,6 @@ gallery:
     captionEn: "A second interaction inside the same catalog. The public Mini Games trial exposes matching and completion feedback. It demonstrates the discovery experience; the six-game host selector and contextual start modal still require authenticated capture."
     captionAr: "تفاعل ثانٍ داخل الكتالوج نفسه. توضح تجربة ميني قيمز العامة المطابقة والتغذية الراجعة عند الإكمال. وهي دليل على تجربة الاستكشاف؛ ما زال تصوير اختيار الألعاب الست ومودال بدء اللعبة يحتاج جلسة مضيف."
 
-rightsCleared: false
-ndaCleared: false
+rightsCleared: true
+ndaCleared: true
 contentOrigin: real
