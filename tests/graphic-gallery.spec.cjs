@@ -127,7 +127,7 @@ test('deployed gallery functions include the published CMS files',()=>{
 
 test('media-first modal compact mobile controls and server attribution',async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.goto(route('ar')+'?design=rais-rocket-league');
- await expect(modal(page)).toBeVisible();await expect(page.locator('#modal-close')).toHaveCount(0);
+ await expect(modal(page)).toBeVisible();await expect(page.locator('#modal-close')).toBeVisible();
  await expect(page.locator('#gallery-language')).toBeInViewport();await expect(page.locator('.modal-copy #gallery-language')).toHaveCount(0);
  await expect(page.locator('.modal-share')).toHaveAccessibleName('نسخ رابط التصميم');await expect(page.locator('.modal-share')).toHaveText('');
  await expect(page.locator('#modal-category')).toHaveText('ديسكورد');await expect(page.locator('#modal-entity')).toContainText('سيرفر Rais');
