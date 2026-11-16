@@ -279,7 +279,7 @@ Considered design.</h2><div class="skill"><b>01</b><span>Digital interfaces</spa
 <div class="modal-art" id="modal-art" aria-hidden="true"></div><div class="modal-copy"><p class="modal-label" id="modal-category"></p><h2 id="modal-title"></h2><p class="modal-description" id="modal-description"></p><a class="modal-link" id="modal-link" target="_blank" rel="noopener noreferrer" hidden data-ar="عرض المشروع" data-en="View project">عرض المشروع</a></div>
 </dialog><script type="module">
 import {createProjectCard,bindProjectModal} from "/portfolio/work-ui.js";
-import {projectArt,loadWorkProjects} from "/portfolio/work-projects.js";
+import {curatedProjects,projectArt,loadWorkProjects} from "/portfolio/work-projects.js";
 const card=document.getElementById('card'),language=document.getElementById('language'),hero=document.querySelector('.hero');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)');
 let flipped=false,paused=true,lang='ar',userInteracted=false;
@@ -324,7 +324,7 @@ function fitBadge(){
 new ResizeObserver(fitBadge).observe(rig);fitBadge();
 
 // Reusable project records: replace demo text/art or supply image + optional url.
-const projects=await loadWorkProjects();
+const projects=[...curatedProjects];
 const track=document.getElementById('project-track'),modal=document.getElementById('project-modal');
 const prev=document.getElementById('project-prev'),next=document.getElementById('project-next');
 let projectIndex=0,openedProject=null,projectOpener=null,projectScrollTimer;
@@ -366,7 +366,14 @@ new ResizeObserver(entries=>{
  projectTrackWidth=width;
  if(!document.getElementById('work').classList.contains('is-active'))return;
  moveProject(projectIndex,'instant');
-}).observe(track);renderProjects();
+}).observe(track);
+renderProjects();
+// Keep the proven homepage carousel interactive while CMS discovery loads.
+void loadWorkProjects().then(entries=>{
+  if(entries.length === projects.length) return;
+  projects.splice(0,projects.length,...entries);
+  renderProjects();
+});
 const scenes=document.getElementById('scenes');
 const sceneIds=['main','work','about','contact'];
 let sceneDestination=sceneIds.includes(location.hash.slice(1))?location.hash.slice(1):null;
