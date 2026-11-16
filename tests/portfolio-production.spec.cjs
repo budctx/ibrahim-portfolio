@@ -70,7 +70,7 @@ for (const {path, lang, dir} of locales) {
     await page.setViewportSize({width: 390, height: 844});
     await page.emulateMedia({reducedMotion: 'reduce'});
     await load(page, path + '#work');
-    await expect(page.locator('.project-card')).toHaveCount(2);
+    await expect(page.locator('#project-track .project-card').nth(1)).toBeVisible();
     await expect(page.locator('.demo-mark')).toHaveCount(0);
     await page.locator('.project-card').first().click();
     await expect(page.locator('#project-modal')).toBeVisible();
