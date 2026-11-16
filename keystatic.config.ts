@@ -55,7 +55,7 @@ export default config({
       },
     }),
     projects: collection({
-      label: 'Projects',
+      label: 'Projects — see docs/editorial-style-guide.md',
       path: 'content/projects/*',
       slugField: 'slug',
       format: 'yaml',
@@ -122,6 +122,16 @@ export default config({
             itemLabel: (props) => props.fields.altEn.value || 'Gallery image',
           },
         ),
+        presentations: fields.array(fields.object({
+          section: fields.select({label: 'Chapter', options: ['problem','context','process','decisions','outcome'].map(value => ({label: value, value})), defaultValue: 'problem'}),
+          layout: fields.select({label: 'Presentation', options: ['editorial','statement','steps','decisions','split'].map(value => ({label: value, value})), defaultValue: 'editorial'}),
+          leadEn: text('Key idea — English', true),
+          leadAr: text('Key idea — Arabic', true),
+          items: fields.array(fields.object({
+            titleEn: text('Heading — English'), titleAr: text('Heading — Arabic'),
+            bodyEn: text('Explanation — English', true), bodyAr: text('Explanation — Arabic', true),
+          }), {label: 'Steps or decisions', itemLabel: props => props.fields.titleEn.value || 'Item'}),
+        }), {label: 'Editorial presentation (optional; one per chapter)', itemLabel: props => props.fields.section.value}),
         problemEn: text('Problem — English', true),
         problemAr: text('Problem — Arabic', true),
         contextEn: text('Context — English', true),

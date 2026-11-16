@@ -5,6 +5,7 @@ import {getProjects} from '@/lib/content';
 type SiteHeaderProps = {
   locale?: 'en' | 'ar';
   counterpartHref: string;
+  compact?: boolean;
 };
 
 /**
@@ -12,7 +13,7 @@ type SiteHeaderProps = {
  * with an editorial wordmark and compact circular controls.
  * Interior pages share that visual language without recreating full-screen scenes.
  */
-export async function SiteHeader({locale = 'en', counterpartHref}: SiteHeaderProps) {
+export async function SiteHeader({locale = 'en', counterpartHref, compact = false}: SiteHeaderProps) {
   const ar = locale === 'ar';
   const homePath = ar ? '/' : '/en';
   const prefix = ar ? '/ar' : '';
@@ -22,13 +23,13 @@ export async function SiteHeader({locale = 'en', counterpartHref}: SiteHeaderPro
     <header className="portfolioHeader">
       <Link className="portfolioWordmark" href={homePath} aria-label={ar ? 'العودة إلى الرئيسية' : 'Back to homepage'}>
         <span>{ar ? 'إبراهيم العجمي' : 'Ibrahim Al-Ajmi'}</span>
-        <small>PORTFOLIO / 2026</small>
+        <small>PORTFOLIO</small>
       </Link>
       <nav className="portfolioNavigation" aria-label={ar ? 'التنقل الرئيسي' : 'Primary navigation'}>
         <a href={`${homePath}#work`}>{ar ? 'الأعمال' : 'Work'}</a>
-        <Link href={`${prefix}/about`}>{ar ? 'عني' : 'About'}</Link>
-        {hasExperiments && <Link href={`${prefix}/playground`}>{ar ? 'التجارب' : 'Playground'}</Link>}
-        <Link href={`${homePath}#contact`}>{ar ? 'تواصل' : 'Contact'}</Link>
+        {!compact && <Link href={`${prefix}/about`}>{ar ? 'عني' : 'About'}</Link>}
+        {!compact && hasExperiments && <Link href={`${prefix}/playground`}>{ar ? 'التجارب' : 'Playground'}</Link>}
+        {!compact && <Link href={`${homePath}#contact`}>{ar ? 'تواصل' : 'Contact'}</Link>}
       </nav>
       <div className="portfolioControls">
         {/* A locale boundary needs a fresh root document, including html and skip link. */}

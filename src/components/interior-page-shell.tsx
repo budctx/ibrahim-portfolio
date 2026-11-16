@@ -6,13 +6,14 @@ type InteriorPageProps = {
   counterpartHref: string;
   children: ReactNode;
   className?: string;
+  compactHeader?: boolean;
 };
 
 /**
  * The actual public homepage (hero-preview) is the visual authority.
  * Interior routes share its color, type and spacing language while remaining scrollable.
  */
-export function InteriorPageShell({locale, counterpartHref, children, className}: InteriorPageProps) {
+export function InteriorPageShell({locale, counterpartHref, children, className, compactHeader}: InteriorPageProps) {
   const ar = locale === 'ar';
   return (
     <main
@@ -22,7 +23,7 @@ export function InteriorPageShell({locale, counterpartHref, children, className}
       lang={locale}
     >
       <div className="cvFrame cvInteriorFrame">
-        <SiteHeader locale={locale} counterpartHref={counterpartHref} />
+        <SiteHeader locale={locale} counterpartHref={counterpartHref} compact={compactHeader} />
         {children}
       </div>
     </main>
