@@ -98,6 +98,10 @@ export default config({
         typeAr: text('Type — Arabic'),
         roleEn: text('Role — English'),
         roleAr: text('Role — Arabic'),
+        summaryEn: text('Discovery summary — English', true),
+        summaryAr: text('Discovery summary — Arabic', true),
+        evidenceNoteEn: text('Evidence scope — English', true),
+        evidenceNoteAr: text('Evidence scope — Arabic', true),
         tools: fields.array(fields.text({label: 'Tool', validation: {isRequired: true}}), {
           label: 'Tools',
         }),

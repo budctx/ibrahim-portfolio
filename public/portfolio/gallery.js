@@ -54,7 +54,7 @@ const modal = bindProjectModal(dialog, {
 function syncFromUrl() {
   const url = new URL(location.href), slug = url.searchParams.get('design');
   const p = designs.get(slug);
-  if (p) {topbar.append(language); modal.open(p, cards.get(slug));}
+  if (p) {topbar.prepend(language); modal.open(p, cards.get(slug));}
   else {
     if (slug) {
       url.searchParams.delete('design'); history.replaceState(null, '', url);

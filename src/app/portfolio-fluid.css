@@ -36,10 +36,37 @@
   text-wrap: balance;
 }
 
-.cvInteriorPage :is(.caseRole, .caseTools, .caseCopy, .caseCopy p, .caseContents, .pageIntro .lede) {
+.cvInteriorPage :is(.caseRole, .caseSummary, .caseTools, .caseCopy, .caseCopy p, .caseContents, .pageIntro .lede) {
   min-inline-size: 0;
   overflow-wrap: anywhere;
 }
+
+/* Keep the article entrance concise; use the existing grid rather than a new hero. */
+.cvInteriorPage .caseHeading {
+  min-block-size:auto;
+  padding-block:clamp(40px,6svh,76px);
+  row-gap:18px;
+}
+.cvInteriorPage .caseHeading > h1 { font-size:clamp(2.25rem,1.6rem + 2.7vw,4.6rem); }
+.cvInteriorPage .caseHeading > .caseSummary {
+  grid-column:3 / 11;
+  max-inline-size:62ch;
+  margin:0;
+  font-size:clamp(1rem,.9rem + .45vw,1.2rem);
+  line-height:1.8;
+  color:var(--cv-ink-soft);
+}
+.cvInteriorPage .caseEvidenceNote {
+  margin-block:24px 56px;
+  padding-block:20px;
+  border-block:1px solid var(--cv-hairline);
+  color:var(--cv-ink-soft);
+  max-inline-size:76ch;
+}
+.caseEvidenceNote summary { cursor:pointer; min-block-size:44px; display:list-item; align-content:center; color:var(--fg); }
+.caseEvidenceNote p { line-height:1.8; }
+.caseEvidenceNote summary:focus-visible { outline:2px solid var(--cv-focus); outline-offset:4px; }
+.cvInteriorPage .caseTools { font-family:inherit; }
 
 .cvInteriorPage .caseContents {
   display: grid;

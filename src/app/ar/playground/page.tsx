@@ -31,7 +31,7 @@ export default async function ArabicPlaygroundPage() {
         {projects.length === 0 ? (
           <div>
             <div className="empty"><span className="emptySignal" aria-hidden="true" /><span>لا توجد تجارب منشورة للعامة حتى الآن. ستظهر هنا تجارب التفاعل والواجهات والذكاء الاصطناعي عندما تكون جديرة بالعرض.</span></div>
-            <a className="sectionLink" href="/ar#contact">عندك فكرة تستحق الاختبار؟ ابدأ محادثة.</a>
+            <a className="sectionLink" href="/#contact">عندك فكرة تستحق الاختبار؟ ابدأ محادثة.</a>
           </div>
         ) : (
           <div>
@@ -40,7 +40,7 @@ export default async function ArabicPlaygroundPage() {
                 <ProjectCard project={project} key={project.projectKey} locale="ar" />
               ))}
             </div>
-            <a className="sectionLink" href="/ar#contact">عندك فكرة تستحق الاختبار؟ ابدأ محادثة.</a>
+            <a className="sectionLink" href="/#contact">عندك فكرة تستحق الاختبار؟ ابدأ محادثة.</a>
           </div>
         )}
       </section>

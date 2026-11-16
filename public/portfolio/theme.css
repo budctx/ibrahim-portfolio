@@ -1,0 +1,35 @@
+/* Preference parity across static scenes, galleries and shared Work components.
+   Artwork retains its original colors; only the surrounding interface changes. */
+:root { --portfolio-fg:#f3f4f5; --portfolio-muted:#b8c3d2; --portfolio-line:#ffffff30; --portfolio-focus:#dbe7ff; }
+html[data-theme=light] { color-scheme:light; --portfolio-fg:#191c22; --portfolio-muted:#445166; --portfolio-line:#b6c3d2; --portfolio-focus:#29435b; }
+html[data-theme=light] body { color:var(--portfolio-fg); background:#f3f4f5; }
+html[data-theme=light] :is(.hero,.work,.about,.contact,.gallery-landing) { color:#191c22; background:radial-gradient(ellipse at 28% 25%,#dce6f0,#eef1f5 45%,#f3f4f5 80%); }
+html[data-theme=light] :is(.wordmark small,.stage .role span,.footer,.identity,.identity small,.work-header p,.work-footer,.about-footer,.contact-footer,.about-role,.about-summary,.about-method,.contact-intro,.envelope-hint,.carousel-count,.gallery-back,.gallery-parent,.gallery-empty,.relatedWorkIndex) { color:var(--portfolio-muted); }
+html[data-theme=light] :is(.about-copy h3,.contact-copy h3,.work-header h2,.about-header h2,.contact-header h2,.role) { color:#191c22; }
+html[data-theme=light] :is(.control,.carousel-arrow,.project-open,.gallery-language,.category-arrow,.modal-share) { color:#191c22; border-color:var(--portfolio-line); background:transparent; }
+html[data-theme=light] :is(.control,.carousel-arrow,.gallery-language,.category-link,.modal-share):hover { background:#29435b0d; color:#191c22; }
+html[data-theme=light] :is(.project-card,.project-modal,.gallery-modal-panel,.contact-modal) { background:#f3f4f5; color:#191c22; border-color:var(--portfolio-line); }
+html[data-theme=light] .project-card:hover { border-color:#5b6878; }
+html[data-theme=light] :is(.project-meta p,.modal-description,.modal-label,.modal-role strong,.relatedWork .modal-copy,.relatedWork .carousel-count,.share-feedback,.media-error) { color:var(--portfolio-muted); }
+html[data-theme=light] :is(.modal-link,.contact-modal,.gallery-back:hover,.gallery-parent:hover) { color:#191c22; }
+html[data-theme=light] .modal-close { color:#191c22; background:#eef1f5; border-color:var(--portfolio-line); }
+html[data-theme=light] :is(.category-link,.category-link:first-child,.gallery-modal .modal-label,.about-method) { border-color:var(--portfolio-line); }
+html[data-theme=light] :is(.cube-dot,.cube-dot[aria-pressed=true]) { color:#29435b; }
+html[data-theme=light] .cube-dot[aria-pressed=true] { background:#29435b0d; border-color:var(--portfolio-line); }
+html[data-theme=light] .scene-dot::before { border-color:#445166; }
+html[data-theme=light] .scene-dot[aria-current=true]::before { background:#29435b; }
+html[data-theme=light] .contact-trigger { background:#29435b; color:#fff; border-color:#29435b; }
+html[data-theme=light] .contact-method { color:#29435b; background:#29435b0a; }
+html[data-theme=light] .gallery-modal { background:transparent; }
+html[data-theme=light] .gallery-modal-topbar .gallery-language { background:#eef1f5; }
+html[data-theme=light] .share-url { background:#fff; color:#191c22; border-color:var(--portfolio-line); }
+html[data-theme=light] :is(button,a,input,[tabindex]):focus-visible { outline-color:var(--portfolio-focus); }
+::selection { background:#c0cee1; color:#191c22; }
+.gallery-controls { display:flex; align-items:center; gap:10px; }
+.gallery-controls button { cursor:pointer; }
+.gallery-modal-topbar { gap:10px; }
+.gallery-modal-topbar .modal-close { position:static; margin:0; float:none; flex:none; pointer-events:auto; }
+.gallery-modal-topbar #gallery-language { order:-1; }
+.category-count { display:block; margin-top:8px; font-size:12px; font-weight:400; letter-spacing:0; color:var(--portfolio-muted); }
+.category-name { min-inline-size:0; }
+@media(max-width:639px) { .controls .control { min-width:44px; min-height:44px; } }

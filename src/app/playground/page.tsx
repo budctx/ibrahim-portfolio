@@ -29,7 +29,7 @@ export default async function PlaygroundPage() {
         {projects.length === 0 ? (
           <div>
             <div className="empty"><span className="emptySignal" aria-hidden="true" /><span>No public experiments yet. New interaction, UI, and AI-assisted explorations will appear here when they are worth showing.</span></div>
-            <a className="sectionLink" href="/#contact">Have an idea worth testing? Start a conversation.</a>
+            <a className="sectionLink" href="/en#contact">Have an idea worth testing? Start a conversation.</a>
           </div>
         ) : (
           <div>
@@ -38,7 +38,7 @@ export default async function PlaygroundPage() {
                 <ProjectCard project={project} key={project.projectKey} locale="en" />
               ))}
             </div>
-            <a className="sectionLink" href="/#contact">Have an idea worth testing? Start a conversation.</a>
+            <a className="sectionLink" href="/en#contact">Have an idea worth testing? Start a conversation.</a>
           </div>
         )}
       </section>

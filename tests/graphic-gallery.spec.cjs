@@ -17,8 +17,9 @@ for(const lang of ['en','ar']) {
   expect(await page.locator('body').evaluate(e=>getComputedStyle(e).overflow)).toBe('hidden');
   await expect(page.locator('#modal-art img')).toHaveCount(2);
   expect(await page.locator('#modal-art img').first().evaluate(e=>getComputedStyle(e).objectFit)).toBe('contain');
-  await page.locator('#gallery-language').focus();await page.keyboard.press('Shift+Tab');await expect(page.locator('.modal-share')).toBeFocused();
-  await page.keyboard.press('Tab');await expect(page.locator('#gallery-language')).toBeFocused();
+  await page.locator('#gallery-language').focus();await page.keyboard.press('Tab');await expect(page.locator('#modal-close')).toBeFocused();
+  await page.keyboard.press('Shift+Tab');await expect(page.locator('#gallery-language')).toBeFocused();
+  await page.keyboard.press('Shift+Tab');await expect(page.locator('.modal-share')).toBeFocused();
   await page.keyboard.press('Escape');await expect(modal(page)).not.toBeVisible();await expect(page).not.toHaveURL(/design=/);await expect(page.locator('[data-design^="preview-test-"]')).toBeFocused();
   await page.locator('[data-design^="preview-test-"]').click();await page.keyboard.press('Escape');await expect(page).not.toHaveURL(/design=/);
  });
@@ -126,7 +127,7 @@ test('deployed gallery functions include the published CMS files',()=>{
 
 test('media-first modal compact mobile controls and server attribution',async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.goto(route('ar')+'?design=rais-rocket-league');
- await expect(modal(page)).toBeVisible();await expect(page.locator('#modal-close')).toHaveCount(0);
+ await expect(modal(page)).toBeVisible();await expect(page.locator('#modal-close')).toBeVisible();
  await expect(page.locator('#gallery-language')).toBeInViewport();await expect(page.locator('.modal-copy #gallery-language')).toHaveCount(0);
  await expect(page.locator('.modal-share')).toHaveAccessibleName('نسخ رابط التصميم');await expect(page.locator('.modal-share')).toHaveText('');
  await expect(page.locator('#modal-category')).toHaveText('ديسكورد');await expect(page.locator('#modal-entity')).toContainText('سيرفر Rais');
@@ -164,7 +165,7 @@ for(const lang of ['ar','en']) for(const [width,height] of [[320,568],[390,844],
 for(const lang of ['ar','en'])test(`${lang} homepage real work and contact interaction regressions`,async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});const home=lang==='ar'?'/':'/en';
  await page.goto(home+'#work');await expect(page.locator('#work')).toHaveClass(/is-active/);await page.locator('.project-card').first().click();await expect(modal(page)).toBeVisible();await expect(page.locator('#modal-title')).toHaveText(lang==='ar'?'أثر':'ATHAR');await page.keyboard.press('Escape');await expect(modal(page)).not.toBeVisible();
- await page.locator('#project-next').click();await expect(page.locator('#project-count')).toHaveText(lang==='ar'?'تصميم جرافيكي':'Graphic Design');await page.locator('#project-track .project-card').filter({hasText:/تصميم جرافيكي|Graphic Design/}).click();await expect(modal(page)).toBeVisible();await modal(page).locator('#modal-link').click();await expect(page).toHaveURL(/work\/graphic-design/);
+ await page.locator('#project-next').click();await expect(page.locator('#project-count')).toHaveText('2 / 3');await page.locator('#project-track .project-card').filter({hasText:/تصميم جرافيكي|Graphic Design/}).click();await expect(modal(page)).toBeVisible();await modal(page).locator('#modal-link').click();await expect(page).toHaveURL(/work\/graphic-design/);
  await page.goto(home+'#contact');await expect(page.locator('#contact')).toHaveClass(/is-active/);await page.locator('#envelope-button').click();await expect(page.locator('#envelope-button')).toHaveAttribute('aria-expanded','true');
  await page.locator('#contact-trigger').click();await expect(page.locator('#contact-modal')).toBeVisible();expect(await page.locator('#scenes').evaluate(e=>e.style.overflow)).toBe('hidden');
  await expect(page.locator('.contact-method')).toHaveCount(2);await page.locator('#contact-modal-close').focus();await page.keyboard.press('Shift+Tab');await expect(page.locator('#contact-whatsapp')).toBeFocused();await page.keyboard.press('Escape');await expect(page.locator('#contact-trigger')).toBeFocused();expect(await page.locator('#scenes').evaluate(e=>e.style.overflow)).toBe('');
@@ -194,7 +195,7 @@ for(const lang of ['ar','en'])test(`${lang} mobile horizontal work swipe then ve
  };
  const card=await page.locator('.project-card').first().boundingBox();
  await swipe(320,card.y+80,-245,0);
- await expect(page.locator('#project-count')).toContainText(/تصميم جرافيكي|Graphic Design|بُعد|BU'D/);
+ await expect(page.locator('#project-count')).toHaveText(/[23] \/ 3/);
  const selectedProject=await page.locator('#project-count').textContent();
  // Exercise dynamic viewport height changes with the second card selected.
  await page.setViewportSize({width:390,height:780});
@@ -208,7 +209,7 @@ for(const lang of ['ar','en'])test(`${lang} mobile horizontal work swipe then ve
  await page.locator('[data-scene="work"]').click();await expect(page.locator('#work')).toHaveClass(/is-active/);
  await expect.poll(()=>page.locator('#scenes').evaluate(e=>Math.round(e.scrollTop))).toBe(780);
  await expect(page.locator('#project-count')).toHaveText(selectedProject);
- const selectedIndex=await page.locator('#project-track .project-card').allTextContents().then(items=>items.findIndex(x=>x.includes(selectedProject)));
+ const selectedIndex=Number(selectedProject.split(' / ')[0])-1;
  const selected=await page.locator('#project-track .project-card').nth(Math.max(0,selectedIndex)).boundingBox();await page.mouse.move(195,selected.y+80);await page.mouse.wheel(0,700);
  await expect(page.locator('#about')).toHaveClass(/is-active/);
 });
