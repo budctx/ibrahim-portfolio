@@ -128,6 +128,7 @@ jobs:
             sleep 1
           done
           npx playwright test -c playwright.case-study.config.cjs
+          npx playwright test -c playwright.audit.config.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

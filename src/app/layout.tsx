@@ -84,6 +84,7 @@ export default async function RootLayout({children}: {children: ReactNode}) {
       suppressHydrationWarning
     >
       <head>
+        <link rel="stylesheet" href="/portfolio/theme.css" />
         <script dangerouslySetInnerHTML={{__html: themeInit}} />
       </head>
       <body>

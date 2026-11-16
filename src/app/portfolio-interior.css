@@ -277,7 +277,7 @@ html[data-theme='light'] .cvPage.cvInteriorPage {
   align-self: start;
   padding-top: .8em;
   color: var(--cv-accent);
-  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-family: inherit;
   font-size: var(--cv-type-label);
   letter-spacing: 0;
 }
@@ -390,7 +390,7 @@ html[data-theme='light'] .cvPage.cvInteriorPage {
 .cvInteriorPage .aboutSplit .eyebrow {
   margin-bottom: 20px;
   color: var(--cv-accent);
-  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-family: inherit;
   font-size: var(--cv-type-label);
 }
 
@@ -435,7 +435,7 @@ html[data-theme='light'] .cvPage.cvInteriorPage {
   align-self: start;
   margin: 14px 0 0;
   color: var(--cv-accent);
-  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-family: inherit;
   font-size: var(--cv-type-label);
   letter-spacing: 0;
 }
@@ -466,7 +466,7 @@ html[data-theme='light'] .cvPage.cvInteriorPage {
 
 .cvInteriorPage .caseTools {
   color: var(--muted);
-  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-family: inherit;
   font-size: var(--cv-type-meta);
   line-height: 1.9;
 }
@@ -481,7 +481,7 @@ html[data-theme='light'] .cvPage.cvInteriorPage {
 .cvInteriorPage .caseContents span,
 .cvInteriorPage .caseChapterHeading .eyebrow {
   color: var(--cv-accent);
-  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-family: inherit;
   font-variant-numeric: tabular-nums;
 }
 

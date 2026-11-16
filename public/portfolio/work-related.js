@@ -1,4 +1,5 @@
 import {createProjectCard, bindProjectModal} from '/portfolio/work-ui.js';
+import {bindWorkCarousel} from '/portfolio/work-carousel.js';
 import {loadWorkProjects, projectArt} from '/portfolio/work-projects.js';
 
 const initialized = new WeakSet();
@@ -25,7 +26,6 @@ async function mount() {
     const projects = (await loadWorkProjects()).filter(p => p.id !== current);
     if (!root.isConnected) continue;
     if (!projects.length) {root.hidden = true; continue;}
-    let index = 0, scrollDebounce;
 
     const dialogController = bindProjectModal(dialog, {
       getLang: () => locale,
@@ -43,46 +43,7 @@ async function mount() {
       track.append(item);
     });
 
-    function syncCount() {
-      const title = projects[index]?.title?.[locale] || '';
-      count.textContent = title;
-      prev.disabled = index === 0;
-      next.disabled = index === projects.length - 1;
-    }
-    function select(n, behavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth') {
-      index = Math.max(0, Math.min(projects.length - 1, n));
-      if (getComputedStyle(track).display === 'flex') {
-        const item = track.children[index];
-        if (item) {
-          const target = item.offsetLeft - (track.clientWidth - item.offsetWidth) / 2;
-          track.scrollTo({left: target, behavior});
-        }
-      }
-      syncCount();
-    }
-
-    prev.addEventListener('click', () => select(index - 1));
-    next.addEventListener('click', () => select(index + 1));
-    track.addEventListener('keydown', event => {
-      if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
-      event.preventDefault();
-      select(index + (event.key === 'ArrowRight' ? 1 : -1));
-    });
-    track.addEventListener('scroll', () => {
-      if (getComputedStyle(track).display !== 'flex') return;
-      clearTimeout(scrollDebounce);
-      scrollDebounce = setTimeout(() => {
-        const center = track.scrollLeft + track.clientWidth / 2;
-        let nearest = 0, distance = Infinity;
-        [...track.children].forEach((el, i) => {
-          const gap = Math.abs(el.offsetLeft + el.offsetWidth / 2 - center);
-          if (gap < distance) {distance = gap; nearest = i;}
-        });
-        index = nearest;
-        syncCount();
-      }, 150);
-    }, {passive: true});
-    syncCount();
+    bindWorkCarousel({track, prev, next, count, getLocale: () => locale});
     if (status) status.hidden = true;
     root.dataset.ready = 'true';
     if (projects.length === 1) root.dataset.single = 'true';

@@ -217,9 +217,9 @@ html,body{height:100%;overflow:hidden}
 .athar-real-card{display:block;height:100%;width:auto;max-width:56%;object-fit:contain;border-radius:12px;box-shadow:0 15px 35px #0004}.athar-cover{height:92%;gap:20px}
 .art-athar>.athar-cover{position:absolute;inset:4% 10%;height:auto;width:auto;min-height:0}.athar-real-card{max-height:100%;min-height:0;max-width:56%;height:100%;object-fit:contain}
 .collection-cover{font-size:clamp(42px,7vw,88px);font-weight:600;letter-spacing:-3px;line-height:.95;display:grid}.collection-cover span:last-child{margin-left:50px}.project-card{text-decoration:none}
-</style><link rel="stylesheet" href="/portfolio/home-polish.css"></head>
+</style><link rel="stylesheet" href="/portfolio/home-polish.css"><link rel="stylesheet" href="/portfolio/theme.css"><script src="/portfolio/theme.js"></script></head>
 <body><div class="scenes" id="scenes"><main class="hero scene is-active" id="main">
-<header class="header"><div class="wordmark"><span data-ar="إبراهيم العجمي" data-en="Ibrahim Al-Ajmi">إبراهيم العجمي</span><small>PORTFOLIO / 2026</small></div><div class="controls"><button class="control" id="language" aria-label="Switch to English">E</button></div></header>
+<header class="header"><div class="wordmark"><span data-ar="إبراهيم العجمي" data-en="Ibrahim Al-Ajmi">إبراهيم العجمي</span><small>PORTFOLIO / 2026</small></div><div class="controls"><button class="control" type="button" data-theme-toggle aria-label="Use light mode" aria-pressed="true"></button><button class="control" id="language" aria-label="Switch to English">E</button></div></header>
 <section class="stage" aria-label="بطاقة التعريف التفاعلية">
 <div class="roles"><h1 class="role one"><span style="font:inherit;color:inherit;margin:0" data-ar="منتجات" data-en="DIGITAL">منتجات</span><span data-ar="تصميم المنتجات الرقمية" data-en="PRODUCT DESIGN">تصميم المنتجات الرقمية</span></h1>
 <p class="role two"><strong data-ar="تجارب" data-en="EXPERIENCE">تجارب</strong><span data-ar="واجهات تتمحور حول المستخدم" data-en="USER-CENTERED INTERFACES">واجهات تتمحور حول المستخدم</span></p>
@@ -279,6 +279,7 @@ Considered design.</h2><div class="skill"><b>01</b><span>Digital interfaces</spa
 <div class="modal-art" id="modal-art" aria-hidden="true"></div><div class="modal-copy"><p class="modal-label" id="modal-category"></p><h2 id="modal-title"></h2><p class="modal-description" id="modal-description"></p><a class="modal-link" id="modal-link" target="_blank" rel="noopener noreferrer" hidden data-ar="عرض المشروع" data-en="View project">عرض المشروع</a></div>
 </dialog><script type="module">
 import {createProjectCard,bindProjectModal} from "/portfolio/work-ui.js";
+import {bindWorkCarousel} from "/portfolio/work-carousel.js";
 import {curatedProjects,projectArt,loadWorkProjects} from "/portfolio/work-projects.js";
 const card=document.getElementById('card'),language=document.getElementById('language'),hero=document.querySelector('.hero');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)');
@@ -327,14 +328,8 @@ new ResizeObserver(fitBadge).observe(rig);fitBadge();
 const projects=[...curatedProjects];
 const track=document.getElementById('project-track'),modal=document.getElementById('project-modal');
 const prev=document.getElementById('project-prev'),next=document.getElementById('project-next');
-let projectIndex=0,openedProject=null,projectOpener=null,projectScrollTimer;
-function updateProjectCount(){document.getElementById('project-count').textContent=projects[projectIndex].title[lang];prev.disabled=projectIndex===0;next.disabled=projectIndex===projects.length-1}
-function moveProject(index,behavior=reduce.matches?'auto':'smooth'){
- projectIndex=Math.max(0,Math.min(projects.length-1,index));
- const item=track.children[projectIndex];
- if(matchMedia('(min-width:900px)').matches&&projects.length<=2){updateProjectCount();return}
- track.scrollTo({left:item.offsetLeft-(track.clientWidth-item.offsetWidth)/2,behavior});updateProjectCount();
-}
+let openedProject=null,projectOpener=null;
+const projectCarousel=bindWorkCarousel({track,prev,next,count:document.getElementById('project-count'),getLocale:()=>lang});
 const projectDialog=bindProjectModal(modal,{getLang:()=>lang,renderArt:projectArt,onClose:()=>{openedProject=null}});
 function fillModal(p){projectDialog.fill(p)}
 function openProject(p,opener){openedProject=p;projectOpener=opener;projectDialog.open(p,opener)}
@@ -345,7 +340,7 @@ function renderProjects(){
  const item=document.createElement('article');item.className='project-item';
  const btn=createProjectCard(p,{lang,renderArt:projectArt,onOpen:openProject});
  item.append(btn);track.append(item);
- });requestAnimationFrame(()=>moveProject(projectIndex,'auto'));
+ });requestAnimationFrame(()=>{track.scrollTo({left:0,behavior:'instant'});projectCarousel.sync()});
  prev.setAttribute('aria-label',lang==='ar'?'المشروع السابق':'Previous project');next.setAttribute('aria-label',lang==='ar'?'المشروع التالي':'Next project');
  track.setAttribute('aria-label',lang==='ar'?'المشاريع':'Projects');
  document.getElementById('modal-close').setAttribute('aria-label',lang==='ar'?'إغلاق':'Close');
@@ -354,20 +349,7 @@ function renderProjects(){
  document.querySelector('[data-scene="work"]').setAttribute('aria-label',lang==='ar'?'الأعمال':'Work');
  if(openedProject)fillModal(openedProject);
 }
-prev.addEventListener('click',()=>moveProject(projectIndex-1));next.addEventListener('click',()=>moveProject(projectIndex+1));
-track.addEventListener('scroll',()=>{clearTimeout(projectScrollTimer);projectScrollTimer=setTimeout(()=>{const center=track.scrollLeft+track.clientWidth/2;let nearest=0,distance=Infinity;[...track.children].forEach((e,i)=>{const delta=Math.abs(e.offsetLeft+e.offsetWidth/2-center);if(delta<distance){distance=delta;nearest=i}});projectIndex=nearest;updateProjectCount()},150)},{passive:true});
-track.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();moveProject(projectIndex+(e.key==='ArrowRight'?1:-1))}});
 language.addEventListener('click',renderProjects);
-// Mobile browser chrome changes height during vertical gestures. Recenter only
-// on a genuine width change, never on the way out of the Work scene.
-let projectTrackWidth=0;
-new ResizeObserver(entries=>{
- const width=entries[0].contentRect.width;
- if(Math.abs(width-projectTrackWidth)<1)return;
- projectTrackWidth=width;
- if(!document.getElementById('work').classList.contains('is-active'))return;
- moveProject(projectIndex,'instant');
-}).observe(track);
 renderProjects();
 // Keep the proven homepage carousel interactive while CMS discovery loads.
 void loadWorkProjects().then(entries=>{

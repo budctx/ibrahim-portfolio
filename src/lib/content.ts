@@ -56,6 +56,10 @@ export type ProjectSummary = {
   typeAr?: string;
   roleEn?: string;
   roleAr?: string;
+  summaryEn?: string;
+  summaryAr?: string;
+  evidenceNoteEn?: string;
+  evidenceNoteAr?: string;
   tools?: string[];
   problemEn?: string;
   problemAr?: string;
@@ -88,6 +92,10 @@ function mapProject(slug: string, entry: NonNullable<ProjectEntry>): ProjectSumm
     typeAr: entry.typeAr,
     roleEn: entry.roleEn,
     roleAr: entry.roleAr,
+    summaryEn: entry.summaryEn,
+    summaryAr: entry.summaryAr,
+    evidenceNoteEn: entry.evidenceNoteEn,
+    evidenceNoteAr: entry.evidenceNoteAr,
     tools: [...entry.tools],
     problemEn: entry.problemEn,
     problemAr: entry.problemAr,

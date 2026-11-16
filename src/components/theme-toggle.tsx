@@ -30,7 +30,7 @@ export function ThemeToggle({locale = 'en'}: ThemeToggleProps) {
         setDark(next);
         const theme = next ? 'dark' : 'light';
         document.documentElement.dataset.theme = theme;
-        window.localStorage.setItem('portfolio-theme', theme);
+        try { window.localStorage.setItem('portfolio-theme', theme); } catch { /* Keep the current theme when storage is unavailable. */ }
       }}
     >
       {dark ? <SunIcon className="cvControlIcon" /> : <MoonIcon className="cvControlIcon" />}

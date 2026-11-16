@@ -11,8 +11,8 @@ export async function GET() {
       title: {ar: project.titleAr, en: project.titleEn},
       category: {ar: project.typeAr || 'مشروع رقمي', en: project.typeEn || 'Digital product'},
       description: {
-        ar: (project.problemAr || project.contextAr || '').split(/\n\s*\n/)[0].slice(0, 260),
-        en: (project.problemEn || project.contextEn || '').split(/\n\s*\n/)[0].slice(0, 260),
+        ar: project.summaryAr || (project.problemAr || project.contextAr || '').split(/\n\s*\n/)[0],
+        en: project.summaryEn || (project.problemEn || project.contextEn || '').split(/\n\s*\n/)[0],
       },
       art: 'product',
       image: project.cover?.url,

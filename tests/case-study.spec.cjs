@@ -34,7 +34,8 @@ for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
 }
 test('published case study is available from the public Work listing',async({page})=>{
  await page.goto('/work');
- await expect(page.locator('a[href="/projects/bud-discord-events"]')).toHaveCount(1);
+ await expect(page).toHaveURL(/en#work$/);
+ await expect(page.locator('#project-track .project-card')).toHaveCount(3);
 });
 
 for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
@@ -47,7 +48,7 @@ for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
   // not the unpublished React cvPage homepage.
   await page.goto(home);
   await expect(page.locator('.wordmark')).toContainText(displayName);
-  for(const route of ['/work','/about','/playground','/projects/bud-discord-events']) {
+  for(const route of ['/about','/playground','/projects/bud-discord-events']) {
    const response=await page.goto(prefix+route);
    expect(response.status()).toBe(200);
    await expect(page.locator('main')).toHaveClass(/cvInteriorPage/);
@@ -65,9 +66,8 @@ for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   }
   await page.locator('.portfolioHeader .portfolioNavigation').getByRole('link',{name:locale==='ar'?'الأعمال':'Work',exact:true}).click();
-  await expect(page).toHaveURL(new RegExp(`${prefix}/work$`));
-  await page.locator('.portfolioHeader .portfolioLanguage').click();
-  await expect(page.locator('main')).toHaveAttribute('lang',locale==='ar'?'en':'ar');
+  await expect(page).toHaveURL(new RegExp(`${home}#work$`));
+  await expect(page.locator('#work')).toHaveClass(/is-active/);
  });
 }
 
