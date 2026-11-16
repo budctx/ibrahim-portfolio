@@ -2,6 +2,24 @@
 
 This is the writing reference for every project added in Keystatic. Read this before editing project fields. The published homepage remains the visual and interaction authority.
 
+## Approved narrative reference for all work
+
+The owner has approved the published BU'D case study as the editorial reference for every portfolio project, including future Keystatic entries and revisions to existing studies. Use `content/projects/bud-discord-events.yaml` as the concrete bilingual example, alongside this guide. Public references: [Arabic](https://ibrahim-portfolio-blush.vercel.app/ar/projects/bud-discord-events) and [English](https://ibrahim-portfolio-blush.vercel.app/projects/bud-discord-events).
+
+Every study should communicate these essentials when supported by the project evidence:
+
+1. The specific problem or opportunity and who it affects.
+2. The owner's actual role, responsibility and contribution.
+3. The important design decisions, the reasons for choosing them and relevant alternatives.
+4. How those decisions shape the user's experience.
+5. Documented outcomes and what the owner learned.
+
+Keep the Saudi professional Arabic voice, independently natural English, concise explanations, honest evidence and shared visual system consistent across all work. Adapt chapter titles, order, length and presentation to the project. These essentials are coverage requirements, not five compulsory identical headings. Do not copy BU'D wording, host terminology, four-stage journey or product-specific claims into unrelated projects. A graphic collection can use a shorter brief, visual rationale and deliverable explanation rather than an invented product research story.
+
+Choose presentation blocks to fit the information: a real interface beside its explanation, one strong design idea, meaningful ordered steps or titled decisions. Use only what the project needs. Before/after comparisons and quotations require genuine, approved evidence. Missing metrics must never be replaced with invented success claims.
+
+Before adding a new project, compare its draft against BU'D for clarity, rationale, brevity, evidence and reading rhythm. Review each language on its own. A project is editorially ready when readers understand the work and the owner's judgment without needing the internal development history.
+
 ## Voice and tone
 
 Arabic: contemporary professional Saudi Arabic. Write as a product designer explaining a decision to a hiring manager or another designer. Use natural, accessible Arabic, with restrained personality. Avoid both bureaucratic formality and heavy dialect. Read each paragraph aloud. English: direct, reflective first person, sentence case, specific verbs and concrete consequences. Write each language independently; preserve facts rather than sentence structure.
@@ -59,7 +77,8 @@ Use a limited subset for each study. BU'D uses a statement for the problem, a sp
 
 ## Publication checklist
 
-- Can a reader identify the problem, decision, rationale and consequence?
+- Has the draft been checked against the approved BU'D narrative reference, with project-specific structure and wording?
+- Can a reader identify the problem, role, decision, rationale, consequence and documented learning?
 - Does each paragraph add information? Are sentence openings varied?
 - Are the owner's role and AI-assisted development accurate?
 - Does each language sound written naturally, rather than translated?
