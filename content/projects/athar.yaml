@@ -93,3 +93,5 @@ presentations:
     titleEn: Keep dismissal predictable
     bodyAr: 'اعتمدت سلوكًا مشتركًا للنوافذ: انتقال التركيز داخلها، وإغلاقها بـEscape، ثم عودته إلى الزر الذي فتحها، مع الحفاظ على تنبيه التعديلات غير المحفوظة.'
     bodyEn: Dialogs share focus containment, Escape dismissal and return focus to the opener. Unsaved-change warnings remain where edits could be lost.
+coverWidth: 448
+coverHeight: 633

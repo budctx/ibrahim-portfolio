@@ -23,7 +23,7 @@ export function CaseStudy({project: p, locale}: {project: ProjectSummary; locale
   });
   const media = (images: ProjectImage[]) => images.map((im, i) => <figure className="caseEvidence" key={`${im.url}-${i}`}>
     <a href={im.url} target="_blank" rel="noreferrer" aria-label={ar ? 'افتح الصورة بالحجم الكامل' : 'Open full-size screenshot'}>
-      <Image src={im.url} alt={(ar ? im.altAr : im.altEn) || ''} width={1600} height={1000} sizes="(min-width: 1480px) 1320px, 91vw" />
+      <Image src={im.url} alt={(ar ? im.altAr : im.altEn) || ''} width={im.width || 1600} height={im.height || 1000} sizes="(min-width: 1480px) 1320px, 91vw" />
     </a>
     {(ar ? im.captionAr : im.captionEn) && <figcaption>{ar ? im.captionAr : im.captionEn}</figcaption>}
   </figure>);

@@ -110,6 +110,8 @@ export default config({
         coverAltAr: text('Cover alt text — Arabic'),
         coverCaptionEn: text('Cover caption — English'),
         coverCaptionAr: text('Cover caption — Arabic'),
+        coverWidth: fields.integer({label: 'Cover width (pixels)', validation: {min: 1}}),
+        coverHeight: fields.integer({label: 'Cover height (pixels)', validation: {min: 1}}),
         mediaStyle: fields.select({label: 'Screenshot proportions', options: [{label: 'Wide', value: 'wide'}, {label: 'Portrait', value: 'portrait'}], defaultValue: 'wide'}),
         gallery: fields.array(
           fields.object({
@@ -119,6 +121,8 @@ export default config({
             section: fields.select({label: 'Narrative placement', options: ['gallery','problem','context','process','decisions','outcome'].map(value => ({label: value, value})), defaultValue: 'gallery'}),
             captionEn: text('Caption — English', true),
             captionAr: text('Caption — Arabic', true),
+            width: fields.integer({label: 'Image width (pixels)', validation: {min: 1}}),
+            height: fields.integer({label: 'Image height (pixels)', validation: {min: 1}}),
           }),
           {
             label: 'Gallery',

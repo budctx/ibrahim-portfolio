@@ -37,6 +37,8 @@ async function isDraftRequest() {
 }
 
 export type ProjectImage = {
+  width?: number;
+  height?: number;
   url: string;
   altEn?: string;
   altAr?: string;
@@ -125,10 +127,10 @@ function mapProject(slug: string, entry: NonNullable<ProjectEntry>): ProjectSumm
     order: entry.order ?? undefined,
     featured: entry.featured,
     cover: entry.cover
-      ? {url: entry.cover, altEn: entry.coverAltEn, altAr: entry.coverAltAr, captionEn: entry.coverCaptionEn, captionAr: entry.coverCaptionAr}
+      ? {url: entry.cover, altEn: entry.coverAltEn, altAr: entry.coverAltAr, captionEn: entry.coverCaptionEn, captionAr: entry.coverCaptionAr, width: entry.coverWidth ?? undefined, height: entry.coverHeight ?? undefined}
       : undefined,
     gallery: entry.gallery.flatMap((item) =>
-      item.image ? [{url: item.image, altEn: item.altEn, altAr: item.altAr, section: item.section, captionEn: item.captionEn, captionAr: item.captionAr}] : [],
+      item.image ? [{url: item.image, altEn: item.altEn, altAr: item.altAr, section: item.section, captionEn: item.captionEn, captionAr: item.captionAr, width: item.width ?? undefined, height: item.height ?? undefined}] : [],
     ),
   };
 }

@@ -51,6 +51,8 @@ gallery:
   altEn: Prototype schedule with weekday selection and course cards showing time and location.
   captionAr: اختيار اليوم يعرض المحاضرات وتفاصيلها في السياق نفسه.
   captionEn: Day selection brings the relevant classes and their details into the same view.
+  width: 448
+  height: 841
 presentations:
 - section: problem
   layout: statement
@@ -99,3 +101,5 @@ presentations:
   leadAr: ''
   leadEn: ''
   items: []
+coverWidth: 448
+coverHeight: 841
