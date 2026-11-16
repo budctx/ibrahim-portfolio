@@ -28,10 +28,10 @@ export function bindWorkCarousel({track, prev, next, count, getLocale}) {
   }
   function move(direction) {
     const {position, items, max} = metrics();
-    const targets = items.map(item => item.target);
+    const targets = [...new Set([0, ...items.map(item => item.target), max])];
     const target = direction > 0
-      ? targets.find(value => value > position + 2) ?? max
-      : targets.findLast(value => value < position - 2) ?? 0;
+      ? targets.findLast(value => value > position + 2 && value <= position + track.clientWidth + 2) ?? max
+      : targets.find(value => value < position - 2 && value >= position - track.clientWidth - 2) ?? 0;
     track.scrollTo({left: target, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
   }
   prev.addEventListener('click', () => move(-1));
