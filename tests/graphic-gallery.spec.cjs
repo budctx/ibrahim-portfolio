@@ -153,7 +153,7 @@ for(const lang of ['ar','en']) for(const [width,height] of [[320,568],[390,844],
    }
    if(id==='work'){
     await expect(page.locator('#project-track .project-card').nth(1)).toBeVisible();await expect(page.locator('.demo-mark')).toHaveCount(0);
-    if(width>=900)for(const c of await page.locator('#project-track .project-card').all()) {if(await c.isInViewport()) await expect(c).toBeInViewport();}
+    if(width>=900)for(const c of (await page.locator('#project-track .project-card').all()).slice(0,2)) await expect(c).toBeInViewport({ratio:.9});
    }
    if(id==='about'){await expect(page.locator('.cube-dot')).toHaveCount(3);await page.locator('[data-cube="1"]').click();await expect(page.locator('[data-cube="1"]')).toHaveAttribute('aria-pressed','true');}
    if([390,1440].includes(width))await page.screenshot({path:`docs/gallery/evidence/home-${lang}-${width}-${id}.png`});
