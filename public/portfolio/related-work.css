@@ -13,7 +13,7 @@
 .relatedWorkHeader h2 { color: var(--fg, #f3f4f5); font-weight: 500; font-size: clamp(2.3rem, 4vw, 4.2rem); line-height: 1.3; margin: 12px 0; }
 .relatedWorkHeader p { color: var(--cv-ink-soft, #c3cbd7); font-size: clamp(14px, 1.2vw, 17px); margin: 0; }
 .relatedWorkLoading { color: var(--cv-ink-soft, #c3cbd7); margin: 0 0 18px; font-size: 13px; }
-.relatedWorkLoading[hidden] { display: none; }
+.relatedWorkLoading[hidden], .relatedWork[data-ready='true'] .relatedWorkLoading { display: none; }
 .relatedWork .project-track {
   display: flex;
   gap: clamp(16px, 2.5vw, 36px);
