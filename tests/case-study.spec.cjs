@@ -114,7 +114,7 @@ for(const locale of ['en','ar']) {
   await expect(modal.locator('#modal-link')).toHaveAttribute('href',locale==='ar'?'/ar/work/graphic-design':'/work/graphic-design');
   await modal.locator('#modal-close').click();
   await expect(section.locator('.carousel-count')).not.toBeEmpty();
-  const back=page.getByRole('link',{name:locale==='ar'?'العودة إلى الأعمال':'Back to work',exact:true});
+  const back=page.locator('.projectFooterNav').getByRole('link',{name:locale==='ar'?'العودة إلى الأعمال':'Back to work',exact:true});
   await expect(back).toHaveAttribute('href',locale==='ar'?'/#work':'/en#work');
   await expect(page.locator('.projectFooterNav').getByRole('link',{name:locale==='ar'?'العودة للرئيسية':'Back to homepage',exact:true})).toHaveAttribute('href',locale==='ar'?'/':'/en');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
