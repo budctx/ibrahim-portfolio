@@ -10,7 +10,7 @@ for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
   await expect(page.locator('h1')).toContainText(locale==='ar'?'بُعد':"BU'D");
   expect(await page.locator('meta[name="robots"]').getAttribute('content')).toContain('noindex');
   const media=page.locator('.caseEvidence img');
-  await expect(media).toHaveCount(5);
+  await expect(media).toHaveCount(4);
   for(const img of await media.all()) {
    expect((await img.getAttribute('alt')).length).toBeGreaterThan(10);
    await img.scrollIntoViewIfNeeded();
@@ -32,9 +32,9 @@ for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
   await expect(page.locator('h1')).toBeVisible();
  });
 }
-test('draft stays absent from public work listing',async({page})=>{
+test('published case study is available from the public Work listing',async({page})=>{
  await page.goto('/work');
- await expect(page.locator('a[href="/projects/bud-discord-events"]')).toHaveCount(0);
+ await expect(page.locator('a[href="/projects/bud-discord-events"]')).toHaveCount(1);
 });
 
 for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
