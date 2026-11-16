@@ -172,3 +172,24 @@ export async function getPreviewProjectBySlug(slug: string): Promise<ProjectSumm
   const entry = await reader.collections.projects.read(slug);
   return entry ? mapProject(slug, entry) : null;
 }
+
+/**
+ * Public carousel shares its approved records with the case-study related-work rail.
+ * Only the current BU'D draft is eligible for an additional preview-only card;
+ * production never exposes unpublished project content through this endpoint.
+ */
+export async function getWorkDiscoveryProjects(): Promise<ProjectSummary[]> {
+  const reader = await readerForRequest();
+  const entries = await reader.collections.projects.all();
+  const preview = process.env.VERCEL_ENV === 'preview' ||
+    process.env.NODE_ENV === 'development' || (await isDraftRequest());
+
+  return entries
+    .filter(({slug, entry}) =>
+      isPublicReady(entry) ||
+      (preview && slug === 'bud-discord-events' && entry.status === 'draft' &&
+        entry.contentOrigin === 'real' && Boolean(entry.cover))
+    )
+    .map(({slug, entry}) => mapProject(slug, entry))
+    .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || a.projectKey.localeCompare(b.projectKey));
+}
