@@ -282,12 +282,7 @@ import {createProjectCard,bindProjectModal} from "/portfolio/work-ui.js";
 import {curatedProjects,projectArt,loadWorkProjects} from "/portfolio/work-projects.js";
 const card=document.getElementById('card'),language=document.getElementById('language'),hero=document.querySelector('.hero');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)');
-let flipped=false,paused=true,lang=document.documentElement.lang==='en'?'en':'ar',userInteracted=false;
-if(lang==='en'){
-  document.querySelectorAll('[data-en]').forEach(node => {node.textContent=node.dataset.en.replace(/\\n/g,'\n')});
-  language.textContent='ع';
-  language.setAttribute('aria-label','التحويل للعربية');
-}
+let flipped=false,paused=true,lang='ar',userInteracted=false;
 // Count introductory delays only while the Hero is active and visible.
 let heroActive=!['work','about','contact'].includes(location.hash.slice(1));
 let introTimer=null,introStarted=0,introRemaining=2600,introPhase=0;
