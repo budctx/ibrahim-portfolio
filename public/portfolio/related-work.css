@@ -103,3 +103,66 @@ html[data-theme='light'] .relatedWork .carousel-arrow {
 html[data-theme='light'] .relatedWork .carousel-arrow:hover:not(:disabled) {
   background: color-mix(in srgb, var(--fg) 8%, transparent);
 }
+
+/* Intrinsic, component-width-responsive carousel:
+   container breakpoints replace device guesses when embedded in a case study. */
+.relatedWorkBody { container: related-rail / inline-size; }
+.relatedWork .project-track {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+.relatedWork .project-card {
+  min-inline-size: 0;
+}
+.relatedWork .project-art {
+  max-inline-size: 100%;
+}
+.relatedWork .project-meta {
+  min-inline-size: 0;
+}
+
+@container related-rail (max-width: 749px) {
+  .relatedWork .project-track {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: clamp(12px, 3cqi, 24px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    padding-inline: clamp(12px, 8cqi, 56px);
+    padding-block: 16px;
+  }
+  .relatedWork .project-item {
+    flex: 0 0 min(80cqi, 34rem);
+    scroll-snap-align: center;
+  }
+  .relatedWork .carousel-controls {
+    display: flex;
+  }
+  .relatedWork .project-art {
+    block-size: clamp(155px, 37dvh, 310px);
+  }
+}
+
+@container related-rail (min-width: 750px) {
+  .relatedWork .project-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: clamp(16px, 2.6cqi, 30px);
+    overflow: visible;
+    scroll-snap-type: none;
+    padding-inline: 0;
+  }
+  .relatedWork .project-item {
+    min-inline-size: 0;
+    flex-basis: auto;
+  }
+  .relatedWork .carousel-controls { display: none; }
+  .relatedWork .project-art {
+    block-size: clamp(180px, 26cqi, 390px);
+  }
+}
+
+@media (max-height: 540px) {
+  .relatedWork .project-art { max-block-size: 220px; }
+}
