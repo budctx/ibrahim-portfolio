@@ -29,7 +29,7 @@ export function RelatedWorkCarousel({locale, currentSlug}: RelatedWorkProps) {
       <link rel="stylesheet" href="/portfolio/related-work.css" />
       <header className="relatedWorkHeader">
         <div>
-          <span className="relatedWorkIndex">06 / {ar ? 'استكشف' : 'Explore'}</span>
+          <span className="relatedWorkIndex">{ar ? 'استكشف المزيد' : 'Continue exploring'}</span>
           <h2 id="related-work-title">{ar ? 'أعمال أخرى' : 'Explore more work'}</h2>
           <p>{ar ? 'اختر مشروعًا آخر للاطلاع على تفاصيله.' : 'Select another project to explore its story.'}</p>
         </div>
