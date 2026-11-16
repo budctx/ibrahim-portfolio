@@ -224,3 +224,5 @@
   .cvInteriorPage .projectFooterNav a { padding:10px 12px; flex:1 1 0; min-inline-size:0; }
   .cvInteriorPage .caseLayout-split .caseItems { grid-template-columns:1fr; }
 }
+.caseItemNumber { flex:none; min-inline-size:2ch; white-space:nowrap; direction:ltr; unicode-bidi:isolate; }
+.caseItems li > div { min-inline-size:0; }
