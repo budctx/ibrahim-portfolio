@@ -107,3 +107,89 @@ html[dir=rtl] .about-role{text-align:right}
 @media(prefers-reduced-motion:reduce){.cube-skills span,.cube-skills li:nth-child(n) span{animation:none}}
 
 .skill-tool:before{content:attr(data-symbol)}
+
+/* Reuse the approved carousel when the discovery feed includes 3+ real projects.
+   Preserve the original two-card desktop grid unchanged. */
+@media (min-width:900px) {
+  .work.has-overflowing-projects .project-track {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 28px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    width: min(1120px, 82%);
+    padding-block: 20px;
+  }
+  .work.has-overflowing-projects .project-item {
+    flex: 0 0 calc((100% - 28px) / 2);
+    scroll-snap-align: center;
+  }
+  .work.has-overflowing-projects .carousel-controls {display:flex;}
+}
+
+/* Fluid Work scene refinements. Keep the approved fullscreen scenes while allowing
+   the project cards to flex across small phones, tablets and ultrawide monitors. */
+.work .project-track,
+.work .project-item,
+.work .project-card {
+  min-inline-size: 0;
+}
+.work .project-meta {
+  min-inline-size: 0;
+}
+.work .project-meta h3 {
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+@media (max-width: 899px) {
+  .work .project-track {
+    padding-inline: clamp(24px, 11vw, 90px);
+    column-gap: clamp(12px, 3vw, 26px);
+  }
+  .work .project-item {
+    flex-basis: min(76vw, 560px);
+  }
+  .work .project-art {
+    block-size: clamp(154px, 36dvh, 340px);
+  }
+}
+
+@media (min-width: 900px) {
+  .work.has-overflowing-projects .project-track {
+    width: min(1160px, calc(100% - clamp(60px, 11vw, 150px)));
+    column-gap: clamp(18px, 2vw, 30px);
+  }
+  .work.has-overflowing-projects .project-item {
+    flex-basis: calc((100% - clamp(18px, 2vw, 30px)) / 2);
+  }
+}
+
+@media (max-height: 650px) {
+  .work .project-art { block-size: clamp(100px, 30dvh, 188px); }
+  .work .project-track { padding-block: clamp(6px, 1.5dvh, 12px); }
+  .work-header { padding-block-start: clamp(8px, 1.7dvh, 16px); }
+  .work-body { gap: clamp(4px, 1.1dvh, 9px); }
+}
+
+@media (max-width: 370px) {
+  .work .project-meta { padding: 12px; }
+  .work .project-meta h3 { font-size: 16px; }
+  .work .project-meta p { font-size: 11px; }
+  .work .project-item { flex-basis: 79vw; }
+  .work-footer { padding-inline: 8%; }
+}
+
+.project-modal {
+  max-inline-size: calc(100vw - 24px);
+  max-block-size: calc(100dvh - 24px - env(safe-area-inset-bottom, 0px));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work .project-card,
+  .work .project-track {
+    scroll-behavior: auto;
+    transition: none;
+  }
+}

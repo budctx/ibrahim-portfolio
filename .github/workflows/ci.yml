@@ -104,3 +104,32 @@ jobs:
         with:
           name: current-production-regression-failures
           path: test-results/
+
+  case-study:
+    runs-on: ubuntu-24.04
+    env:
+      VERCEL_ENV: preview
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Bilingual case study, themes, accessibility and responsive checks
+        run: |
+          npm run start -- --hostname 127.0.0.1 --port 3102 > /tmp/case-study-next.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:3102/projects/bud-discord-events > /dev/null; then break; fi
+            sleep 1
+          done
+          npx playwright test -c playwright.case-study.config.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: case-study-qa
+          path: test-results/

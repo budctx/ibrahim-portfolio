@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import {SiteHeader} from '@/components/site-header';
+import {InteriorPageShell} from '@/components/interior-page-shell';
 import {ProjectCard} from '@/components/project-card';
 import {getProjects} from '@/lib/content';
 
@@ -17,8 +17,8 @@ export default async function PlaygroundPage() {
   const projects = (await getProjects()).filter((project) => project.classification === 'playground');
 
   return (
-    <main id="main" className="shell">
-      <SiteHeader locale="en" counterpartHref="/ar/playground" />
+    <InteriorPageShell locale="en" counterpartHref="/ar/playground">
+      
       <section className="pageIntro">
         <div className="eyebrow">Playground</div>
         <h1>Test the idea before calling it a solution.</h1>
@@ -42,6 +42,6 @@ export default async function PlaygroundPage() {
           </div>
         )}
       </section>
-    </main>
+    </InteriorPageShell>
   );
 }

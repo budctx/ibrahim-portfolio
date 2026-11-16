@@ -40,6 +40,9 @@ export type ProjectImage = {
   url: string;
   altEn?: string;
   altAr?: string;
+  section?: string;
+  captionEn?: string;
+  captionAr?: string;
 };
 
 export type ProjectSummary = {
@@ -103,7 +106,7 @@ function mapProject(slug: string, entry: NonNullable<ProjectEntry>): ProjectSumm
       ? {url: entry.cover, altEn: entry.coverAltEn, altAr: entry.coverAltAr}
       : undefined,
     gallery: entry.gallery.flatMap((item) =>
-      item.image ? [{url: item.image, altEn: item.altEn, altAr: item.altAr}] : [],
+      item.image ? [{url: item.image, altEn: item.altEn, altAr: item.altAr, section: item.section, captionEn: item.captionEn, captionAr: item.captionAr}] : [],
     ),
   };
 }
@@ -159,7 +162,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectSummary | n
   const entry = await reader.collections.projects.read(slug);
 
   if (!entry) return null;
-  if (!(await isDraftRequest()) && !isPublicReady(entry)) return null;
+  if (!(await isDraftRequest()) && process.env.VERCEL_ENV !== 'preview' && process.env.NODE_ENV !== 'development' && !isPublicReady(entry)) return null;
 
   return mapProject(slug, entry);
 }
@@ -168,4 +171,25 @@ export async function getPreviewProjectBySlug(slug: string): Promise<ProjectSumm
   const reader = await readerForRequest();
   const entry = await reader.collections.projects.read(slug);
   return entry ? mapProject(slug, entry) : null;
+}
+
+/**
+ * Public carousel shares its approved records with the case-study related-work rail.
+ * Only the current BU'D draft is eligible for an additional preview-only card;
+ * production never exposes unpublished project content through this endpoint.
+ */
+export async function getWorkDiscoveryProjects(): Promise<ProjectSummary[]> {
+  const reader = await readerForRequest();
+  const entries = await reader.collections.projects.all();
+  const preview = process.env.VERCEL_ENV === 'preview' ||
+    process.env.NODE_ENV === 'development' || (await isDraftRequest());
+
+  return entries
+    .filter(({slug, entry}) =>
+      isPublicReady(entry) ||
+      (preview && slug === 'bud-discord-events' && entry.status === 'draft' &&
+        entry.contentOrigin === 'real' && Boolean(entry.cover))
+    )
+    .map(({slug, entry}) => mapProject(slug, entry))
+    .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || a.projectKey.localeCompare(b.projectKey));
 }

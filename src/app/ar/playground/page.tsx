@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import {SiteHeader} from '@/components/site-header';
+import {InteriorPageShell} from '@/components/interior-page-shell';
 import {ProjectCard} from '@/components/project-card';
 import {getProjects} from '@/lib/content';
 import {ARABIC_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
@@ -19,8 +19,8 @@ export default async function ArabicPlaygroundPage() {
   const projects = (await getProjects()).filter((project) => project.classification === 'playground');
 
   return (
-    <main id="main" className="shell rtl" dir="rtl" lang="ar">
-      <SiteHeader locale="ar" counterpartHref="/playground" />
+    <InteriorPageShell locale="ar" counterpartHref="/playground">
+      
       <section className="pageIntro">
         <div className="eyebrow">التجارب</div>
         <h1>اختبر الفكرة قبل أن تسميها حلًا.</h1>
@@ -44,6 +44,6 @@ export default async function ArabicPlaygroundPage() {
           </div>
         )}
       </section>
-    </main>
+    </InteriorPageShell>
   );
 }

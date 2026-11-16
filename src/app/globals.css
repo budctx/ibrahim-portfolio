@@ -957,3 +957,26 @@ h3 {
     gap: 6px;
   }
 }
+
+/* Editorial case studies: original interface captures alongside the relevant decisions. */
+.caseStudy { max-width: 1320px; }
+.caseReview { margin-block: 24px; padding: 14px 20px; border: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+.caseHeading { padding-block: 48px; max-width: 1000px; }
+.caseHeading .eyebrow { margin-block: 40px 18px; }
+.caseHeading h1 { max-width: 22ch; font-size: clamp(2.8rem, 6vw, 6rem); line-height: 1.12; letter-spacing: -.045em; margin: 0 0 28px; }
+.caseStudy[dir=rtl] h1 { letter-spacing: 0; line-height: 1.45; }
+.caseRole { max-width: 55ch; color: var(--muted); font-size: clamp(1.15rem, 2vw, 1.5rem); }
+.caseTools { color: var(--muted); font-size: .87rem; margin-block: 24px; }
+.caseEvidence { margin: 0 0 32px; }
+.caseEvidence a { display: block; border: 1px solid var(--line); background: #f6f0e2; overflow: hidden; }
+.caseEvidence img { display: block; width: 100%; height: auto; }
+.caseEvidence figcaption { color: var(--muted); max-width: 90ch; font-size: .94rem; line-height: 1.7; padding-block: 14px; }
+.caseContents { display: flex; flex-wrap: wrap; gap: 18px 30px; padding-block: 28px; border-block: 1px solid var(--line); margin-block: 48px 16px; }
+.caseContents a { text-decoration: none; font-size: .95rem; }
+.caseContents span { color: var(--muted); margin-inline-end: 8px; font-size: .8rem; }
+.caseChapter { display: grid; grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr); gap: 24px 64px; scroll-margin-top: 40px; }
+.caseChapterHeading h2 { font-size: clamp(1.5rem, 2.8vw, 2.3rem); line-height: 1.35; margin-block: 18px; }
+.caseCopy p { font-size: clamp(1.05rem, 1.4vw, 1.2rem); line-height: 1.85; margin: 0 0 25px; max-width: 68ch; }
+.caseChapterMedia { grid-column: 1 / -1; margin-top: 24px; }
+.caseStudy .projectFooterNav { display:flex; justify-content: space-between; gap: 24px; }
+@media(max-width:760px) { .caseChapter { grid-template-columns: 1fr; gap: 12px; } .caseContents { gap: 16px 24px; } .caseHeading { padding-top: 40px; } .caseHeading h1 { overflow-wrap: anywhere; } }

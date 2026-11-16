@@ -1,0 +1,166 @@
+/* Fluid layout corrections, guided by GoogleChrome/modern-web-guidance and MDN Grid.
+   This is a scoped layer for article routes, not a redesign of the live homepage.
+   Container queries respond to available article width, regardless of device model. */
+
+.cvPage.cvInteriorPage {
+  --fluid-page-gutter: clamp(16px, 4.4vw, 70px);
+  --fluid-space: clamp(20px, 2.4vw, 36px);
+}
+
+.cvInteriorPage .cvInteriorFrame {
+  inline-size: min(1320px, calc(100% - var(--fluid-page-gutter) - var(--fluid-page-gutter)));
+  max-inline-size: 100%;
+  container: portfolio / inline-size;
+}
+
+.cvInteriorPage .portfolioHeader {
+  padding-block: clamp(9px, 1.5svh, 19px);
+  column-gap: var(--fluid-space);
+}
+
+.cvInteriorPage :is(.pageIntro, .caseHeading) {
+  min-block-size: clamp(350px, 65svh, 720px);
+  padding-block: clamp(54px, 8svh, 112px);
+  column-gap: var(--fluid-space);
+}
+
+.cvInteriorPage :is(.pageIntro > h1, .caseHeading > h1) {
+  font-size: clamp(2.55rem, 1.8rem + 3.4vw, 6rem);
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.cvInteriorPage :is(.sectionHead h2, .caseChapterHeading h2, .prose h2) {
+  font-size: clamp(2rem, 1.4rem + 2.7vw, 4rem);
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.cvInteriorPage :is(.caseRole, .caseTools, .caseCopy, .caseCopy p, .caseContents, .pageIntro .lede) {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.cvInteriorPage .caseContents {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  align-items: stretch;
+  gap: clamp(10px, 1.3vw, 18px);
+}
+
+.cvInteriorPage .caseContents a {
+  display: flex;
+  align-items: baseline;
+  min-block-size: 44px;
+  gap: 8px;
+  padding-block: 10px;
+  line-height: 1.5;
+}
+
+.cvInteriorPage .caseChapterMedia,
+.cvInteriorPage .caseEvidence,
+.cvInteriorPage .caseEvidence a,
+.cvInteriorPage .caseEvidence img {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+
+.cvInteriorPage .caseEvidence img {
+  block-size: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.cvInteriorPage .caseEvidence figcaption {
+  max-inline-size: 76ch;
+  text-wrap: pretty;
+}
+
+.cvInteriorPage .projectFooterNav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
+}
+
+.cvInteriorPage .projectFooterNav a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
+}
+
+@container portfolio (max-width: 780px) {
+  .cvInteriorPage .caseChapter {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(18px, 4cqi, 32px);
+  }
+  .cvInteriorPage .caseChapter > :is(.caseChapterHeading, .caseCopy, .caseChapterMedia) {
+    grid-column: 1 / -1;
+  }
+  .cvInteriorPage .caseChapterHeading h2 {
+    max-inline-size: 24ch;
+    margin-block: 12px 0;
+  }
+  .cvInteriorPage .section.prose,
+  .cvInteriorPage .section.aboutSplit {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cvInteriorPage .section:is(.prose, .aboutSplit) > * {
+    grid-column: 1 / -1;
+  }
+}
+
+@container portfolio (max-width: 530px) {
+  .cvInteriorPage :is(.pageIntro, .caseHeading) {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(14px, 3.3cqi, 24px);
+    min-block-size: auto;
+    padding-block: clamp(50px, 12cqi, 78px);
+  }
+  .cvInteriorPage :is(.pageIntro, .caseHeading) > * {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+  .cvInteriorPage :is(.pageIntro > h1, .caseHeading > h1) {
+    font-size: clamp(2.25rem, 9cqi, 3.75rem);
+  }
+  .cvInteriorPage .projectFooterNav a {
+    flex: 1 1 min(100%, 12rem);
+  }
+  .cvInteriorPage .caseContents {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .cvInteriorPage .portfolioHeader {
+    column-gap: 10px;
+  }
+  .cvInteriorPage .portfolioWordmark small {
+    display: none;
+  }
+  .cvInteriorPage .portfolioNavigation {
+    gap: clamp(12px, 3.5vw, 22px);
+  }
+  .cvInteriorPage .caseCopy p {
+    font-size: clamp(1rem, .84rem + 1vw, 1.19rem);
+    line-height: 1.75;
+  }
+}
+
+@media (max-height: 540px) and (min-width: 640px) {
+  .cvInteriorPage :is(.pageIntro, .caseHeading) {
+    min-block-size: auto;
+    padding-block: 46px 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cvInteriorPage,
+  .cvInteriorPage * {
+    scroll-behavior: auto;
+  }
+}

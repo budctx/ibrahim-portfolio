@@ -6,6 +6,8 @@ import {ENGLISH_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 import './globals.css';
 import './portfolio.css';
 import './portfolio-polish.css';
+import './portfolio-interior.css';
+import './portfolio-fluid.css';
 
 const plexSans = IBM_Plex_Sans({
   subsets: ['latin'],
@@ -62,7 +64,7 @@ export const metadata: Metadata = {
 const themeInit = `
 try {
   const saved = localStorage.getItem('portfolio-theme');
-  const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const preferred = 'dark'; // Published homepage and gallery are dark-first.
   document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : preferred;
 } catch (_) {}
 `;

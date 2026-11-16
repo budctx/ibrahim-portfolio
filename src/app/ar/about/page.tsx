@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 import Link from 'next/link';
-import {SiteHeader} from '@/components/site-header';
+import {InteriorPageShell} from '@/components/interior-page-shell';
 import {ARABIC_PORTFOLIO_KEYWORDS} from '@/lib/seo-keywords';
 
 export const metadata: Metadata = {
@@ -34,8 +34,8 @@ const capabilities = [
 
 export default function ArabicAboutPage() {
   return (
-    <main id="main" className="shell rtl" dir="rtl" lang="ar">
-      <SiteHeader locale="ar" counterpartHref="/about" />
+    <InteriorPageShell locale="ar" counterpartHref="/about">
+      
 
       <section className="pageIntro">
         <div className="eyebrow">عني</div>
@@ -135,6 +135,6 @@ export default function ArabicAboutPage() {
           <Link href="https://www.linkedin.com/in/ibrahim-al-ajmi-97ba02335" target="_blank" rel="noreferrer">LinkedIn</Link>
         </div>
       </section>
-    </main>
+    </InteriorPageShell>
   );
 }

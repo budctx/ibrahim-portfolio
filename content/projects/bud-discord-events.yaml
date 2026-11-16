@@ -1,0 +1,98 @@
+projectKey: bud-discord-events
+titleEn: "BU'D — Interactive Events for Discord"
+titleAr: "بُعد — فعاليات تفاعلية لمجتمعات ديسكورد"
+slug: bud-discord-events
+classification: flagship
+status: published
+order: 10
+featured: true
+year: "2026"
+typeEn: "Digital Product · Interactive Events"
+typeAr: "منتج رقمي · فعاليات تفاعلية"
+roleEn: "Independent Product Designer · UX Direction & AI-assisted Development"
+roleAr: "مصمم منتجات مستقل · توجيه تجربة المستخدم والتطوير بمساعدة الذكاء الاصطناعي"
+tools:
+  - ChatGPT
+  - Codex
+  - GitHub
+  - Vercel
+  - Notion
+problemEn: |-
+  The design opportunity was to bring Discord community event operations into a clearer host-led experience, from selecting an activity and preparing the session to playing, recording winners, revealing prizes, and closing the event. The design needed to support different games without making every activity a separate, unfamiliar workflow.
+problemAr: |-
+  كانت الفرصة التصميمية هي تنظيم تشغيل فعاليات مجتمعات ديسكورد ضمن تجربة واضحة يقودها الهوست؛ من اختيار الفعالية وتجهيزها إلى اللعب وتسجيل الفائزين وكشف الجوائز والختام. وكان التحدي هو دعم ألعاب مختلفة دون تحويل كل فعالية إلى رحلة تشغيل منفصلة وغير مألوفة.
+contextEn: |-
+  BU'D is an Arabic-language product for interactive Discord events. For Question & Condition, the host judges answers and records winners manually; players participate through their community without website registration or a tracking bot. Mini Games expands the platform with six distinct game modes while retaining the common event journey.
+
+  I directed the product and UX decisions independently, using ChatGPT, Codex, and selected references to assist development. I owned the product direction and reviewed the implementation; no other human programmers were involved. This role description is my own account of the work.
+contextAr: |-
+  بُعد منتج عربي للفعاليات التفاعلية داخل مجتمعات ديسكورد. في فعالية «سؤال وشرط» يحكم الهوست على الإجابات ويسجل الفائزين يدويًا، ويشارك اللاعبون من مجتمعهم دون إنشاء حسابات بالموقع أو الاعتماد على بوت لتتبعهم. وأضيفت «ميني قيمز» بست ألعاب مختلفة مع الحفاظ على رحلة الفعالية المشتركة.
+
+  توليت قرارات المنتج وتجربة المستخدم بشكل مستقل، واستعنت بـ ChatGPT وCodex ومراجعي المختارة لتطويره، دون مشاركة مبرمجين آخرين.
+processEn: |-
+  I defined a repeatable host flow: setup → event screen → prizes → closing. I reviewed how game-specific rules and controls could fit inside that shared journey, then iterated on interaction details through prototypes, AI-assisted implementation, QA reviews, and real event use.
+
+  Feedback comes directly from event hosts and from observing participant interactions. I use those qualitative signals to identify UX improvements and development opportunities. This is an informal feedback practice, not a claimed formal usability study or statistically representative survey.
+processAr: |-
+  حددت رحلة تشغيل قابلة للتكرار للهوست: الإعداد ← شاشة الفعالية ← الجوائز ← الختام. وراجعت كيف يمكن لقواعد الألعاب وتحكمها الخاص أن يعمل داخل المراحل المشتركة، ثم حسّنت تفاصيل التفاعل باستخدام النماذج والتطوير المدعوم بالذكاء الاصطناعي ومراجعات الجودة والتجارب الفعلية.
+
+  أحصل على الملاحظات مباشرة من الهوست، أو عبر متابعة تفاعل المشاركين. وأستخدم هذه الإشارات النوعية لتحديد فرص تحسين تجربة المستخدم وتطوير المنتج. هذه ممارسة ملاحظات مباشرة، وليست ادعاءً بدراسة استخدام رسمية أو استطلاع إحصائي ممثل.
+decisionsEn: |-
+  01 — Host-controlled gameplay. I chose manual judgment and winner entry for Question & Condition rather than participant registration and bot tracking. Repeat winner names remain possible through distinct winner records.
+
+  02 — Shared event structure. I kept setup, live hosting, winners, prizes and closing consistent across activities, while letting every game have its own mechanics and controls.
+
+  03 — Contextual game starts. I removed redundant information buttons from Mini Games cards and directed explanatory guidance toward each game's existing start modal. The explanatory copy itself remains subject to review, so I do not claim it as finished.
+
+  04 — Feedback-informed mechanics. I used host feedback and observed participant interaction to refine gameplay logic with the intention of encouraging more competitive and enjoyable play, without naming a particular game or claiming a measured increase.
+decisionsAr: |-
+  01 — تحكم الهوست. اخترت التحكيم وإدخال الفائز يدويًا في «سؤال وشرط» بدل تسجيل المشاركين وتتبعهم بالبوت، مع دعم تكرار الأسماء عبر سجلات فوز مستقلة.
+
+  02 — مراحل مشتركة. وحّدت الإعداد والتشغيل وتسجيل الفائزين والجوائز والختام بين الفعاليات، مع الإبقاء على قواعد وتحكم مختلفين لكل لعبة.
+
+  03 — بداية اللعبة في سياقها. أزلت أزرار المعلومات المنفصلة من بطاقات «ميني قيمز»، واعتمدت مودال بداية اللعبة كمكان مناسب للشرح. نصوص الشرح نفسها ما زالت بحاجة إلى مراجعة، ولا أصفها بأنها مكتملة.
+
+  04 — تحسين المنطق من التفاعل. استفدت من ملاحظات الهوست وتفاعل المشاركين لتحسين منطق اللعب بهدف زيادة التنافسية والمتعة، دون تحديد لعبة بعينها أو الادعاء بزيادة مقاسة.
+outcomeEn: |-
+  BU'D is operating as a live product. I report that published activities are tried with real community members and that host observations and participant reactions inform ongoing refinement.
+
+  A traceable Mini Games improvement release was recorded on 11 November 2026 (PR #123 and CI/deployment evidence). The documented changes included clearer restart confirmations, restored-session handling, result states and winner/prize feedback. Successful release checks do not mean every project acceptance gate is closed.
+
+  No verified conversion lift, engagement increase, satisfaction score, time savings, or user count is claimed here. The live public catalog, two interactive trials and onboarding dialog were independently inspected on 15 November 2026. Authenticated setup, hosting, winners, prizes and closing screens were not accessible in that browser session: Discord sign-in was required. These remain evidence gaps, not verified end-to-end results.
+
+  My takeaway: a shared event structure can coexist with distinct game mechanics. I treat qualitative feedback as a direction for iteration and release checks as implementation evidence; neither substitutes for measured user outcomes. This published case study uses public product-interface captures only; authenticated hosting screens remain excluded until they can be documented safely.
+outcomeAr: |-
+  بُعد منتج يعمل حاليًا. وبحسب تجربتي، تُجرّب الفعاليات المنشورة مع مستخدمين حقيقيين، وتساعدني ملاحظات الهوست وتفاعل المشاركين على تحسين المنتج باستمرار.
+
+  وُثّق نشر مجموعة تحسينات لـ«ميني قيمز» في 11 نوفمبر 2026 عبر PR #123 وسجلات الاختبارات والنشر، وشملت وضوح تأكيد إعادة الجولات واستعادة الجلسات وحالات النتائج وملاحظات الفائزين والجوائز. نجاح اختبارات الإصدار لا يعني إغلاق جميع بوابات اعتماد المشروع.
+
+  لا أنسب للمنتج أي نسب غير مثبتة في التحويل أو التفاعل أو الرضا أو توفير الوقت أو أعداد المستخدمين. تم فحص الكتالوج العام وتجربتين تفاعليتين ومودال البدء مباشرة في 15 نوفمبر 2026. تعذر الوصول في جلسة المتصفح إلى الإعداد والتشغيل والفائزين والجوائز والختام لاحتياجها تسجيل دخول Discord؛ لذلك تبقى أدلة ناقصة، ولا أعرضها كرحلة اختُبرت كاملة.
+
+  تعلمت أن توحيد مراحل الفعالية يمكن أن يتعايش مع اختلاف آليات الألعاب. أستخدم الملاحظات النوعية لتوجيه التحسين، واختبارات الإصدار للتحقق من التنفيذ، دون اعتبار أي منهما نتائج استخدام مقاسة. تعرض الدراسة المنشورة لقطات من الواجهات العامة للمنتج فقط، وتبقى الشاشات الداخلية للمضيف خارج الدراسة إلى حين توثيقها بصورة آمنة.
+projectUrl: https://budteam.net
+cover: /project-media/bud/catalog.jpg
+coverAltEn: "BU'D live Arabic event catalog showing Question & Condition, Mini Games and the upcoming Lucky Cards product."
+coverAltAr: "كتالوج فعاليات بُعد الفعلي بالعربية، يعرض سؤال وشرط وميني قيمز وكروت الحظ القادمة."
+gallery:
+  - image: /project-media/bud/onboarding.jpg
+    altEn: "How to start dialog: choose an event, prepare it, then host it with the community."
+    altAr: "مودال كيف أبدأ: اختر فعاليتك، جهزها، ثم أدرها مع مجتمعك."
+    section: process
+    captionEn: "Explain the next steps in context. This public onboarding dialog describes preparation and host control. It is not a screenshot of an authenticated setup session. The documented full journey is setup → event → prizes → closing."
+    captionAr: "توضيح الخطوات في سياقها. يشرح مودال البدء العام التجهيز وتحكم المضيف؛ ولا يمثل لقطة من جلسة إعداد مسجلة الدخول. الرحلة الكاملة الموثقة: الإعداد ← الفعالية ← الجوائز ← الختام."
+  - image: /project-media/bud/cards-revealed.jpg
+    altEn: "Public Question & Condition trial with both cards revealed and the timer at zero."
+    altAr: "التجربة العامة لسؤال وشرط بعد كشف البطاقتين والمؤقت عند الصفر."
+    section: decisions
+    captionEn: "Make the interaction tangible before purchase. In the live public trial, revealing both cards starts the timer; a retry control allows another attempt. Observed directly on 15 November 2026. This is a trial, not the paid host screen."
+    captionAr: "إتاحة فهم التفاعل قبل الشراء. في التجربة العامة يبدأ المؤقت بعد كشف البطاقتين، ويظهر إجراء لإعادة المحاولة. تم التحقق مباشرة في 15 نوفمبر 2026؛ هذه تجربة عامة وليست شاشة المضيف المدفوعة."
+  - image: /project-media/bud/mini-trial.jpg
+    altEn: "Mini Games public memory trial showing two matched pairs and a completion message."
+    altAr: "تجربة الذاكرة العامة في ميني قيمز بعد مطابقة الزوجين وظهور رسالة الإكمال."
+    section: decisions
+    captionEn: "A second interaction inside the same catalog. The public Mini Games trial exposes matching and completion feedback. It demonstrates the discovery experience; the six-game host selector and contextual start modal still require authenticated capture."
+    captionAr: "تفاعل ثانٍ داخل الكتالوج نفسه. توضح تجربة ميني قيمز العامة المطابقة والتغذية الراجعة عند الإكمال. وهي دليل على تجربة الاستكشاف؛ ما زال تصوير اختيار الألعاب الست ومودال بدء اللعبة يحتاج جلسة مضيف."
+
+rightsCleared: true
+ndaCleared: true
+contentOrigin: real
