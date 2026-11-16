@@ -201,7 +201,7 @@ for(const slug of ['athar','iau-student-app','sky-marathon']) for(const locale o
   }
   for(const theme of ['light','dark']) {
     const current=await page.locator('html').getAttribute('data-theme');
-    if(current!==theme)await page.locator('[data-theme-toggle]').click();
+    if(current!==theme)await page.locator('.themeToggle').click();
     expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
   }

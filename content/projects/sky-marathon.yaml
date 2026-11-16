@@ -18,7 +18,7 @@ summaryAr: من نتيجة الفعالية إلى ترتيب المشاركين
 summaryEn: 'From event results to participant standings: a focused workflow for entry, review, saving and correction.'
 problemAr: تختلف قواعد النقاط بين البطولات والأنشطة الأسبوعية واليومية والستيج. كان المطلوب أن يستوعب الرصد هذا الاختلاف، ويوضح للمنظم ما سيُحتسب قبل اعتماد النتيجة.
 problemEn: Tournaments, weekly activities, daily events and Stage sessions use different point rules. The scoring experience needed to accommodate those differences and make the resulting points clear before confirmation.
-contextAr: صممت اتجاه تجربة أداة الرصد لمجتمع SKY، ووجّهت تحسين النماذج والترتيب والاستعلام، مستعينًا بأدوات الذكاء الاصطناعي في التطوير. يرتبط النظام بجدول الفعاليات وسجلات النقاط، ويستخدم معرّف ديسكورد لتجميع نتائج العضو عبر الفعاليات.
+contextAr: قدت تصميم تجربة الرصد لمجتمع SKY، ووجّهت تحسين النماذج والترتيب والاستعلام، مستعينًا بأدوات الذكاء الاصطناعي في التطوير. يرتبط النظام بجدول الفعاليات وسجلات النقاط، ويستخدم معرّف ديسكورد لتجميع نتائج العضو عبر الفعاليات.
 contextEn: I directed the scoring experience for the SKY community and refined the forms, leaderboard and member lookup with AI-assisted development. The tool connects scheduled events with scoring records and aggregates each member’s results by Discord ID.
 processAr: فصلت إدخال النتيجة عن اعتمادها. يراجع المنظم الفعالية والأعضاء والنقاط في خطوة واحدة، ثم يؤكد الحفظ. وعند التصحيح، يرى النتيجة القديمة والجديدة وأثر الفرق على المجموع قبل التنفيذ.
 processEn: Entry and commitment are separate. The organizer reviews the event, members and points before confirming the save. A correction also previews the old result, new result and effect on the member total.
@@ -73,7 +73,7 @@ presentations:
     bodyEn: Fixed placement points are automatic; Stage points stay within their allowed range.
   - titleAr: المراجعة والتأكيد
     titleEn: Review and confirm
-    bodyAr: تظهر الأعضاء والنقاط قبل أن يكتب النظام النتيجة.
+    bodyAr: تظهر قائمة الأعضاء والنقاط قبل اعتماد الحفظ.
     bodyEn: The member and point summary appears before the write.
   - titleAr: الترتيب والتصحيح
     titleEn: Standings and correction
