@@ -17,14 +17,17 @@ export function CaseStudy({project: p, locale}: {project: ProjectSummary; locale
     {id: 'process', title: ar ? 'رحلة الهوست' : 'The host journey', body: ar ? p.processAr : p.processEn},
     {id: 'decisions', title: ar ? 'قرارات التصميم' : 'Design decisions', body: ar ? p.decisionsAr : p.decisionsEn},
     {id: 'outcome', title: ar ? 'النتائج والتعلّم' : 'Outcomes & reflection', body: ar ? p.outcomeAr : p.outcomeEn},
-  ].filter(s => s.body);
+  ].filter(s => s.body).map(section => {
+    const custom = p.presentations?.find(item => item.section === section.id);
+    return {...section, title: (ar ? custom?.titleAr : custom?.titleEn) || section.title};
+  });
   const media = (images: ProjectImage[]) => images.map((im, i) => <figure className="caseEvidence" key={`${im.url}-${i}`}>
     <a href={im.url} target="_blank" rel="noreferrer" aria-label={ar ? 'افتح الصورة بالحجم الكامل' : 'Open full-size screenshot'}>
       <Image src={im.url} alt={(ar ? im.altAr : im.altEn) || ''} width={1600} height={1000} sizes="(min-width: 1480px) 1320px, 91vw" />
     </a>
     {(ar ? im.captionAr : im.captionEn) && <figcaption>{ar ? im.captionAr : im.captionEn}</figcaption>}
   </figure>);
-  return <InteriorPageShell locale={locale} counterpartHref={ar ? `/projects/${p.slug}` : `/ar/projects/${p.slug}`} className="caseStudy" compactHeader>
+  return <InteriorPageShell locale={locale} counterpartHref={ar ? `/projects/${p.slug}` : `/ar/projects/${p.slug}`} className={`caseStudy caseMedia-${p.mediaStyle || 'wide'}`} compactHeader>
     {(process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV === 'development') && <aside className="caseReview">{ar ? 'معاينة إصدار تجريبي — النسخة الرسمية متاحة على البورتفوليو.' : 'Preview build — the published version is available on the portfolio.'}</aside>}
     <header className="caseHeading">
       <Link href={work} className="sectionLink">{ar ? 'العودة للأعمال' : 'Back to work'}</Link>
@@ -33,7 +36,7 @@ export function CaseStudy({project: p, locale}: {project: ProjectSummary; locale
       <p className="caseRole">{ar ? p.roleAr : p.roleEn}</p>
       {summary && <p className="caseSummary">{summary}</p>}
     </header>
-    {p.cover && media([{...p.cover, captionEn: 'The live event catalog, shown in Arabic.', captionAr: 'كتالوج الفعاليات في المنتج الفعلي.'}])}
+    {p.cover && media([p.cover])}
     <nav className="caseContents" aria-label={ar ? 'أقسام الدراسة' : 'Case study contents'}>{sections.map((s,i) => <a href={`#${s.id}`} key={s.id}><span>{String(i+1).padStart(2,'0')}</span> {s.title}</a>)}</nav>
     {sections.map((s,i) => {
       const presentation = p.presentations?.find(item => item.section === s.id);

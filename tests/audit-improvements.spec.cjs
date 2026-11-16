@@ -46,7 +46,7 @@ for (const locale of ['en','ar']) {
     await expect(page.locator('html')).toHaveAttribute('lang',locale);
     await page.goto(prefix+'/work');
     await expect(page).toHaveURL(new RegExp(`${home}#work$`));
-    await expect(page.locator('#project-track .project-card')).toHaveCount(3);
+    await expect(page.locator('#project-track .project-card')).toHaveCount(5);
     await page.goto(prefix+'/playground');
     const contact=page.locator('#'+(locale==='ar'?'experiments-ar':'experiments')+' a').last();
     await expect(contact).toHaveAttribute('href',home+'#contact');
@@ -73,17 +73,23 @@ for (const locale of ['en','ar']) {
   test(`${locale}: desktop carousel boundaries survive scroll completion`,async({page})=>{
     await page.setViewportSize({width:1440,height:900});
     await page.goto(home+'#work');
-    await expect(page.locator('#project-track .project-card')).toHaveCount(3);
-    await expect(page.locator('#project-count')).toHaveText('1–2 / 3');
-    await page.locator('#project-next').click();
+    await expect(page.locator('#project-track .project-card')).toHaveCount(5);
+    await expect(page.locator('#project-count')).toHaveText('1–2 / 5');
+    await page.emulateMedia({reducedMotion:'reduce'});
+    for(let i=0;i<5 && await page.locator('#project-next').isEnabled();i++) {
+      await page.locator('#project-next').click();
+      await page.waitForTimeout(100);
+    }
     await expect(page.locator('#project-next')).toBeDisabled();
-    await expect(page.locator('#project-count')).toHaveText('2–3 / 3');
-    await page.waitForTimeout(400); // Outlast the former 150ms nearest-card timer.
+    await expect(page.locator('#project-count')).toHaveText('4–5 / 5');
+    await page.waitForTimeout(400);
     await expect(page.locator('#project-next')).toBeDisabled();
-    await expect(page.locator('#project-count')).toHaveText('2–3 / 3');
-    await page.locator('#project-prev').click();
+    for(let i=0;i<5 && await page.locator('#project-prev').isEnabled();i++) {
+      await page.locator('#project-prev').click();
+      await page.waitForTimeout(100);
+    }
     await expect(page.locator('#project-prev')).toBeDisabled();
-    await expect(page.locator('#project-count')).toHaveText('1–2 / 3');
+    await expect(page.locator('#project-count')).toHaveText('1–2 / 5');
   });
   test(`${locale}: light scenes and article accessibility and review captures`,async({page})=>{
     await page.setViewportSize({width:1440,height:900});

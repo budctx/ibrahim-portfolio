@@ -165,7 +165,7 @@ for(const lang of ['ar','en']) for(const [width,height] of [[320,568],[390,844],
 for(const lang of ['ar','en'])test(`${lang} homepage real work and contact interaction regressions`,async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});const home=lang==='ar'?'/':'/en';
  await page.goto(home+'#work');await expect(page.locator('#work')).toHaveClass(/is-active/);await page.locator('.project-card').first().click();await expect(modal(page)).toBeVisible();await expect(page.locator('#modal-title')).toHaveText(lang==='ar'?'أثر':'ATHAR');await page.keyboard.press('Escape');await expect(modal(page)).not.toBeVisible();
- await page.locator('#project-next').click();await expect(page.locator('#project-count')).toHaveText('2 / 3');await page.locator('#project-track .project-card').filter({hasText:/تصميم جرافيكي|Graphic Design/}).click();await expect(modal(page)).toBeVisible();await modal(page).locator('#modal-link').click();await expect(page).toHaveURL(/work\/graphic-design/);
+ await page.locator('#project-next').click();await expect(page.locator('#project-count')).toHaveText('2 / 5');await page.locator('#project-track .project-card').filter({hasText:/تصميم جرافيكي|Graphic Design/}).click();await expect(modal(page)).toBeVisible();await modal(page).locator('#modal-link').click();await expect(page).toHaveURL(/work\/graphic-design/);
  await page.goto(home+'#contact');await expect(page.locator('#contact')).toHaveClass(/is-active/);await page.locator('#envelope-button').click();await expect(page.locator('#envelope-button')).toHaveAttribute('aria-expanded','true');
  await page.locator('#contact-trigger').click();await expect(page.locator('#contact-modal')).toBeVisible();expect(await page.locator('#scenes').evaluate(e=>e.style.overflow)).toBe('hidden');
  await expect(page.locator('.contact-method')).toHaveCount(2);await page.locator('#contact-modal-close').focus();await page.keyboard.press('Shift+Tab');await expect(page.locator('#contact-whatsapp')).toBeFocused();await page.keyboard.press('Escape');await expect(page.locator('#contact-trigger')).toBeFocused();expect(await page.locator('#scenes').evaluate(e=>e.style.overflow)).toBe('');
@@ -195,7 +195,7 @@ for(const lang of ['ar','en'])test(`${lang} mobile horizontal work swipe then ve
  };
  const card=await page.locator('.project-card').first().boundingBox();
  await swipe(320,card.y+80,-245,0);
- await expect(page.locator('#project-count')).toHaveText(/[23] \/ 3/);
+ await expect(page.locator('#project-count')).toHaveText(/[2345] \/ 5/);
  const selectedProject=await page.locator('#project-count').textContent();
  // Exercise dynamic viewport height changes with the second card selected.
  await page.setViewportSize({width:390,height:780});

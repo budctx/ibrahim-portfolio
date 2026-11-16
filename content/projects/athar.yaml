@@ -1,0 +1,95 @@
+projectKey: athar
+slug: athar
+classification: selected
+status: published
+featured: true
+year: '2026'
+rightsCleared: true
+ndaCleared: true
+contentOrigin: real
+order: 20
+titleAr: أثر
+titleEn: ATHAR
+typeAr: هوية مهنية رقمية
+typeEn: Digital professional identity
+roleAr: توجيه المنتج وتجربة المستخدم والتطوير بمساعدة الذكاء الاصطناعي
+roleEn: Product direction, UX and AI-assisted development
+summaryAr: من أنت، وما الذي تقدمه، وكيف يصل الآخرون إليك. تجربة تجمع الهوية المهنية والمشاركة في وجهة واحدة.
+summaryEn: A professional identity that brings profile, contact and sharing into one destination.
+problemAr: عند التعارف المهني، تتوزع المعلومات بين السيرة والبورتفوليو وحسابات التواصل. ركزت على جمعها في هوية واضحة، يعرف منها الزائر صاحب البطاقة وكيف يتواصل معه.
+problemEn: A professional introduction often spreads across a CV, a portfolio and several social profiles. The design focus was to bring those pieces into a clear identity and a direct path to contact.
+contextAr: أثر منتج شخصي لبطاقات الأعمال الرقمية. وجّهت تجربة إنشاء الهوية ومشاركتها، وراجعت تفاصيل الواجهة بالعربية والإنجليزية، مستعينًا بأدوات الذكاء الاصطناعي في التطوير. الأولوية كانت وضوح البطاقة وسهولة استخدامها، مع إبقاء إعدادات صاحبها في مسار منفصل.
+contextEn: ATHAR is a personal digital business-card product. I directed the creation and sharing experience, reviewed the bilingual interface and used AI tools to support development. The public card stays focused on the identity; owner controls belong in a separate management flow.
+processAr: تبدأ التجربة ببناء الهوية، ثم مشاركة عنوانها. يصل المستلم إلى البطاقة من الرابط أو QR، أو من بطاقة NFC متوافقة، دون تثبيت تطبيق لعرضها.
+processEn: The journey moves from building an identity to sharing its address. Recipients open the card through a link, QR code or compatible NFC card/device without installing an app to view it.
+decisionsAr: ركزت على قرارات تحافظ على وضوح المعلومات عندما تتغير اللغة أو المحتوى، وتقرّب المشاركة من صاحب البطاقة.
+decisionsEn: The key decisions keep information legible as language and content change, and put sharing within reach of the card owner.
+outcomeAr: 'أثر متاح كمنتج منشور. توثق مراجعاته تحسين أحجام النصوص ومساحات الضغط، وسلوك النوافذ بلوحة المفاتيح، والتمييز بين فشل تحميل البيانات وخلوّها.
+
+
+  أبرز ما تعلمته أن جمع المعلومات لا يكفي. ترتيبها وحدودها وطريقة الوصول إليها هي ما يجعل البطاقة مفيدة وقت التعارف.'
+outcomeEn: 'ATHAR is available as a live product. Its review records document larger text and interaction targets, keyboard behavior in dialogs and distinct failed-versus-empty data states.
+
+
+  The lesson was that collecting information is only the start. Hierarchy, content limits and direct access determine whether the card is useful during an introduction.'
+evidenceNoteAr: الصورة بطاقة إبراهيم المنشورة سابقًا في البورتفوليو، وليست لقطة لصفحة التسويق الحالية. سجلات المراجعة تدعم وصف التحسينات، دون ادعاء نتائج استخدام مقاسة.
+evidenceNoteEn: The image is Ibrahim’s card already shown in this portfolio, rather than the current marketing homepage. Review records support the interaction changes; no measured user outcomes are claimed.
+tools:
+- ChatGPT
+- Codex
+- GitHub
+- Vercel
+projectUrl: https://atharca.vercel.app/
+mediaStyle: portrait
+cover: /project-media/athar/public-card.jpg
+coverAltAr: بطاقة إبراهيم في أثر، تعرض الهوية والمهارات والروابط وحفظ جهة الاتصال.
+coverAltEn: Ibrahim’s ATHAR card with profile, skills, professional links and Save contact.
+coverCaptionAr: البطاقة الفعلية المستخدمة في عرض أثر داخل البورتفوليو.
+coverCaptionEn: The real card used in the portfolio’s existing ATHAR presentation.
+gallery: []
+presentations:
+- section: problem
+  layout: statement
+  titleAr: ''
+  titleEn: ''
+  leadAr: هوية واحدة، قابلة للمشاركة
+  leadEn: One identity, ready to share.
+  items: []
+- section: process
+  layout: steps
+  titleAr: من إنشاء الهوية إلى مشاركتها
+  titleEn: From creation to sharing
+  leadAr: ''
+  leadEn: ''
+  items:
+  - titleAr: أنشئ هويتك
+    titleEn: Create the identity
+    bodyAr: رتب البيانات الأساسية قبل التوسع في التفاصيل.
+    bodyEn: Start with core profile information before adding detail.
+  - titleAr: شارك البطاقة
+    titleEn: Share the card
+    bodyAr: اختر الرابط أو QR بحسب الموقف.
+    bodyEn: Use the link or QR code to suit the moment.
+  - titleAr: اترك التواصل واضحًا
+    titleEn: Make contact clear
+    bodyAr: يصل المستلم إلى وسائل التواصل وحفظ جهة الاتصال من البطاقة نفسها.
+    bodyEn: Recipients reach contact actions and Save contact from the card itself.
+- section: decisions
+  layout: decisions
+  titleAr: ''
+  titleEn: ''
+  leadAr: ''
+  leadEn: ''
+  items:
+  - titleAr: المحتوى يحدد الأولوية
+    titleEn: Let content set the hierarchy
+    bodyAr: أبقيت الهوية والمسمى في المقدمة، ثم المهارات والروابط وإجراءات التواصل. البطاقة تعرّف بصاحبها قبل أن تطلب من الزائر الاختيار بين روابطه.
+    bodyEn: Identity and role lead, followed by skills, links and contact actions. The card introduces its owner before asking visitors to choose a destination.
+  - titleAr: كل لغة تقرأ بطبيعتها
+    titleEn: Respect each language
+    bodyAr: راجعت اتجاه الحقول والتسميات وتناسق الوضعين الفاتح والداكن. الروابط والأرقام تحتفظ باتجاهها داخل الواجهة العربية.
+    bodyEn: I reviewed field direction, labels and light/dark consistency. Links and numbers retain their reading direction inside the Arabic interface.
+  - titleAr: إغلاق واضح دون فقدان العمل
+    titleEn: Keep dismissal predictable
+    bodyAr: 'اعتمدت سلوكًا مشتركًا للنوافذ: انتقال التركيز داخلها، وإغلاقها بـEscape، ثم عودته إلى الزر الذي فتحها، مع الحفاظ على تنبيه التعديلات غير المحفوظة.'
+    bodyEn: Dialogs share focus containment, Escape dismissal and return focus to the opener. Unsaved-change warnings remain where edits could be lost.

@@ -26,13 +26,18 @@ export async function loadWorkProjects() {
     if (!response.ok) return [...curatedProjects];
     const result = await response.json();
     if (!Array.isArray(result)) return [...curatedProjects];
-    const known = new Set(curatedProjects.map(project => project.id));
+    // Enrich an existing curated card with its published study, keeping its artwork.
+    const curated = curatedProjects.map(project => {
+      const study = result.find(item => item?.id === project.id && item.url?.ar && item.url?.en);
+      return study ? {...project, ...study, art: project.art, image: project.image} : project;
+    });
+    const known = new Set(curated.map(project => project.id));
     const extras = result.filter(project =>
       project && typeof project.id === 'string' && !known.has(project.id) &&
       project.title?.ar && project.title?.en && project.image &&
       project.url?.ar && project.url?.en
     );
-    return [...curatedProjects, ...extras];
+    return [...curated, ...extras];
   } catch {
     return [...curatedProjects];
   }
