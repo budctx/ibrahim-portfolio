@@ -15,6 +15,7 @@ export async function GET() {
         en: project.summaryEn || (project.problemEn || project.contextEn || '').split(/\n\s*\n/)[0],
       },
       art: 'product',
+      mediaStyle: project.mediaStyle || 'wide',
       image: project.cover?.url,
       url: {ar: `/ar/projects/${project.slug}`, en: `/projects/${project.slug}`},
       action: 'case-study',

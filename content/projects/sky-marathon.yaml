@@ -1,0 +1,109 @@
+projectKey: sky-marathon
+slug: sky-marathon
+classification: selected
+status: published
+featured: true
+year: '2026'
+rightsCleared: true
+ndaCleared: true
+contentOrigin: real
+order: 40
+titleAr: SKY Marathon
+titleEn: SKY Marathon
+typeAr: أداة تشغيل ورصد نتائج
+typeEn: Operations tool · Event scoring
+roleAr: توجيه تجربة الرصد والتحسينات والتطوير بمساعدة الذكاء الاصطناعي
+roleEn: Scoring UX direction, iterative refinement and AI-assisted development
+summaryAr: من نتيجة الفعالية إلى ترتيب المشاركين. أداة تعطي المنظم مسارًا واضحًا للإدخال والمراجعة والحفظ والتصحيح.
+summaryEn: 'From event results to participant standings: a focused workflow for entry, review, saving and correction.'
+problemAr: تختلف قواعد النقاط بين البطولات والأنشطة الأسبوعية واليومية والستيج. كان المطلوب أن يستوعب الرصد هذا الاختلاف، ويوضح للمنظم ما سيُحتسب قبل اعتماد النتيجة.
+problemEn: Tournaments, weekly activities, daily events and Stage sessions use different point rules. The scoring experience needed to accommodate those differences and make the resulting points clear before confirmation.
+contextAr: قدت تصميم تجربة الرصد لمجتمع SKY، ووجّهت تحسين النماذج والترتيب والاستعلام، مستعينًا بأدوات الذكاء الاصطناعي في التطوير. يرتبط النظام بجدول الفعاليات وسجلات النقاط، ويستخدم معرّف ديسكورد لتجميع نتائج العضو عبر الفعاليات.
+contextEn: I directed the scoring experience for the SKY community and refined the forms, leaderboard and member lookup with AI-assisted development. The tool connects scheduled events with scoring records and aggregates each member’s results by Discord ID.
+processAr: فصلت إدخال النتيجة عن اعتمادها. يراجع المنظم الفعالية والأعضاء والنقاط في خطوة واحدة، ثم يؤكد الحفظ. وعند التصحيح، يرى النتيجة القديمة والجديدة وأثر الفرق على المجموع قبل التنفيذ.
+processEn: Entry and commitment are separate. The organizer reviews the event, members and points before confirming the save. A correction also previews the old result, new result and effect on the member total.
+decisionsAr: 'ركزت التحسينات على تقليل الالتباس في الرصد: معلومات كافية لاتخاذ القرار، ورسالة خطأ عند الحقل المعني، وحالة واضحة بعد الحفظ.'
+decisionsEn: 'The refinements reduce ambiguity during scoring: enough information to decide, feedback beside the relevant field and a clear completion state.'
+outcomeAr: 'الأداة منشورة. توثق المراجعات فحص فئات الرصد الأربع، والتكرار، والمراجعة قبل الحفظ، والتصحيح والتصدير على بيانات اختبار معزولة. شمل الفحص الإنتاجي الاستعلام والتصدير ومراجعة التصحيح ثم إلغاؤه.
+
+
+  تعلمت أن الثقة في أدوات التشغيل تأتي من وضوح ما قبل الإجراء وما بعده. الاختصار مفيد حين يحذف التكرار ويحافظ على أثر القرار.'
+outcomeEn: 'The tool is deployed. Recorded reviews cover all four scoring categories, duplicates, review-before-save, corrections and exports with isolated test data. Production checks included member lookup, exports and a correction preview that was cancelled.
+
+
+  The lesson was that operational confidence depends on clarity before and after an action. Shorter copy helps when it removes repetition while preserving the consequences of a decision.'
+evidenceNoteAr: لقطة الرصد من نموذج مراجعة مبكر ببيانات اختبار، قبل حذف أسماء المشاركين. تعتمد النسخة الحالية على المعرّف وحده. اختبارات الحفظ والتصحيح المعزولة لا تعني تغيير نتائج الإنتاج.
+evidenceNoteEn: The scoring image is an earlier review prototype with fictional test data, before participant names were removed. The current version uses IDs only. Isolated save/correction tests do not imply production scores were changed.
+tools:
+- ChatGPT
+- Codex
+- Notion
+- GitHub
+- Vercel
+projectUrl: https://sky-marathon-points.vercel.app/
+mediaStyle: wide
+cover: /project-media/sky/scoring-prototype.png
+coverAltAr: نموذج مبكر لرصد نتائج SKY يعرض فئة أسبوعية ومدخلات اختبار ومراجعة النقاط.
+coverAltEn: Earlier SKY scoring prototype with a weekly category, fictional inputs and a point summary.
+coverCaptionAr: نموذج مبكر ببيانات اختبار. تستخدم النسخة الحالية المعرّفات دون أسماء المشاركين.
+coverCaptionEn: Earlier prototype with fictional test data. The current version uses participant IDs without names.
+gallery: []
+presentations:
+- section: problem
+  layout: statement
+  titleAr: ''
+  titleEn: ''
+  leadAr: قواعد مختلفة، ومراجعة واضحة قبل الاعتماد
+  leadEn: Different scoring rules. A clear review before commitment.
+  items: []
+- section: process
+  layout: steps
+  titleAr: قبل الحفظ وبعده
+  titleEn: Before and after saving
+  leadAr: ''
+  leadEn: ''
+  items:
+  - titleAr: اختيار الفعالية
+    titleEn: Choose the event
+    bodyAr: يرتبط التاريخ بالنشاط المجدول وقواعده.
+    bodyEn: The scheduled activity determines the date and rules.
+  - titleAr: إدخال النتائج
+    titleEn: Enter results
+    bodyAr: نقاط المراكز الثابتة تلقائية، وتبقى نقاط الستيج ضمن حدودها.
+    bodyEn: Fixed placement points are automatic; Stage points stay within their allowed range.
+  - titleAr: المراجعة والتأكيد
+    titleEn: Review and confirm
+    bodyAr: تظهر قائمة الأعضاء والنقاط قبل اعتماد الحفظ.
+    bodyEn: The member and point summary appears before the write.
+  - titleAr: الترتيب والتصحيح
+    titleEn: Standings and correction
+    bodyAr: يتابع المنظم المجموع، ويعاين أثر أي تصحيح قبل اعتماده.
+    bodyEn: The organizer checks totals and previews any correction before committing it.
+- section: decisions
+  layout: decisions
+  titleAr: ''
+  titleEn: ''
+  leadAr: ''
+  leadEn: ''
+  items:
+  - titleAr: المعرّف يكفي
+    titleEn: One member identity
+    bodyAr: حذفت أسماء المشاركين من رحلة الرصد والعرض والتصدير بناءً على احتياج التشغيل. المعرّف هو الرابط الثابت بين نتائج العضو، وتبقى أسماء الإداريين للمساءلة.
+    bodyEn: Participant names were removed from entry, display and export to match the operating need. Discord ID is the stable link between results; administrator names remain for accountability.
+  - titleAr: الخطأ في موضعه
+    titleEn: Put errors where they occur
+    bodyAr: يرتبط التنبيه بالحقل غير الصحيح، وينتقل التركيز إلى أول خطأ. التكرار بين فائز ومشارك يمنع المراجعة، بينما تُستبعد التكرارات داخل قائمة المشاركين مع توضيحها.
+    bodyEn: Feedback attaches to the invalid field and focuses the first error. A winner/participant conflict blocks review; repeats within the participant list are deduplicated with notice.
+  - titleAr: إنجاز واضح وخطوة تالية
+    titleEn: Show completion and the next step
+    bodyAr: يعرض نجاح الرصد عدد الأعضاء والنقاط مع إجراء لفتح الترتيب. تختفي رسالة العملية السابقة عند بدء تعديل جديد حتى لا تختلط بنتيجة المسودة الحالية.
+    bodyEn: Completion reports member count and processed points with a link to standings. Editing a new draft clears the previous completion message so the states do not get confused.
+- section: outcome
+  layout: editorial
+  titleAr: ما تحقق وما تعلمته
+  titleEn: What changed and what I learned
+  leadAr: ''
+  leadEn: ''
+  items: []
+coverWidth: 1440
+coverHeight: 1039

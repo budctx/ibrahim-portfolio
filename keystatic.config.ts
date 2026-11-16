@@ -108,6 +108,11 @@ export default config({
         cover: imageField('Cover image'),
         coverAltEn: text('Cover alt text — English'),
         coverAltAr: text('Cover alt text — Arabic'),
+        coverCaptionEn: text('Cover caption — English'),
+        coverCaptionAr: text('Cover caption — Arabic'),
+        coverWidth: fields.integer({label: 'Cover width (pixels)', validation: {min: 1}}),
+        coverHeight: fields.integer({label: 'Cover height (pixels)', validation: {min: 1}}),
+        mediaStyle: fields.select({label: 'Screenshot proportions', options: [{label: 'Wide', value: 'wide'}, {label: 'Portrait', value: 'portrait'}], defaultValue: 'wide'}),
         gallery: fields.array(
           fields.object({
             image: imageField('Image'),
@@ -116,6 +121,8 @@ export default config({
             section: fields.select({label: 'Narrative placement', options: ['gallery','problem','context','process','decisions','outcome'].map(value => ({label: value, value})), defaultValue: 'gallery'}),
             captionEn: text('Caption — English', true),
             captionAr: text('Caption — Arabic', true),
+            width: fields.integer({label: 'Image width (pixels)', validation: {min: 1}}),
+            height: fields.integer({label: 'Image height (pixels)', validation: {min: 1}}),
           }),
           {
             label: 'Gallery',
@@ -125,6 +132,8 @@ export default config({
         presentations: fields.array(fields.object({
           section: fields.select({label: 'Chapter', options: ['problem','context','process','decisions','outcome'].map(value => ({label: value, value})), defaultValue: 'problem'}),
           layout: fields.select({label: 'Presentation', options: ['editorial','statement','steps','decisions','split'].map(value => ({label: value, value})), defaultValue: 'editorial'}),
+          titleEn: text('Chapter title — English (optional)'),
+          titleAr: text('Chapter title — Arabic (optional)'),
           leadEn: text('Key idea — English', true),
           leadAr: text('Key idea — Arabic', true),
           items: fields.array(fields.object({

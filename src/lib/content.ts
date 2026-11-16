@@ -37,6 +37,8 @@ async function isDraftRequest() {
 }
 
 export type ProjectImage = {
+  width?: number;
+  height?: number;
   url: string;
   altEn?: string;
   altAr?: string;
@@ -48,12 +50,15 @@ export type ProjectImage = {
 export type ChapterPresentation = {
   section: string;
   layout: 'editorial' | 'statement' | 'steps' | 'decisions' | 'split';
+  titleEn?: string;
+  titleAr?: string;
   leadEn?: string;
   leadAr?: string;
   items: {titleEn?: string; titleAr?: string; bodyEn?: string; bodyAr?: string}[];
 };
 
 export type ProjectSummary = {
+  mediaStyle?: string;
   presentations?: ChapterPresentation[];
   projectKey: string;
   titleEn: string;
@@ -91,6 +96,7 @@ type ProjectEntry = Awaited<ReturnType<typeof localReader.collections.projects.r
 
 function mapProject(slug: string, entry: NonNullable<ProjectEntry>): ProjectSummary {
   return {
+    mediaStyle: entry.mediaStyle,
     presentations: entry.presentations.map(item => ({...item, layout: item.layout as ChapterPresentation['layout'], items: [...item.items]})),
     projectKey: entry.projectKey,
     titleEn: entry.titleEn,
@@ -121,10 +127,10 @@ function mapProject(slug: string, entry: NonNullable<ProjectEntry>): ProjectSumm
     order: entry.order ?? undefined,
     featured: entry.featured,
     cover: entry.cover
-      ? {url: entry.cover, altEn: entry.coverAltEn, altAr: entry.coverAltAr}
+      ? {url: entry.cover, altEn: entry.coverAltEn, altAr: entry.coverAltAr, captionEn: entry.coverCaptionEn, captionAr: entry.coverCaptionAr, width: entry.coverWidth ?? undefined, height: entry.coverHeight ?? undefined}
       : undefined,
     gallery: entry.gallery.flatMap((item) =>
-      item.image ? [{url: item.image, altEn: item.altEn, altAr: item.altAr, section: item.section, captionEn: item.captionEn, captionAr: item.captionAr}] : [],
+      item.image ? [{url: item.image, altEn: item.altEn, altAr: item.altAr, section: item.section, captionEn: item.captionEn, captionAr: item.captionAr, width: item.width ?? undefined, height: item.height ?? undefined}] : [],
     ),
   };
 }

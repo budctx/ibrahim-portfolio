@@ -35,7 +35,7 @@ for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
 test('published case study is available from the public Work listing',async({page})=>{
  await page.goto('/work');
  await expect(page).toHaveURL(/en#work$/);
- await expect(page.locator('#project-track .project-card')).toHaveCount(3);
+ await expect(page.locator('#project-track .project-card')).toHaveCount(5);
 });
 
 for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
@@ -87,7 +87,7 @@ test('shared homepage carousel opens BU\'D preview through the real Work modal',
   await cta.click();
   await expect(page).toHaveURL(/\/ar\/projects\/bud-discord-events$/);
   await expect(page.locator('.relatedWork[data-ready="true"]')).toBeVisible();
-  await expect(page.locator('.relatedWork .project-card')).toHaveCount(2);
+  await expect(page.locator('.relatedWork .project-card')).toHaveCount(4);
   await page.locator('.projectFooterNav').getByRole('link',{name:'العودة للأعمال',exact:true}).click();
   await expect(page).toHaveURL(/\/#work$/);
 });
@@ -99,13 +99,13 @@ for(const locale of ['en','ar']) {
   await page.goto(`${prefix}/projects/bud-discord-events`);
   const section=page.locator('[data-related-work]');
   await expect(section).toHaveAttribute('data-ready','true');
-  await expect(section.locator('.project-card')).toHaveCount(2);
+  await expect(section.locator('.project-card')).toHaveCount(4);
   const cards=section.locator('.project-card');
   await cards.first().click();
   const modal=section.locator('dialog.project-modal');
   await expect(modal).toBeVisible();
   await expect(modal.locator('#modal-title')).toContainText(locale==='ar'?'أثر':'ATHAR');
-  await expect(modal.locator('#modal-link')).toHaveAttribute('href','https://atharca.vercel.app/');
+  await expect(modal.locator('#modal-link')).toHaveAttribute('href',locale==='ar'?'/ar/projects/athar':'/projects/athar');
   await modal.locator('#modal-close').click();
   await expect(modal).not.toBeVisible();
   await expect(cards.first()).toBeFocused();
@@ -134,7 +134,7 @@ for(const locale of ['ar','en'])for(const width of [320,360,430,540,768,850,900,
     await expect(title).toBeVisible();
     const rail=page.locator('[data-related-work]');
     await expect(rail).toHaveAttribute('data-ready','true');
-    await expect(rail.locator('.project-card')).toHaveCount(2);
+    await expect(rail.locator('.project-card')).toHaveCount(4);
     const dimensions=await page.evaluate(()=>{
       const bounds=selector=>{
         const r=document.querySelector(selector)?.getBoundingClientRect();
@@ -182,3 +182,38 @@ for (const locale of ['ar','en']) for (const width of [320,768,1920]) {
   await expect(page.locator('#work')).toHaveClass(/is-active/);
  });
 }
+
+for(const slug of ['athar','iau-student-app','sky-marathon']) for(const locale of ['ar','en']) for(const width of [320,768,1920]) {
+ test(`new work ${slug} ${locale} ${width}`,async({page})=>{
+  await page.setViewportSize({width,height:900});
+  const prefix=locale==='ar'?'/ar':'';
+  await page.goto(`${prefix}/projects/${slug}`);
+  await expect(page.locator('.caseHeading h1')).toBeVisible();
+  await expect(page.locator('.portfolioNavigation a')).toHaveCount(1);
+  await expect(page.locator('.projectFooterNav a')).toHaveCount(slug==='iau-student-app'?1:2);
+  await expect(page.locator('#process h2')).not.toHaveText(/host|هوست/);
+  await expect(page.locator('[data-related-work]')).toHaveAttribute('data-ready','true');
+  await expect(page.locator('[data-related-work] .project-card')).toHaveCount(4);
+  for(const img of await page.locator('.caseEvidence img').all()) {
+    await img.scrollIntoViewIfNeeded();
+    await expect.poll(()=>img.evaluate(el=>el.complete&&el.naturalWidth>0)).toBe(true);
+    expect((await img.getAttribute('alt')).length).toBeGreaterThan(10);
+  }
+  for(const theme of ['light','dark']) {
+    const current=await page.locator('html').getAttribute('data-theme');
+    if(current!==theme)await page.locator('.themeToggle').click();
+    expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+  }
+  await page.screenshot({path:`test-results/new-work/${slug}-${locale}-${width}.png`,fullPage:true});
+ });
+}
+
+test('homepage publishes four unique product studies alongside the graphic collection',async({page})=>{
+ await page.goto('/#work');
+ const cards=page.locator('#project-track .project-card');await expect(cards).toHaveCount(5);
+ const feed=await page.request.get('/api/work-projects').then(r=>r.json());
+ expect(feed.map(p=>p.id).sort()).toEqual(['athar','bud-discord-events','iau-student-app','sky-marathon']);
+ await cards.filter({hasText:'أثر'}).click();
+ await expect(page.locator('#modal-link')).toHaveAttribute('href','/ar/projects/athar');
+});
