@@ -337,13 +337,14 @@ function updateProjectCount(){document.getElementById('project-count').textConte
 function moveProject(index,behavior=reduce.matches?'auto':'smooth'){
  projectIndex=Math.max(0,Math.min(projects.length-1,index));
  const item=track.children[projectIndex];
- if(matchMedia('(min-width:900px)').matches){updateProjectCount();return}
+ if(matchMedia('(min-width:900px)').matches&&projects.length<=2){updateProjectCount();return}
  track.scrollTo({left:item.offsetLeft-(track.clientWidth-item.offsetWidth)/2,behavior});updateProjectCount();
 }
 const projectDialog=bindProjectModal(modal,{getLang:()=>lang,renderArt:projectArt,onClose:()=>{openedProject=null}});
 function fillModal(p){projectDialog.fill(p)}
 function openProject(p,opener){openedProject=p;projectOpener=opener;projectDialog.open(p,opener)}
 function renderProjects(){
+ document.getElementById('work').classList.toggle('has-overflowing-projects',projects.length>2);
  track.replaceChildren();
  projects.forEach(p=>{
  const item=document.createElement('article');item.className='project-item';
