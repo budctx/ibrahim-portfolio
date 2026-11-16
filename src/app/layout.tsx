@@ -7,6 +7,7 @@ import './globals.css';
 import './portfolio.css';
 import './portfolio-polish.css';
 import './portfolio-interior.css';
+import './portfolio-fluid.css';
 
 const plexSans = IBM_Plex_Sans({
   subsets: ['latin'],
