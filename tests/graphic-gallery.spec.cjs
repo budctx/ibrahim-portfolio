@@ -161,6 +161,7 @@ for(const lang of ['ar','en']) for(const [width,height] of [[320,568],[390,844],
 for(const lang of ['ar','en'])test(`${lang} homepage real work and contact interaction regressions`,async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});const home=lang==='ar'?'/':'/en';
  await page.goto(home);
+ await expect(page.locator('html')).toHaveAttribute('lang',lang);
  const workLink=page.locator('.hero-actions a[href="#work"]');
  await workLink.press('Enter');
  await expect(page.locator('#work-title')).toBeFocused();

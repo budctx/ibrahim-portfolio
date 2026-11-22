@@ -438,6 +438,7 @@ function translateContact(){
 envelopeButton.addEventListener('click',()=>{envelopeButton.setAttribute('aria-expanded',String(envelopeButton.getAttribute('aria-expanded')!=='true'));translateContact()});
 language.addEventListener('click',translateContact);translateContact();
 
+language.click();
 language.addEventListener('click',()=>{
  const path=lang==='en'?'/en':'/';
  history.replaceState(null,'',path+location.hash);
