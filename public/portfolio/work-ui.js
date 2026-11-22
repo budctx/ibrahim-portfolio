@@ -8,7 +8,7 @@ document.addEventListener('keydown',event=>{
 /* The approved Work DOM factory and native dialog, shared by home and gallery. */
 export const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>';
 
-export function createProjectCard(p, {lang, renderArt, onOpen, href}) {
+export function createProjectCard(p, {lang, renderArt, onOpen, href, details}) {
   const btn = document.createElement(href ? 'a' : 'button');
   btn.className = 'project-card';
   if (href) btn.href = href;
@@ -19,6 +19,11 @@ export function createProjectCard(p, {lang, renderArt, onOpen, href}) {
   const meta = document.createElement('div'); meta.className = 'project-meta';
   const text = document.createElement('div'), title = document.createElement('h3'), category = document.createElement('p');
   title.textContent = p.title[lang]; category.textContent = p.category[lang]; text.append(title, category);
+  if (details) {
+    const role = document.createElement('p');
+    role.textContent = details;
+    text.append(role);
+  }
   const icon = document.createElement('span'); icon.className = 'project-open'; icon.innerHTML = arrow;
   meta.append(text, icon); btn.append(meta);
   if (onOpen) btn.addEventListener('click', e => {

@@ -66,27 +66,21 @@ for (const {path, lang, dir} of locales) {
     await expect(page.locator('#card')).toHaveAttribute('aria-pressed', 'false');
   });
 
-  test(`${lang} work items and contact modal remain functional`, async ({page}) => {
+  test(`${lang} project and contact links are direct`, async ({page}) => {
     await page.setViewportSize({width: 390, height: 844});
     await page.emulateMedia({reducedMotion: 'reduce'});
     await load(page, path + '#work');
     await expect(page.locator('#project-track .project-card').nth(1)).toBeVisible();
     await expect(page.locator('.demo-mark')).toHaveCount(0);
     await page.locator('.project-card').first().click();
-    await expect(page.locator('#project-modal')).toBeVisible();
-    await page.keyboard.press('Escape');
-    await expect(page.locator('#project-modal')).not.toBeVisible();
+    await expect(page).toHaveURL(/projects\/athar$/);
 
     await page.goto(BASE + path + '#contact');
     await expect(page.locator('#contact')).toHaveClass(/is-active/);
     await page.locator('#envelope-button').click();
     await expect(page.locator('#envelope-button')).toHaveAttribute('aria-expanded', 'true');
-    await page.locator('#contact-trigger').click();
-    await expect(page.locator('#contact-modal')).toBeVisible();
-    await expect(page.locator('.contact-method')).toHaveCount(2);
-    await page.keyboard.press('Escape');
-    await expect(page.locator('#contact-modal')).not.toBeVisible();
-    await expect(page.locator('#contact-trigger')).toBeFocused();
+    await expect(page.locator('.contact-links a[href^="mailto:"]')).toBeInViewport();
+    await expect(page.locator('.contact-links a[href^="https://wa.me/"]')).toBeInViewport();
   });
 
   test(`${lang} work and contact meet serious/critical axe gate`, async ({page}) => {

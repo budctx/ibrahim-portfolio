@@ -71,20 +71,15 @@ for(const locale of ['en','ar']) for(const width of [390,768,1440]) {
  });
 }
 
-test('shared homepage carousel opens BU\'D preview through the real Work modal', async({page}) => {
+test('homepage Work grid opens BU\'D directly', async({page}) => {
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.goto('/#work');
   await page.locator('[data-scene="work"]').click();
   await expect(page.locator('#work.scene')).toHaveClass(/is-active/);
   const card=page.locator('#project-track .project-card').filter({hasText:'بُعد'});
   await expect(card).toHaveCount(1);
+  await expect(card).toHaveAttribute('href','/ar/projects/bud-discord-events');
   await card.click();
-  const dialog=page.locator('#project-modal');
-  await expect(dialog).toBeVisible();
-  const cta=dialog.locator('#modal-link');
-  await expect(cta).toHaveAttribute('href','/ar/projects/bud-discord-events');
-  await expect(cta).toHaveText('عرض المشروع');
-  await cta.click();
   await expect(page).toHaveURL(/\/ar\/projects\/bud-discord-events$/);
   await expect(page.locator('.relatedWork[data-ready="true"]')).toBeVisible();
   await expect(page.locator('.relatedWork .project-card')).toHaveCount(4);
@@ -215,5 +210,5 @@ test('homepage publishes four unique product studies alongside the graphic colle
  const feed=await page.request.get('/api/work-projects').then(r=>r.json());
  expect(feed.map(p=>p.id).sort()).toEqual(['athar','bud-discord-events','iau-student-app','sky-marathon']);
  await cards.filter({hasText:'أثر'}).click();
- await expect(page.locator('#modal-link')).toHaveAttribute('href','/ar/projects/athar');
+ await expect(page).toHaveURL(/\/ar\/projects\/athar$/);
 });

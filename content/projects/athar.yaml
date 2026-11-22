@@ -44,8 +44,8 @@ mediaStyle: portrait
 cover: /project-media/athar/public-card.jpg
 coverAltAr: بطاقة إبراهيم في أثر، تعرض الهوية والمهارات والروابط وحفظ جهة الاتصال.
 coverAltEn: Ibrahim’s ATHAR card with profile, skills, professional links and Save contact.
-coverCaptionAr: البطاقة الفعلية المستخدمة في عرض أثر داخل البورتفوليو.
-coverCaptionEn: The real card used in the portfolio’s existing ATHAR presentation.
+coverCaptionAr: واجهة المستلم بعد فتح الرابط، وتظهر فيها خيارات التواصل وحفظ جهة الاتصال.
+coverCaptionEn: The recipient’s view after opening the link, with contact links and a Save contact action.
 gallery: []
 presentations:
 - section: problem
@@ -70,8 +70,8 @@ presentations:
     titleEn: Share the card
     bodyAr: اختر الرابط أو QR بحسب الموقف.
     bodyEn: Use the link or QR code to suit the moment.
-  - titleAr: اترك التواصل واضحًا
-    titleEn: Make contact clear
+  - titleAr: افتح بطاقة المستلم
+    titleEn: Open the public card
     bodyAr: يصل المستلم إلى وسائل التواصل وحفظ جهة الاتصال من البطاقة نفسها.
     bodyEn: Recipients reach contact actions and Save contact from the card itself.
 - section: decisions

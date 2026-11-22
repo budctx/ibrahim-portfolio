@@ -16,9 +16,6 @@ for (const locale of ['en','ar']) {
         await expect(page.locator('html')).toHaveAttribute('data-theme',theme);
         const card=page.locator('#project-track .project-card').filter({hasText:locale==='ar'?'بُعد':"BU'D"});
         await card.click();
-        await expect(page.locator('#modal-description')).not.toHaveText(/needed to support$/);
-        await expect(page.locator('#modal-description')).not.toBeEmpty();
-        await page.locator('#modal-link').click();
         await expect(page).toHaveURL(new RegExp(`${prefix}/projects/bud-discord-events$`));
         await expect(page.locator('html')).toHaveAttribute('data-theme',theme);
         await expect(page.locator('.caseSummary')).toBeVisible();
@@ -70,26 +67,16 @@ for (const locale of ['en','ar']) {
       await expect(card).toBeFocused();
     }
   });
-  test(`${locale}: desktop carousel boundaries survive scroll completion`,async({page})=>{
+  test(`${locale}: desktop Work grid exposes all projects`,async({page})=>{
     await page.setViewportSize({width:1440,height:900});
     await page.goto(home+'#work');
-    await expect(page.locator('#project-track .project-card')).toHaveCount(5);
-    await expect(page.locator('#project-count')).toHaveText('1–2 / 5');
-    await page.emulateMedia({reducedMotion:'reduce'});
-    for(let i=0;i<5 && await page.locator('#project-next').isEnabled();i++) {
-      await page.locator('#project-next').click();
-      await page.waitForTimeout(100);
-    }
-    await expect(page.locator('#project-next')).toBeDisabled();
-    await expect(page.locator('#project-count')).toHaveText('4–5 / 5');
-    await page.waitForTimeout(400);
-    await expect(page.locator('#project-next')).toBeDisabled();
-    for(let i=0;i<5 && await page.locator('#project-prev').isEnabled();i++) {
-      await page.locator('#project-prev').click();
-      await page.waitForTimeout(100);
-    }
-    await expect(page.locator('#project-prev')).toBeDisabled();
-    await expect(page.locator('#project-count')).toHaveText('1–2 / 5');
+    const grid=page.locator('#project-track');
+    await expect(grid).toHaveCSS('display','grid');
+    const cards=grid.getByRole('link');
+    await expect(cards).toHaveCount(5);
+    await expect(cards.first()).toHaveAttribute('href',prefix+'/projects/athar');
+    await expect(cards.last()).toHaveAttribute('href',prefix+'/work/graphic-design');
+    expect(await grid.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);
   });
   test(`${locale}: light scenes and article accessibility and review captures`,async({page})=>{
     await page.setViewportSize({width:1440,height:900});

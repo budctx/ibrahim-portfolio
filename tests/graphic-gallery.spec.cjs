@@ -45,16 +45,13 @@ for(const [w,h] of [[320,568],[375,812],[390,844],[768,1024],[1440,900],[1920,10
 }
 test('axe WCAG 2.2 AA landing gallery modal both languages',async({page})=>{for(const lang of ['en','ar']){await page.goto(route(lang,'graphic-design'));expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);await open(page,lang);expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);}});
 test('reduced motion no gallery transitions',async({page})=>{await page.emulateMedia({reducedMotion:'reduce'});await page.goto(route('en','graphic-design'));expect(await page.locator('.category-link').first().evaluate(e=>getComputedStyle(e).transitionDuration)).toBe('0s');await open(page);await page.keyboard.press('Escape');await expect(modal(page)).not.toBeVisible();});
-test('homepage retains ATHAR and Graphic Design with its reused project modal',async({page})=>{
+test('homepage links directly to ATHAR and Graphic Design',async({page})=>{
  await page.goto('/#work');
  await expect(page.locator('#project-track .project-card').first()).toContainText(/أثر|ATHAR/);
  const graphic=page.locator('#project-track .project-card').filter({hasText:/تصميم جرافيكي|Graphic Design/});
  await expect(graphic).toHaveCount(1);
+ await expect(graphic).toHaveAttribute('href','/ar/work/graphic-design');
  await graphic.click();
- await expect(modal(page)).toBeVisible();
- const link=modal(page).locator('#modal-link');
- await expect(link).toHaveAttribute('href','/ar/work/graphic-design');
- await link.click();
  await expect(page).toHaveURL(/ar\/work\/graphic-design/);
 });
 
@@ -146,7 +143,7 @@ for(const lang of ['ar','en']) for(const [width,height] of [[320,568],[390,844],
   for(const id of ['work','about','contact']){
    await page.goto(home+'#'+id);await expect(page.locator('#'+id)).toHaveClass(/is-active/);
    await expect(page.locator('.scene.is-active')).toHaveCount(1);await overflow(page);
-   const selectors=id==='work'?['.work-header','.project-card','.work-footer']:id==='about'?['.about-header','.about-copy','.cube-control','.cube-controls','.cube-orbit','.cube-skills','.about-footer']:['.contact-header','.contact-copy','.envelope-button','.envelope-hint','.contact-footer'];
+   const selectors=id==='work'?['.work-header','.project-card']:id==='about'?['.about-header','.about-copy','.cube-control','.cube-controls','.cube-orbit','.cube-skills','.about-footer']:['.contact-header','.contact-copy','.envelope-button','.envelope-hint','.contact-footer'];
    for(const selector of selectors){
     const items=page.locator('#'+id+' '+selector);const first=items.first();await expect(first).toBeVisible();
     const box=await first.boundingBox();expect(box.y,selector).toBeGreaterThanOrEqual(-1);expect(box.y+box.height,selector).toBeLessThanOrEqual(height+1);
@@ -154,7 +151,6 @@ for(const lang of ['ar','en']) for(const [width,height] of [[320,568],[390,844],
    }
    if(id==='work'){
     await expect(page.locator('#project-track .project-card').nth(1)).toBeVisible();await expect(page.locator('.demo-mark')).toHaveCount(0);
-    if(width>=900)for(const c of (await page.locator('#project-track .project-card').all()).slice(0,2)) await expect(c).toBeInViewport({ratio:.9});
    }
    if(id==='about'){await expect(page.locator('.cube-dot')).toHaveCount(3);await page.locator('[data-cube="1"]').click();await expect(page.locator('[data-cube="1"]')).toHaveAttribute('aria-pressed','true');}
    if([390,1440].includes(width))await page.screenshot({path:`docs/gallery/evidence/home-${lang}-${width}-${id}.png`});
@@ -164,11 +160,23 @@ for(const lang of ['ar','en']) for(const [width,height] of [[320,568],[390,844],
 }
 for(const lang of ['ar','en'])test(`${lang} homepage real work and contact interaction regressions`,async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});const home=lang==='ar'?'/':'/en';
- await page.goto(home+'#work');await expect(page.locator('#work')).toHaveClass(/is-active/);await page.locator('.project-card').first().click();await expect(modal(page)).toBeVisible();await expect(page.locator('#modal-title')).toHaveText(lang==='ar'?'أثر':'ATHAR');await page.keyboard.press('Escape');await expect(modal(page)).not.toBeVisible();
- await page.locator('#project-next').click();await expect(page.locator('#project-count')).toHaveText('2 / 5');await page.locator('#project-track .project-card').filter({hasText:/تصميم جرافيكي|Graphic Design/}).click();await expect(modal(page)).toBeVisible();await modal(page).locator('#modal-link').click();await expect(page).toHaveURL(/work\/graphic-design/);
- await page.goto(home+'#contact');await expect(page.locator('#contact')).toHaveClass(/is-active/);await page.locator('#envelope-button').click();await expect(page.locator('#envelope-button')).toHaveAttribute('aria-expanded','true');
- await page.locator('#contact-trigger').click();await expect(page.locator('#contact-modal')).toBeVisible();expect(await page.locator('#scenes').evaluate(e=>e.style.overflow)).toBe('hidden');
- await expect(page.locator('.contact-method')).toHaveCount(2);await page.locator('#contact-modal-close').focus();await page.keyboard.press('Shift+Tab');await expect(page.locator('#contact-whatsapp')).toBeFocused();await page.keyboard.press('Escape');await expect(page.locator('#contact-trigger')).toBeFocused();expect(await page.locator('#scenes').evaluate(e=>e.style.overflow)).toBe('');
+ await page.goto(home);
+ const workLink=page.locator('.hero-actions a[href="#work"]');
+ await workLink.press('Enter');
+ await expect(page.locator('#work-title')).toBeFocused();
+ const work=page.locator('#project-track');
+ await expect(work.getByRole('link')).toHaveCount(5);
+ await work.getByRole('link').first().click();
+ await expect(page).toHaveURL(/projects\/athar$/);
+ await page.goto(home+'#work');
+ await work.getByRole('link').last().click();
+ await expect(page).toHaveURL(/work\/graphic-design/);
+ await page.goto(home+'#contact');
+ await expect(page.locator('#contact')).toHaveClass(/is-active/);
+ await page.locator('#envelope-button').click();
+ await expect(page.locator('#envelope-button')).toHaveAttribute('aria-expanded','true');
+ await expect(page.locator('.contact-links a[href^="mailto:"]')).toBeInViewport();
+ await expect(page.locator('.contact-links a[href^="https://wa.me/"]')).toBeInViewport();
  for(const id of ['work','about','contact']){
   await page.goto(home+'#'+id);await expect(page.locator('#'+id)).toHaveClass(/is-active/);
   expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
@@ -179,38 +187,18 @@ test('Hero interaction and section navigation preserved',async({page})=>{
  for(const id of ['work','about','contact','main']){await page.locator(`[data-scene="${id}"]`).click();await expect(page.locator('#'+id)).toHaveClass(/is-active/);await expect(page.locator('.scene.is-active')).toHaveCount(1);}
 });
 
-for(const lang of ['ar','en'])test(`${lang} mobile horizontal work swipe then vertical exit`,async({page})=>{
+for(const lang of ['ar','en'])test(`${lang} mobile Work scroll reveals every project`,async({page})=>{
  await page.setViewportSize({width:390,height:844});
- const touch=await page.context().newCDPSession(page);
- await touch.send('Emulation.setTouchEmulationEnabled',{enabled:true});
- const home=lang==='ar'?'/':'/en';await page.goto(home+'#work');
+ await page.emulateMedia({reducedMotion:'reduce'});
+ const home=lang==='ar'?'/':'/en';
+ await page.goto(home+'#work');
+ const grid=page.locator('#project-track');
+ await expect(grid.getByRole('link')).toHaveCount(5);
+ await expect(grid.getByRole('link').first()).toBeInViewport();
+ await grid.getByRole('link').last().scrollIntoViewIfNeeded();
+ await expect(grid.getByRole('link').last()).toBeInViewport();
  await expect(page.locator('#work')).toHaveClass(/is-active/);
- const swipe=async(x,y,dx,dy)=>{
-  await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
-  for(let i=1;i<=12;i++){
-   await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+dx*i/12,y:y+dy*i/12}]});
-   await page.waitForTimeout(20);
-  }
-  await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
- };
- const card=await page.locator('.project-card').first().boundingBox();
- await swipe(320,card.y+80,-245,0);
- await expect(page.locator('#project-count')).toHaveText(/[2345] \/ 5/);
- const selectedProject=await page.locator('#project-count').textContent();
- // Exercise dynamic viewport height changes with the second card selected.
- await page.setViewportSize({width:390,height:780});
- await swipe(195,570,0,-450);
- await expect(page.locator('#about')).toHaveClass(/is-active/);
- await expect.poll(()=>page.locator('#scenes').evaluate(e=>e.scrollTop)).toBeGreaterThan(1400);
- await page.waitForTimeout(1200);
- await expect(page.locator('#about')).toHaveClass(/is-active/);
- await swipe(195,570,0,-450);await expect(page.locator('#contact')).toHaveClass(/is-active/);
- // Return and test wheel chaining over the selected card too.
- await page.locator('[data-scene="work"]').click();await expect(page.locator('#work')).toHaveClass(/is-active/);
- await expect.poll(()=>page.locator('#scenes').evaluate(e=>Math.round(e.scrollTop))).toBe(780);
- await expect(page.locator('#project-count')).toHaveText(selectedProject);
- const selectedIndex=Number(selectedProject.split(' / ')[0])-1;
- const selected=await page.locator('#project-track .project-card').nth(Math.max(0,selectedIndex)).boundingBox();await page.mouse.move(195,selected.y+80);await page.mouse.wheel(0,700);
+ await page.locator('[data-scene="about"]').click();
  await expect(page.locator('#about')).toHaveClass(/is-active/);
 });
 
