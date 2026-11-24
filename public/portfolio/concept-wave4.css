@@ -4,6 +4,8 @@
    No external animation dependency is loaded. */
 :root{--cp-ink:#11151b;--cp-cream:#f2eee8;--cp-peach:#ffbc97;--cp-lime:#c8edb0;--cp-rule:rgba(255,255,255,.2);--cp-motion:cubic-bezier(.2,.72,.16,1)}
 html,body{overscroll-behavior:none}
+.scenes:focus-visible{outline:2px solid var(--cp-peach);outline-offset:-2px}
+body:has(.concept-approach.is-active) .scenes:focus-visible{outline-color:var(--cp-ink)}
 .concept-review-stamp{position:fixed;bottom:14px;inset-inline-start:18px;z-index:14;display:flex;align-items:center;gap:9px;border:1px solid #ffffff2b;background:#161a20db;color:#d4d9df;backdrop-filter:blur(16px);border-radius:100px;padding:9px 13px;font:500 9px/1.2 Arial,sans-serif;letter-spacing:1px;pointer-events:none;direction:ltr}
 .concept-review-stamp i{width:6px;height:6px;border-radius:50%;background:var(--cp-lime);box-shadow:0 0 0 4px #c8edb01a}
 .scene-nav{inset-inline-end:clamp(9px,1.4vw,24px);gap:8px}
@@ -176,6 +178,17 @@ body:has(.concept-approach.is-active) .scene-nav .scene-dot:focus-visible{outlin
  .concept-about-number,.concept-contact-number{font-size:8px}
 }
 @media(max-height:650px){
+ /* Height is a layout constraint too: reserve body and footer space before sizing display text. */
+ #about.about .about-header h2,#contact.contact .contact-header h2{font-size:clamp(30px,8dvh,55px)}
+ #about.about .about-copy h3{font-size:clamp(23px,6dvh,34px)}
+ #about.about .about-summary{font-size:clamp(12px,3.3dvh,16px);line-height:1.6}
+ #about.about .about-method{margin-top:10px;padding-top:10px}
+ #about.about .concept-about-chips{margin-top:10px;gap:6px}
+ #about.about .concept-about-chips span{padding:6px 9px}
+ #contact.contact .contact-copy h3{font-size:clamp(27px,7dvh,44px);margin-bottom:12px}
+ #contact.contact .contact-intro{margin-bottom:16px}
+ #contact.contact .envelope-area{--env:min(29vw,42dvh,260px)}
+
  #work .work-header{padding-top:25px}
  #work .work-header:before{top:9px}
  #work .work-header h2{font-size:clamp(30px,6vw,56px)}

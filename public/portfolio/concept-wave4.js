@@ -6,6 +6,7 @@
   const posters=[...document.querySelectorAll('.concept-poster')];
   function sync(){
     const ar=document.documentElement.lang!=='en';
+    document.getElementById('scenes')?.setAttribute('aria-label',ar?'أقسام البورتفوليو':'Portfolio sections');
     if(workLink){
       workLink.href='/concept-v2/gallery.html?lang='+(ar?'ar':'en');
       workLink.setAttribute('aria-label',ar?'معرض أعمال الجرافيك — تصاميم RAIS الحقيقية':'Graphic design portfolio — real RAIS artworks');
