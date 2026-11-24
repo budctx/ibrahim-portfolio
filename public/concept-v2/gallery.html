@@ -135,7 +135,17 @@ function move(d){selected=(selected+works.length+d)%works.length;show();}
 function close(){dialog.close();}
 $('language').addEventListener('click',()=>{lang=lang==='en'?'ar':'en';render();});
 $('prev').addEventListener('click',()=>move(-1));$('next').addEventListener('click',()=>move(1));$('close').addEventListener('click',close);
-dialog.addEventListener('click',e=>{if(e.target===dialog||e.target===$('stage')||e.target.classList.contains('glb-modal-inner'))close();});
+dialog.addEventListener('click',e=>{
+  if(e.target===dialog||e.target===$('stage')||e.target.classList.contains('glb-modal-inner')){close();return;}
+  // object-fit:contain leaves letterboxing inside the image element itself.
+  // Treat only that empty area as backdrop; the visible artwork stays inert.
+  const image=$('bigImage');
+  if(e.target!==image||!image.naturalWidth||!image.naturalHeight)return;
+  const r=image.getBoundingClientRect(),scale=Math.min(r.width/image.naturalWidth,r.height/image.naturalHeight);
+  const width=image.naturalWidth*scale,height=image.naturalHeight*scale;
+  const left=r.left+(r.width-width)/2,top=r.top+(r.height-height)/2;
+  if(e.clientX<left||e.clientX>left+width||e.clientY<top||e.clientY>top+height)close();
+});
 dialog.addEventListener('close',()=>{trigger?.focus({preventScroll:true});$('bigImage').removeAttribute('src');});
 dialog.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();move(lang==='ar'?1:-1);}else if(e.key==='ArrowRight'){e.preventDefault();move(lang==='ar'?-1:1);}});
 $('stage').addEventListener('touchstart',e=>{x0=e.touches[0]?.clientX;},{passive:true});
