@@ -46,6 +46,6 @@ for(const lang of ['ar','en']){
  await scene(page,'main');await page.locator('#language').click();stress.language=await page.evaluate(()=>({lang:document.documentElement.lang,url:location.pathname,hash:location.hash}));
  await scene(page,'work');await scene(page,'contact');await page.goBack();await page.waitForTimeout(1000);stress.back=await page.evaluate(()=>({hash:location.hash,active:document.querySelector('.scene.is-active').id}));
  await page.screenshot({path:`${dir}/${lang}-normal-motion.png`});save();await context.close();
- const no=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});const np=await no.newPage();await np.goto(base+'/concept-v2/gallery.html?lang='+lang);out.noJS.push({lang,galleryButtons:await np.locator('.glb-item').count()});await np.screenshot({path:`${dir}/${lang}-nojs-gallery.png`,fullPage:true});await no.close();save();
+ const no=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});const np=await no.newPage();await np.goto(base+'/concept-v2/gallery.html?lang='+lang);out.noJS.push({lang,galleryButtons:await np.locator('.glb-item').count(),fallbackLinks:await np.locator('.glb-fallback a').count()});await np.screenshot({path:`${dir}/${lang}-nojs-gallery.png`,fullPage:true});await no.close();save();
 }
 }finally{save();await browser.close();}})().catch(e=>{out.error=e.stack;save();process.exitCode=1;});
