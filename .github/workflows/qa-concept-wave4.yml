@@ -40,11 +40,16 @@ jobs:
           grep -q "concept-work-shell" /tmp/qa-concept.html
           curl -fsSI http://127.0.0.1:3201/concept-v2/ar.html | tr -d '\r' | grep -qi '^x-robots-tag: noindex'
           npx playwright test tests/concept-wave4.spec.cjs --reporter=line --workers=2
+          mkdir -p qa-20261124
+          node scripts/concept-expert-audit.cjs
+          npx --yes lighthouse@12.8.2 http://127.0.0.1:3201/concept-v2/en.html --chrome-flags="--headless --no-sandbox" --output=json --output-path=qa-20261124/lighthouse-mobile.json --only-categories=performance,accessibility,seo
+          npx --yes lighthouse@12.8.2 http://127.0.0.1:3201/concept-v2/en.html --chrome-flags="--headless --no-sandbox" --preset=desktop --output=json --output-path=qa-20261124/lighthouse-desktop.json --only-categories=performance,accessibility,seo
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: concept-wave4-visual-evidence
           path: |
+            qa-20261124/
             concept-evidence/
             test-results/
           retention-days: 30
