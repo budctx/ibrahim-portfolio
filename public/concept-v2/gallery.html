@@ -149,7 +149,7 @@ dialog.addEventListener('click',e=>{
 dialog.addEventListener('close',()=>{trigger?.focus({preventScroll:true});$('bigImage').removeAttribute('src');});
 dialog.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();move(lang==='ar'?1:-1);}else if(e.key==='ArrowRight'){e.preventDefault();move(lang==='ar'?-1:1);}});
 $('stage').addEventListener('touchstart',e=>{x0=e.touches[0]?.clientX;},{passive:true});
-$('stage').addEventListener('touchend',e=>{if(x0===null)return;const dx=(e.changedTouches[0]?.clientX??x0)-x0;if(Math.abs(dx)>45)move(dx>0?(lang==='ar'?-1:1):(lang==='ar'?1:-1));x0=null;},{passive:true});
+$('stage').addEventListener('touchend',e=>{if(x0===null)return;const dx=(e.changedTouches[0]?.clientX??x0)-x0;if(Math.abs(dx)>45)move(dx>0?(lang==='ar'?1:-1):(lang==='ar'?-1:1));x0=null;},{passive:true});
 render();
 })();
 </script></body></html>

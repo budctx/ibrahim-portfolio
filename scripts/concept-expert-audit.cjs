@@ -26,6 +26,7 @@ for(const [w,h] of sizes)for(const lang of ['ar','en']){
   await page.screenshot({path:`${dir}/${lang}-${w}x${h}-${id}.png`});save();
  }
  await page.locator('#contact-trigger').click();run.modal={open:await page.locator('#contact-modal').evaluate(e=>e.open),axe:(await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations};
+ run.modal.focusCycle=[];for(let t=0;t<4;t++){await page.keyboard.press('Tab');run.modal.focusCycle.push(await page.evaluate(()=>({id:document.activeElement.id,inside:document.querySelector('#contact-modal').contains(document.activeElement)})));}
  await page.keyboard.press('Escape');run.modal.restored=await page.locator('#contact-trigger').evaluate(e=>e===document.activeElement);
  await page.goto(base+'/concept-v2/gallery.html?lang='+lang,{waitUntil:'networkidle'});
  await page.locator('.glb-item').last().scrollIntoViewIfNeeded();await page.locator('.glb-item img').evaluateAll(xs=>Promise.all(xs.map(im=>im.decode().catch(()=>{}))));
@@ -38,6 +39,16 @@ for(const [w,h] of sizes)for(const lang of ['ar','en']){
  const blank=await page.locator('#bigImage').evaluate(e=>{const r=e.getBoundingClientRect(),ratio=e.naturalWidth/e.naturalHeight;return r.width/r.height<ratio?{x:r.x+r.width/2,y:r.y+2}:{x:r.x+2,y:r.y+r.height/2};});await page.mouse.click(blank.x,blank.y);run.backdropClosed=await page.locator('#lightbox').evaluate(e=>!e.open);
  await page.keyboard.press('Escape');run.galleryFocus=await page.locator('.glb-item').first().evaluate(e=>e===document.activeElement);
  await page.locator('#language').click();run.galleryLanguage=await page.locator('html').getAttribute('lang');await page.locator('#back').click();await page.waitForFunction(()=>document.querySelector('#work').classList.contains('is-active'));run.galleryBack=await page.evaluate(()=>({hash:location.hash,lang:document.documentElement.lang}));save();await context.close();
+}
+// Real browser touch input, before/after against an immutable deployed baseline.
+out.swipes=[];
+for(const lang of ['ar','en'])for(const target of [{name:'before',url:'https://ibrahim-portfolio-n3hbsc8cs-budctx1-8956s-projects.vercel.app'},{name:'after',url:base}]){
+ const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});const page=await context.newPage();await page.goto(target.url+'/concept-v2/gallery.html?lang='+lang);await page.locator('.glb-item').first().click();
+ const box=await page.locator('#bigImage').boundingBox(),cdp=await context.newCDPSession(page),y=box.y+box.height/2;
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:box.x+box.width*.75,y}]});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:box.x+box.width*.25,y}]});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+ out.swipes.push({lang,target:target.name,gesture:'swipe left',counter:await page.locator('#counter').textContent(),expected:lang==='ar'?'04 / 04':'02 / 04'});save();await context.close();
 }
 for(const lang of ['ar','en']){
  const context=await browser.newContext({viewport:{width:390,height:844}});const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/concept-v2/'+lang+'.html');const stress={lang,errors,hero:[],cube:[],hash:[]};out.stress.push(stress);
