@@ -25,7 +25,7 @@ jobs:
       - name: Production build
         run: npm run build
       - name: Browser
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
       - name: Test 5-section bilingual preview + gallery
         shell: bash
         run: |
