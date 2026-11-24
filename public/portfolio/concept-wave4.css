@@ -181,7 +181,7 @@ body:has(.concept-approach.is-active) .scene-nav .scene-dot:focus-visible{outlin
  /* Height is a layout constraint too: reserve body and footer space before sizing display text. */
  #about.about .about-header h2,#contact.contact .contact-header h2{font-size:clamp(30px,8dvh,55px)}
  #about.about .about-copy h3{font-size:clamp(23px,6dvh,34px)}
- #about.about .about-summary{font-size:clamp(12px,3.3dvh,16px);line-height:1.6}
+ #about.about .about-summary{font-size:clamp(12px,min(1.3vw,3.3dvh),16px);line-height:1.6}
  #about.about .about-method{margin-top:10px;padding-top:10px}
  #about.about .concept-about-chips{margin-top:10px;gap:6px}
  #about.about .concept-about-chips span{padding:6px 9px}

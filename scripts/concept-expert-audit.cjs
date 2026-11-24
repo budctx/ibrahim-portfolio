@@ -52,7 +52,7 @@ for(const lang of ['ar','en'])for(const target of [{name:'before',url:'https://i
 }
 for(const lang of ['ar','en']){
  const context=await browser.newContext({viewport:{width:390,height:844}});const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/concept-v2/'+lang+'.html');const stress={lang,errors,hero:[],cube:[],hash:[]};out.stress.push(stress);
- for(let i=0;i<6;i++){await page.locator('#card').click();stress.hero.push(await page.locator('#card').getAttribute('aria-pressed'));}
+ for(let i=0;i<6;i++){const cardBox=await page.locator('#card').boundingBox();await page.mouse.click(cardBox.x+cardBox.width/2,cardBox.y+cardBox.height/2);stress.hero.push(await page.locator('#card').getAttribute('aria-pressed'));}
  for(const id of ids){await scene(page,id);stress.hash.push(await page.evaluate(()=>({hash:location.hash,active:document.querySelector('.scene.is-active').id})));await page.reload();await page.waitForFunction(id=>document.querySelector('#'+id).classList.contains('is-active'),id);}
  await scene(page,'about');for(let i=0;i<9;i++){await page.locator('#cube-control').click();}await page.waitForTimeout(900);stress.cube=await page.locator('.cube-dot').evaluateAll(xs=>xs.map(x=>x.getAttribute('aria-pressed')));
  await scene(page,'main');await page.locator('#language').click();stress.language=await page.evaluate(()=>({lang:document.documentElement.lang,url:location.pathname,hash:location.hash}));
