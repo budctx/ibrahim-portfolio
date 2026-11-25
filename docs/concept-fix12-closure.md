@@ -9,3 +9,5 @@ Baseline: 6a7308e. Published CMS evidence: 04e7b801.
 Decisions: content-driven section heights replace compressed viewport scenes; Hero preserved. Existing cream Approach remains an intentional contrast surface. AI supports product/graphic practice. No added motion library.
 
 Validation: see the published report and raw results. Browser matrix uses Chromium emulation, not physical Safari/iPhone.
+
+Next.js patched from 16.4.4 to 16.4.6 after npm audit/build warning. TypeScript, full build and interaction regression repeated.

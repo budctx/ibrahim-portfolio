@@ -182,9 +182,9 @@ language.addEventListener('click',()=>{
  document.querySelector('meta[name="description"]').content={"ar":"أصمّم منتجات رقمية وتجارب واضحة، وأعمل على الجرافيك والهويات البصرية.","en":"I design digital products and clear experiences, alongside graphic design and visual identities."}[lang];
  for(const key of ['og:title','twitter:title'])document.querySelector('meta['+(key.startsWith('og:')?'property':'name')+'="'+key+'"]').content=document.title;
 for(const key of ['og:description','twitter:description'])document.querySelector('meta['+(key.startsWith('og:')?'property':'name')+'="'+key+'"]').content=document.querySelector('meta[name="description"]').content;
-document.querySelector('meta[property="og:url"]').content='https://ibrahim-portfolio-blush.vercel.app'+path;
+document.querySelector('meta[property="og:url"]').content='https://ibrahim-portfolio-blush.vercel.app'+(lang==='ar'?'/ar':'/');
 document.querySelector('meta[property="og:locale"]').content=lang==='ar'?'ar_SA':'en_US';
-document.querySelector('link[rel="canonical"]').href="https://ibrahim-portfolio-blush.vercel.app"+path;
+document.querySelector('link[rel="canonical"]').href='https://ibrahim-portfolio-blush.vercel.app'+(lang==='ar'?'/ar':'/');
 });
 
 function restoreSceneHash(){const id=location.hash.slice(1)||'main';if(sceneIds.includes(id)){sceneDestination=id;document.getElementById(id).scrollIntoView({behavior:'instant',block:'start'});}}
