@@ -72,12 +72,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--green);outline-offs
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
-</head>
+<link rel="stylesheet" href="/portfolio/concept-gallery-theme.css"><script src="/portfolio/concept-theme.js"></script></head>
 <body>
 <div class="gallery-wrap">
   <header class="glb-head">
     <div class="glb-logo">IBRAHIM AL-AJMI<small>DESIGN ARCHIVE / CONCEPT</small></div>
-    <div class="glb-actions"><a class="glb-back" id="back" href="/concept-v2/ar.html#work">Back to Work</a><button class="glb-language" id="language" type="button" aria-label="Switch language">ع</button></div>
+    <div class="glb-actions"><button type="button" class="glb-language" data-theme-toggle aria-label="Use light mode"></button><a class="glb-back" id="back" href="/concept-v2/ar.html#work">Back to Work</a><button class="glb-language" id="language" type="button" aria-label="Switch language">ع</button></div>
   </header>
   <div class="glb-intro">
     <div><div class="kicker">GRAPHIC DESIGN / SELECTED WORK</div><h1 id="heading">Visual impact.<br>By design.</h1></div>
@@ -101,11 +101,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--green);outline-offs
 </dialog>
 <script>
 (()=>{
-const works=[
-{image:'/project-media/rais/rais-rocket-league.webp',en:'Rocket League Tournament',ar:'بطولة Rocket League',altEn:'RAIS Rocket League tournament announcement graphic',altAr:'تصميم إعلان بطولة Rocket League لمجتمع رايس'},
-{image:'/project-media/rais/rais-brawlhalla.webp',en:'Brawlhalla Tournament',ar:'بطولة Brawlhalla',altEn:'RAIS Brawlhalla tournament announcement graphic',altAr:'تصميم إعلان بطولة Brawlhalla لمجتمع رايس'},
-{image:'/project-media/rais/rais-call-of-duty.webp',en:'Call of Duty Tournament',ar:'بطولة Call of Duty',altEn:'RAIS Call of Duty tournament announcement graphic',altAr:'تصميم إعلان بطولة Call of Duty لمجتمع رايس'},
-{image:'/project-media/rais-fortnite-tournament.webp',en:'Fortnite Tournament',ar:'إعلان بطولة فورتنايت',altEn:'RAIS Fortnite tournament graphic',altAr:'تصميم إعلان بطولة فورتنايت لمجتمع رايس'}];
+const works=[{"image":"/project-media/rais/rais-rocket-league.webp","ar":"بطولة Rocket League","en":"Rocket League Tournament","altAr":"بنر إعلان بطولة Rocket League لسيرفر Rais","altEn":"Rais Rocket League tournament announcement banner"},{"image":"/project-media/rais/rais-brawlhalla.webp","ar":"بطولة Brawlhalla","en":"Brawlhalla Tournament","altAr":"بنر إعلان بطولة Brawlhalla لسيرفر Rais","altEn":"Rais Brawlhalla tournament announcement banner"},{"image":"/project-media/rais/rais-call-of-duty.webp","ar":"بطولة Call of Duty","en":"Call of Duty Tournament","altAr":"بنر إعلان بطولة Call of Duty لسيرفر Rais","altEn":"Rais Call of Duty tournament announcement banner"},{"image":"/project-media/rais-fortnite-tournament.webp","ar":"إعلان بطولة فورتنايت","en":"Fortnite Tournament Announcement","altAr":"إعلان بطولة فورتنايت لرايس بألوان الأحمر والأسود مع شخصية ترتدي غطاء رأس.","altEn":"Red-and-black Fortnite tournament advertisement for RAIS Games featuring a hooded character."}];
 let lang=new URL(location.href).searchParams.get('lang')==='ar'?'ar':'en',selected=0,trigger=null,x0=null;
 const $=x=>document.getElementById(x),dialog=$('lightbox');
 const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -128,7 +124,7 @@ function show(){
   const w=works[selected];
   $('bigImage').src=w.image;$('bigImage').alt=w[lang==='ar'?'altAr':'altEn'];
   $('modalTitle').textContent=w[lang];$('modalSub').textContent=txt('RAIS · Graphic Design','رايس · تصميم جرافيكي');
-  $('counter').textContent=String(selected+1).padStart(2,'0')+' / 04';
+  $('counter').textContent=String(selected+1).padStart(2,'0')+' / '+String(works.length).padStart(2,'0');
 }
 function open(i,el){selected=i;trigger=el;show();dialog.showModal();$('close').focus();}
 function move(d){selected=(selected+works.length+d)%works.length;show();}

@@ -1,0 +1,253 @@
+{
+  "mode": "Chromium emulation, reduced motion matrix; normal motion stress separately",
+  "stress": [
+    {
+      "lang": "ar",
+      "errors": [],
+      "hero": [
+        "true",
+        "false",
+        "true",
+        "false",
+        "true",
+        "false"
+      ],
+      "cube": [
+        "true",
+        "false",
+        "false"
+      ],
+      "hash": [
+        {
+          "hash": "#main",
+          "active": "main"
+        },
+        {
+          "hash": "#work",
+          "active": "work"
+        },
+        {
+          "hash": "#approach",
+          "active": "approach"
+        },
+        {
+          "hash": "#about",
+          "active": "about"
+        },
+        {
+          "hash": "#contact",
+          "active": "contact"
+        }
+      ],
+      "heroEachClickToggles": true,
+      "language": {
+        "lang": "en",
+        "url": "/concept-v2/en.html",
+        "hash": "#main"
+      },
+      "back": {
+        "hash": "#work",
+        "active": "work"
+      },
+      "heapBefore": [
+        {
+          "name": "JSEventListeners",
+          "value": 402
+        },
+        {
+          "name": "Nodes",
+          "value": 3319
+        },
+        {
+          "name": "JSHeapUsedSize",
+          "value": 7404504
+        }
+      ],
+      "heapAfter": [
+        {
+          "name": "JSEventListeners",
+          "value": 402
+        },
+        {
+          "name": "Nodes",
+          "value": 3386
+        },
+        {
+          "name": "JSHeapUsedSize",
+          "value": 6559428
+        }
+      ],
+      "frameScene": "about with floating skills and cube transition",
+      "frames": {
+        "count": 120,
+        "meanMs": 16.549999999999606,
+        "maxMs": 16.80000000000291,
+        "over33ms": 0
+      },
+      "animations": [
+        {
+          "playState": "finished",
+          "target": "role one"
+        },
+        {
+          "playState": "finished",
+          "target": "role two"
+        },
+        {
+          "playState": "finished",
+          "target": "role three"
+        },
+        {
+          "playState": "finished",
+          "target": "role four"
+        },
+        {
+          "playState": "finished",
+          "target": "rig"
+        },
+        {
+          "playState": "paused",
+          "target": "pendulum"
+        }
+      ]
+    },
+    {
+      "lang": "en",
+      "errors": [],
+      "hero": [
+        "true",
+        "false",
+        "true",
+        "false",
+        "true",
+        "false"
+      ],
+      "cube": [
+        "true",
+        "false",
+        "false"
+      ],
+      "hash": [
+        {
+          "hash": "#main",
+          "active": "main"
+        },
+        {
+          "hash": "#work",
+          "active": "work"
+        },
+        {
+          "hash": "#approach",
+          "active": "approach"
+        },
+        {
+          "hash": "#about",
+          "active": "about"
+        },
+        {
+          "hash": "#contact",
+          "active": "contact"
+        }
+      ],
+      "heroEachClickToggles": true,
+      "language": {
+        "lang": "ar",
+        "url": "/concept-v2/ar.html",
+        "hash": "#main"
+      },
+      "back": {
+        "hash": "#work",
+        "active": "work"
+      },
+      "heapBefore": [
+        {
+          "name": "JSEventListeners",
+          "value": 402
+        },
+        {
+          "name": "Nodes",
+          "value": 3325
+        },
+        {
+          "name": "JSHeapUsedSize",
+          "value": 7400580
+        }
+      ],
+      "heapAfter": [
+        {
+          "name": "JSEventListeners",
+          "value": 402
+        },
+        {
+          "name": "Nodes",
+          "value": 3392
+        },
+        {
+          "name": "JSHeapUsedSize",
+          "value": 6554440
+        }
+      ],
+      "frameScene": "about with floating skills and cube transition",
+      "frames": {
+        "count": 120,
+        "meanMs": 16.5699999999998,
+        "maxMs": 16.80000000000291,
+        "over33ms": 0
+      },
+      "animations": [
+        {
+          "playState": "finished",
+          "target": "role one"
+        },
+        {
+          "playState": "finished",
+          "target": "role two"
+        },
+        {
+          "playState": "finished",
+          "target": "role three"
+        },
+        {
+          "playState": "finished",
+          "target": "role four"
+        },
+        {
+          "playState": "finished",
+          "target": "rig"
+        },
+        {
+          "playState": "paused",
+          "target": "pendulum"
+        }
+      ]
+    }
+  ],
+  "swipes": [
+    {
+      "lang": "ar",
+      "target": "after",
+      "gesture": "swipe left",
+      "counter": "04 / 04",
+      "expected": "04 / 04"
+    },
+    {
+      "lang": "en",
+      "target": "after",
+      "gesture": "swipe left",
+      "counter": "02 / 04",
+      "expected": "02 / 04"
+    }
+  ],
+  "noJS": [
+    {
+      "lang": "ar",
+      "galleryButtons": 0,
+      "fallbackLinks": 4
+    },
+    {
+      "lang": "en",
+      "galleryButtons": 0,
+      "fallbackLinks": 4
+    }
+  ]
+}

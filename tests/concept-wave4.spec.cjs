@@ -12,7 +12,7 @@ for(const locale of routes){
     await expect(page.locator('.scene-dot')).toHaveCount(5);
     for(const id of ['main','work','approach','about','contact'])await expect(page.locator('#'+id)).toHaveCount(1);
     await expect(page.locator('#card')).toHaveCount(1); // approved existing hero unchanged.
-    await expect(page.locator('.concept-work-card')).toHaveCount(2);
+    await expect(page.locator('.concept-work-card')).toHaveCount(5);
     await page.locator('.scene-dot[data-scene=work]').click();
     await expect(page.locator('#work')).toHaveClass(/is-active/,{timeout:10000});
     await expect.poll(async()=>page.locator('.concept-poster').evaluateAll(xs=>xs.every(im=>im.complete&&im.naturalWidth>0)),{timeout:12000}).toBe(true);
@@ -40,8 +40,8 @@ for(const locale of routes){
     await page.locator('.scene-dot[data-scene=work]').click();
     await expect(page.locator('#work')).toHaveClass(/is-active/,{timeout:10000});
     await expect.poll(async()=>page.locator('.concept-poster').evaluateAll(xs=>xs.every(im=>im.complete&&im.naturalWidth>0)),{timeout:12000}).toBe(true);
-    const posterCenters=await page.locator('.concept-poster').evaluateAll(xs=>xs.map(im=>{const r=im.getBoundingClientRect();return r.x+r.width/2;}));
-    expect(Math.abs(posterCenters[0]-posterCenters[1]),'Reduced-motion gallery artwork should remain spatially separated').toBeGreaterThan(25);
+    const posterCenters=await page.locator('.concept-poster').evaluateAll(xs=>xs.map(im=>{const r=im.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};}));
+    expect(Math.hypot(posterCenters[0].x-posterCenters[1].x,posterCenters[0].y-posterCenters[1].y),'Reduced-motion gallery artwork should remain spatially separated').toBeGreaterThan(25);
     const metrics=await page.evaluate(()=>({w:document.documentElement.clientWidth,sw:document.documentElement.scrollWidth}));
     expect(metrics.sw).toBeLessThanOrEqual(metrics.w+1);
     await page.screenshot({path:'concept-evidence/'+locale.lang+'-work-mobile.png',fullPage:false,animations:'disabled'});

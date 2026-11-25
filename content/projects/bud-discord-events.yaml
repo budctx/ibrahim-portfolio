@@ -1,0 +1,114 @@
+projectKey: bud-discord-events
+titleEn: BU'D — Interactive Events for Discord
+titleAr: بُعد — فعاليات تفاعلية لمجتمعات ديسكورد
+slug: bud-discord-events
+classification: flagship
+status: published
+order: 10
+featured: true
+year: '2026'
+typeEn: Digital Product · Interactive Events
+typeAr: منتج رقمي · فعاليات تفاعلية
+roleEn: Independent Product Designer · Product direction and AI-assisted development
+roleAr: مصمم منتجات مستقل · قرارات المنتج والتصميم وقيادة التطوير بأدوات الذكاء الاصطناعي
+summaryEn: An Arabic platform for Discord game nights. I designed a consistent hosting flow that gives each game room to feel different.
+summaryAr: فعاليات تجمع المجتمع، ورحلة واضحة لمن يديرها. صممت بُعد ليحتفظ الهوست بتحكمه، وتحتفظ كل لعبة بشخصيتها.
+evidenceNoteEn: Screenshots show the public catalog and trials. Host feedback and participant reactions are qualitative inputs to iteration, rather than measured research outcomes.
+evidenceNoteAr: الصور من الكتالوج وتجارب اللعب العامة. ملاحظات الهوست وتفاعل المشاركين مدخلات نوعية للتحسين، وليست نتائج دراسة مقاسة.
+tools:
+- ChatGPT
+- Codex
+- GitHub
+- Vercel
+- Notion
+problemEn: Different games need different rules and controls. The challenge was to support that variety without asking hosts to learn a new operating flow for every activity.
+problemAr: مع اختلاف الألعاب، تتغير القواعد وطريقة التفاعل. كان التحدي أن يستوعب بُعد هذا التنوع دون أن يضطر الهوست لتعلّم طريقة إدارة جديدة مع كل فعالية.
+contextEn: BU'D brings Question & Condition and Mini Games to Arabic-speaking Discord communities. I owned the product and design decisions, directed development with ChatGPT, Codex and curated references, and reviewed the implementation.
+contextAr: بُعد منصة عربية لفعاليات مجتمعات ديسكورد، تضم «سؤال وشرط» و«ميني قيمز». صممت تجربة المنتج واتخذت قراراته، ثم قدت التطوير وراجعت التنفيذ باستخدام ChatGPT وCodex ومراجع اخترتها للعمل.
+processEn: I kept the stages around gameplay consistent. Rules and controls change inside the event screen; the surrounding hosting flow stays familiar.
+processAr: وحّدت المراحل من التجهيز إلى الختام. تتغير قواعد اللعب داخل شاشة الفعالية، بينما تبقى الخطوات المحيطة بها مألوفة.
+decisionsEn: 'I focused on the decisions hosts make during an event: staying in control, knowing what comes next and finding guidance when it is needed.'
+decisionsAr: 'ركزت قرارات التصميم على ما يحتاجه الهوست وقت الفعالية: تحكم مباشر، وخطوة تالية واضحة، وشرح يظهر في مكانه.'
+outcomeEn: 'BU''D is live, with published activities tried by community members. Host observations and participant reactions inform further refinement. Shipped improvements include clearer round restarts, session recovery, results and winner/prize feedback.
+
+
+  The key lesson was to standardize the hosting flow while leaving game mechanics free to differ. A familiar next step does not require every activity to feel the same.'
+outcomeAr: 'بُعد منتج منشور، وتُجرّب فعالياته مع أفراد المجتمع. أستفيد من ملاحظات الهوست وتفاعل المشاركين لتحديد ما يستحق التحسين. شملت التحسينات وضوح إعادة الجولة واستعادة الجلسة وعرض النتائج والفائزين والجوائز.
+
+
+  تعلمت أن اتساق الرحلة لا يعني تشابه الألعاب. يمكن للهوست أن يعرف خطوته التالية، وتبقى لكل فعالية تجربتها الخاصة.'
+projectUrl: https://budteam.net
+cover: /project-media/bud/catalog.jpg
+coverAltEn: BU'D live Arabic event catalog showing Question & Condition, Mini Games and the upcoming Lucky Cards product.
+coverAltAr: كتالوج فعاليات بُعد الفعلي بالعربية، يعرض سؤال وشرط وميني قيمز وكروت الحظ القادمة.
+gallery:
+- image: /project-media/bud/onboarding.jpg
+  altEn: 'How to start dialog: choose an event, prepare it, then host it with the community.'
+  altAr: 'نافذة كيف أبدأ: اختر فعاليتك، جهزها، ثم أدرها مع مجتمعك.'
+  section: process
+  captionEn: 'Public onboarding: choose an activity, prepare it, then host it with the community.'
+  captionAr: 'نافذة البدء العامة: اختيار الفعالية، تجهيزها، ثم إدارتها مع المجتمع.'
+- image: /project-media/bud/cards-revealed.jpg
+  altEn: Public Question & Condition trial with both cards revealed and the timer at zero.
+  altAr: التجربة العامة لسؤال وشرط بعد كشف البطاقتين والمؤقت عند الصفر.
+  section: decisions
+  captionEn: 'Public Question & Condition trial: revealing both cards starts the timer; the player can retry.'
+  captionAr: 'تجربة «سؤال وشرط» العامة: يبدأ المؤقت بعد كشف البطاقتين، مع إمكانية إعادة المحاولة.'
+- image: /project-media/bud/mini-trial.jpg
+  altEn: Mini Games public memory trial showing two matched pairs and a completion message.
+  altAr: تجربة الذاكرة العامة في ميني قيمز بعد مطابقة الزوجين وظهور رسالة الإكمال.
+  section: decisions
+  captionEn: 'Public Mini Games memory trial: matched pairs and completion feedback make the interaction tangible before purchase.'
+  captionAr: 'تجربة الذاكرة العامة في «ميني قيمز»: مطابقة الأزواج والتغذية الراجعة عند الإكمال توضحان التفاعل قبل الشراء.'
+rightsCleared: true
+ndaCleared: true
+contentOrigin: real
+presentations:
+- section: problem
+  layout: statement
+  leadAr: ألعاب مختلفة، دون رحلة جديدة كل مرة
+  leadEn: Different games. One familiar hosting flow.
+  items: []
+- section: context
+  layout: editorial
+  items: []
+- section: process
+  layout: split
+  items:
+  - titleAr: الإعداد
+    titleEn: Setup
+    bodyAr: يجهز الهوست الفعالية قبل اللعب.
+    bodyEn: The host prepares the event before play.
+  - titleAr: شاشة الفعالية
+    titleEn: Live event
+    bodyAr: يدير اللعب ويتابع الفائزين وفق قواعد الفعالية.
+    bodyEn: The host runs play and records winners under the activity’s rules.
+  - titleAr: الجوائز
+    titleEn: Prizes
+    bodyAr: ينتقل من اللعب إلى كشف الجوائز.
+    bodyEn: The event moves from play to prize reveals.
+  - titleAr: الختام
+    titleEn: Closing
+    bodyAr: يراجع ملخص الفعالية وينهي الجلسة.
+    bodyEn: The host reviews the event summary and ends the session.
+- section: decisions
+  layout: decisions
+  items:
+  - titleAr: الهوست يقود اللعب
+    titleEn: Keep the host in control
+    bodyAr: في «سؤال وشرط» أبقيت الحكم على الإجابات وتسجيل الفائز بيد الهوست. يشارك اللاعب من ديسكورد دون حساب إضافي أو بوت يتتبعه، ويمكن للشخص نفسه أن يفوز أكثر من مرة.
+    bodyEn: For Question & Condition, I kept answer judgment and winner entry with the host. Participants join through Discord without another website account or tracking bot, and the same person can win again.
+  - titleAr: الشرح عند البداية
+    titleEn: Put guidance beside the action
+    bodyAr: أزلت زر المعلومات المنفصل من بطاقات «ميني قيمز»، واخترت نافذة بدء اللعبة مكانًا للشرح. القرار يجمع المعلومة مع لحظة الحاجة إليها؛ وتبقى صياغة الشرح نفسها قيد المراجعة.
+    bodyEn: I removed separate information buttons from Mini Games cards and chose the existing start dialog for instructions. This places guidance beside the decision to play; the instruction copy remains under review.
+  - titleAr: التفاعل يوجّه التحسين
+    titleEn: Use feedback to guide iteration
+    bodyAr: استفدت من ملاحظات الهوست وتفاعل المشاركين لتحسين منطق اللعب بهدف زيادة التنافسية والمتعة. هذه الملاحظات توجّه قراراتي، دون أن أنسب لها زيادة رقمية غير موثقة.
+    bodyEn: Host observations and participant reactions informed changes to gameplay logic aimed at more competitive, enjoyable play. They guide design decisions without implying a measured uplift.
+- section: outcome
+  layout: editorial
+  items: []
+
+coverCaptionEn: The live event catalog, shown in Arabic.
+coverCaptionAr: كتالوج الفعاليات في المنتج الفعلي.

@@ -1,0 +1,39 @@
+{
+  "source": "Keystatic CMS / cleared real records",
+  "projects": [
+    {
+      "slug": "athar",
+      "cover": "/project-media/athar/public-card.jpg"
+    },
+    {
+      "slug": "bud-discord-events",
+      "cover": "/project-media/bud/catalog.jpg"
+    },
+    {
+      "slug": "iau-student-app",
+      "cover": "/project-media/iau-student-app/services.png"
+    },
+    {
+      "slug": "sky-marathon",
+      "cover": "/project-media/sky/scoring-prototype.png"
+    }
+  ],
+  "graphics": [
+    {
+      "slug": "rais-rocket-league",
+      "cover": "/project-media/rais/rais-rocket-league.webp"
+    },
+    {
+      "slug": "rais-brawlhalla",
+      "cover": "/project-media/rais/rais-brawlhalla.webp"
+    },
+    {
+      "slug": "rais-call-of-duty",
+      "cover": "/project-media/rais/rais-call-of-duty.webp"
+    },
+    {
+      "slug": "rais-fortnite-tournament",
+      "cover": "/project-media/rais-fortnite-tournament.webp"
+    }
+  ]
+}

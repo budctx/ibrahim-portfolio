@@ -1,0 +1,105 @@
+projectKey: iau-student-app
+slug: iau-student-app
+classification: selected
+status: published
+featured: true
+year: '2026'
+rightsCleared: true
+ndaCleared: true
+contentOrigin: real
+order: 30
+titleAr: تطبيق طلاب الجامعة
+titleEn: IAU Student App
+typeAr: تصور منتج ونموذج تفاعلي
+typeEn: Product concept · Interactive prototype
+roleAr: تصميم التصور والنموذج التفاعلي ومراجعته مع الإدارة وتسليمه للتطوير
+roleEn: Concept design, interactive prototyping, stakeholder iteration and developer handoff
+summaryAr: تصور لتطبيق يجمع خدمات الطالب ومعلوماته الأكاديمية حول يومه واحتياجه، بدل التنقل بين وجهات متفرقة.
+summaryEn: A dedicated student-app concept that organizes scattered academic information and service access around the student’s day.
+problemAr: لم تكن المشكلة غياب الخدمات، بل تفرّقها. كانت معلومات الطالب ومساراته موزعة بين خدمات الطلاب وBlackboard والملف الشخصي ومواضع أخرى. المطلوب تصور لتطبيق مخصص يجمع هذه التجربة.
+problemEn: The services existed, but the experience was fragmented. Student information and access paths were distributed across Student Services, Blackboard, the personal profile and other university areas. The brief called for a dedicated student-app concept.
+contextAr: أعددت التصور والنموذج التفاعلي ضمن عملي في قسم التطبيقات بجامعة الإمام عبدالرحمن بن فيصل. راجعت النسخ مع مديري، وأدخلت التعديلات والإضافات، وشاركت رابطًا حيًا لمتابعة التقدم. بعد المراجعات، سلّمت النسخة للمطورين وبدأوا العمل عليها.
+contextEn: I developed the concept and interactive prototype through my work in IAU’s Applications Department. I reviewed iterations with my manager, incorporated requested changes and additions, and shared a live preview for progress reviews. I then handed the revised prototype to developers, who began implementation.
+processAr: 'بدأت من احتياجات الطالب اليومية: ما الذي يحتاج انتباهه؟ أين محاضرته التالية؟ وكيف يصل إلى الخدمة أو المعلومة الأكاديمية؟ النموذج يتيح مناقشة هذه المسارات وتجربتها قبل ربطها بالأنظمة الفعلية.'
+processEn: 'I organized the concept around everyday questions: what needs attention, where is the next class, and how can a student reach the relevant service or academic information? The prototype makes those paths tangible before production integrations.'
+decisionsAr: جمعت الخدمات ضمن مدخل واحد، ثم اخترت متى تظهر التفاصيل ومتى تبقى مختصرة. الهدف أن يجد الطالب ما يحتاجه دون أن تتحول الرئيسية إلى قائمة لكل شيء.
+decisionsEn: A single entry point still needs hierarchy. I chose which information to surface immediately and which details to reveal in context, so the home view would not become a directory of everything.
+outcomeAr: 'المخرج نموذج تفاعلي خضع للمراجعة والتعديل، ثم سُلّم للتطوير. يعرض اتجاهًا موحدًا للتجربة، وليس تطبيقًا جامعيًا منشورًا أو تكاملًا مكتملًا مع الأنظمة.
+
+
+  تعلمت أن النموذج القابل للتجربة يساعد على مناقشة السلوك والتسلسل، لا شكل الشاشات فقط. وتبقى مراجعة اتساق البيانات والمسميات وحالات الاستخدام جزءًا مهمًا من الانتقال إلى التنفيذ.'
+outcomeEn: 'The deliverable is a reviewed, iterated prototype handed to engineering. It demonstrates a unified experience direction, rather than a launched university application or completed system integrations.
+
+
+  The takeaway was the value of discussing behavior and sequence through a working prototype. Consistent labels, data and edge states still need attention as the concept moves into implementation.'
+evidenceNoteAr: الصور من النموذج الذي سُلّم للتطوير، وتقتصر على تخصيص الخدمات والجدول دون عرض هوية طالب أو درجاته. المراجعات والتسليم موثقان بوصف صاحب المشروع؛ لا توجد نتائج استخدام رقمية أو شهادة امتثال.
+evidenceNoteEn: Images come from the handed-off prototype and show service selection and the schedule without a student identity or grades. Stakeholder review and handoff reflect the owner’s account. No numerical usage outcomes or compliance certification are claimed.
+tools:
+- Google AI Studio
+- ChatGPT
+projectUrl: ''
+mediaStyle: portrait
+cover: /project-media/iau-student-app/services.png
+coverAltAr: نافذة تخصيص الخدمات في نموذج تطبيق الطلاب، تعرض الاختيارات وحد أربعة اختصارات.
+coverAltEn: Student-app prototype service selector showing selected shortcuts and a four-service limit.
+coverCaptionAr: تخصيص خدمات الرئيسية في النموذج التفاعلي.
+coverCaptionEn: Home-service customization in the interactive prototype.
+gallery:
+- image: /project-media/iau-student-app/schedule.png
+  section: process
+  altAr: جدول النموذج مع اختيار اليوم وبطاقات المقررات والوقت والمكان.
+  altEn: Prototype schedule with weekday selection and course cards showing time and location.
+  captionAr: اختيار اليوم يعرض المحاضرات وتفاصيلها في السياق نفسه.
+  captionEn: Day selection brings the relevant classes and their details into the same view.
+  width: 448
+  height: 841
+presentations:
+- section: problem
+  layout: statement
+  titleAr: ''
+  titleEn: ''
+  leadAr: الخدمات موجودة. التجربة تحتاج رابطًا بينها.
+  leadEn: Existing services. A missing shared experience.
+  items: []
+- section: context
+  layout: editorial
+  titleAr: دوري في التصور والتسليم
+  titleEn: My role and the handoff
+  leadAr: ''
+  leadEn: ''
+  items: []
+- section: process
+  layout: split
+  titleAr: حول يوم الطالب
+  titleEn: Around the student’s day
+  leadAr: ''
+  leadEn: ''
+  items: []
+- section: decisions
+  layout: decisions
+  titleAr: ''
+  titleEn: ''
+  leadAr: ''
+  leadEn: ''
+  items:
+  - titleAr: الأولوية قبل كثرة المعلومات
+    titleEn: Priorities before volume
+    bodyAr: قدمت الحالة الأكاديمية والتنبيهات والمحاضرة والمهمة التالية في الرئيسية، ثم تركت التفاصيل لمساراتها. هذا الترتيب يوضح ما يستحق الانتباه أولًا.
+    bodyEn: The home view surfaces academic status, alerts, the next class and the next task. Detail belongs in its own flow, keeping immediate priorities visible.
+  - titleAr: اختصارات بحد واضح
+    titleEn: Keep shortcuts bounded
+    bodyAr: يختار الطالب أربعة اختصارات للخدمات وثلاثة للروابط المهمة في النموذج. التخصيص يمنحه مساحة للاختيار ضمن حدود تحافظ على وضوح الرئيسية.
+    bodyEn: The prototype allows four service shortcuts and three important links. Bounded personalization gives students choice without overwhelming the home view.
+  - titleAr: التفاصيل عند الحاجة
+    titleEn: Reveal details in context
+    bodyAr: يرتبط عرض معلومات المحاضر ببطاقة المحاضرة، وتظهر السجلات الأكاديمية عبر البحث واختيار الفصل. الوصول للتفصيل يبدأ من سؤال الطالب، لا من عرض كل المعلومات دفعة واحدة.
+    bodyEn: Lecturer details open from the class card; academic records use search and term selection. Detail follows the student’s question rather than appearing all at once.
+- section: outcome
+  layout: editorial
+  titleAr: من النموذج إلى التطوير
+  titleEn: From prototype to development
+  leadAr: ''
+  leadEn: ''
+  items: []
+coverWidth: 448
+coverHeight: 841

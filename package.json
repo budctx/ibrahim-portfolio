@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "test:gallery": "playwright test -c playwright.gallery.config.cjs"
+    "test:gallery": "playwright test -c playwright.gallery.config.cjs",
+    "build:concept": "node scripts/build-concept.cjs",
+    "prebuild": "npm run build:concept"
   },
   "dependencies": {
     "@keystatic/core": "0.6.9",
@@ -24,6 +26,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "eslint": "9.39.4",
+    "js-yaml": "4.3.2",
     "typescript": "^5.8.2"
   },
   "overrides": {
