@@ -1,0 +1,2170 @@
+{
+  "mode": "Chromium emulation; no physical iPhone or Safari",
+  "base": "http://127.0.0.1:3201",
+  "runs": [
+    {
+      "w": 320,
+      "h": 568,
+      "lang": "ar",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 320,
+      "h": 568,
+      "lang": "ar",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 320,
+      "h": 568,
+      "lang": "en",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 320,
+      "h": 568,
+      "lang": "en",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 320,
+          "w": 320,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 360,
+      "h": 667,
+      "lang": "ar",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 360,
+      "h": 667,
+      "lang": "ar",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 360,
+      "h": 667,
+      "lang": "en",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 360,
+      "h": 667,
+      "lang": "en",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 360,
+          "w": 360,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "lang": "ar",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "lang": "ar",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "lang": "en",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "lang": "en",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 430,
+      "h": 844,
+      "lang": "ar",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 430,
+      "h": 844,
+      "lang": "ar",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 430,
+      "h": 844,
+      "lang": "en",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 430,
+      "h": 844,
+      "lang": "en",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 430,
+          "w": 430,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "lang": "ar",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "lang": "ar",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "lang": "en",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "lang": "en",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 768,
+          "w": 768,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1024,
+      "h": 768,
+      "lang": "ar",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1024,
+      "h": 768,
+      "lang": "ar",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1024,
+      "h": 768,
+      "lang": "en",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1024,
+      "h": 768,
+      "lang": "en",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1024,
+          "w": 1024,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 900,
+      "lang": "ar",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 900,
+      "lang": "ar",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 900,
+      "lang": "en",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 900,
+      "lang": "en",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "lang": "ar",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "lang": "ar",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "lang": "en",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "lang": "en",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1920,
+          "w": 1920,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "lang": "ar",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "lang": "ar",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "lang": "en",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "lang": "en",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 844,
+          "w": 844,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 568,
+      "lang": "ar",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 568,
+      "lang": "ar",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 568,
+      "lang": "en",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 568,
+      "lang": "en",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 667,
+      "lang": "ar",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 667,
+      "lang": "ar",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 667,
+      "lang": "en",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 667,
+      "lang": "en",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 390,
+          "w": 390,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 568,
+      "lang": "ar",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 568,
+      "lang": "ar",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 568,
+      "lang": "en",
+      "theme": "dark",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 568,
+      "lang": "en",
+      "theme": "light",
+      "scenes": [
+        {
+          "id": "main",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "work",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "approach",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "about",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        },
+        {
+          "id": "contact",
+          "sw": 1440,
+          "w": 1440,
+          "active": true,
+          "inert": false
+        }
+      ]
+    }
+  ],
+  "studies": [
+    {
+      "slug": "athar",
+      "lang": "ar",
+      "theme": "dark",
+      "loaded": true
+    },
+    {
+      "slug": "bud-discord-events",
+      "lang": "ar",
+      "theme": "dark",
+      "loaded": true
+    },
+    {
+      "slug": "iau-student-app",
+      "lang": "ar",
+      "theme": "dark",
+      "loaded": true
+    },
+    {
+      "slug": "sky-marathon",
+      "lang": "ar",
+      "theme": "dark",
+      "loaded": true
+    },
+    {
+      "slug": "athar",
+      "lang": "ar",
+      "theme": "light",
+      "loaded": true
+    },
+    {
+      "slug": "bud-discord-events",
+      "lang": "ar",
+      "theme": "light",
+      "loaded": true
+    },
+    {
+      "slug": "iau-student-app",
+      "lang": "ar",
+      "theme": "light",
+      "loaded": true
+    },
+    {
+      "slug": "sky-marathon",
+      "lang": "ar",
+      "theme": "light",
+      "loaded": true
+    },
+    {
+      "slug": "athar",
+      "lang": "en",
+      "theme": "dark",
+      "loaded": true
+    },
+    {
+      "slug": "bud-discord-events",
+      "lang": "en",
+      "theme": "dark",
+      "loaded": true
+    },
+    {
+      "slug": "iau-student-app",
+      "lang": "en",
+      "theme": "dark",
+      "loaded": true
+    },
+    {
+      "slug": "sky-marathon",
+      "lang": "en",
+      "theme": "dark",
+      "loaded": true
+    },
+    {
+      "slug": "athar",
+      "lang": "en",
+      "theme": "light",
+      "loaded": true
+    },
+    {
+      "slug": "bud-discord-events",
+      "lang": "en",
+      "theme": "light",
+      "loaded": true
+    },
+    {
+      "slug": "iau-student-app",
+      "lang": "en",
+      "theme": "light",
+      "loaded": true
+    },
+    {
+      "slug": "sky-marathon",
+      "lang": "en",
+      "theme": "light",
+      "loaded": true
+    }
+  ],
+  "errors": [],
+  "violations": []
+}
