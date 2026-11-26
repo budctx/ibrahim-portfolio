@@ -21,6 +21,15 @@ for(const [width,height] of sizes)for(const lang of ['ar','en'])for(const theme 
     expect(metrics.bg).toBe(theme==='dark'?'rgb(14, 24, 31)':'rgb(244, 245, 242)');
     const tool=await page.locator('.concept-tools').boundingBox();expect(tool.y+tool.height).toBeLessThanOrEqual(0);
    }
+   if(id==='main'){
+    const badge=await page.locator('.card').boundingBox();
+    expect(badge.width,'Badge keeps a discoverable visual scale').toBeGreaterThanOrEqual(85);
+    expect(badge.y+badge.height).toBeLessThanOrEqual(height);
+   }
+   if(id==='about'&&width>height&&height<=550){
+    const clearance=await page.evaluate(()=>{const bottom=Math.max(...[...document.querySelectorAll('.cube-skills span')].map(e=>e.getBoundingClientRect().bottom));return document.querySelector('.cube-controls').getBoundingClientRect().top-bottom});
+    expect(clearance,'Skill labels must clear cube selectors').toBeGreaterThanOrEqual(8);
+   }
    if(id==='work')for(const i of [0,4,1,3,2,0]){
     await page.locator('[data-work-index="'+i+'"]').click();await expect(page.locator('[data-work-index="'+i+'"]')).toHaveAttribute('aria-current','true');
     const card=await page.locator('.concept-work-card').nth(i).boundingBox();expect(card.x).toBeGreaterThanOrEqual(-1);expect(card.x+card.width).toBeLessThanOrEqual(width+1);expect(card.y+card.height).toBeLessThanOrEqual(height+1);
