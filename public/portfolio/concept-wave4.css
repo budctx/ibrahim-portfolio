@@ -41,7 +41,7 @@ body:has(.concept-approach.is-active) .scene-nav :focus-visible{outline-color:#3
 .concept-approach .concept-main{width:var(--cp-container);margin-inline:auto;padding:12px 0 40px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,4vw,64px);align-items:start}
 .concept-approach-copy h3{font-size:clamp(27px,3.4vw,45px);line-height:1.35;letter-spacing:-.03em;font-weight:500;margin:0 0 18px;max-width:17ch}
 .concept-approach-copy p:not(.overline){font-size:16px;line-height:1.8;margin:0 0 20px;max-width:36ch;color:#46574c}
-.concept-inline-link{color:#244f35;font-size:14px;font-weight:600;display:inline-block;padding:10px 0;text-underline-offset:5px}.concept-inline-link:focus-visible{outline-color:#244f35}
+.concept-context-link{color:#244f35;font:inherit;font-weight:600;display:inline;text-underline-offset:5px}.concept-context-link:focus-visible{outline-color:#244f35}
 .concept-method{display:grid;gap:16px}.concept-method-card{display:grid;grid-template-columns:30px minmax(0,1fr);gap:16px;border-top:1px solid #899b8c;padding:20px 0;align-items:start}
 .concept-method-card .id{font:500 12px/1.8 Arial;color:#4f6656;direction:ltr}.concept-method-card h4{font-size:19px;line-height:1.5;margin:0 0 8px;font-weight:600}.concept-method-card p{font-size:15px;line-height:1.8;color:#45564b;margin:0}
 .concept-approach .concept-section-foot{border-color:#899b8c;color:#46574c}
