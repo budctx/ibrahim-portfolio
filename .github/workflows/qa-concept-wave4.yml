@@ -39,7 +39,7 @@ jobs:
           done
           grep -q "concept-work-shell" /tmp/qa-concept.html
           curl -fsSI http://127.0.0.1:3201/concept-v2/ar.html | tr -d '\r' | grep -qi '^x-robots-tag: noindex'
-          npx playwright test tests/concept-wave4.spec.cjs --reporter=line --workers=2
+          npx playwright test tests/concept-wave4.spec.cjs tests/concept-viewport.spec.cjs --reporter=line --workers=2
           mkdir -p qa-20261124
           node scripts/concept-expert-audit.cjs
           node scripts/concept-fix12-audit.cjs

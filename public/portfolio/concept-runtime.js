@@ -52,6 +52,8 @@ function translateNavigation(){
  for(const [id,n] of Object.entries(names))document.querySelector('[data-scene="'+id+'"]').setAttribute('aria-label',n[ar?0:1]);
  document.querySelectorAll('[data-concept-gallery-link]').forEach(a=>a.href='/concept-v2/gallery.html?lang='+lang);
  document.querySelectorAll('[data-case-slug]').forEach(a=>a.href='/concept-v2/'+a.dataset.caseSlug+'/'+lang+'.html');
+ document.querySelector('[data-work-pages]').setAttribute('aria-label',ar?'تصفح الأعمال':'Browse work');
+ document.querySelectorAll('[data-work-index]').forEach(b=>b.setAttribute('aria-label',ar?b.dataset.labelAr:b.dataset.labelEn));
  document.querySelectorAll('[data-alt-ar]').forEach(im=>im.alt=ar?im.dataset.altAr:im.dataset.altEn);
  card.setAttribute('aria-label',ar?'اقلب بطاقة إبراهيم العجمي':"Flip Ibrahim Al-Ajmi's card");
  document.querySelector('.stage').setAttribute('aria-label',ar?'بطاقة التعريف التفاعلية':'Interactive introduction card');
@@ -189,3 +191,20 @@ document.querySelector('link[rel="canonical"]').href='https://ibrahim-portfolio-
 
 function restoreSceneHash(){const id=location.hash.slice(1)||'main';if(sceneIds.includes(id)){sceneDestination=id;document.getElementById(id).scrollIntoView({behavior:'instant',block:'start'});}}
 requestAnimationFrame(restoreSceneHash);window.addEventListener('hashchange',restoreSceneHash);
+
+// One horizontal work scene; native scroll/keyboard plus explicit numbered controls.
+const workTrack=document.getElementById('work-track'),workItems=[...workTrack.children];
+function selectWork(index){
+ const target=workItems[index];
+ workTrack.scrollBy({left:target.getBoundingClientRect().left-workTrack.getBoundingClientRect().left,behavior:reduce.matches?'instant':'smooth'});
+}
+function syncWork(){
+ const r=workTrack.getBoundingClientRect();
+ let best=0,distance=Infinity;
+ workItems.forEach((item,i)=>{const box=item.getBoundingClientRect();const d=Math.abs((box.left+box.right-r.left-r.right)/2);if(d<distance){distance=d;best=i}});
+ document.querySelectorAll('[data-work-index]').forEach((b,i)=>b.setAttribute('aria-current',String(i===best)));
+}
+document.querySelectorAll('[data-work-index]').forEach(b=>b.addEventListener('click',()=>selectWork(Number(b.dataset.workIndex))));
+let workFrame=null;workTrack.addEventListener('scroll',()=>{if(workFrame===null)workFrame=requestAnimationFrame(()=>{workFrame=null;syncWork()})},{passive:true});
+new ResizeObserver(syncWork).observe(workTrack);
+language.addEventListener('click',()=>requestAnimationFrame(syncWork));

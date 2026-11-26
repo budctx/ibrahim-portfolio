@@ -1,0 +1,2358 @@
+{
+  "runs": [
+    {
+      "w": 320,
+      "h": 568,
+      "lang": "en",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 320,
+      "h": 568,
+      "lang": "ar",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 320,
+      "h": 568,
+      "lang": "ar",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 320,
+      "h": 568,
+      "lang": "en",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 360,
+      "h": 667,
+      "lang": "ar",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 360,
+      "h": 667,
+      "lang": "ar",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 360,
+      "h": 667,
+      "lang": "en",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 360,
+      "h": 667,
+      "lang": "en",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "lang": "ar",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "lang": "ar",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "lang": "en",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "lang": "en",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 430,
+      "h": 844,
+      "lang": "ar",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 430,
+      "h": 844,
+      "lang": "ar",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 430,
+      "h": 844,
+      "lang": "en",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 430,
+      "h": 844,
+      "lang": "en",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 844,
+          "scrollHeight": 844,
+          "clientHeight": 844,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "lang": "ar",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "lang": "ar",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "lang": "en",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "lang": "en",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 1024,
+          "scrollHeight": 1024,
+          "clientHeight": 1024,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1024,
+      "h": 768,
+      "lang": "ar",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1024,
+      "h": 768,
+      "lang": "ar",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1024,
+      "h": 768,
+      "lang": "en",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1024,
+      "h": 768,
+      "lang": "en",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 768,
+          "scrollHeight": 768,
+          "clientHeight": 768,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 900,
+      "lang": "ar",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 900,
+      "lang": "ar",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 900,
+      "lang": "en",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 900,
+      "lang": "en",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 900,
+          "scrollHeight": 900,
+          "clientHeight": 900,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "lang": "ar",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "lang": "ar",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "lang": "en",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "lang": "en",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 1080,
+          "scrollHeight": 1080,
+          "clientHeight": 1080,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "lang": "ar",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "lang": "ar",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "lang": "en",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "lang": "en",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 390,
+          "scrollHeight": 390,
+          "clientHeight": 390,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 568,
+      "lang": "ar",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 568,
+      "lang": "ar",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 568,
+      "lang": "en",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 568,
+      "lang": "en",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 667,
+      "lang": "ar",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 667,
+      "lang": "ar",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 667,
+      "lang": "en",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 667,
+      "lang": "en",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 667,
+          "scrollHeight": 667,
+          "clientHeight": 667,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 568,
+      "lang": "ar",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 568,
+      "lang": "ar",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 568,
+      "lang": "en",
+      "theme": "dark",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(14, 24, 31)",
+          "overflow": []
+        }
+      ]
+    },
+    {
+      "w": 1440,
+      "h": 568,
+      "lang": "en",
+      "theme": "light",
+      "fonts": 4,
+      "scenes": [
+        {
+          "id": "main",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgba(0, 0, 0, 0)",
+          "overflow": []
+        },
+        {
+          "id": "work",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "approach",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "about",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        },
+        {
+          "id": "contact",
+          "h": 568,
+          "scrollHeight": 568,
+          "clientHeight": 568,
+          "bg": "rgb(244, 245, 242)",
+          "overflow": []
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "problems": []
+}
