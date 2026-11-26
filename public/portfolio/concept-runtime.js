@@ -196,7 +196,7 @@ requestAnimationFrame(restoreSceneHash);window.addEventListener('hashchange',res
 const workTrack=document.getElementById('work-track'),workItems=[...workTrack.children];
 function selectWork(index){
  const target=workItems[index];
- workTrack.scrollBy({left:target.getBoundingClientRect().left-workTrack.getBoundingClientRect().left,behavior:reduce.matches?'instant':'smooth'});
+ workTrack.scrollTo({left:workTrack.scrollLeft+target.getBoundingClientRect().left-workTrack.getBoundingClientRect().left,behavior:reduce.matches?'instant':'smooth'});
 }
 function syncWork(){
  const r=workTrack.getBoundingClientRect();

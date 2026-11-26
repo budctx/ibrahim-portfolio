@@ -21,3 +21,7 @@ Approach keeps all three authentic ATHAR decisions as native, mutually exclusive
 Screenshots and raw metrics: `/concept-v2/qa/viewport.html` and `/concept-v2/qa/viewport-results.json`.
 
 Chromium emulation only; no physical Safari/iPhone claim. No merge or production change.
+
+## Deployed navigation regression
+
+The deployed smoke test exposed a direct-jump defect: a relative `scrollBy` operation stops at the first intermediate card under `scroll-snap-stop: always`. Adjacent navigation had passed. Work selection now uses an absolute `scrollTo` destination, preserving per-gesture snap behavior while allowing any numbered button to reach its target. The viewport test now checks non-sequential indices `[0,4,1,3,2,0]` in every case.

@@ -21,7 +21,7 @@ for(const [width,height] of sizes)for(const lang of ['ar','en'])for(const theme 
     expect(metrics.bg).toBe(theme==='dark'?'rgb(14, 24, 31)':'rgb(244, 245, 242)');
     const tool=await page.locator('.concept-tools').boundingBox();expect(tool.y+tool.height).toBeLessThanOrEqual(0);
    }
-   if(id==='work')for(let i=0;i<5;i++){
+   if(id==='work')for(const i of [0,4,1,3,2,0]){
     await page.locator('[data-work-index="'+i+'"]').click();await expect(page.locator('[data-work-index="'+i+'"]')).toHaveAttribute('aria-current','true');
     const card=await page.locator('.concept-work-card').nth(i).boundingBox();expect(card.x).toBeGreaterThanOrEqual(-1);expect(card.x+card.width).toBeLessThanOrEqual(width+1);expect(card.y+card.height).toBeLessThanOrEqual(height+1);
    }
