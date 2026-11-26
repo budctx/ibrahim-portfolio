@@ -1,7 +1,7 @@
 const {test,expect}=require('@playwright/test');
 const fs=require('node:fs');
 const BASE=process.env.CONCEPT_BASE_URL||'http://127.0.0.1:3201';
-const sizes=[[568,320],[667,375],[740,360],[320,568],[360,667],[390,844],[430,844],[768,1024],[1024,768],[1440,900],[1920,1080],[844,390],[390,568],[390,667],[1440,568]];
+const sizes=[[568,320],[667,375],[740,360],[320,568],[360,667],[390,844],[430,844],[402,874],[768,1024],[1024,768],[1440,900],[1920,1080],[844,390],[390,568],[390,667],[1440,568]];
 for(const [width,height] of sizes)for(const lang of ['ar','en'])for(const theme of ['dark','light']){
  test(`Viewport contract ${width}x${height} ${lang} ${theme}`,async({page,context})=>{
   await page.setViewportSize({width,height});await page.emulateMedia({reducedMotion:'reduce'});
@@ -26,7 +26,7 @@ for(const [width,height] of sizes)for(const lang of ['ar','en'])for(const theme 
     expect(badge.width,'Badge keeps a discoverable visual scale').toBeGreaterThanOrEqual(85);
     expect(badge.y+badge.height).toBeLessThanOrEqual(height);
    }
-   if(id==='about'&&width>height&&height<=550){
+   if(id==='about'){
     const clearance=await page.evaluate(()=>{const bottom=Math.max(...[...document.querySelectorAll('.cube-skills span')].map(e=>e.getBoundingClientRect().bottom));return document.querySelector('.cube-controls').getBoundingClientRect().top-bottom});
     expect(clearance,'Skill labels must clear cube selectors').toBeGreaterThanOrEqual(8);
    }
